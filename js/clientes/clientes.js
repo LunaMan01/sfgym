@@ -1,4 +1,4 @@
-const abrirVentananaAddClientes = () => {
+var abrirVentananaAddClientes = () => {
     load('html/clientes-components/agregar-cliente.html', document.querySelector('.content'));
     document.querySelector('#add-cliente-btn').classList.add('d-none');
     document.querySelector('#reporte-cliente-btn').classList.add('d-none');

@@ -7,8 +7,14 @@
 }
 .btn {
     width: 150px;
-    
 }
+.btn-drop{
+    width: 165px;
+    border-radius: 15px;
+    background-color: #FFFF;
+    color: black;
+}
+
 .search{
     width: 300px;
 }
@@ -71,4 +77,3 @@ hr{
 .mensajeAlert{
     float: none;
 }
-

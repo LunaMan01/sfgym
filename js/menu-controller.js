@@ -17,9 +17,9 @@ clientesLink.addEventListener('click', function () {
     load('html/clientes-components/clientes.html', content);
 
 
-    let addButton = '<div class="d-flex"><button class="btn btn-outline-success btn-sm my-2 my-sm-0 mr-3 rounded-pill" type="button" id="add-cliente-btn">Añadir cliente</button></div>';
-    let crearReporteButton = '<div class="d-flex"><button class="btn btn-outline-success btn-sm my-2 my-sm-0 mr-3 rounded-pill" type="submit" id="reporte-cliente-btn">Crear reporte</button><div>';
-    let buscarInput = '<div class"d-flex mr-5"><input class="form-control mr-sm-2  rounded-pill search" type="search" placeholder="Search" aria-label="Search" id="buscar-cliente-input"></div>';
+    let addButton = '<div class="d-flex btn-add"><button class="btn btn-outline-success btn-sm my-2 my-sm-0 mr-3 rounded-pill" type="button" id="add-cliente-btn">Añadir cliente</button></div>';
+    let crearReporteButton = '<div class="d-flex btn-add-reporte"><button class="btn btn-outline-success btn-sm my-2 my-sm-0 mr-3 rounded-pill" type="submit" id="reporte-cliente-btn">Crear reporte</button><div>';
+    let buscarInput = '<div class"d-flex" id="buscar-div"><input class="form-control  rounded-pill search" type="search" placeholder="Search" aria-label="Search" id="buscar-cliente-input"></div>';
 
 
 
@@ -36,7 +36,8 @@ clientesLink.addEventListener('click', function () {
 });
 
 inicioLink.addEventListener('click', function () {
-    document.head.removeChild(document.querySelector('#clientes-script'));
+    removefile('clientes','js');
+    
 
     document.querySelector('#add-cliente-btn').remove();
 
@@ -49,6 +50,8 @@ inicioLink.addEventListener('click', function () {
     document.querySelector('#titulo-modulo').textContent = 'Inicio';
 });
 
+
+
 function load(url, element) {
     req = new XMLHttpRequest();
     req.open("GET", url, false);
@@ -59,3 +62,15 @@ function load(url, element) {
 function limpiarDivAdicional() {
     divAdicional.innerHTML = '';
 }
+
+function removefile(filename, filetype){
+    var targetelement=(filetype=="js")? "script" : (filetype=="css")? "link" : "none" //determine element type to create nodelist from
+    var targetattr=(filetype=="js")? "src" : (filetype=="css")? "href" : "none" //determine corresponding attribute to test for
+    var allsuspects=document.getElementsByTagName(targetelement)
+    for (var i=allsuspects.length; i>=0; i--){ //search backwards within nodelist for matching elements to remove
+    if (allsuspects[i] && allsuspects[i].getAttribute(targetattr)!=null && allsuspects[i].getAttribute(targetattr).indexOf(filename)!=-1)
+        allsuspects[i].parentNode.removeChild(allsuspects[i]) //remove element by calling parentNode.removeChild()
+    }
+}
+
+//Medias querys

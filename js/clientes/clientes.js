@@ -1,8 +1,13 @@
 const abrirVentananaAddClientes = () => {
     load('html/clientes-components/agregar-cliente.html', document.querySelector('.content'));
-    this.classList.add('d-none');
+    document.querySelector('#add-cliente-btn').classList.add('d-none');
     document.querySelector('#reporte-cliente-btn').classList.add('d-none');
     document.querySelector('#buscar-cliente-input').classList.add('d-none');
+    let scriptAddClientes = document.createElement('script');
+    scriptAddClientes.setAttribute('src', 'js/clientes/addCliente.js');
+    scriptAddClientes.setAttribute('id', 'clientes-script');
+    document.head.appendChild(scriptAddClientes);
+
 }
 
 document.querySelector('#add-cliente-btn').addEventListener('click', abrirVentananaAddClientes);

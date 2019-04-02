@@ -16,7 +16,7 @@
 }
 
 .search{
-    width: 500px;
+    width: 300px;
 }
 .content, .main-panel {
     background: #F7F7F8;
@@ -78,6 +78,4 @@ hr{
     float: none;
 }
 
-.mos-menu{
-    margin: 15px;
-}
+

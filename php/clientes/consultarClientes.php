@@ -12,7 +12,7 @@
         '<td>
             <i class="material-icons actions"> remove_red_eye</i>
             <i class="material-icons actions edit-action"> create</i>
-            <i class="material-icons actions"> delete</i> </td>
+            <i class="material-icons action delete-action"> delete</i> </td>
         </tr>';
     }
 

@@ -36,6 +36,9 @@ clientesLink.addEventListener('click', function () {
     scriptMostrarClientes.setAttribute('src', 'js/clientes/mostrar-clientes.js');
     document.head.appendChild(scriptMostrarClientes);
 
+    let scriptEditarCliente = document.createElement('script');
+    scriptEditarCliente.setAttribute('src', 'js/clientes/editar-cliente.js');
+    document.head.appendChild(scriptEditarCliente);
 
     document.querySelector('#titulo-modulo').textContent = 'Clientes';
 });

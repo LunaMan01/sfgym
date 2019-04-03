@@ -8,6 +8,12 @@
 .btn {
     width: 150px;
 }
+
+.actions {
+    font-size: 24px !important;
+    cursor: pointer;
+}
+
 .btn-drop{
     width: 165px;
     border-radius: 15px;

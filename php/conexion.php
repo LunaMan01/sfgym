@@ -4,9 +4,10 @@
     $password = "";
 
     try {
-        $conn = new PDO("mysql:host=$servername;dbname=nuevoacropolisgym", $username, $password);
+        $conn = mysqli_connect("$servername","$username","$password");
+        mysqli_select_db($conn, "nuevoacropolisgym");
         // set the PDO error mode to exception
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        // $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         echo "Connected successfully";
     }
     catch(PDOException $e){

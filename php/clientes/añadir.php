@@ -1,8 +1,8 @@
 <?php
-    include 'conexion.php'
+    include '../conexion.php';
 
-    $nombre_cliente = $_POST['nombre_cliente']
-    $apellido_paterno = $_POST['ap-parno']
+    $nombre_cliente = $_POST['nombre_cliente'];
+    $apellido_paterno = $_POST['ap-parno'];
 
     $sql = "INSERT INTO Clientes (nombre_cliente, apellido_paterno) VALUES ('".$nombre_cliente."', '".$apellido_paterno."')";
 

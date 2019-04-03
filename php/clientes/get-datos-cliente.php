@@ -8,6 +8,10 @@
         $cliente = new \stdClass();
         foreach ($conn->query($preparar) as $row) {
             $cliente->nombre = $row['nombre_cliente'];
+            $cliente->apPaterno = $row['apellido_paterno'];
+            $cliente->apMaterno = $row['apellido_materno'];
+            $cliente->edad = $row['edad'];
+            // $cliente->genero = $row['genero'];
         }
         
         $clienteJSON = json_encode($cliente);

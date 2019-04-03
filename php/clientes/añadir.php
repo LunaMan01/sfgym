@@ -3,6 +3,7 @@
     $conex = $conn;
     try {
         echo "Conexion";
+        
         $preparar = $conn->prepare('INSERT INTO Clientes (nombre_cliente, apellido_paterno, apellido_materno, edad) 
         VALUES (:nombre, :paterno, :materno, :edad)');
         

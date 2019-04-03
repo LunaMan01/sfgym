@@ -28,5 +28,13 @@ function getDatosCliente(id) {
     req.send(params);
     var elements = req.responseText;
     var cliente = JSON.parse(elements);
-    console.log(cliente);
+    setDatosClienteEnInputs(cliente);
+}
+
+function setDatosClienteEnInputs(cliente) {
+    document.querySelector('#nombre').value = cliente.nombre;
+    document.querySelector('#ap-parno').value = cliente.apPaterno;
+    document.querySelector('#ap-marno').value = cliente.apMaterno;
+    document.querySelector('#edad').value = cliente.edad;
+    
 }

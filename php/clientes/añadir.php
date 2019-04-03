@@ -1,16 +1,24 @@
 <?php
     include '../conexion.php';
-
-    $nombre_cliente = $_POST['nombre_cliente'];
-    $apellido_paterno = $_POST['ap-parno'];
-
-    $sql = "INSERT INTO Clientes (nombre_cliente, apellido_paterno) VALUES ('".$nombre_cliente."', '".$apellido_paterno."')";
-
-    if (mysqli_query($conn, $sql)) {
-        echo "New record created successfully";
-    } else {
-        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    $conex = $conn;
+    try {
+        echo "Conexion";
+        $preparar = $conn->prepare('INSERT INTO Clientes (nombre_cliente, apellido_paterno, apellido_materno, edad) 
+        VALUES (:nombre, :paterno, :materno, :edad)');
+        
+        $preparar->bindParam(':nombre', $_POST['nombre_cliente']);
+        $preparar->bindParam(':paterno', $_POST['ap-parno']);
+        $preparar->bindParam(':materno', $_POST['ap-marno']);
+        $preparar->bindParam(':edad', $_POST['edad']);
+        //$preparar->bindParam(':activo', $_POST['']);
+        //$preparar->bindParam(':genero', $_POST['']);
+        
+        $preparar->execute();
+        echo "New records created successfully";
+    }   
+    catch(PDOException $e){
+        echo "Error: ". $e->getMessage();
+        console_log("Error");
     }
-
     $conn = null;
 ?>

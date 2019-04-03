@@ -32,6 +32,11 @@ clientesLink.addEventListener('click', function () {
     script.setAttribute('id', 'clientes-script');
     document.head.appendChild(script);
 
+    let scriptMostrarClientes = document.createElement('script');
+    scriptMostrarClientes.setAttribute('src', 'js/clientes/mostrar-clientes.js');
+    document.head.appendChild(scriptMostrarClientes);
+
+
     document.querySelector('#titulo-modulo').textContent = 'Clientes';
 });
 
@@ -54,7 +59,7 @@ inicioLink.addEventListener('click', function () {
 
 function load(url, element) {
     req = new XMLHttpRequest();
-    req.open("GET", url, false);
+    req.open("POST", url, false);
     req.send(null);
     element.innerHTML = req.responseText;
 }

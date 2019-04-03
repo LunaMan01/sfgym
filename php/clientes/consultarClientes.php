@@ -6,13 +6,13 @@
 
     foreach($conn->query($datos) as $row){
         echo '<tr>
-              <th scope="row">'.$row['Id_Cliente'].'</th>'.
+              <th scope="row" id="'.$row['Id_Cliente'].'">'.$row['Id_Cliente'].'</th>'.
              '<td>'.$row['nombre_cliente'].'</td>'.
              '<td>'.$row['numero'].'</td>'.
         '<td>
             <i class="material-icons actions"> remove_red_eye</i>
             <i class="material-icons actions edit-action"> create</i>
-            <i class="material-icons action delete-action"> delete</i> </td>
+            <i class="material-icons actions delete-action"> delete</i> </td>
         </tr>';
     }
 

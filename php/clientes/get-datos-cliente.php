@@ -4,7 +4,7 @@
     $array = array();
     try {
         $idC = $_POST["id"];
-        $preparar = 'SELECT * FROM Clientes WHERE Id_Cliente='.$idC;
+        $preparar = 'SELECT * FROM Clientes, Telefonos WHERE Cliente.Id_Cliente ='.$_POST['id'];
         $cliente = new \stdClass();
         foreach ($conn->query($preparar) as $row) {
             $cliente->nombre = $row['nombre_cliente'];

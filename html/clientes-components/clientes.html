@@ -1,90 +1,57 @@
-
 <div class="row">
     <!-- Ingresar aqui columnas y contenido  -->
     <div class="col-12">
         <div class="row m-3 letrero">
             <div class="col-1">
-                    <p>Mostrar</p>
+                <p>Mostrar</p>
             </div>
             <div class="col-11 dropdown">
-                <button class="btn btn-secondary dropdown-toggle btn-drop" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button class="btn btn-secondary dropdown-toggle btn-drop" type="button" id="dropdown-clientes"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Todos los clientes
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                    <button class="dropdown-item" type="button">Clientes inactivos</button>
-                    <button class="dropdown-item" type="button">Clientes activos</button>
-                    <button class="dropdown-item" type="button">Sin membresía</button>
+                    <button class="dropdown-item d-none" type="button" id="todos-clientes-btn">Todos los
+                        clientes</button>
+                    <button class="dropdown-item" type="button" id="clientes-inactivos-btn">Clientes inactivos</button>
+                    <button class="dropdown-item" type="button" id="clientes-activos-btn">Clientes activos</button>
+                    <button class="dropdown-item" type="button" id="clientes-nomem-btn">Sin membresía</button>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-12">
+            <div class="tablaPrincipal">
+                <div class="row mensajeAlert">
+                    <div class="col-lg-1">
+                        <i class="material-icons iconWarning">group</i>
+                    </div>
+                    <div class="col-lg-11">
+                        <p>Lista de clientes </p>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">Nombre Cliente</th>
+                                <th scope="col">Teléfono</th>
+                                <th scope="col">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cuerpo-tabla-clientes">
+
+                        </tbody>
+
+                    </table>
                 </div>
             </div>
         </div>
-                <div class="col-12">
-                    <div class="tablaPrincipal">
-                        <div class="row mensajeAlert">
-                            <div class="col-lg-1">
-                                <i class="material-icons iconWarning">group</i>
-                            </div>
-                            <div class="col-lg-11">
-                                <p>Lista de clientes </p>
-                            </div>
-                        </div>
-            
-                        <div class="table-responsive">
-                            <table class="table table-hover">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Id</th>
-                                        <th scope="col">Nombre Cliente</th>
-                                        <th scope="col">Teléfono</th>
-                                        <th scope="col">Acciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="cuerpo-tabla-clientes">
-                                    <tr>
-                                        <th scope="row" class="id-td" id="1">1</th>
-                                        <td class="editable">Nombre..........................</td>
-                                        <td class="editable">xxx.xxx.xxxx</td>
-                                        <td>
-                                            
-                                                <i class="material-icons actions mr-2"> remove_red_eye</i>
-                                                <i class="material-icons actions mr-2 edit-action"> create</i>
-                                                <i class="material-icons actions mr-2"> delete</i>
-                                            
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row" id="2">2</th>
-                                        <td>Nombre</td>
-                                        <td>xxx.xxx.xxxx</td>
-                                        <td>
-                                            <i class="material-icons actions mr-2"> remove_red_eye</i>
-                                            <i class="material-icons actions mr-2 edit-action"> create</i>
-                                            <i class="material-icons actions mr-2"> delete</i>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>Nombre</td>
-                                        <td>xxx.xxx.xxxx</td>
-                                        <td>xxx</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">4</th>
-                                        <td>Nombre</td>
-                                        <td>xxx.xxx.xxxx</td>
-                                        <td>xxx</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>Nombre</td>
-                                        <td>xxx.xxx.xxxx</td>
-                                        <td>xxx</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
     </div>
+    
 </div>
+
 
 <!-- <script src="js/clientes.js" type="text/javascript"></script> -->

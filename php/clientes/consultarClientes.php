@@ -10,9 +10,9 @@
              '<td>'.$row['nombre_cliente'].'</td>'.
              '<td>'.$row['numero'].'</td>'.
         '<td>
-            <i class="material-icons actions"> remove_red_eye</i>
-            <i class="material-icons actions edit-action"> create</i>
-            <i class="material-icons actions delete-action"> delete</i> </td>
+            <i class="material-icons actions mr-2"> remove_red_eye</i>
+            <i class="material-icons actions edit-action mr-2"> create</i>
+            <i class="material-icons actions delete-action mr-2" data-toggle="modal" href="#exampleModal"> delete</i> </td>
         </tr>';
     }
 

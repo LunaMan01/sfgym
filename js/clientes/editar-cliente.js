@@ -28,6 +28,7 @@ function getDatosCliente(id) {
     req.send(params);
     var elements = req.responseText;
     var cliente = JSON.parse(elements);
+    console.log('cliente');
     setDatosClienteEnInputs(cliente);
 }
 

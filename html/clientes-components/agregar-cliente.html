@@ -1,6 +1,6 @@
     <form id="form" onsubmit="return false">
-            <div class="row mensajeAlert">
-                <div class="col-1">
+            <div class="row">
+                <div class="col-1 mensaje-arriba-agregar-clientes">
                     <i class="material-icons">group</i>
                 </div>
                 <div class="col-11">
@@ -54,7 +54,9 @@
         </div>
 
         <br>
-        <label>Dirección de contacto</label>
+        <div class="col-sm-3 text-right">
+            <label>Dirección de contacto</label> 
+        </div>     
         <br>
         <div class="fomr-group row mt-2">
             <label class="col-sm-3 col-form-label text-right">Calle: </label>
@@ -77,7 +79,7 @@
             <div class="col-md-5">
                 <input type="text" class="form-control rounded-pill" id="num-int" name="num-int">
             </div>
-            <div class="fomr-group row mt-2">
+            <div class="fomr-group row mt-2 arregla">
                 <div class="col-md-4 text-right">
                     <label>Colonia:</label>
                 </div>
@@ -88,8 +90,10 @@
             </div>
         </div>    
         
-        <button type="submit" id="guardar-cliente">Guardar</button>
-        <button id="cancelar-cliente">Cancelar</button>
+        <div class="col-sm-12 text-right mt-4">
+            <button type="submit" id="guardar-cliente" class="btn btn-outline-success btn-sm my-2 my-sm-0 mr-3 rounded-pill">Guardar</button>
+            <button id="cancelar-cliente" class="btn btn-outline-success btn-sm my-2 my-sm-0 mr-3 rounded-pill">Cancelar</button>
+        </div>
 
     </form>
     

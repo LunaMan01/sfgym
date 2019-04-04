@@ -40,6 +40,10 @@ clientesLink.addEventListener('click', function () {
     scriptEditarCliente.setAttribute('src', 'js/clientes/editar-cliente.js');
     document.head.appendChild(scriptEditarCliente);
 
+    let scriptEliminarCliente = document.createElement('script');
+    scriptEliminarCliente.setAttribute('src', 'js/clientes/eliminar-cliente.js');
+    document.head.appendChild(scriptEliminarCliente);
+
     document.querySelector('#titulo-modulo').textContent = 'Clientes';
 });
 

@@ -6,7 +6,8 @@
     margin: 0px;
 }
 .btn {
-    width: 150px;
+    background-color: #FFFF;
+    color: black;
 }
 
 .actions {
@@ -83,3 +84,16 @@ hr{
 .mensajeAlert{
     float: none;
 }
+
+form{
+    background: #FFFF;
+    padding: 10px;
+    border-radius: 15px;
+    border: #6a6a6a solid 1px;
+}
+
+.mensaje-arriba-agregar-clientes i{
+    font-size: 30px;
+    color: #54ad58;
+}
+

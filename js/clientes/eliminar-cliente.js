@@ -17,6 +17,6 @@ function eliminarCliente () {
     tr.remove();
 }
 
-for (var i = 0; i < elements.length; i++) {
-    elements[i].addEventListener('click', eliminarCliente, false);
-}
+// for (var i = 0; i < elements.length; i++) {
+//     elements[i].addEventListener('click', eliminarCliente, false);
+// }

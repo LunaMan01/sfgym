@@ -1,56 +1,57 @@
-<div class="row">
-    <!-- Ingresar aqui columnas y contenido  -->
-    <div class="col-12">
-        <div class="row m-3 letrero">
-            <div class="col-1">
-                <p>Mostrar</p>
-            </div>
-            <div class="col-11 dropdown">
-                <button class="btn btn-secondary dropdown-toggle btn-drop" type="button" id="dropdown-clientes"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Todos los clientes
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                    <button class="dropdown-item d-none" type="button" id="todos-clientes-btn">Todos los
-                        clientes</button>
-                    <button class="dropdown-item" type="button" id="clientes-inactivos-btn">Clientes inactivos</button>
-                    <button class="dropdown-item" type="button" id="clientes-activos-btn">Clientes activos</button>
-                    <button class="dropdown-item" type="button" id="clientes-nomem-btn">Sin membresía</button>
-                </div>
-            </div>
-
-        </div>
+<div class="container">
+    <div class="row">
+        <!-- Ingresar aqui columnas y contenido  -->
         <div class="col-12">
-            <div class="tablaPrincipal">
-                <div class="row mensajeAlert">
-                    <div class="col-lg-1">
-                        <i class="material-icons iconWarning">group</i>
-                    </div>
-                    <div class="col-lg-11">
-                        <p>Lista de clientes </p>
+            <div class="row m-3 letrero">
+                <div class="col-auto">
+                    <p>Mostrar</p>
+                </div>
+                <div class="col-auto dropdown">
+                    <button class="btn btn-secondary dropdown-toggle btn-drop" type="button" id="dropdown-clientes"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Todos los clientes
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                        <button class="dropdown-item d-none" type="button" id="todos-clientes-btn">Todos los
+                            clientes</button>
+                        <button class="dropdown-item" type="button" id="clientes-inactivos-btn">Clientes
+                            inactivos</button>
+                        <button class="dropdown-item" type="button" id="clientes-activos-btn">Clientes activos</button>
+                        <button class="dropdown-item" type="button" id="clientes-nomem-btn">Sin membresía</button>
                     </div>
                 </div>
+            </div>
+            <div class="col-12">
+                <div class="tablaPrincipal">
+                    <div class="row mensajeAlert">
+                        <div class="col-lg-1">
+                            <i class="material-icons iconMessege">group</i>
+                        </div>
+                        <div class="col-lg-11">
+                            <p>Lista de clientes </p>
+                        </div>
+                    </div>
 
-                <div class="table-responsive">
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th scope="col">Id</th>
-                                <th scope="col">Nombre Cliente</th>
-                                <th scope="col">Teléfono</th>
-                                <th scope="col">Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody id="cuerpo-tabla-clientes">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Id</th>
+                                    <th scope="col">Nombre Cliente</th>
+                                    <th scope="col">Teléfono</th>
+                                    <th scope="col">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="cuerpo-tabla-clientes">
 
-                        </tbody>
+                            </tbody>
 
-                    </table>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    
 </div>
 
 

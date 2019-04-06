@@ -1,99 +1,126 @@
+<div class="container">
     <form id="form" onsubmit="return false">
+        <div class="container">
+            <!--Mensaje: Nuevo cliente-->
             <div class="row">
-                <div class="col-1 mensaje-arriba-agregar-clientes">
-                    <i class="material-icons">group</i>
+                <div class="col-auto">
+                    <i class="material-icons iconMessege">group</i>
                 </div>
-                <div class="col-11">
-                    <p>Nuevo Cliente</p>
+                <div class="col-auto">
+                    <p class="p-2"><b>Nuevo Cliente</b></p>
                 </div>
             </div>
-        
-        <div class="fomr-group row ">
-            <label class="col-sm-3 col-form-label text-right">Nombre: </label>
-            <div class="col-md-5">
-                <input type="text" class="form-control rounded-pill" id="nombre" name="nombre_cliente">
+
+            <!--Formularios-->
+            <div class="row">
+                <div class="col-md-6 offset-lg-3">
+                    <!--Form: NOMBRE-->
+                    <div class="form-group row ">
+                        <label class="col-lg-4 col-form-label text-right">Nombre: </label>
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control rounded-pill" id="nombre" name="nombre_cliente">
+                        </div>
+                    </div>
+                    <!--Form: A-PATERNO-->
+                    <div class="form-group row">
+                        <label class="col-lg-4 col-form-label text-right col-sd">Apellido paterno: </label>
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control rounded-pill" id="ap-parno" name="ap-parno">
+                        </div>
+                    </div>
+                    <!--Form: A-MATERNO-->
+                    <div class="form-group row">
+                        <label class="col-lg-4 col-form-label text-right">Apellido Materno: </label>
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control rounded-pill" id="ap-marno" name="ap-marno">
+                        </div>
+                    </div>
+                    <!--Form: EDAD-->
+                    <div class="form-group row">
+                        <label class="col-lg-4 col-form-label text-right">Edad: </label>
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control rounded-pill" id="edad" name="edad">
+                        </div>
+                    </div>
+                    <!--Form: Menu SEXO-->
+                    <div class="form-group row">
+                        <label class="col-lg-4 col-form-label text-right">Sexo: </label>
+                        <div class="col-lg-8">
+                            <select class="form-control form-control-lg rounded-pill" id="sexo" name="sexo">
+                                <option class="rounded-pill">Hombre</option>
+                                <option class="rounded-pill">Mujer</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!--Form: TELÉFONO-->
+                    <div class="form-group row">
+                        <label class="col-lg-4 col-form-label text-right">Teléfono: </label>
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control rounded-pill" id="telefono" name="telefono">
+                        </div>
+                    </div>
+
+                    <br>
+                    <div class="col-lg-5">
+                        <label>Dirección de contacto</label>
+                    </div>
+                    <br>
+
+                    <!--Forms:  CALLE, NUM-EXT-->
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group row">
+                                <label class="col-lg-4 col-form-label text-right">Calle: </label>
+                                <div class="col-lg-8">
+                                    <input type="text" class="form-control rounded-pill" id="calle" name="calle">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group row">
+                                <div class="col-lg-4 text-right">
+                                    <label>Num Exterior:</label>
+                                </div>
+                                <div class="col-lg-8">
+                                    <input type="text" class="form-control rounded-pill" id="num-ext" name="num-ext">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Forms:  NUM-INT, COLONIA-->
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group row">
+                                <label class="col-lg-4 col-form-label text-right">Num Interior: </label>
+                                <div class="col-lg-8">
+                                    <input type="text" class="form-control rounded-pill" id="num-int" name="num-int">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group row">
+                                <div class="col-lg-4 text-right">
+                                    <label>Colonia:</label>
+                                </div>
+                                <div class="col-lg-8">
+                                    <input type="text" class="form-control rounded-pill" id="colonia" name="colonia">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="fomr-group row mt-2">
-            <label class="col-sm-3 col-form-label text-right">Apellido paterno: </label>
-            <div class="col-md-5">
-                <input type="text" class="form-control rounded-pill" id="ap-parno" name="ap-parno">
+        <!--Botones-->
+        <div class="row">
+            <div class="col-lg-4 text-right offset-lg-8">
+                <button type="submit" id="guardar-cliente"
+                    class="btn btn-outline-success btn-sm my-2 my-sm-0 mr-3 rounded-pill">Guardar</button>
+                <button id="cancelar-cliente"
+                    class="btn btn-outline-success btn-sm my-2 my-sm-0 mr-3 rounded-pill">Cancelar</button>
             </div>
         </div>
-
-        <div class="fomr-group row mt-2">
-                <label class="col-sm-3 col-form-label text-right" >Apellido Materno: </label>
-                <div class="col-md-5">
-                    <input type="text" class="form-control rounded-pill" id="ap-marno" name="ap-marno">
-                </div>
-        </div>
-        <div class="fomr-group row mt-2">
-            <label class="col-sm-3 col-form-label text-right" >Edad: </label>
-            <div class="col-md-5">
-                <input type="text" class="form-control rounded-pill" id="edad" name="edad">
-            </div>
-        </div>
-
-        <div class="fomr-group row mt-2">
-            <label class="col-sm-3 col-form-label text-right" >Sexo: </label>
-            <div class="col-md-5">
-                
-                <select class="form-control form-control-lg rounded-pill" id="sexo" name="sexo">
-                    <option class="rounded-pill">Hombre</option>
-                    <option class="rounded-pill">Mujer</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="fomr-group row mt-2">
-                <label class="col-sm-3 col-form-label text-right">Teléfono: </label>
-                <div class="col-md-5">
-                    <input type="text" class="form-control rounded-pill" id="telefono" name="telefono">
-                </div>
-        </div>
-
-        <br>
-        <div class="col-sm-3 text-right">
-            <label>Dirección de contacto</label> 
-        </div>     
-        <br>
-        <div class="fomr-group row mt-2">
-            <label class="col-sm-3 col-form-label text-right">Calle: </label>
-            <div class="col-md-5">
-                <input type="text" class="form-control rounded-pill" id="calle" name="calle">
-            </div>
-            <div class="fomr-group row mt-2">
-                <div class="col-md-5 text-right">
-                    <label>Num. Exterior:</label>
-                </div>
-                <div class="col-md-7">
-                    <input type="text" class="form-control rounded-pill" id="num-ext" name="num-ext">
-                </div>
-
-            </div>
-        </div>
-
-        <div class="fomr-group row mt-2">
-            <label class="col-sm-3 col-form-label text-right">Num. Interior: </label>
-            <div class="col-md-5">
-                <input type="text" class="form-control rounded-pill" id="num-int" name="num-int">
-            </div>
-            <div class="fomr-group row mt-2 arregla">
-                <div class="col-md-4 text-right">
-                    <label>Colonia:</label>
-                </div>
-                <div class="col-md-8">
-                    <input type="text" class="form-control rounded-pill" id="colonia" name="colonia">
-                </div>
-    
-            </div>
-        </div>    
-        
-        <div class="col-sm-12 text-right mt-4">
-            <button type="submit" id="guardar-cliente" class="btn btn-outline-success btn-sm my-2 my-sm-0 mr-3 rounded-pill">Guardar</button>
-            <button id="cancelar-cliente" class="btn btn-outline-success btn-sm my-2 my-sm-0 mr-3 rounded-pill">Cancelar</button>
-        </div>
-
     </form>
-    
+</div>

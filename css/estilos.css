@@ -16,7 +16,6 @@
 }
 
 .btn-drop{
-    width: 165px;
     border-radius: 15px;
     background-color: #FFFF;
     color: black;
@@ -92,8 +91,8 @@ form{
     border: #6a6a6a solid 1px;
 }
 
-.mensaje-arriba-agregar-clientes i{
-    font-size: 30px;
+.iconMessege{
     color: #54ad58;
+    font-size:30px;
+    margin: .5rem;
 }
-

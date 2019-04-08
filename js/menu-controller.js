@@ -48,6 +48,8 @@ const abrirClientes = () => {
     document.head.appendChild(scriptEliminarCliente);
 
     document.querySelector('#titulo-modulo').textContent = 'Clientes';
+
+    
 };
 
 class Button {

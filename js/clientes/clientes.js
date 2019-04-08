@@ -21,10 +21,10 @@ function load(url, element) {
 
 
 
-var mediaQuerySmall = window.matchMedia('(min-width:200px)');
-var mediaQueryMedim = matchMedia('(min-width:768px)');
-var mediaQueryLarge = matchMedia('(min-width:992px)');
-var mediaQueryXLarge = matchMedia('(min-width:1200px)');
+// var mediaQuerySmall = window.matchMedia('(min-width:200px)');
+// var mediaQueryMedim = matchMedia('(min-width:768px)');
+// var mediaQueryLarge = matchMedia('(min-width:992px)');
+// var mediaQueryXLarge = matchMedia('(min-width:1200px)');
 
 
 

@@ -1,21 +1,17 @@
-var spinner = '<div class="d-flex mt-3">'+
-'<div class="spinner-grow text-success" role="status"><span class="sr-only">Loading...</span></div>'+
-'<div class="spinner-grow text-success" role="status"><span class="sr-only">Loading...</span></div>'+
-'<div class="spinner-grow text-success" role="status"><span class="sr-only">Loading...</span></div></div>';
-document.querySelector('#cuerpo-tabla-clientes').innerHTML = spinner;
-var req = new XMLHttpRequest();
-req.open("POST", 'php/clientes/consultarClientes.php', false);
-req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-req.send('opcion='+1);
+function mostrarClientes() {
+    var spinner = '<div class="d-flex mt-3">'+
+    '<div class="spinner-grow text-success" role="status"><span class="sr-only">Loading...</span></div>'+
+    '<div class="spinner-grow text-success" role="status"><span class="sr-only">Loading...</span></div>'+
+    '<div class="spinner-grow text-success" role="status"><span class="sr-only">Loading...</span></div></div>';
+    document.querySelector('#cuerpo-tabla-clientes').innerHTML = spinner;
+    var req = new XMLHttpRequest();
+    req.open("POST", 'php/clientes/consultarClientes.php', false);
+    req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+    req.send('opcion='+1);
+    document.querySelector('#cuerpo-tabla-clientes').innerHTML = req.responseText;   
+}
 
-// req.onload = function() {
-//     if (req.status >= 200 && req.status < 400) {
-        document.querySelector('#cuerpo-tabla-clientes').innerHTML = req.responseText;
-    // } else {
-    //     document.querySelector('#cuerpo-tabla-clientes').innerHTML = 'Ha ocurrido un error inesperado';
-//     }
-//   };
-
+mostrarClientes();
 
 document.querySelector('#todos-clientes-btn').addEventListener('click', function(){
     document.querySelector('#dropdown-clientes').textContent = 'Todos los clientes';

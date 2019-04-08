@@ -17,7 +17,7 @@
     //INSERTAR TELEFONO
         //OBTENER ULTIMO ID INGRESADO
         $lastId = $conn->lastInsertId();
-
+        
         $telefono = $conn->prepare('INSERT INTO Telefonos (Id_Cliente, numero) 
         VALUES (:ID, :numero)');
 

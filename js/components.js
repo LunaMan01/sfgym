@@ -1,15 +1,27 @@
 class Toast {
-    constructor(text, time, ToastName) {
+    constructor(text, time, ToastName, type) {
         this.text = text;
         this.time = time;
         this.ToastName = ToastName
+        this.type = type;
     }
 
     show() {
-        document.querySelector(this.ToastName).text = this.text;
+        var content = document.createTextNode(this.text);
+        document.querySelector('.alert-text').appendChild(content);
+
+        if (this.type == 'success') {
+            document.querySelector(this.ToastName).classList.add('alert-success');
+        } else {
+            document.querySelector(this.ToastName).classList.add('alert-danger');
+        }
         document.querySelector(this.ToastName).classList.add('show');
         setTimeout(() => {
             document.querySelector(this.ToastName).classList.remove('show');
-        }, this.time)
+
+            document.querySelector('.alert-text').innerHTML = '';
+        }, this.time);
+
     }
 }
+

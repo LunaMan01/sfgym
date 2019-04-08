@@ -4,7 +4,7 @@
         $delete = $conn->prepare("DELETE FROM Clientes WHERE Id_Cliente =".$_POST['id']);
         $delete->execute();
 
-        echo "New records created successfully";
+        echo "eliminado";
     }   
     catch(PDOException $e){
         echo "Error: ". $e->getMessage();

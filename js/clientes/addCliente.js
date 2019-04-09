@@ -26,6 +26,10 @@ document.querySelector('#form').addEventListener('submit', () => {
 
 document.querySelector('#cancelar-cliente').addEventListener('click', () => {
     load('html/clientes-components/clientes.html', document.querySelector('.content'));
+   
+    document.querySelector('#add-cliente-btn').classList.remove('d-none');
+    document.querySelector('#reporte-cliente-btn').classList.remove('d-none');
+    document.querySelector('#buscar-cliente-input').classList.remove('d-none');
     mostrarClientes();
 });
 

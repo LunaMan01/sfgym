@@ -9,6 +9,8 @@ function mostrarClientes() {
     req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
     req.send('opcion='+1);
     document.querySelector('#cuerpo-tabla-clientes').innerHTML = req.responseText;   
+    
+    cargarEventos();
 }
 
 mostrarClientes();

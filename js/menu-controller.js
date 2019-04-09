@@ -39,7 +39,7 @@ const abrirClientes = () => {
     document.head.appendChild(script);
 
     
-
+    
     let scriptEditarCliente = document.createElement('script');
     scriptEditarCliente.setAttribute('src', 'js/clientes/editar-cliente.js');
     document.head.appendChild(scriptEditarCliente);
@@ -50,14 +50,12 @@ const abrirClientes = () => {
         scriptEliminarCliente.setAttribute('id', 'eliminar-clientes-script');
         document.head.appendChild(scriptEliminarCliente);
 
-    } else {
-        // cargarEventos();
-    }
+    } 
 
     let scriptMostrarClientes = document.createElement('script');
     scriptMostrarClientes.setAttribute('src', 'js/clientes/mostrar-clientes.js');
     document.head.appendChild(scriptMostrarClientes);
-    // cargarEventos();
+    
     document.querySelector('#titulo-modulo').textContent = 'Clientes';
 
 

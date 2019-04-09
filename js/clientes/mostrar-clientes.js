@@ -11,6 +11,7 @@ function mostrarClientes() {
     document.querySelector('#cuerpo-tabla-clientes').innerHTML = req.responseText;   
     
     cargarEventos();
+    cargarEventoEditar();
 }
 
 mostrarClientes();

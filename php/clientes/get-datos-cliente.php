@@ -23,3 +23,17 @@
     }
     $conn = null;
 ?>
+<!-- $consulta = $conn->prepare('SELECT Clientes.Id_Cliente, nombre_cliente, apellido_paterno, numero 
+        FROM Clientes, Telefonos WHERE Clientes.Id_Cliente ='. $_POST['id'] .'AND Telefonos.Id_Cliente ='. $_POST['id']);
+
+        $consulta->execute();
+        $resultado = $consulta->fetchAll();
+
+        foreach($resultado as $res){
+            echo "<tr>";
+            echo "<td>".$res[""]."</td>";
+            echo "<td>".$res[""]."</td>";
+            echo "<td>".$res[""]."</td>";
+            echo "<td>".$res[""]."</td>";
+            echo "</tr>";
+        } -->

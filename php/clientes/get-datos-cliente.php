@@ -4,13 +4,21 @@
     $array = array();
     try {
         $idC = $_POST["id"];
-        $preparar = 'SELECT * FROM Clientes, Telefonos WHERE Cliente.Id_Cliente ='.$_POST['id'];
+        $preparar = 'SELECT nombre_cliente, apellido_paterno, apellido_materno, edad, numero, colonia, calle, numero_exterior, numero_interior FROM Clientes, Telefonos, Direcciones where Clientes.Id_Cliente = '.$_POST['id'].' and Telefonos.Id_Cliente = '.$_POST['id'].' and Direcciones.Id_Cliente = '.$_POST['id'];
         $cliente = new \stdClass();
+
+
         foreach ($conn->query($preparar) as $row) {
             $cliente->nombre = $row['nombre_cliente'];
             $cliente->apPaterno = $row['apellido_paterno'];
             $cliente->apMaterno = $row['apellido_materno'];
             $cliente->edad = $row['edad'];
+            $cliente->numero = $row['numero'];
+            $cliente->colonia = $row['colonia'];
+            $cliente->calle = $row['calle'];
+            $cliente->numeroExterior = $row['numero_exterior'];
+            $cliente->numeroInterior = $row['numero_interior'];
+            
             // $cliente->genero = $row['genero'];
         }
         

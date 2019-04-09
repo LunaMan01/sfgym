@@ -9,7 +9,7 @@ class Toast {
     show() {
         var content = document.createTextNode(this.text);
         document.querySelector('.alert-text').appendChild(content);
-
+        document.querySelector('.modal-div').classList.add('fixed-top');
         if (this.type == 'success') {
             document.querySelector(this.ToastName).classList.add('alert-success');
         } else {

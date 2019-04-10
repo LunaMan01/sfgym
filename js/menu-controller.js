@@ -38,8 +38,8 @@ const abrirClientes = () => {
     script.setAttribute('id', 'clientes-script');
     document.head.appendChild(script);
 
-    
-    
+
+
     let scriptEditarCliente = document.createElement('script');
     scriptEditarCliente.setAttribute('src', 'js/clientes/editar-cliente.js');
     document.head.appendChild(scriptEditarCliente);
@@ -50,12 +50,20 @@ const abrirClientes = () => {
         scriptEliminarCliente.setAttribute('id', 'eliminar-clientes-script');
         document.head.appendChild(scriptEliminarCliente);
 
-    } 
+    }
+
+    
+    if (document.getElementById('bucar-cliente-dinamico-script') == null) {
+        let scriptBuscar = document.createElement('script');
+        scriptBuscar.setAttribute('id', 'bucar-cliente-dinamico-script');
+        scriptBuscar.setAttribute('src', 'js/clientes/consulta-dinamica.js');
+        document.head.appendChild(scriptBuscar);
+    }
 
     let scriptMostrarClientes = document.createElement('script');
     scriptMostrarClientes.setAttribute('src', 'js/clientes/mostrar-clientes.js');
     document.head.appendChild(scriptMostrarClientes);
-    
+
     document.querySelector('#titulo-modulo').textContent = 'Clientes';
 
 

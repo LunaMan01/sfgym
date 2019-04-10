@@ -1,0 +1,57 @@
+<div class="container">
+
+    <div class="row">
+        <div class="col-auto">
+            <p>Mostrar</p>
+        </div>
+        <div class="col-auto dropdown">
+            <button class="btn btn-secondary dropdown-toggle btn-drop" type="button" id="dropdown-visitas"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Todas las visitas
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                <button class="dropdown-item d-none" type="button" id="">Todas las
+                    visitas</button>
+                <button class="dropdown-item" type="button" id="">Visitas del mes</button>
+                <button class="dropdown-item" type="button" id="">Visistas de la Semana</button>
+                <button class="dropdown-item" type="button" id="">Visitas del día</button>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="tablaPrincipal p-4 m-2">
+                <div class="row">
+                    <div class="row">
+                        <div class="col-auto">
+                            <i class="material-icons iconMessege">done_all</i>
+                        </div>
+                        <div class="col-auto p-2">
+                            <p><b>Lista de visitas</b></p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Cliente</th>
+                                    <th scope="col">Fecha de visita</th>
+                                    <th scope="col">Acciones</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="cuerpo-tabla-clientes">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>

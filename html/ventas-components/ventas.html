@@ -1,0 +1,58 @@
+<div class="container">
+
+    <div class="row">
+        <div class="col-auto">
+            <p>Mostrar</p>
+        </div>
+        <div class="col-auto dropdown">
+            <button class="btn btn-secondary dropdown-toggle btn-drop" type="button" id="dropdown-ventas"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Todas las ventas
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                <button class="dropdown-item d-none" type="button" id="">Todas las
+                    ventas</button>
+                <button class="dropdown-item" type="button" id="">Ventas Mensuales</button>
+                <button class="dropdown-item" type="button" id="">Ventas Semanales</button>
+                <button class="dropdown-item" type="button" id="">Ventas del día</button>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="tablaPrincipal p-4 m-2">
+                <div class="row">
+                    <div class="row">
+                        <div class="col-auto">
+                            <i class="material-icons iconMessege">attach_money</i>
+                        </div>
+                        <div class="col-auto p-2">
+                            <p><b>Lista de ventas</b></p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Cliente</th>
+                                    <th scope="col">Fecha de venta</th>
+                                    <th scope="col">Monto</th>
+                                    <th scope="col">Acciones</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="cuerpo-tabla-clientes">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>

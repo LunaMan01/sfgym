@@ -60,6 +60,14 @@ const abrirClientes = () => {
         document.head.appendChild(scriptBuscar);
     }
 
+
+    if (document.getElementById('ver-cliente-script') == null) {
+        let verCliente= document.createElement('script');
+        verCliente.setAttribute('id', 'ver-cliente');
+        verCliente.setAttribute('src', 'js/clientes/ver-cliente.js');
+        document.head.appendChild(verCliente);
+    }
+
     let scriptMostrarClientes = document.createElement('script');
     scriptMostrarClientes.setAttribute('src', 'js/clientes/mostrar-clientes.js');
     document.head.appendChild(scriptMostrarClientes);

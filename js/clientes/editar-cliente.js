@@ -61,13 +61,14 @@ function enviarDatosAModificar () {
 
     var form = document.querySelector('form');
     var data = new FormData(form);
+    data.append('id',id);
     var nombre = document.querySelector('#nombre').value;
-    var apPaterno = document.querySelector('#ap-parno').value;
+    
     if(!isEmpty(nombre.trim())) {
-        // var req = new XMLHttpRequest();
-        // req.open("POST", 'php/clientes/modificarCliente.php', false);
-        // req.send(data+"id="+id);
-        // console.log(req.responseText);
+        var req = new XMLHttpRequest();
+        req.open("POST", 'php/clientes/modificarClientes.php',false);
+        req.send(data);
+        console.log(req.responseText);
         new Toast('Cliente modificado correctamente', 2000, '#mensaje', 'success').show();
         document.querySelector('#guardar-cliente-editado').innerHTML = `
             Guardar

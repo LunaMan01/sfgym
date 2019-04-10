@@ -12,6 +12,7 @@ function mostrarClientes() {
     
     cargarEventos();
     cargarEventoEditar();
+    cargarEventoBuscar();
 }
 
 mostrarClientes();

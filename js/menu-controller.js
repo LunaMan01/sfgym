@@ -52,7 +52,7 @@ const abrirClientes = () => {
 
     }
 
-    
+
     if (document.getElementById('bucar-cliente-dinamico-script') == null) {
         let scriptBuscar = document.createElement('script');
         scriptBuscar.setAttribute('id', 'bucar-cliente-dinamico-script');
@@ -62,15 +62,17 @@ const abrirClientes = () => {
 
 
     if (document.getElementById('ver-cliente-script') == null) {
-        let verCliente= document.createElement('script');
-        verCliente.setAttribute('id', 'ver-cliente');
+        let verCliente = document.createElement('script');
+        verCliente.setAttribute('id', 'ver-cliente-script');
         verCliente.setAttribute('src', 'js/clientes/ver-cliente.js');
         document.head.appendChild(verCliente);
     }
 
-    let scriptMostrarClientes = document.createElement('script');
-    scriptMostrarClientes.setAttribute('src', 'js/clientes/mostrar-clientes.js');
-    document.head.appendChild(scriptMostrarClientes);
+    if (document.getElementById('ver-cliente-script') != null) {
+        let scriptMostrarClientes = document.createElement('script');
+        scriptMostrarClientes.setAttribute('src', 'js/clientes/mostrar-clientes.js');
+        document.head.appendChild(scriptMostrarClientes);
+    }
 
     document.querySelector('#titulo-modulo').textContent = 'Clientes';
 

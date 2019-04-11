@@ -46,13 +46,5 @@ function renderCliente(cliente) {
         cliente.edad, cliente.numero, 
         cliente.calle, cliente.numeroExterior, cliente.numeroInterior, cliente.colonia).render();
     document.querySelector('.content').innerHTML = vista;
-    // document.querySelector('#nombre').value = cliente.nombre;
-    // document.querySelector('#ap-parno').value = cliente.apPaterno;
-    // document.querySelector('#ap-marno').value = cliente.apMaterno;
-    // document.querySelector('#edad').value = cliente.edad;
-    // document.querySelector('#telefono').value = cliente.numero;
-    // document.querySelector('#calle').value = cliente.calle;
-    // document.querySelector('#num-ext').value = cliente.numeroInterior;
-    // document.querySelector('#num-int').value = cliente.numeroExterior;
-    // document.querySelector('#colonia').value = cliente.colonia;
+   
 }

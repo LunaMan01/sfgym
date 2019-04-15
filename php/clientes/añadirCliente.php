@@ -3,10 +3,10 @@
     
     try {
         echo "Conexion";
-
+        $activo = 1;
     //DATOS MAS BASICOS DEL CLIENTE    
-        $cliente = $conn->prepare('INSERT INTO Clientes (nombre_cliente, apellido_paterno, apellido_materno, edad) 
-        VALUES (:nombre, :paterno, :materno, :edad)');
+        $cliente = $conn->prepare('INSERT INTO Clientes (nombre_cliente, apellido_paterno, apellido_materno, edad, activo) 
+        VALUES (:nombre, :paterno, :materno, :edad, '.$activo.')');
         
         $cliente->bindParam(':nombre', $_POST['nombre_cliente']);
         $cliente->bindParam(':paterno', $_POST['ap-parno']);

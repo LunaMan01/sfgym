@@ -1,7 +1,9 @@
 <?php
     include '../conexion.php';
 
-    $datos = 'SELECT Clientes.Id_Cliente, nombre_cliente, numero FROM Clientes, Telefonos where Telefonos.Id_Cliente = Clientes.Id_Cliente';
+    $inactivo = 1;
+    $datos = 'SELECT Clientes.Id_Cliente, nombre_cliente, numero FROM Clientes, Telefonos 
+    WHERE Telefonos.Id_Cliente = Clientes.Id_Cliente';
     //$datos->execute();
 
     foreach($conn->query($datos) as $row){

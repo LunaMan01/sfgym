@@ -22,6 +22,7 @@ var UICliente = (function () {
         req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
         req.send('opcion=' + 1);
         document.querySelector('#cuerpo-tabla-clientes').innerHTML = req.responseText
+        
     }
 
     return {
@@ -30,6 +31,33 @@ var UICliente = (function () {
             document.querySelector('#add-cliente-btn').classList.add('d-none');
             document.querySelector('#reporte-cliente-btn').classList.add('d-none');
             document.querySelector('#buscar-cliente-input').classList.add('d-none');
+        },
+
+        getCliente: function () {
+            var req = new XMLHttpRequest();
+            req.open("POST", 'php/clientes/get-datos-cliente.php', false);
+            req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            var params = 'id=' + localStorage.getItem('id');
+            req.send(params);
+            var elements = req.responseText;
+            var cliente = JSON.parse(elements);
+            return cliente;
+        },
+
+        setDatosClienteEnInputs: function (cliente) {
+            document.querySelector('#nombre').value = cliente.nombre;
+            document.querySelector('#ap-parno').value = cliente.apPaterno;
+            document.querySelector('#ap-marno').value = cliente.apMaterno;
+            document.querySelector('#edad').value = cliente.edad;
+            document.querySelector('#telefono').value = cliente.numero;
+            document.querySelector('#calle').value = cliente.calle;
+            document.querySelector('#num-ext').value = cliente.numeroInterior;
+            document.querySelector('#num-int').value = cliente.numeroExterior;
+            document.querySelector('#colonia').value = cliente.colonia;
+        },
+
+        abrirModificarCliente: function () {
+            load('html/clientes-components/editar-cliente.html', document.querySelector('.content'));
         },
 
         mostrarTodosLosClientes: function () {
@@ -47,9 +75,13 @@ var UICliente = (function () {
             }
         },
 
-        getId : function(event) {
-            // console.log('entro get id');
-            // console.log(event.currentTarget);
+        getDatosModificados: function () {
+            let data = UICliente.getDatosParaNuevoCliente();
+            data.append('id', localStorage.getItem('id'));
+            return data;
+        },
+
+        getId: function (event) {
             var i = event.target;
             var td = i.parentNode;
             tr = td.parentNode;
@@ -57,10 +89,20 @@ var UICliente = (function () {
             var th = elements[1];
             var id = th.getAttribute('id');
             localStorage.setItem('id', id);
-            // console.log('id='+id);
         },
 
-        quitarRegistro : function (){
+        mostrarAnimacionBtn: function (btnSelector) {
+            document.querySelector(btnSelector).innerHTML = `
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        Guardando...
+    `;
+        },
+
+        regresarBtnAEstadoInicial : function (btnSelector) {
+            document.querySelector(btnSelector).innerHTML = `Guardar`;
+        },
+
+        quitarRegistro: function () {
             tr.remove();
         },
 
@@ -80,6 +122,7 @@ var UICliente = (function () {
             }
             load('html/clientes-components/clientes.html', document.querySelector('.content'));
             mostrarTodosLosClientes();
+            clienteController.init();
         }
     }
 })();

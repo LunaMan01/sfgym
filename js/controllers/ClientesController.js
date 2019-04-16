@@ -19,6 +19,27 @@ var clienteController = (function () {
         }
     }
 
+    function modificarCliente() {
+        let data = UICliente.getDatosModificados();
+        let cliente = new Cliente();
+        UICliente.mostrarAnimacionBtn('#guardar-cliente-editado');
+        if(cliente.modificar(data)) {
+            UICliente.mostrarMensajeExito('Cliente modificado correctamente');
+            UICliente.regresarBtnAEstadoInicial('#guardar-cliente-editado');
+        }
+    }
+
+    function setUpVentanaModificarCliente(e) {
+        UICliente.abrirModificarCliente();
+        UICliente.getId(e);
+        let cliente = UICliente.getCliente();
+        UICliente.setDatosClienteEnInputs(cliente);
+        document.getElementById('form-edit-cliente').addEventListener('submit',modificarCliente);
+        document.querySelector('#cancelar-cliente').addEventListener('click', UICliente.regresar);
+    }
+
+    
+
     function setUpVentantaNuevoCliente () {
         UICliente.abrirAddCliente();
         document.querySelector('#form').addEventListener('submit', addNuevoCliente);
@@ -35,6 +56,15 @@ var clienteController = (function () {
        
     }
 
+    function setUpEditEvent() {
+        document.querySelector('#cuerpo-tabla-clientes').addEventListener('click', function(e) {
+           
+            if(e.target.matches('.edit-action')) {
+                setUpVentanaModificarCliente(e);
+            }
+        },false);
+    }
+
     function setUpEvents() {
         UICliente.mostrarTodosLosClientes();
         console.log('iniciando clientes');
@@ -42,7 +72,7 @@ var clienteController = (function () {
         document.querySelector('#add-cliente-btn').addEventListener('click', setUpVentantaNuevoCliente);
         setUpDeleteEvent();
         document.querySelector('#confirmar-eliminacion').addEventListener('click', eliminarCliente);
-        
+        setUpEditEvent();
         
     }
 

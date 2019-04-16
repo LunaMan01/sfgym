@@ -6,6 +6,7 @@ function cargarEventoBuscar() {
 
 function buscar() {
     console.log('s');
+    document.querySelector('#cuerpo-tabla-clientes').innerHTML = '' ;
     let datoABuscar = document.querySelector('#buscar-cliente-input').value;
     console.log(datoABuscar);
     var req = new XMLHttpRequest();

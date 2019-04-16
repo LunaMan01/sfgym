@@ -27,7 +27,6 @@ function getIdCliente() {
     var th = elements[1];
     id = th.getAttribute('id');
 
-
 }
 
 

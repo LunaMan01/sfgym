@@ -211,7 +211,7 @@ class VistaCliente {
         <div class="row">
             <div class="col-lg-4 text-right offset-lg-8">
                 <button id="ok-btn"
-                    class="btn btn-outline-success btn-sm my-2 my-sm-0 mr-3 rounded-pill" type="button">Cancelar</button>
+                    class="btn btn-outline-success btn-sm my-2 my-sm-0 mr-3 rounded-pill" type="button">Ok</button>
             </div>
         </div>
     

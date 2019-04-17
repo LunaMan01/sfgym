@@ -81,6 +81,13 @@ var UICliente = (function () {
             return data;
         },
 
+        verCliente: function (cliente) {
+            var vista = new VistaCliente(cliente.nombre, cliente.apPaterno, cliente.apMaterno, 
+                cliente.edad, cliente.numero, 
+                cliente.calle, cliente.numeroExterior, cliente.numeroInterior, cliente.colonia).render();
+            document.querySelector('.content').innerHTML = vista;
+        },
+
         getId: function (event) {
             var i = event.target;
             var td = i.parentNode;
@@ -89,6 +96,14 @@ var UICliente = (function () {
             var th = elements[1];
             var id = th.getAttribute('id');
             localStorage.setItem('id', id);
+        },
+
+        getDatosABuscar: function() {
+            return document.querySelector('#buscar-cliente-input').value;
+        },
+
+        mostrarDatosEncontrados: function(datos) {
+            document.querySelector('#cuerpo-tabla-clientes').innerHTML = datos;
         },
 
         mostrarAnimacionBtn: function (btnSelector) {

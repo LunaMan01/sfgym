@@ -1,10 +1,12 @@
 const Links = {
     inicio: '#inicio-link',
     clientes: '#clientes-link',
+    membresias: '#membresias-link'
 }
 const Li = {
     clientes: '#li-clientes',
-    inicio: '#li-inicio'
+    inicio: '#li-inicio',
+    membresias: '#li-membresias'
 }
 
 const CSSClasses = {
@@ -29,13 +31,20 @@ var UIController = (function () {
         console.log('lim');
     }
 
-    function addBotonesClientes() {
-        if(document.getElementById('add-cliente-btn') == null)
-            divAdicional.innerHTML += new Button('Añadir cliente', 'add-cliente-btn').getButton();
-        
-        divAdicional.innerHTML += new Button('Reporte cliente', 'reporte-cliente-btn').getButton();
-        divAdicional.innerHTML += new SearchInput('buscar-cliente-input').getSearchInput();
+    function addBotones(nombreBtnAdd, nombreBtnReporte, idBtnAdd, idBtnReporte, idSearchInput) {
+        if (document.getElementById(idBtnAdd) == null)
+            divAdicional.innerHTML += new Button(nombreBtnAdd, idBtnAdd).getButton();
+
+
+        divAdicional.innerHTML += new Button(nombreBtnReporte, idBtnReporte).getButton();
+        divAdicional.innerHTML += new SearchInput(idSearchInput).getSearchInput();
+    //     if (document.getElementById(idBtnAdd) == null)
+    //     divAdicional.innerHTML += new Button('Añadir cliente', 'add-cliente-btn').getButton();
+
+    // divAdicional.innerHTML += new Button('Reporte cliente', 'reporte-cliente-btn').getButton();
+    // divAdicional.innerHTML += new SearchInput('buscar-cliente-input').getSearchInput();
     }
+
 
     function addScriptsClientes() {
         if (document.getElementById('clientes-script') == null) {
@@ -43,9 +52,18 @@ var UIController = (function () {
             script.setAttribute('src', 'js/controllers/ClientesController.js');
             script.setAttribute('id', 'clientes-script');
             document.head.appendChild(script);
-        } 
-        
+        }
     }
+
+    function addScriptsMembresias() {
+        if (document.getElementById('membresias-script') == null) {
+            let script = document.createElement('script');
+            script.setAttribute('src', 'js/controllers/MembresiasController.js');
+            script.setAttribute('id', 'membresias-script');
+            document.head.appendChild(script);
+        }
+    }
+
 
 
 
@@ -67,14 +85,22 @@ var UIController = (function () {
             document.querySelector(CSSClasses.active).classList.remove('active');
             document.querySelector(Li.clientes).className = 'active';
             load('html/clientes-components/clientes.html', content);
-            addBotonesClientes();
-            if (typeof clienteController !== 'undefined') 
+            addBotones('Añadir cliente', 'Reporte clientes','add-cliente-btn','reporte-cliente-btn','buscar-cliente-input');
+            if (typeof clienteController !== 'undefined')
                 clienteController.init();
-            
-            
-            
-        }
+        },
 
+        // TODO
+        abrirMembresias: function () {
+            addScriptsMembresias();
+            limpiarDivAdicional();
+            document.querySelector(CSSClasses.active).classList.remove('active');
+            document.querySelector(Li.membresias).className = 'active';
+            load('html/membresias-components/membresias.html', content);
+            addBotones('Añadir membresía','Reporte membresía','add-membresia-btn','reporte-membresia-btn','buscar-membresia-input');
+            // if (typeof membresiaController !== 'undefined')
+            //     membresiaController.init();
+        }
 
     }
 
@@ -84,10 +110,11 @@ var UIController = (function () {
 var controller = (function (UI) {
     var abrirInicio = UI.abrirInicio;
     var abrirClientes = UI.abrirClientes;
+    var abrirMembresias = UI.abrirMembresias;
 
     document.querySelector(Links.inicio).addEventListener('click', abrirInicio);
     document.querySelector(Links.clientes).addEventListener('click', abrirClientes);
-
+    document.querySelector(Links.membresias).addEventListener('click',abrirMembresias);
     UI.abrirInicio();
 }(UIController));
 

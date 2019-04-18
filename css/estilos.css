@@ -84,7 +84,7 @@ hr{
     float: none;
 }
 
-form, .card-ver-cliente{
+.form, .card-ver-cliente{
     background: #FFFF;
     padding: 10px;
     border-radius: 15px;

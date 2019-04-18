@@ -1,15 +1,15 @@
 var UICliente = (function () {
 
-    function load(url, element) {
-        req = new XMLHttpRequest();
-        req.open("GET", url, false);
-        req.send(null);
-        element.innerHTML = req.responseText;
-    }
+    // function load(url, element) {
+    //     req = new XMLHttpRequest();
+    //     req.open("GET", url, false);
+    //     req.send(null);
+    //     element.innerHTML = req.responseText;
+    // }
 
-    function isEmpty(string) {
-        return (!string || 0 === string.length);
-    }
+    // function isEmpty(string) {
+    //     return (!string || 0 === string.length);
+    // }
 
     function mostrarTodosLosClientes() {
         var spinner = '<div class="d-flex mt-3">' +

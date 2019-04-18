@@ -80,6 +80,7 @@ var UIController = (function () {
 
         abrirClientes: function () {
             console.log('Abriendo Clientes');
+            document.querySelector('.modal-container').innerHTML = modalCliente;
             addScriptsClientes();
             limpiarDivAdicional();
             document.querySelector(CSSClasses.active).classList.remove('active');
@@ -92,15 +93,20 @@ var UIController = (function () {
 
         // TODO
         abrirMembresias: function () {
+            document.querySelector('.modal-container').innerHTML = modalsMembresias.modal('add-membresia-modal', 'add-membresia-form','Añadir membresía');
             addScriptsMembresias();
             limpiarDivAdicional();
             document.querySelector(CSSClasses.active).classList.remove('active');
             document.querySelector(Li.membresias).className = 'active';
             load('html/membresias-components/membresias.html', content);
             addBotones('Añadir membresía','Reporte membresía','add-membresia-btn','reporte-membresia-btn','buscar-membresia-input');
-            // if (typeof membresiaController !== 'undefined')
-            //     membresiaController.init();
+            document.querySelector('#add-membresia-btn').setAttribute('data-target','#add-membresia-modal');
+            document.querySelector('#add-membresia-btn').setAttribute('data-toggle','modal');
+            if (typeof membresiaController !== 'undefined')
+                membresiaController.init();
         }
+
+        
 
     }
 

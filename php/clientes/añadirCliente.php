@@ -17,7 +17,8 @@
     //INSERTAR TELEFONO
         //OBTENER ULTIMO ID INGRESADO
         $lastId = $conn->lastInsertId();
-        
+    
+        //INSERTA TELEFONO    
         $telefono = $conn->prepare('INSERT INTO Telefonos (Id_Cliente, numero) 
         VALUES (:ID, :numero)');
 
@@ -35,6 +36,15 @@
         $direccion->bindParam('numeroex', $_POST['num-ext']);
         $direccion->bindParam('numeroin', $_POST['num-int']);
         $direccion->execute();
+    
+    // //MEMBRESIA
+    //     $membresia = $conn->prepare('INSERT INTO Membresias (Id_Cliente, fecha_inicio, fecha_fin)
+    //     VALUES (:ID, :inicio, :fin)');
+
+    //     $membresia->bindParam(':ID', $lastId);
+    //     $membresia->bindParam(':inicio', $_POST['inicio']);
+    //     $membresia->bindParam(':fin', $_POST['fin']);
+    //     $membresia->execute();
 
         echo "New records created successfully";
     }   

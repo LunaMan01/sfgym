@@ -245,81 +245,118 @@ let modalCliente = `
 `;
 
 
+let modalsMembresias = 
+ `        
+    <div class="modal fade" id="add-membresia-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
-
-let modalsMembresias =  {
-    modal: function(idModal, idForm, tituloModal) {
-
-        return `
-        
-        <div class="modal fade" id="${idModal}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-
-            <div class="d-none modal-ommission">
-                <div class="d-flex justify-content-end mt-4 modal-div">
-                    <div class="alert alert-dismissible fade " role="alert" id="mensaje">
-                        <div id="" class="alert-text"></div>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        </div>
-                </div>
+        <div class="d-none modal-ommission">
+            <div class="d-flex justify-content-end mt-4 modal-div">
+                <div class="alert alert-dismissible fade " role="alert" id="mensaje">
+                    <div id="" class="alert-text"></div>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
             </div>
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">${tituloModal}</h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body">
-						<form action="" id="${idForm}">
-							<div class="form-group">
-								<label for="id-cliente">Id cliente:</label>
-								<input class="form-control" id="id-cliente">
-							</div>
-							<div class="form-group">
-								<label for="fecha-inicio">Fecha inicio:</label>
-								<input class="form-control" id="fecha-inicio">
-							</div>
-							<div class="form-group">
-								<label for="fecha-fin">Fecha inicio:</label>
-								<input class="form-control" id="fecha-fin">
-                            </div>
-                            <div class="modal-footer">
-						        <button type="button" class="btn btn-secondary rounded-pill" data-dismiss="modal">Cancelar</button>
-						        <button type="" class="btn btn-outline-success rounded-pill">Guardar</button>
-			                </div>
-					    </form>
-				    </div>
-		        </div>
-	        </div>
         </div>
-    ` },
-
-    modalEliminar: function () {
-        return    ` 
-        <div class="modal fade" id="eliminar-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Eliminar</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="modal-text">Seguro que desea eliminar esta membresía</div>
-                    </div>
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Nueva membresía</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary" id="confirmar-eliminacion" data-dismiss="modal">Confirmar</button>
+                <div class="modal-body">
+                    <form action="" id="add-membresia-form">
+                        <div class="form-group">
+                            <label for="id-cliente">Id cliente:</label>
+                            <input class="form-control" id="id-cliente" name="id">
+                        </div>
+                        <div class="form-group">
+                            <label for="fecha-inicio">Fecha inicio:</label>
+                            <input class="form-control" id="fecha-inicio" name="inicio">
+                        </div>
+                        <div class="form-group">
+                            <label for="fecha-fin">Fecha inicio:</label>
+                            <input class="form-control" id="fecha-fin" name="fin">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary rounded-pill" data-dismiss="modal">Cancelar</button>
+                            <button type="" class="btn btn-outline-success rounded-pill">Guardar</button>
+                        </div>
+                    </form>
                 </div>
             </div>
-        </div>`
-    }
-};
+        </div>
+    </div>
+` + `
+        
+<div class="modal fade" id="modificar-membresia-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+    <div class="d-none modal-ommission">
+        <div class="d-flex justify-content-end mt-4 modal-div">
+            <div class="alert alert-dismissible fade " role="alert" id="mensaje">
+                <div id="" class="alert-text"></div>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+        </div>
+    </div>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modificar membresía</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="" id="modificar-membresia-form">
+                    <div class="form-group">
+                        <label for="id-cliente">Id cliente:</label>
+                        <input class="form-control" id="id-cliente">
+                    </div>
+                    <div class="form-group">
+                        <label for="fecha-inicio">Fecha inicio:</label>
+                        <input class="form-control" id="fecha-inicio">
+                    </div>
+                    <div class="form-group">
+                        <label for="fecha-fin">Fecha inicio:</label>
+                        <input class="form-control" id="fecha-fin">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary rounded-pill" data-dismiss="modal">Cancelar</button>
+                        <button type="" class="btn btn-outline-success rounded-pill">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+` + ` 
+<div class="modal fade" id="eliminar-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Eliminar</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-text">Seguro que desea eliminar esta membresía</div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-primary" id="confirmar-eliminacion" data-dismiss="modal">Confirmar</button>
+        </div>
+    </div>
+</div>`;
+
+
 
 function load(url, element) {
     req = new XMLHttpRequest();

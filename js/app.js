@@ -103,7 +103,7 @@ var UIController = (function () {
 
         // TODO
         abrirMembresias: function () {
-            document.querySelector('.modal-container').innerHTML = modalsMembresias.modal('add-membresia-modal', 'add-membresia-form','Añadir membresía');
+            document.querySelector('.modal-container').innerHTML = modalsMembresias;
             addScriptsMembresias();
             limpiarDivAdicional();
             document.querySelector(CSSClasses.active).classList.remove('active');

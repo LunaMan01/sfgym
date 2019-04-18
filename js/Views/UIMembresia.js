@@ -9,6 +9,7 @@ var UIMembresia = (function() {
         var req = new XMLHttpRequest();
         req.open("POST", 'php/membresias/consultarMembresias.php', false);
         req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+        req.send(null);
         document.querySelector('#cuerpo-tabla-membresias').innerHTML = req.responseText
         
     }

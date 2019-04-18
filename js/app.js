@@ -1,12 +1,28 @@
 const Links = {
     inicio: '#inicio-link',
     clientes: '#clientes-link',
-    membresias: '#membresias-link'
+    membresias: '#membresias-link',
+    visitas: '#visitas-link',
+    ventas: '#ventas-link',
+    productos: '#productos-link',
+    gastos: '#gastos-link',
+    aparatos: '#aparatos-link',
+    compras: '#compras-link',
+    reportes: '#reportes-link',
+    respaldos: '#respaldos-link'
 }
 const Li = {
     clientes: '#li-clientes',
     inicio: '#li-inicio',
-    membresias: '#li-membresias'
+    membresias: '#li-membresias',
+    visitas: '#li-visitas',
+    ventas: '#li-ventas',
+    productos: '#li-productos',
+    gastos: '#li-gastos',
+    aparatos: '#li-aparatos',
+    compras: '#li-compras',
+    reportes: '#li-reportes',
+    respaldos: '#li-respaldos'
 }
 
 const CSSClasses = {
@@ -34,15 +50,9 @@ var UIController = (function () {
     function addBotones(nombreBtnAdd, nombreBtnReporte, idBtnAdd, idBtnReporte, idSearchInput) {
         if (document.getElementById(idBtnAdd) == null)
             divAdicional.innerHTML += new Button(nombreBtnAdd, idBtnAdd).getButton();
-
-
         divAdicional.innerHTML += new Button(nombreBtnReporte, idBtnReporte).getButton();
         divAdicional.innerHTML += new SearchInput(idSearchInput).getSearchInput();
-    //     if (document.getElementById(idBtnAdd) == null)
-    //     divAdicional.innerHTML += new Button('Añadir cliente', 'add-cliente-btn').getButton();
 
-    // divAdicional.innerHTML += new Button('Reporte cliente', 'reporte-cliente-btn').getButton();
-    // divAdicional.innerHTML += new SearchInput('buscar-cliente-input').getSearchInput();
     }
 
 
@@ -104,7 +114,74 @@ var UIController = (function () {
             document.querySelector('#add-membresia-btn').setAttribute('data-toggle','modal');
             if (typeof membresiaController !== 'undefined')
                 membresiaController.init();
+        },
+
+        abrirVisitas: function () {
+            limpiarDivAdicional();
+            document.querySelector(CSSClasses.active).classList.remove('active');
+            document.querySelector(Li.visitas).className = 'active';
+            load('html/visitas-components/visitas.html', content);
+            addBotones('Añadir visita', 'Reporte visitas','add-visita-btn','reporte-visita-btn','buscar-visita-input');
+        },
+
+        abrirProductos: function() {
+            limpiarDivAdicional();
+            document.querySelector(CSSClasses.active).classList.remove('active');
+            document.querySelector(Li.productos).className = 'active';
+            load('html/productos-components/productos.html', content);
+            addBotones('Añadir producto', 'Reporte productos','add-producto-btn','reporte-producto-btn','buscar-producto-input');
+        },
+
+        abrirVentas: function () {
+            limpiarDivAdicional();
+            document.querySelector(CSSClasses.active).classList.remove('active');
+            document.querySelector(Li.ventas).className = 'active';
+            load('html/ventas-components/ventas.html', content);
+            addBotones('Añadir venta', 'Reporte ventas','add-venta-btn','reporte-venta-btn','buscar-venta-input');
+        },
+
+        abrirGastos: function() {
+            limpiarDivAdicional();
+            document.querySelector(CSSClasses.active).classList.remove('active');
+            document.querySelector(Li.gastos).className = 'active';
+            load('html/gastos-components/gastos.html', content);
+            addBotones('Añadir gasto', 'Reporte gastos','add-gasto-btn','reporte-gasto-btn','buscar-gasto-input');
+        },
+
+        abrirAparatos: function () {
+            limpiarDivAdicional();
+            document.querySelector(CSSClasses.active).classList.remove('active');
+            document.querySelector(Li.aparatos).className = 'active';
+            load('html/aparatos-components/aparatos.html', content);
+            addBotones('Añadir aparato', '','add-aparato-btn','reporte-aparato-btn','buscar-aparato-input');
+            document.querySelector('#reporte-aparato-btn').remove();
+        },
+
+        abrirCompras: function () {
+            limpiarDivAdicional();
+            document.querySelector(CSSClasses.active).classList.remove('active');
+            document.querySelector(Li.compras).className = 'active';
+            load('html/compras-components/compras.html', content);
+            addBotones('Añadir compras', 'Reporte compras','add-compra-btn','reporte-compra-btn','buscar-compra-input');
+        },
+
+        abrirReportes: function() {
+            limpiarDivAdicional();
+            document.querySelector(CSSClasses.active).classList.remove('active');
+            document.querySelector(Li.reportes).className = 'active';
+            load('html/reportes-components/reportes.html', content);
+            
+        },
+
+        abrirRespaldo: function() {
+            limpiarDivAdicional();
+            document.querySelector(CSSClasses.active).classList.remove('active');
+            document.querySelector(Li.respaldos).className = 'active';
+            load('html/respaldos-components/respaldos.html', content);
+            
         }
+        
+
 
         
 
@@ -121,6 +198,16 @@ var controller = (function (UI) {
     document.querySelector(Links.inicio).addEventListener('click', abrirInicio);
     document.querySelector(Links.clientes).addEventListener('click', abrirClientes);
     document.querySelector(Links.membresias).addEventListener('click',abrirMembresias);
+    document.querySelector(Links.visitas).addEventListener('click',UI.abrirVisitas);
+    document.querySelector(Links.ventas).addEventListener('click',UI.abrirVentas);
+    document.querySelector(Links.productos).addEventListener('click',UI.abrirProductos);
+    document.querySelector(Links.gastos).addEventListener('click',UI.abrirGastos);
+    document.querySelector(Links.aparatos).addEventListener('click',UI.abrirAparatos);
+    document.querySelector(Links.compras).addEventListener('click',UI.abrirCompras);
+    document.querySelector(Links.reportes).addEventListener('click',UI.abrirReportes);
+    document.querySelector(Links.respaldos).addEventListener('click',UI.abrirRespaldo);
+
+    
     UI.abrirInicio();
 }(UIController));
 

@@ -4,9 +4,9 @@ class Membresia {
     }
 
     add(data) {
-        // var req = new XMLHttpRequest();
-        // req.open("POST", 'php/membresias/añadirMembresia.php', false);
-        // req.send(data);
+        var req = new XMLHttpRequest();
+        req.open("POST", 'php/membresias/añadirMembresia.php', false);
+        req.send(data);
         console.log('added');
         return true;
     }

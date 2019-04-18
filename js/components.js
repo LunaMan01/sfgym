@@ -271,15 +271,15 @@ let modalsMembresias =
                     <form action="" id="add-membresia-form">
                         <div class="form-group">
                             <label for="id-cliente">Id cliente:</label>
-                            <input class="form-control" id="id-cliente">
+                            <input class="form-control" id="id-cliente" name="id">
                         </div>
                         <div class="form-group">
                             <label for="fecha-inicio">Fecha inicio:</label>
-                            <input class="form-control" id="fecha-inicio">
+                            <input class="form-control" id="fecha-inicio" name="inicio">
                         </div>
                         <div class="form-group">
                             <label for="fecha-fin">Fecha inicio:</label>
-                            <input class="form-control" id="fecha-fin">
+                            <input class="form-control" id="fecha-fin" name="fin">
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary rounded-pill" data-dismiss="modal">Cancelar</button>

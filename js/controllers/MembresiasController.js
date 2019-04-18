@@ -13,7 +13,10 @@ var membresiaController = (function () {
     function setUpEvents() {
         UIMembresia.mostrarTodasLasMembresias();
         document.querySelector('#add-membresia-form').addEventListener('submit', addNuevaMembresia);
-        document.querySelector('#reporte-membresia-btn').addEventListener('click',UIMembresia.mostrarModal);
+        new Lightpick({field: document.getElementById('fecha-inicio')});
+        new Lightpick({field: document.getElementById('fecha-fin')});
+        
+
     }
 
     return {

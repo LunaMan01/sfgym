@@ -24,11 +24,6 @@ var UIMembresia = (function() {
             let data = new FormData(form);
             return data;
         },
-
-        mostrarModal: function() {
-            $('#add-membresia-modal').modal('show');
-            
-        },
         
         mostrarMensajeExito: function (mensaje) {
             new Toast(mensaje, 2000, '#mensaje', 'success').show();

@@ -125,6 +125,10 @@ var UICliente = (function () {
             new Toast(mensaje, 2000, '#mensaje', 'success').show();
         },
 
+        abrirReportes: function() {
+            load('html/clientes-components/reporte-clientes.html', document.querySelector('.content'));
+        },
+
         regresar: function () {
             if (document.querySelector('#add-cliente-btn').classList.contains('d-none')) {
                 document.querySelector('#add-cliente-btn').classList.remove('d-none');

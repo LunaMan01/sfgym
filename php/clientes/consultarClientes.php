@@ -1,11 +1,10 @@
 <?php
     include '../conexion.php';
 
-    $inactivo = 1;
     $datos = 'SELECT Clientes.Id_Cliente, nombre_cliente, numero FROM Clientes, Telefonos 
     WHERE Telefonos.Id_Cliente = Clientes.Id_Cliente';
     //$datos->execute();
-
+    
     foreach($conn->query($datos) as $row){
         echo '<tr>
               <th scope="row" id="'.$row['Id_Cliente'].'">'.$row['Id_Cliente'].'</th>'.

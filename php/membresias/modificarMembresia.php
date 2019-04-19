@@ -5,7 +5,7 @@
         $modificar = $conn->prepare('UPDATE Membresias SET
         fecha_inicio = :inicio,
         fecha_fin = :fin
-        WHERE Id_Cliente LIKE '. $_POST['id']);
+        WHERE Id_Membresia LIKE '. $_POST['id']);
 
         $modificar->bindParam(':inicio', $_POST['inicio']);
         $modificar->bindParam(':fin', $_POST['fin']);

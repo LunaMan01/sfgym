@@ -89,6 +89,7 @@ var membresiaController = (function () {
         document.querySelector('#buscar-membresia-input').addEventListener('keyup', busquedaDinamica);
         new Lightpick({ field: document.getElementById('fecha-inicio') });
         new Lightpick({ field: document.getElementById('fecha-fin') });
+        document.querySelector('#reporte-membresia-btn').addEventListener('click',UIMembresia.abrirReportes);
 
 
     }

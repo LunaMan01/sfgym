@@ -96,6 +96,7 @@ var clienteController = (function () {
         setUpEditEvent();
         setUpWatchEvent();
         document.querySelector('#buscar-cliente-input').addEventListener('keyup', busquedaDinamica);
+        document.querySelector('#reporte-cliente-btn').addEventListener('click',UICliente.abrirReportes);
     }
 
   

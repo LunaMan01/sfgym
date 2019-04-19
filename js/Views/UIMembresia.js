@@ -88,6 +88,10 @@ var UIMembresia = (function () {
 
         esconderModal: function (modal) {
             $(modal).modal('hide');
-        }
+        },
+
+        abrirReportes: function() {
+            load('html/membresias-components/reporte-membresias.html', document.querySelector('.content'));
+        },
     }
 })();

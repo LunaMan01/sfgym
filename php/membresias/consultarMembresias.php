@@ -2,12 +2,12 @@
     include '../conexion.php';
 
     try{
-        $consultar = 'SELECT Membresias.Id_Cliente, nombre_cliente, fecha_inicio, fecha_fin 
+        $consultar = 'SELECT Id_Membresia, nombre_cliente, fecha_inicio, fecha_fin 
         FROM Membresias INNER JOIN Clientes ON Membresias.Id_Cliente = Clientes.Id_Cliente';
 
         foreach($conn->query($consultar) as $row){
             echo '<tr>
-                <th scope="row" id="'.$row['Id_Cliente'].'">'.$row['Id_Cliente'].'</th>'.
+                <th scope="row" id="'.$row['Id_Membresia'].'">'.$row['Id_Membresia'].'</th>'.
                 '<td>'.$row['nombre_cliente'].'</td>'.
                 '<td>'.$row['fecha_inicio'].'</td>'.
                 '<td>'.$row['fecha_fin'].'</td>'.

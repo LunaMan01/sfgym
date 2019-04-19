@@ -12,11 +12,11 @@ class Membresia {
     }
 
     eliminar() {
-        var req = new XMLHttpRequest();
-        req.open("POST", 'php/membresias/eliminarMembresia.php', false);
-        req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-        req.send('id=' + localStorage.getItem('id'));
-        console.log(localStorage.getItem('id'));
+        // var req = new XMLHttpRequest();
+        // req.open("POST", 'php/membresias/eliminarMembresia.php', false);
+        // req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        // req.send('id=' + localStorage.getItem('id'));
+        console.log('id='+localStorage.getItem('idM'));
         return true;
 
     }

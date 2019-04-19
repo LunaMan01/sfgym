@@ -35,7 +35,7 @@ var UIMembresia = (function() {
             console.log(th);
             var id = th.getAttribute('id');
             console.log(id);
-            localStorage.setItem('idM', id);
+            localStorage.setItem('id', id);
         },
 
         quitarRegistro: function () {

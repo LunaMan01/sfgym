@@ -74,6 +74,15 @@ var UIController = (function () {
         }
     }
 
+    function addScriptsVisitas() {
+        if (document.getElementById('visitas-script') == null) {
+            let script = document.createElement('script');
+            script.setAttribute('src', 'js/controllers/VisitasController.js');
+            script.setAttribute('id', 'visitas-script');
+            document.head.appendChild(script);
+        }
+    }
+
 
 
 
@@ -101,7 +110,7 @@ var UIController = (function () {
                 clienteController.init();
         },
 
-        // TODO
+       
         abrirMembresias: function () {
             document.querySelector('.modal-container').innerHTML = modalsMembresias;
             addScriptsMembresias();
@@ -117,11 +126,15 @@ var UIController = (function () {
         },
 
         abrirVisitas: function () {
+            document.querySelector('.modal-container').innerHTML = modalsVisitas;
+            addScriptsVisitas();
             limpiarDivAdicional();
             document.querySelector(CSSClasses.active).classList.remove('active');
             document.querySelector(Li.visitas).className = 'active';
             load('html/visitas-components/visitas.html', content);
             addBotones('Añadir visita', 'Reporte visitas','add-visita-btn','reporte-visita-btn','buscar-visita-input');
+            document.querySelector('#add-visita-btn').setAttribute('data-target','#add-visita-modal');
+            document.querySelector('#add-visita-btn').setAttribute('data-toggle','modal');
         },
 
         abrirProductos: function() {

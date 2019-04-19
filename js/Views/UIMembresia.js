@@ -16,7 +16,7 @@ var UIMembresia = (function() {
 
     return {
         mostrarTodasLasMembresias: function() {
-            console.log('d');
+            
             mostrarTodosLasMembresias();
         },
 
@@ -24,6 +24,22 @@ var UIMembresia = (function() {
             let form = document.querySelector('#add-membresia-form');
             let data = new FormData(form);
             return data;
+        },
+
+        getId: function(event) {
+            var i = event.target;
+            var td = i.parentNode;
+             tr = td.parentNode;
+            var elements = tr.childNodes;
+            var th = elements[1];
+            console.log(th);
+            var id = th.getAttribute('id');
+            console.log(id);
+            localStorage.setItem('id', id);
+        },
+
+        quitarRegistro: function () {
+            tr.remove();
         },
         
         mostrarMensajeExito: function (mensaje) {

@@ -13,10 +13,11 @@ class Membresia {
 
     eliminar() {
         var req = new XMLHttpRequest();
-        req.open("POST", 'php/membresias/eliminarMembresia.php', false);
+        req.open("POST", 'php/membresias/eliminarMembresias.php', false);
         req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
         req.send('id=' + localStorage.getItem('id'));
-        console.log(localStorage.getItem('id'));
+        console.log('id='+localStorage.getItem('id'));
+        console.log(req.responseText)
         return true;
 
     }

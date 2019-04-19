@@ -11,6 +11,7 @@ var clienteController = (function () {
 
     }
 
+    
     function eliminarCliente() {
         let cliente = new Cliente();
         if (cliente.eliminar()) {

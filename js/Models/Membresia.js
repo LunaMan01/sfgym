@@ -17,16 +17,16 @@ class Membresia {
         req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
         req.send('id=' + localStorage.getItem('id'));
         console.log('id='+localStorage.getItem('id'));
-        console.log(req.responseText)
+        console.log(req.responseText);
         return true;
 
     }
 
     modificar(data) {
         var req = new XMLHttpRequest();
-        req.open("POST", 'php/membresias/modificarMembresias.php', false);
+        req.open("POST", 'php/membresias/modificarMembresia.php', false);
         req.send(data);
-
+        console.log(req.responseText);
         return true;
     }
 

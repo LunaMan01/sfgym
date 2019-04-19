@@ -1,4 +1,4 @@
-var UIMembresia = (function() {
+var UIMembresia = (function () {
 
     function mostrarTodosLasMembresias() {
         var spinner = '<div class="d-flex mt-3">' +
@@ -11,12 +11,12 @@ var UIMembresia = (function() {
         req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
         req.send(null);
         document.querySelector('#cuerpo-tabla-membresias').innerHTML = req.responseText
-        
+
     }
 
     return {
-        mostrarTodasLasMembresias: function() {
-            
+        mostrarTodasLasMembresias: function () {
+
             mostrarTodosLasMembresias();
         },
 
@@ -26,10 +26,10 @@ var UIMembresia = (function() {
             return data;
         },
 
-        getId: function(event) {
+        getId: function (event) {
             var i = event.target;
             var td = i.parentNode;
-             tr = td.parentNode;
+            tr = td.parentNode;
             var elements = tr.childNodes;
             var th = elements[1];
             console.log(th);
@@ -41,9 +41,53 @@ var UIMembresia = (function() {
         quitarRegistro: function () {
             tr.remove();
         },
-        
+
         mostrarMensajeExito: function (mensaje) {
-            new Toast(mensaje, 2000, '#mensaje', 'success').show();
+            new Toast(mensaje, 2000, 'mensaje', 'success', 'membre').show();
+
+        },
+
+        getMembresia: function () {
+            var req = new XMLHttpRequest();
+            req.open("POST", 'php/membresias/get-datos-membresia.php', false);
+            req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            var params = 'id=' + localStorage.getItem('id');
+            req.send(params);
+            var elements = req.responseText;
+            console.log(req.responseText);
+            var membresia = JSON.parse(elements);
+            return membresia;
+        },
+
+        setDatosMembresiaEnInputs: function (membresia) {
+            document.querySelector('#modificar-membresia-form #id-cliente').value = membresia.idCliente;
+            document.querySelector('#modificar-membresia-form #fecha-inicio').value = membresia.fechaInicio;
+            document.querySelector('#modificar-membresia-form #fecha-fin').value = membresia.fechaFin;
+        },
+
+        getDatosModificados: function () {
+            let form = document.querySelector('#modificar-membresia-form');
+            let data = new FormData(form);
+            data.append('id', localStorage.getItem('id'));
+            return data;
+        },
+
+        verMembresia: function (membresia) {
+            document.querySelector('#ver-membresia-form #id-cliente').innerHTML = membresia.idCliente;
+            document.querySelector('#ver-membresia-form #fecha-inicio').innerHTML= membresia.fechaInicio;
+            document.querySelector('#ver-membresia-form #fecha-fin').innerHTML = membresia.fechaFin;
+        },
+
+        mostrarDatosEncontrados: function(datos) {
+            document.querySelector('#cuerpo-tabla-membresias').innerHTML = datos;
+        },
+
+        getDatosABuscar: function () {
+            return document.querySelector('#buscar-membresia-input').value;
+        },
+
+        esconderModal: function (modal) {
+            $(modal).modal('hide');
         }
     }
 })();

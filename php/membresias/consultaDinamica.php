@@ -4,7 +4,7 @@
     $dato = $_POST['dato'];
 
     try{
-        $query = $conn->prepare('SELECT Membresias.Id_Cliente, nombre_cliente, fecha_inicio, fecha_fin
+        $query = $conn->prepare('SELECT Id_Membresia, nombre_cliente, fecha_inicio, fecha_fin
         FROM Membresias INNER JOIN Clientes ON Clientes.Id_Cliente LIKE Membresias.Id_Cliente WHERE 
         Membresias.Id_Cliente LIKE ? OR nombre_cliente LIKE ? OR fecha_inicio LIKE ? OR fecha_fin LIKE ?');
 
@@ -12,7 +12,7 @@
 
         while($results = $query->fetch()){
             echo '<tr>
-            <th scope="row" id="'.$results['Id_Cliente'].'">'.$results['Id_Cliente'].'</th>'.
+            <th scope="row" id="'.$results['Id_Membresia'].'">'.$results['Id_Membresia'].'</th>'.
             '<td>'.$results['nombre_cliente'].'</td>'.
             '<td>'.$results['fecha_inicio'].'</td>'.
             '<td>'.$results['fecha_fin'].'</td>'.

@@ -2,9 +2,9 @@
     include '../conexion.php';
 
     try{
-        $delete = "DELETE FROM Membresias WHERE Id_Membresia LIKE ". $_POST['id'];
+        $delete = $conn->prepare('DELETE FROM Membresias WHERE Id_Membresia ='. $_POST['id']);
         
-        $conn->execute($delete);
+        $delete->execute();
 
     }catch(PDOException $e){
         echo 'Error: '. $e->getMessage();

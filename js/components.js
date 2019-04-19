@@ -1,32 +1,34 @@
 const divAdicional = document.querySelector('#elementos-adicionales');
 class Toast {
-    constructor(text, time, ToastName, type, idTemplate) {
+    constructor(text, time, ToastName, type, id) {
         this.text = text;
         this.time = time;
-        this.ToastName = ToastName
+        this.ToastName = ToastName;
         this.type = type;
-        this.idTemplate = idTemplate;
+        this.id = id;
     }
 
     show() {
-        document.querySelector('.modal-ommission').classList.remove('d-none');
+        console.log(this.ToastName);
+        document.querySelector('#modal-ommission').classList.remove('d-none');
         var content = document.createTextNode(this.text);
 
-        document.querySelector('.alert-text').appendChild(content);
-        document.querySelector('.modal-div').classList.add('fixed-top');
+        document.querySelector('#alert-text').appendChild(content);
+        document.querySelector('#modal-div').classList.add('fixed-top');
         if (this.type == 'success') {
-            document.querySelector(this.ToastName).classList.add('alert-success');
+            document.querySelector('#modal-ommission #mensaje').classList.add('alert-success');
         } else {
-            document.querySelector(this.ToastName).classList.add('alert-danger');
+            document.querySelector('#mensaje').classList.add('alert-danger');
         }
-        document.querySelector(this.ToastName).classList.add('show');
+        document.querySelector('#modal-ommission #mensaje').classList.add('show');
+        
         console.log('una');
         setTimeout(() => {
-            document.querySelector(this.ToastName).classList.remove('show');
+            document.querySelector('#modal-ommission #mensaje').classList.remove('show');
 
-            document.querySelector('.alert-text').innerHTML = '';
-            document.querySelector('.modal-div').classList.remove('fixed-top');
-            document.querySelector('.modal-ommission').classList.add('d-none');
+            document.querySelector('#alert-text').innerHTML = '';
+            document.querySelector('#modal-div').classList.remove('fixed-top');
+            document.querySelector('#modal-ommission').classList.add('d-none');
         }, this.time);
 
     }
@@ -269,7 +271,7 @@ let modalsMembresias =
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="" id="add-membresia-form">
+                    <form onsubmit="return false" id="add-membresia-form">
                         <div class="form-group">
                             <label for="id-cliente">Id cliente:</label>
                             <input class="form-control" id="id-cliente" name="id">
@@ -314,22 +316,22 @@ let modalsMembresias =
                 </button>
             </div>
             <div class="modal-body">
-                <form action="" id="modificar-membresia-form">
+                <form onsubmit="return false" id="modificar-membresia-form">
                     <div class="form-group">
                         <label for="id-cliente">Id cliente:</label>
-                        <input class="form-control" id="id-cliente">
+                        <input class="form-control" id="id-cliente" name="id" disabled>
                     </div>
                     <div class="form-group">
                         <label for="fecha-inicio">Fecha inicio:</label>
-                        <input class="form-control" id="fecha-inicio">
+                        <input class="form-control" id="fecha-inicio" name="inicio">
                     </div>
                     <div class="form-group">
                         <label for="fecha-fin">Fecha inicio:</label>
-                        <input class="form-control" id="fecha-fin">
+                        <input class="form-control" id="fecha-fin" name="fin">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary rounded-pill" data-dismiss="modal">Cancelar</button>
-                        <button type="" class="btn btn-outline-success rounded-pill">Guardar</button>
+                        <button type="submit" class="btn btn-outline-success rounded-pill">Guardar</button>
                     </div>
                 </form>
             </div>
@@ -356,7 +358,51 @@ let modalsMembresias =
       </div>
     </div>
   </div>
-</div>`;
+</div>
+`+ `     
+<div class="modal fade" id="ver-membresia-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+    <div class="d-none modal-ommission">
+        <div class="d-flex justify-content-end mt-4 modal-div">
+            <div class="alert alert-dismissible fade " role="alert" id="mensaje">
+                <div id="" class="alert-text"></div>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+        </div>
+    </div>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Membresía</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form onsubmit="return false" id="ver-membresia-form">
+                    <div class="form-group">
+                        <label for="id-cliente">Id cliente:</label>
+                        <p id="id-cliente"></p>
+                    </div>
+                    <div class="form-group">
+                        <label for="fecha-inicio">Fecha inicio:</label>
+                        <p id="fecha-inicio"></p>
+                    </div>
+                    <div class="form-group">
+                        <label for="fecha-fin">Fecha inicio:</label>
+                        <p id="fecha-fin"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-success rounded-pill" data-dismiss="modal">Ok</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+` 
 
 
 

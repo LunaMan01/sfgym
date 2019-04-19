@@ -12,7 +12,7 @@
                 '<td>'.$row['fecha_inicio'].'</td>'.
                 '<td>'.$row['fecha_fin'].'</td>'.
             '<td>
-                <i class="material-icons actions watch-action mr-2"> remove_red_eye</i>
+                <i class="material-icons actions watch-action mr-2" data-toggle="modal" href="#ver-membresia-modal"> remove_red_eye</i>
                 <i class="material-icons actions edit-action mr-2" data-toggle="modal" href="#modificar-membresia-modal"> create</i>
                 <i class="material-icons actions delete-action mr-2" data-toggle="modal" href="#eliminar-membresia-modal"> delete</i> </td>
             </tr>';

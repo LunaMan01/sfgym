@@ -17,6 +17,7 @@ class Membresia {
         req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
         req.send('id=' + localStorage.getItem('id'));
         console.log('id='+localStorage.getItem('id'));
+        console.log(req.responseText)
         return true;
 
     }

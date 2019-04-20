@@ -43,7 +43,7 @@ var UIMembresia = (function () {
         },
 
         mostrarMensajeExito: function (mensaje) {
-            new Toast(mensaje, 2000, 'mensaje', 'success', 'membre').show();
+            new Toast('#alert-membresias', mensaje, 2000).getAndShow();
 
         },
 

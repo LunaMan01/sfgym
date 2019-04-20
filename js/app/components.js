@@ -1,35 +1,31 @@
 const divAdicional = document.querySelector('#elementos-adicionales');
 class Toast {
-    constructor(text, time, ToastName, type, id) {
-        this.text = text;
+   
+    constructor(divContainerId, mensaje, time) {
+        this.divContainerId = divContainerId;
+        this.mensaje = mensaje;
         this.time = time;
-        this.ToastName = ToastName;
-        this.type = type;
-        this.id = id;
     }
 
-    show() {
-        console.log(this.ToastName);
-        document.querySelector('#modal-ommission').classList.remove('d-none');
-        var content = document.createTextNode(this.text);
-
-        document.querySelector('#alert-text').appendChild(content);
-        document.querySelector('#modal-div').classList.add('fixed-top');
-        if (this.type == 'success') {
-            document.querySelector('#modal-ommission #mensaje').classList.add('alert-success');
-        } else {
-            document.querySelector('#mensaje').classList.add('alert-danger');
-        }
-        document.querySelector('#modal-ommission #mensaje').classList.add('show');
+    getAndShow() {
+        console.log(this.divContainerId);
+        document.querySelector(this.divContainerId).classList.remove('d-none');
         
-        console.log('una');
-        setTimeout(() => {
-            document.querySelector('#modal-ommission #mensaje').classList.remove('show');
+        document.querySelector(this.divContainerId).innerHTML = `
+        <div class="d-flex justify-content-end mt-4 fixed-top">
+            <div class="alert alert-dismissible fade show alert-success" role="alert">
+                <div class="alert-text">${this.mensaje}</div>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+             </div>
+        </div>
+        `;
 
-            document.querySelector('#alert-text').innerHTML = '';
-            document.querySelector('#modal-div').classList.remove('fixed-top');
-            document.querySelector('#modal-ommission').classList.add('d-none');
-        }, this.time);
+        setTimeout(() => {
+            document.querySelector(this.divContainerId).classList.add('d-none');
+            document.querySelector(this.divContainerId).innerHTML = ' ';
+        },this.time);
 
     }
 

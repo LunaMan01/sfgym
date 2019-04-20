@@ -22,20 +22,9 @@ let modalCliente = `
 
 
 
-let modalsMembresias = 
- `        
+let modalsMembresias =
+    `        
     <div class="modal fade" id="add-membresia-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-
-        <div class="d-none modal-ommission">
-            <div class="d-flex justify-content-end mt-4 modal-div">
-                <div class="alert alert-dismissible fade " role="alert" id="mensaje">
-                    <div id="" class="alert-text"></div>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    </div>
-            </div>
-        </div>
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -112,8 +101,8 @@ let modalsMembresias =
         </div>
     </div>
 </div>
-` + 
-` 
+` +
+    ` 
 <div class="modal fade" id="eliminar-membresia-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -179,9 +168,13 @@ let modalsMembresias =
 ` ;
 
 let modalsVisitas = `
+
 <div class="modal fade" id="add-visita-modal" tabindex="-1" role="dialog"
 aria-labelledby="modal-añadir-visita" aria-hidden="true">
 <div class="modal-dialog" role="document">
+    <div class="d-none" id="alert-add-visita">
+  
+    </div>
     <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title">Añadir visita</h5>
@@ -190,23 +183,23 @@ aria-labelledby="modal-añadir-visita" aria-hidden="true">
             </button>
         </div>
         <div class="modal-body">
-            <form id="add-visita-form">
+            <form id="add-visita-form" onsubmit="return false">
                 <div class="form-group">
                     <label>Id Cliente:</label>
                     <input type="text" class="form-control" id="id-cliente" placeholder="Id Cliente">
                 </div>
-
                 <div class="form-group">
                     <label>Fecha:</label>
                     <input type="text" class="form-control" id="fecha-visita"
                         placeholder="dd/mm/yyyy">
                 </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                </div>
             </form>
         </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-success">Save changes</button>
-        </div>
+        
     </div>
 </div>
 </div>
@@ -216,13 +209,13 @@ aria-labelledby="modal-añadir-visita" aria-hidden="true">
 <div class="modal-dialog" role="document">
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title">Añadir visita</h5>
+            <h5 class="modal-title">Modificar visita</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
         <div class="modal-body">
-            <form id="modificar-visita-form">
+            <form id="modificar-visita-form" onsubmit="return false">
                 <div class="form-group" >
                     <label>Id Cliente:</label>
                     <input type="text" class="form-control" id="id-cliente" placeholder="Id Cliente">
@@ -233,17 +226,20 @@ aria-labelledby="modal-añadir-visita" aria-hidden="true">
                     <input type="text" class="form-control" id="fecha-visita"
                         placeholder="dd/mm/yyyy">
                 </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-outline-success rounded-pill">Guardar</button>
+                </div>
             </form>
         </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-success">Save changes</button>
-        </div>
+        
     </div>
 </div>
 </div>
 ` + ` 
+
 <div class="modal fade" id="eliminar-visita-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -268,13 +264,13 @@ aria-labelledby="modal-añadir-visita" aria-hidden="true">
 <div class="modal-dialog" role="document">
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title">Añadir visita</h5>
+            <h5 class="modal-title">Visita</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
         <div class="modal-body">
-            <form id="modificar-visita-form">
+            <form id="ver-visita-form">
                 <div class="form-group" >
                     <label>Id Cliente:</label>
                     <p id="id-cliente"></p>
@@ -287,8 +283,7 @@ aria-labelledby="modal-añadir-visita" aria-hidden="true">
             </form>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-success">Save changes</button>
+            <button type="button" class="btn btn-success" data-dismiss="modal">Ok</button>
         </div>
     </div>
 </div>

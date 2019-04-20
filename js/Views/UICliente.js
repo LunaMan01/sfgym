@@ -121,8 +121,8 @@ var UICliente = (function () {
             tr.remove();
         },
 
-        mostrarMensajeExito: function (mensaje) {
-            new Toast(mensaje, 2000, '#mensaje', 'success').show();
+        mostrarMensajeExito: function (idDivContainer, mensaje) {
+            new Toast(idDivContainer, mensaje, 2000).getAndShow();
         },
 
         abrirReportes: function() {

@@ -6,7 +6,7 @@ var clienteController = (function () {
         let cliente = new Cliente();
 
         if (cliente.add(data)) {
-            UICliente.mostrarMensajeExito('Cliente añadido correctamente');
+            UICliente.mostrarMensajeExito('#add-cliente-alert', 'Cliente añadido correctamente');
         }
 
     }
@@ -15,7 +15,7 @@ var clienteController = (function () {
     function eliminarCliente() {
         let cliente = new Cliente();
         if (cliente.eliminar()) {
-            UICliente.mostrarMensajeExito('Cliente eliminado correctamente');
+            UICliente.mostrarMensajeExito('#alert-clientes', 'Cliente eliminado correctamente');
             UICliente.quitarRegistro();
         }
     }
@@ -25,7 +25,7 @@ var clienteController = (function () {
         let cliente = new Cliente();
         UICliente.mostrarAnimacionBtn('#guardar-cliente-editado');
         if (cliente.modificar(data)) {
-            UICliente.mostrarMensajeExito('Cliente modificado correctamente');
+            UICliente.mostrarMensajeExito('#modificar-cliente-alert', 'Cliente modificado correctamente');
             UICliente.regresarBtnAEstadoInicial('#guardar-cliente-editado');
         }
     }

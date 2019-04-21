@@ -186,12 +186,12 @@ aria-labelledby="modal-añadir-visita" aria-hidden="true">
             <form id="add-visita-form" onsubmit="return false">
                 <div class="form-group">
                     <label>Id Cliente:</label>
-                    <input type="text" class="form-control" id="id-cliente" placeholder="Id Cliente">
+                    <input type="text" class="form-control" id="id-cliente" placeholder="Id Cliente" name="id">
                 </div>
                 <div class="form-group">
                     <label>Fecha:</label>
-                    <input type="text" class="form-control" id="fecha-visita"
-                        placeholder="dd/mm/yyyy">
+                    <input type="text" class="form-control" id="fecha-visita" 
+                        placeholder="dd/mm/yyyy" name="fecha">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -218,13 +218,13 @@ aria-labelledby="modal-añadir-visita" aria-hidden="true">
             <form id="modificar-visita-form" onsubmit="return false">
                 <div class="form-group" >
                     <label>Id Cliente:</label>
-                    <input type="text" class="form-control" id="id-cliente" placeholder="Id Cliente">
+                    <input type="text" class="form-control" id="id-cliente" placeholder="Id Cliente" name="id">
                 </div>
 
                 <div class="form-group">
                     <label>Fecha:</label>
                     <input type="text" class="form-control" id="fecha-visita"
-                        placeholder="dd/mm/yyyy">
+                        placeholder="dd/mm/yyyy" name="fecha">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>

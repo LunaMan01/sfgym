@@ -48,3 +48,13 @@ create table Membresias(
 	primary key(Id_Membresia),
 	foreign key (Id_Cliente) references Clientes (Id_Cliente) on delete cascade on update cascade
 );
+
+create table Visitas(
+	Id_Visita int not null auto_increment,
+	fecha_visitas varchar(10),
+
+	Id_Cliente int not null,
+
+	primary key(Id_Visita),
+	foreign key(Id_Cliente) references Clientes (Id_Cliente) on delete cascade on update cascade
+);

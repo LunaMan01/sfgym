@@ -5,7 +5,7 @@ class Visita {
 
     add(data) {
         var req = new XMLHttpRequest();
-        req.open("POST", 'php/visitas/añadirVisita.php', false);
+        req.open("POST", 'php/visitas/añadirVisitas.php', false);
         req.send(data);
         console.log('added');
         return true;

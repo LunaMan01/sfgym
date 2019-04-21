@@ -7,13 +7,13 @@ class Visita {
         var req = new XMLHttpRequest();
         req.open("POST", 'php/visitas/añadirVisitas.php', false);
         req.send(data);
-        console.log('added');
+        console.log(req.responseText);
         return true;
     }
 
     eliminar() {
         var req = new XMLHttpRequest();
-        req.open("POST", 'php/visitas/eliminarVisitas.php', false);
+        req.open("POST", 'php/visitas/eliminarVisita.php', false);
         req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
         req.send('id=' + localStorage.getItem('id'));
         console.log('id='+localStorage.getItem('id'));

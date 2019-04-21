@@ -3,7 +3,8 @@ var visitaController = (function() {
 
     function addNuevaVisita() {
         let data = UIVisita.getDatosParaNuevaVisita();
-        let visita = new Membresia();
+        console.log('data='+data);
+        let visita = new Visita();
 
         if (visita.add(data)) {
             UIVisita.mostrarMensajeExito('#alert-add-visita', 'Visita añadida correctamente');
@@ -51,8 +52,8 @@ var visitaController = (function() {
         let visita = new Visita();
         // UICliente.mostrarAnimacionBtn('#guardar-cliente-editado');
         if (visita.modificar(data)) {
-            UIVisita.mostrarMensajeExito('#alert-visita','Membresía modificada correctamente');
-            UIVisita.esconderModal('#modificar-membresia-modal');
+            UIVisita.mostrarMensajeExito('#alert-visita','Visita modificada correctamente');
+            UIVisita.esconderModal('#modificar-visita-modal');
             UIVisita.mostrarTodasLasVisitas();
         }
     }

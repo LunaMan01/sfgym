@@ -3,7 +3,7 @@
 
     try{
         $modificar = $conn->prepare('UPDATE Visitas SET
-        fecha_visita = :fecha,
+        fecha_visitas = :fecha,
         Id_Cliente = :ID
         WHERE Id_Visita = '. $_POST['id']);
 

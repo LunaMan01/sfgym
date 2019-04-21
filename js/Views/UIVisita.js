@@ -58,7 +58,7 @@ var UIVisita  = (function() {
 
         setDatosVisitaEnInputs: function (visita) {
             document.querySelector('#modificar-visita-form #id-cliente').value = visita.idCliente;
-            document.querySelector('#modificar-visita-form #fecha-visita').value = visita.fechaVisita;
+            document.querySelector('#modificar-visita-form #fecha-visita').value = visita.fechaVisitas;
             
         },
 
@@ -70,8 +70,8 @@ var UIVisita  = (function() {
         },
 
         verVisita: function (visita) {
-            document.querySelector('#ver-visita-form #id-cliente').innerHTML = visita.idCliente;
-            document.querySelector('#ver-visita-form #fecha-visita').innerHTML= visita.fechaVisita;
+            document.querySelector('#ver-visita-form #nombre-cliente').innerHTML = visita.nombreCliente;
+            document.querySelector('#ver-visita-form #fecha-visita').innerHTML= visita.fechaVisitas;
             
         },
 

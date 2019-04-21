@@ -272,8 +272,8 @@ aria-labelledby="modal-añadir-visita" aria-hidden="true">
         <div class="modal-body">
             <form id="ver-visita-form">
                 <div class="form-group" >
-                    <label>Id Cliente:</label>
-                    <p id="id-cliente"></p>
+                    <label>Nombre cliente:</label>
+                    <p id="nombre-cliente"></p>
                 </div>
 
                 <div class="form-group">

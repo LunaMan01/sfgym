@@ -3,7 +3,7 @@
     
     try{
         echo 'HOLA';
-        $añadir = $conn->prepare('INSERT INTO Visitas (fecha_visita, Id_Cliente) 
+        $añadir = $conn->prepare('INSERT INTO Visitas (fecha_visitas, Id_Cliente) 
         VALUES (:fecha, :ID)');
 
         $añadir->bindParam(':fecha', $_POST['fecha']);

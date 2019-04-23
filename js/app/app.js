@@ -174,12 +174,15 @@ var UIController = (function () {
         },
 
         abrirProductos: function () {
+            document.querySelector('.modal-container').innerHTML = modalsProductos;
             limpiarDivAdicional();
             addScriptsProductos();
             document.querySelector(CSSClasses.active).classList.remove('active');
             document.querySelector(Li.productos).className = 'active';
             load('html/productos-components/productos.html', content);
             addBotones('Añadir producto', 'Reporte productos', 'add-producto-btn', 'reporte-producto-btn', 'buscar-producto-input');
+            document.querySelector('#add-producto-btn').setAttribute('data-target', '#add-producto-modal');
+            document.querySelector('#add-producto-btn').setAttribute('data-toggle', 'modal');
             if (typeof productoController !== 'undefined')
                 productoController.init();
         },

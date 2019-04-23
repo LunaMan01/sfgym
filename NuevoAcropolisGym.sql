@@ -51,10 +51,46 @@ create table Membresias(
 
 create table Visitas(
 	Id_Visita int not null auto_increment,
-	fecha_visitas varchar(10),
+	fecha_visita varchar(10),
 
 	Id_Cliente int not null,
 
 	primary key(Id_Visita),
 	foreign key(Id_Cliente) references Clientes (Id_Cliente) on delete cascade on update cascade
+);
+
+create table Ventas(
+	Id_Venta int not null auto_increment,
+
+	Id_Cliente int not null,
+	Id_Instructor int not null,
+
+	primary key(Id_Venta),
+	foreign key(Id_Cliente) references Clientes (Id_Cliente) on delete cascade on update cascade
+);
+
+create table VentasProductos(
+	Id_Venta int not null,
+	Id_Producto int not null,
+
+	cantidad_producto int,
+	total_venta double,
+
+	primary key(Id_Venta, Id_Producto)
+);
+
+create table Productos(
+	Id_Producto int not null auto_increment,
+	descripcion_producto varchar(50),
+	precio_producto double,
+	existencia_producto int,
+
+	primary key (Id_Producto)
+);
+
+create table Instructores(
+	Id_Instructor int not null auto_increment,
+	nombre_instructor varchar(20),
+
+	primary key(Id_Instructor)
 );

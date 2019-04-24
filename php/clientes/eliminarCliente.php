@@ -4,7 +4,7 @@
         echo "eliminado";
 
         $inactivo = 0;
-        $delete = $conn->prepare('UPDATE Clientes SET activo ='.$inactivo.' WHERE Id_Cliente ='.$_POST['id']);
+        $delete = $conn->prepare('UPDATE Clientes SET activo ='.$inactivo.' WHERE Id_Cliente ='.$_POST['id-cliente']);
         $delete->execute();
         
     }   

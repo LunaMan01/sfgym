@@ -37,7 +37,7 @@ let modalsMembresias =
                     <form onsubmit="return false" id="add-membresia-form">
                         <div class="form-group">
                             <label for="id-cliente">Id cliente:</label>
-                            <input class="form-control" id="id-cliente" name="id">
+                            <input class="form-control" id="id-cliente" name="id-cliente">
                         </div>
                         <div class="form-group">
                             <label for="fecha-inicio">Fecha inicio:</label>
@@ -82,7 +82,7 @@ let modalsMembresias =
                 <form onsubmit="return false" id="modificar-membresia-form">
                     <div class="form-group">
                         <label for="id-cliente">Id cliente:</label>
-                        <input class="form-control" id="id-cliente" name="id" disabled>
+                        <input class="form-control" id="id-cliente" name="id-cliente" disabled>
                     </div>
                     <div class="form-group">
                         <label for="fecha-inicio">Fecha inicio:</label>
@@ -186,7 +186,7 @@ aria-labelledby="modal-añadir-visita" aria-hidden="true">
             <form id="add-visita-form" onsubmit="return false">
                 <div class="form-group">
                     <label>Id Cliente:</label>
-                    <input type="text" class="form-control" id="id-cliente" placeholder="Id Cliente" name="id">
+                    <input type="text" class="form-control" id="id-cliente" placeholder="Id Cliente" name="id-cliente">
                 </div>
                 <div class="form-group">
                     <label>Fecha:</label>
@@ -218,7 +218,7 @@ aria-labelledby="modal-añadir-visita" aria-hidden="true">
             <form id="modificar-visita-form" onsubmit="return false">
                 <div class="form-group" >
                     <label>Id Cliente:</label>
-                    <input type="text" class="form-control" id="id-cliente" placeholder="Id Cliente" name="id">
+                    <input type="text" class="form-control" id="id-cliente" placeholder="Id Cliente" name="id-cliente">
                 </div>
 
                 <div class="form-group">
@@ -305,7 +305,7 @@ aria-labelledby="modal-añadir-producto" aria-hidden="true">
             <form id="add-producto-form" onsubmit="return false">
                 <div class="form-group">
                     <label>Nombre:</label>
-                    <input type="text" class="form-control" id="nombre-producto" name="descripcion"
+                    <input type="text" class="form-control" id="nombre-producto" name="nombre-producto"
                         placeholder="Nombre del producto">
                 </div>
 
@@ -317,7 +317,7 @@ aria-labelledby="modal-añadir-producto" aria-hidden="true">
 
                 <div class="form-group">
                     <label>Existencia:</label>
-                    <input type="text" class="form-control" id="existencia-producto" name="existencia-producto"
+                    <input type="text" class="form-control" id="existencia" name="existencia"
                         placeholder="Cantidad de productos">
                 </div>
 

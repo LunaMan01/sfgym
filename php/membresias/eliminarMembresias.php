@@ -2,7 +2,7 @@
     include '../conexion.php';
 
     try{
-        $delete = $conn->prepare('DELETE FROM Membresias WHERE Id_Membresia ='. $_POST['id']);
+        $delete = $conn->prepare('DELETE FROM Membresias WHERE Id_Membresia ='. $_POST['id-membresia']);
         
         $delete->execute();
 

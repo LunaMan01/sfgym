@@ -5,10 +5,10 @@
         $modificar = $conn->prepare('UPDATE Visitas SET
         fecha_visitas = :fecha,
         Id_Cliente = :ID
-        WHERE Id_Visita = '. $_POST['id']);
+        WHERE Id_Visita = '. $_POST['id-visita']);
 
         $modificar->bindParam(':fecha', $_POST['fecha']);
-        $modificar->bindParam(':ID', $_POST['id']);
+        $modificar->bindParam(':ID', $_POST['id-cliente']);
 
         $modificar->execute();
     }catch(PDOException $e){

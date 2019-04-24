@@ -3,8 +3,8 @@
     $conex = $conn;
     $array = array();
     try {
-        $idC = $_POST["id"];
-        $preparar = 'SELECT nombre_cliente, apellido_paterno, apellido_materno, edad, numero, colonia, calle, numero_exterior, numero_interior FROM Clientes, Telefonos, Direcciones where Clientes.Id_Cliente = '.$_POST['id'].' and Telefonos.Id_Cliente = '.$_POST['id'].' and Direcciones.Id_Cliente = '.$_POST['id'];
+        $idC = $_POST["id-cliente"];
+        $preparar = 'SELECT nombre_cliente, apellido_paterno, apellido_materno, edad, numero, colonia, calle, numero_exterior, numero_interior FROM Clientes, Telefonos, Direcciones where Clientes.Id_Cliente = '.$_POST['id-cliente'].' and Telefonos.Id_Cliente = '.$_POST['id-cliente'].' and Direcciones.Id_Cliente = '.$_POST['id-cliente'];
         $cliente = new \stdClass();
 
 

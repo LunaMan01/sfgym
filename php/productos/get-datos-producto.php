@@ -4,7 +4,7 @@
     $array = array();
     try {
         
-        $preparar = 'SELECT * FROM Productos where Id_Producto = '.$_POST['id'];
+        $preparar = 'SELECT * FROM Productos WHERE Id_Producto = '.$_POST['id-producto'];
         $producto = new \stdClass();
 
 

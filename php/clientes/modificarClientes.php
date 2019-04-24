@@ -8,7 +8,7 @@
             apellido_paterno = :paterno, 
             apellido_materno = :materno,
             edad = :edad
-            WHERE Id_Cliente = '.$_POST['id']);
+            WHERE Id_Cliente = '.$_POST['id-cliente']);
 
         $modfPerson->bindParam(':nombre', $_POST['nombre_cliente']);
         $modfPerson->bindParam(':paterno', $_POST['ap-parno']);
@@ -20,7 +20,7 @@
         //MODIFICAR NUMERO DE LA PERSONA
         $modfNumero = $conn->prepare('UPDATE Telefonos SET
         numero = :numero 
-        WHERE Id_Cliente LIKE '. $_POTS['id']);
+        WHERE Id_Cliente LIKE '. $_POTS['id-cliente']);
 
         $modfNumero->bindParam(':numero', $_POST['numero']);
 
@@ -32,7 +32,7 @@
         calle = :calle,
         numero_exterior = :exterior,
         numero_interior = :interior
-        WHERE Id_Cliente LIKE '.$_POST['id']);
+        WHERE Id_Cliente LIKE '.$_POST['id-cliente']);
 
         $modfDirecc->bindParam(':colonia', $_POST['colonia']);
         $modfDirecc->bindParam(':calle', $_POST['calle']);

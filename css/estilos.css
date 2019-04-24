@@ -96,3 +96,10 @@ hr{
     font-size:30px;
     margin: .5rem;
 } 
+
+.panel-reportes{
+    background-color: #FFFF;
+    border-radius: 15px;
+    border: 1px solid #AAAC; 
+    padding: .5rem;
+}

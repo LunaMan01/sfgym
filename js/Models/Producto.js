@@ -5,7 +5,7 @@ class Producto {
 
     add(data) {
         var req = new XMLHttpRequest();
-        req.open("POST", 'php/productos/añadirProductos.php', false);
+        req.open("POST", 'php/productos/agregarProductos.php', false);
         req.send(data);
         console.log('added');
         return true;
@@ -32,7 +32,7 @@ class Producto {
 
     consultar(datoABuscar) {
         var req = new XMLHttpRequest();
-        req.open("POST", 'php/membresias/consultaDinamica.php', false);
+        req.open("POST", 'php/productos/consultaDinamica.php', false);
         req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
         req.send('dato=' + datoABuscar);
         return req.responseText;

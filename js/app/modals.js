@@ -351,7 +351,7 @@ aria-labelledby="modal-modificar-producto" aria-hidden="true">
         <div class="modal-body">
             <form id="modificar-producto-form" onsubmit="return false">
                 <div class="form-group">
-                    <label>Nombre:</label>
+                    <label>Id Productos</label>
                     <input type="text" class="form-control" id="id-producto" name="nombre"
                     placeholder="Nombre del producto">
                 </div>

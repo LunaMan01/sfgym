@@ -44,7 +44,7 @@ let modalsMembresias =
                             <input class="form-control" id="fecha-inicio" name="inicio">
                         </div>
                         <div class="form-group">
-                            <label for="fecha-fin">Fecha inicio:</label>
+                            <label for="fecha-fin">Fecha fin:</label>
                             <input class="form-control" id="fecha-fin" name="fin">
                         </div>
                         <div class="modal-footer">

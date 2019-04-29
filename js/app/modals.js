@@ -272,8 +272,8 @@ aria-labelledby="modal-añadir-visita" aria-hidden="true">
         <div class="modal-body">
             <form id="ver-visita-form">
                 <div class="form-group" >
-                    <label>Nombre cliente:</label>
-                    <p id="nombre-cliente"></p>
+                    <label>Id visita:</label>
+                    <p id="id-visita"></p>
                 </div>
 
                 <div class="form-group">
@@ -352,12 +352,12 @@ aria-labelledby="modal-modificar-producto" aria-hidden="true">
             <form id="modificar-producto-form" onsubmit="return false">
                 <div class="form-group">
                     <label>Id Productos</label>
-                    <input type="text" class="form-control" id="id-producto" name="nombre"
+                    <input type="text" class="form-control" id="id-producto" name="id-prod"
                     placeholder="Nombre del producto">
                 </div>
                 <div class="form-group">
                     <label>Nombre:</label>
-                    <input type="text" class="form-control" id="nombre-producto" name="nombre"
+                    <input type="text" class="form-control" id="nombre-producto" name="nombre-producto"
                         placeholder="Nombre del producto">
                 </div>
 
@@ -369,9 +369,15 @@ aria-labelledby="modal-modificar-producto" aria-hidden="true">
 
                 <div class="form-group">
                     <label>Existencia:</label>
-                    <input type="text" class="form-control" id="existencia-producto" name="existencia-producto"
+                    <input type="text" class="form-control" id="existencia-producto" name="existencia"
                         placeholder="Cantidad de productos">
                 </div>
+
+                <div class="form-group">
+                    <label>Precio:</label>
+                     <input type="text" class="form-control" id="precio-producto" name="precio"
+                        placeholder="Precio">
+                 </div>
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -411,20 +417,20 @@ aria-labelledby="modal-modificar-producto" aria-hidden="true">
 <div class="modal-dialog" role="document">
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title">Añadir producto</h5>
+            <h5 class="modal-title">Producto</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
         <div class="modal-body">
-            <form id="modificar-producto-form" onsubmit="return false">
+            <form id="ver-producto-form" onsubmit="return false">
                 <div class="form-group">
-                    <label>Nombre:</label>
-                    <p class="form-control" id="id-producto" name="nombre"
+                    <label>Id:</label>
+                    <p id="id-producto" name="nombre"
                     ></p>
                 </div>
                 <div class="form-group">
-                    <label>Nombre:</label>
+                    <label>Descripción:</label>
                     <p id="nombre-producto" name="nombre"
                     ></p>
                 </div>
@@ -437,6 +443,10 @@ aria-labelledby="modal-modificar-producto" aria-hidden="true">
                 <div class="form-group">
                     <label>Existencia:</label>
                     <p  id="existencia-producto" name="existencia-producto"></p>
+                </div>
+                <div class="form-group">
+                    <label>Precio:</label>
+                    <p  id="precio-producto" ></p>
                 </div>
 
                 <div class="modal-footer">

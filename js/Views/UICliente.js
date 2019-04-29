@@ -11,14 +11,14 @@ var UICliente = (function () {
     //     return (!string || 0 === string.length);
     // }
 
-    function mostrarTodosLosClientes() {
+    function mostrarActivos() {
         var spinner = '<div class="d-flex mt-3">' +
             '<div class="spinner-grow text-success" role="status"><span class="sr-only">Loading...</span></div>' +
             '<div class="spinner-grow text-success" role="status"><span class="sr-only">Loading...</span></div>' +
             '<div class="spinner-grow text-success" role="status"><span class="sr-only">Loading...</span></div></div>';
         document.querySelector('#cuerpo-tabla-clientes').innerHTML = spinner;
         var req = new XMLHttpRequest();
-        req.open("POST", 'php/clientes/consultarClientes.php', false);
+        req.open("POST", 'php/clientes/consultaActivos.php', false);
         req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
         req.send('opcion=' + 1);
         document.querySelector('#cuerpo-tabla-clientes').innerHTML = req.responseText
@@ -37,7 +37,7 @@ var UICliente = (function () {
             var req = new XMLHttpRequest();
             req.open("POST", 'php/clientes/get-datos-cliente.php', false);
             req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-            var params = 'id=' + localStorage.getItem('id');
+            var params = 'id-cliente=' + localStorage.getItem('id');
             req.send(params);
             var elements = req.responseText;
             var cliente = JSON.parse(elements);
@@ -61,24 +61,77 @@ var UICliente = (function () {
         },
 
         mostrarTodosLosClientes: function () {
-            mostrarTodosLosClientes();
+            mostrarActivos();
         },
 
+        mostrarActivos: function() {
+            document.querySelector('#dropdown-clientes').textContent = 'Clientes activos';
+            
+            document.querySelectorAll('.dropdown .d-none').forEach(function(element){
+                element.classList.remove('d-none');
+            });
+            mostrarActivos();
+        },
+
+        mostrarInactivos: function (res){ 
+            document.querySelector('#dropdown-clientes').textContent = 'Clientes inactivos';
+            
+            document.querySelectorAll('.dropdown .d-none').forEach(function(element){
+                element.classList.remove('d-none');
+            });
+
+            document.querySelector('#cuerpo-tabla-clientes').innerHTML = res;
+        },
+
+        mostrarActivosEInactivos: function(res) {
+            document.querySelector('#dropdown-clientes').textContent = 'Todos los clientes';
+            document.querySelectorAll('.dropdown .d-none').forEach(function(element){
+                element.classList.remove('d-none');
+            });
+            document.querySelector('#cuerpo-tabla-clientes').innerHTML = res;
+        },
+
+
+
         getDatosParaNuevoCliente: function () {
-            var nombre = document.querySelector('#nombre').value;
-            if (!isEmpty(nombre.trim())) {
+            let nombre = document.querySelector('#nombre').value;
+            let apPaterno = document.querySelector('#ap-parno').value;
+            let telefono = document.querySelector('#telefono').value;
+            if(!telefonoValido(telefono.length)) {
+                new Toast('#add-cliente-alert', 'Ingrese un telefono con 10 digitos', 2000, 'alert-danger').getAndShow();
+                return false;
+            }
+                
+            if (!isEmpty(nombre.trim()) && !isEmpty(apPaterno.trim())) {
                 var form = document.querySelector('form');
                 var data = new FormData(form);
+                console.log('k');
                 return data;
             } else {
-                new Toast('Ingrese al menos un nombre y un apellido paterno', 2000, '#mensaje', 'danger').show();
+                new Toast('#add-cliente-alert', 'Ingresa un nombre y un apellido paterno', 2000, 'alert-danger').getAndShow();
+                return false;
             }
+
+            
         },
 
         getDatosModificados: function () {
-            let data = UICliente.getDatosParaNuevoCliente();
-            data.append('id', localStorage.getItem('id'));
-            return data;
+            let nombre = document.querySelector('#nombre').value;
+            let apPaterno = document.querySelector('#ap-parno').value;
+            let telefono = document.querySelector('#telefono').value;
+            if(!telefonoValido(telefono.length)) {
+                new Toast('#modificar-cliente-alert', 'Ingrese un telefono con 10 digitos', 2000, 'alert-danger').getAndShow();
+                return false;
+            }
+            if (!isEmpty(nombre.trim()) && !isEmpty(apPaterno.trim())) {
+                let data = UICliente.getDatosParaNuevoCliente();
+                data.append('id', localStorage.getItem('id'));
+                return data;
+            }
+            else {
+                new Toast('#modificar-cliente-alert', 'Ingresa un nombre y un apellido paterno', 2000, 'alert-danger').getAndShow();
+                return false;
+            }
         },
 
         verCliente: function (cliente) {
@@ -122,7 +175,7 @@ var UICliente = (function () {
         },
 
         mostrarMensajeExito: function (idDivContainer, mensaje) {
-            new Toast(idDivContainer, mensaje, 2000).getAndShow();
+            new Toast(idDivContainer, mensaje, 2000, 'alert-success').getAndShow();
         },
 
         abrirReportes: function() {
@@ -143,5 +196,7 @@ var UICliente = (function () {
             mostrarTodosLosClientes();
             clienteController.init();
         }
+
+       
     }
 })();

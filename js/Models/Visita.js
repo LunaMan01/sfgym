@@ -15,8 +15,8 @@ class Visita {
         var req = new XMLHttpRequest();
         req.open("POST", 'php/visitas/eliminarVisita.php', false);
         req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-        req.send('id=' + localStorage.getItem('id'));
-        console.log('id='+localStorage.getItem('id'));
+        req.send('id-visita=' + localStorage.getItem('id'));
+        console.log('id-visita='+localStorage.getItem('id'));
         console.log(req.responseText);
         return true;
 

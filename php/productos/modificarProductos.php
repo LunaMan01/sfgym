@@ -3,7 +3,7 @@
 
     try{
         $modificar = $conn->prepare('UPDATE Productos SET
-        nombre_producto = :nombre,
+        descripcion_producto = :nombre,
         fecha_caducidad = :caducidad,
         existencia_producto = :existencia,
         precio_producto = :precio

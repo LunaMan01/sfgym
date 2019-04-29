@@ -26,7 +26,7 @@ class Cliente {
         var req = new XMLHttpRequest();
         req.open("POST", 'php/clientes/modificarClientes.php', false);
         req.send(data);
-
+        console.log(req.responseText);
         return true;
     }
 

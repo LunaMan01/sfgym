@@ -20,9 +20,9 @@
         //MODIFICAR NUMERO DE LA PERSONA
         $modfNumero = $conn->prepare('UPDATE Telefonos SET
         numero = :numero 
-        WHERE Id_Cliente LIKE '. $_POTS['id-cliente']);
+        WHERE Id_Cliente = '. $_POST['id-cliente']);
 
-        $modfNumero->bindParam(':numero', $_POST['numero']);
+        $modfNumero->bindParam(':numero', $_POST['telefono']);
 
         $modfNumero->execute();
 
@@ -36,8 +36,8 @@
 
         $modfDirecc->bindParam(':colonia', $_POST['colonia']);
         $modfDirecc->bindParam(':calle', $_POST['calle']);
-        $modfDirecc->bindParam(':exterior', $_POST['exterior']);
-        $modfDirecc->bindParam(':interior', $_POST['interior']);
+        $modfDirecc->bindParam(':exterior', $_POST['num-ext']);
+        $modfDirecc->bindParam(':interior', $_POST['num-int']);
 
         $modfDirecc->execute();
 

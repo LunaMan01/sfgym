@@ -125,7 +125,7 @@ var UICliente = (function () {
             }
             if (!isEmpty(nombre.trim()) && !isEmpty(apPaterno.trim())) {
                 let data = UICliente.getDatosParaNuevoCliente();
-                data.append('id', localStorage.getItem('id'));
+                data.append('id-cliente', localStorage.getItem('id'));
                 return data;
             }
             else {

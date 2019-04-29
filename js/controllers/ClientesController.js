@@ -3,6 +3,9 @@ var clienteController = (function () {
 
     function addNuevoCliente() {
         var data = UICliente.getDatosParaNuevoCliente();
+
+        if(!data)
+            return;
         let cliente = new Cliente();
 
         if (cliente.add(data)) {
@@ -22,6 +25,8 @@ var clienteController = (function () {
 
     function modificarCliente() {
         let data = UICliente.getDatosModificados();
+        if(!data)
+            return;
         let cliente = new Cliente();
         UICliente.mostrarAnimacionBtn('#guardar-cliente-editado');
         if (cliente.modificar(data)) {
@@ -37,6 +42,22 @@ var clienteController = (function () {
         UICliente.setDatosClienteEnInputs(cliente);
         document.getElementById('form-edit-cliente').addEventListener('submit', modificarCliente);
         document.querySelector('#cancelar-cliente').addEventListener('click', UICliente.regresar);
+        document.querySelector('#telefono').addEventListener('keydown', function(e) {
+            aceptarSoloNumeros(e);
+            limitarLongitud(9, this.value.length, e);
+        });
+        document.querySelector('#edad').addEventListener('keydown', function(e) {
+            aceptarSoloNumeros(e);
+            
+        });
+        document.querySelector('#num-ext').addEventListener('keydown', function(e) {
+            aceptarSoloNumeros(e);
+            
+        });
+        document.querySelector('#num-int').addEventListener('keydown', function(e) {
+            aceptarSoloNumeros(e);
+            
+        });
     }
 
 
@@ -45,6 +66,22 @@ var clienteController = (function () {
         UICliente.abrirAddCliente();
         document.querySelector('#form').addEventListener('submit', addNuevoCliente);
         document.querySelector('#cancelar-cliente').addEventListener('click', UICliente.regresar);
+        document.querySelector('#telefono').addEventListener('keydown', function(e) {
+            aceptarSoloNumeros(e);
+            limitarLongitud(9, this.value.length, e);
+        });
+        document.querySelector('#edad').addEventListener('keydown', function(e) {
+            aceptarSoloNumeros(e);
+            
+        });
+        document.querySelector('#num-ext').addEventListener('keydown', function(e) {
+            aceptarSoloNumeros(e);
+            
+        });
+        document.querySelector('#num-int').addEventListener('keydown', function(e) {
+            aceptarSoloNumeros(e);
+            
+        });
     }
 
     function setUpDeleteEvent() {
@@ -86,6 +123,26 @@ var clienteController = (function () {
         
     }
 
+    function mostrarClientesInactivos() {
+        
+        let cliente = new Cliente();
+        let res = cliente.getInactivos();
+        UICliente.mostrarInactivos(res);
+        this.classList.add('d-none');
+    }
+
+    function mostrarActivosEInactivos() {
+        let cliente = new Cliente();
+        let res = cliente.getTodos();
+        UICliente.mostrarActivosEInactivos(res);
+        this.classList.add('d-none');
+    }
+
+    function mostrarActivos() {
+        UICliente.mostrarActivos();
+        this.classList.add('d-none');
+    }
+
     function setUpEvents() {
         UICliente.mostrarTodosLosClientes();
         console.log('iniciando clientes');
@@ -97,6 +154,9 @@ var clienteController = (function () {
         setUpWatchEvent();
         document.querySelector('#buscar-cliente-input').addEventListener('keyup', busquedaDinamica);
         document.querySelector('#reporte-cliente-btn').addEventListener('click',UICliente.abrirReportes);
+        document.querySelector('#clientes-inactivos-btn').addEventListener('click', mostrarClientesInactivos);
+        document.querySelector('#clientes-todos-btn').addEventListener('click', mostrarActivosEInactivos);
+        document.querySelector('#clientes-activos-btn').addEventListener('click', mostrarActivos);
     }
 
   

@@ -6,7 +6,7 @@ var productoController = (function() {
 
         if (producto.add(data)) {
             UIProducto.mostrarMensajeExito('Producto añadido correctamente');
-            UIProducto.mostrarTodasLasMembresias();
+            UIProducto.mostrarTodosLosProductos();
             UIProducto.esconderModal('#add-producto-modal');
         }
     }
@@ -48,13 +48,13 @@ var productoController = (function() {
 
     function modificarMembresia() {
         let data = UIProducto.getDatosModificados();
-        let producto = new Membresia();
+        let producto = new Producto();
         // UICliente.mostrarAnimacionBtn('#guardar-cliente-editado');
         if (producto.modificar(data)) {
             UIProducto.mostrarMensajeExito('Producto modificado correctamente');
             // UICliente.regresarBtnAEstadoInicial('#guardar-cliente-editado');
             UIProducto.esconderModal('#modificar-producto-modal');
-            UIProducto.mostrarTodasLasMembresias();
+            UIProducto.mostrarTodosLosProductos();
         }
     }
 
@@ -64,7 +64,7 @@ var productoController = (function() {
             if (e.target.matches('.watch-action')) {
                 UIProducto.getId(e);
                 let producto = UIProducto.getProducto();
-                UIProducto.verMembresia(producto);
+                UIProducto.verProducto(producto);
                 
             }
         }, false);

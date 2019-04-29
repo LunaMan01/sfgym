@@ -5,9 +5,9 @@ class Producto {
 
     add(data) {
         var req = new XMLHttpRequest();
-        req.open("POST", 'php/productos/añadirProductos.php', false);
+        req.open("POST", 'php/productos/agregarProductos.php', false);
         req.send(data);
-        console.log('added');
+        console.log(req.responseText);
         return true;
     }
 
@@ -15,7 +15,7 @@ class Producto {
         var req = new XMLHttpRequest();
         req.open("POST", 'php/productos/eliminarProductos.php', false);
         req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-        req.send('id=' + localStorage.getItem('id'));
+        req.send('id-producto=' + localStorage.getItem('id'));
         console.log('id='+localStorage.getItem('id'));
         console.log(req.responseText);
         return true;
@@ -32,7 +32,7 @@ class Producto {
 
     consultar(datoABuscar) {
         var req = new XMLHttpRequest();
-        req.open("POST", 'php/membresias/consultaDinamica.php', false);
+        req.open("POST", 'php/productos/consultaDinamica.php', false);
         req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
         req.send('dato=' + datoABuscar);
         return req.responseText;

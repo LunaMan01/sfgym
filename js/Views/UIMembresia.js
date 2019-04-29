@@ -43,7 +43,7 @@ var UIMembresia = (function () {
         },
 
         mostrarMensajeExito: function (mensaje) {
-            new Toast('#alert-membresias', mensaje, 2000).getAndShow();
+            new Toast('#alert-membresias', mensaje, 2000, 'alert-success').getAndShow();
 
         },
 
@@ -51,7 +51,7 @@ var UIMembresia = (function () {
             var req = new XMLHttpRequest();
             req.open("POST", 'php/membresias/get-datos-membresia.php', false);
             req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-            var params = 'id=' + localStorage.getItem('id');
+            var params = 'id-membresia=' + localStorage.getItem('id');
             req.send(params);
             var elements = req.responseText;
             console.log(req.responseText);
@@ -68,7 +68,7 @@ var UIMembresia = (function () {
         getDatosModificados: function () {
             let form = document.querySelector('#modificar-membresia-form');
             let data = new FormData(form);
-            data.append('id', localStorage.getItem('id'));
+            data.append('id-membresia', localStorage.getItem('id'));
             return data;
         },
 

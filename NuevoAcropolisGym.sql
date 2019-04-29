@@ -81,9 +81,10 @@ create table VentasProductos(
 
 create table Productos(
 	Id_Producto int not null auto_increment,
-	descripcion_producto varchar(50),
-	precio_producto double,
+	nombre_producto varchar(50),
+	fecha_caducidad varchar(10),
 	existencia_producto int,
+	precio_producto double,
 
 	primary key (Id_Producto)
 );

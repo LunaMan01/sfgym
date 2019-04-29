@@ -1,6 +1,6 @@
 <?php
     include '../conexion.php';
-
+    
     try{
         //MODIFICAR DATOS PERSONALES DE LA PERSONA
         $modfPerson = $conn->prepare('UPDATE Clientes SET 
@@ -20,9 +20,9 @@
         //MODIFICAR NUMERO DE LA PERSONA
         $modfNumero = $conn->prepare('UPDATE Telefonos SET
         numero = :numero 
-        WHERE Id_Cliente LIKE '. $_POTS['id-cliente']);
+        WHERE Id_Cliente = '. $_POST['id-cliente']);
 
-        $modfNumero->bindParam(':numero', $_POST['numero']);
+        $modfNumero->bindParam(':numero', $_POST['telefono']);
 
         $modfNumero->execute();
 
@@ -32,7 +32,7 @@
         calle = :calle,
         numero_exterior = :exterior,
         numero_interior = :interior
-        WHERE Id_Cliente LIKE '.$_POST['id-cliente']);
+        WHERE Id_Cliente = '.$_POST['id-cliente']);
 
         $modfDirecc->bindParam(':colonia', $_POST['colonia']);
         $modfDirecc->bindParam(':calle', $_POST['calle']);

@@ -15,7 +15,7 @@ class Cliente {
         var req = new XMLHttpRequest();
         req.open("POST", 'php/clientes/eliminarCliente.php', false);
         req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-        req.send('id=' + localStorage.getItem('id'));
+        req.send('id-cliente=' + localStorage.getItem('id'));
         console.log(localStorage.getItem('id'));
 
         return true;
@@ -35,6 +35,22 @@ class Cliente {
         req.open("POST", 'php/clientes/consultaDinamica.php', false);
         req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
         req.send('dato=' + datoABuscar);
+        return req.responseText;
+    }
+
+    getInactivos() {
+        var req = new XMLHttpRequest();
+        req.open("POST", 'php/clientes/consultaInactivos.php', false);
+        req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+        req.send(null);
+        return req.responseText;
+    }
+
+    getTodos() {
+        var req = new XMLHttpRequest();
+        req.open("POST", 'php/clientes/consultarClientes.php', false);
+        req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+        req.send(null);
         return req.responseText;
     }
 }

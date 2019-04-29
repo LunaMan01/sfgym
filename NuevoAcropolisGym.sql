@@ -84,7 +84,7 @@ create table Productos(
 	descripcion_producto varchar(50),
 	precio_producto double,
 	existencia_producto int,
-
+	fecha_caducidad varchar(10),
 	primary key (Id_Producto)
 );
 

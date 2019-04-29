@@ -27,6 +27,13 @@ var UIProducto  = (function() {
             return data;
         },
 
+        getDatosModificados: function () {
+            let form = document.querySelector('#modificar-producto-form');
+            let data = new FormData(form);
+            data.append('id-producto', localStorage.getItem('id'));
+            return data;
+        },
+
         getId: function (event) {
             var i = event.target;
             var td = i.parentNode;
@@ -45,7 +52,7 @@ var UIProducto  = (function() {
         },
 
         mostrarMensajeExito: function (mensaje) {
-            new Toast('#alert-productos', mensaje, 2000).getAndShow();
+            new Toast('#alert-productos', mensaje, 2000, 'alert-success').getAndShow();
 
         },
 
@@ -54,7 +61,7 @@ var UIProducto  = (function() {
             var req = new XMLHttpRequest();
             req.open("POST", 'php/productos/get-datos-producto.php', false);
             req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-            var params = 'id=' + localStorage.getItem('id');
+            var params = 'id-producto=' + localStorage.getItem('id');
             req.send(params);
             var elements = req.responseText;
             console.log(req.responseText);
@@ -64,16 +71,18 @@ var UIProducto  = (function() {
 
         setDatosProductoEnInputs: function (producto) {
             document.querySelector('#modificar-producto-form #id-producto').value = producto.idProducto;
-            document.querySelector('#modificar-producto-form #nombre-producto').value = producto.nombre;
+            document.querySelector('#modificar-producto-form #nombre-producto').value = producto.descripcionProducto;
             document.querySelector('#modificar-producto-form #fecha-caducidad').value = producto.fechaCaducidad;
-            document.querySelector('#modificar-producto-form #existencia-producto').value = producto.existencia;
+            document.querySelector('#modificar-producto-form #existencia-producto').value = producto.existenciaProducto;
+            document.querySelector('#modificar-producto-form #precio-producto').value = producto.precioProducto;
         },
 
         verProducto: function (producto) {
-            document.querySelector('#modificar-producto-form #id-producto').innerHTML = producto.idProducto;
-            document.querySelector('#modificar-producto-form #nombre-producto').innerHTML = producto.nombre;
-            document.querySelector('#modificar-producto-form #fecha-caducidad').innerHTML = producto.fechaCaducidad;
-            document.querySelector('#modificar-producto-form #existencia-producto').innerHTML = producto.existencia;
+            document.querySelector('#ver-producto-form #id-producto').innerHTML = producto.idProducto;
+            document.querySelector('#ver-producto-form #nombre-producto').innerHTML = producto.descripcionProducto;
+            document.querySelector('#ver-producto-form #fecha-caducidad').innerHTML = producto.fechaCaducidad;
+            document.querySelector('#ver-producto-form #existencia-producto').innerHTML = producto.existenciaProducto;
+            document.querySelector('#ver-producto-form #precio-producto').innerHTML = producto.precioProducto;
         },
         mostrarDatosEncontrados: function(datos) {
             document.querySelector('#cuerpo-tabla-productos').innerHTML = datos;

@@ -16,9 +16,9 @@
             '<td>'.$results['nombre_cliente'].'</td>'.
             '<td>'.$results['fecha_visitas'].'</td>'.
             '<td>
-                <i class="material-icons actions mr-2" data-toggle="modal" href="#ver-membresia-modal"> remove_red_eye</i>
-                <i class="material-icons actions edit-action mr-2" data-toggle="modal" href="#modificar-membresia-modal"> create</i>
-                <i class="material-icons actions delete-action mr-2" data-toggle="modal" href="#eliminar-membresia-modal"> delete</i> </td>
+                <i class="material-icons actions mr-2" watch-action data-toggle="modal" href="#ver-visita-modal"> remove_red_eye</i>
+                <i class="material-icons actions edit-action mr-2" data-toggle="modal" href="#modificar-visita-modal"> create</i>
+                <i class="material-icons actions delete-action mr-2" data-toggle="modal" href="#eliminar-visita-modal"> delete</i> </td>
             </tr>';
         }
     }catch(PDOException $e){

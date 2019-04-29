@@ -1,8 +1,8 @@
 <?php 
     include '../conexion.php';
-    console_log('Agregado');
+    
     try{
-        $agregar = $conn->prepare('INSERT INTO Productos (nombre_producto, fecha_caducidad, existencia_producto, precio_producto)
+        $agregar = $conn->prepare('INSERT INTO Productos (descripcion_producto, fecha_caducidad, existencia_producto, precio_producto)
         VALUES (:nombre, :fecha, :existencia, :precio)');
 
         $agregar->bindParam(':nombre', $_POST['nombre-producto']);

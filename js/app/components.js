@@ -1,10 +1,11 @@
 const divAdicional = document.querySelector('#elementos-adicionales');
 class Toast {
    
-    constructor(divContainerId, mensaje, time) {
+    constructor(divContainerId, mensaje, time, type) {
         this.divContainerId = divContainerId;
         this.mensaje = mensaje;
         this.time = time;
+        this.type = type;
     }
 
     getAndShow() {
@@ -13,7 +14,7 @@ class Toast {
         
         document.querySelector(this.divContainerId).innerHTML = `
         <div class="d-flex justify-content-end mt-4 fixed-top">
-            <div class="alert alert-dismissible fade show alert-success" role="alert">
+            <div class="alert alert-dismissible fade show ${this.type} " role="alert">
                 <div class="alert-text">${this.mensaje}</div>
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -229,6 +230,3 @@ function load(url, element) {
     element.innerHTML = req.responseText;
 }
 
-function isEmpty(string) {
-    return (!string || 0 === string.length);
-}

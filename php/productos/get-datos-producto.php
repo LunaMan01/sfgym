@@ -10,8 +10,9 @@
 
         foreach ($conn->query($preparar) as $row) {
             $producto->idProducto = $row['Id_Producto'];
-            $producto->descripcionProducto = $row['descripcion-productos'];
+            $producto->descripcionProducto = $row['descripcion_producto'];
             $producto->precioProducto = $row['precio_producto'];
+            $producto->fechaCaducidad = $row['fecha_caducidad'];
             $producto->existenciaProducto = $row['existencia_producto'];
         }
         

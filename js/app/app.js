@@ -231,17 +231,21 @@ var UIController = (function () {
             addBotones('Añadir aparato', '', 'add-aparato-btn', 'reporte-aparato-btn', 'buscar-aparato-input');
             document.querySelector('#add-aparato-btn').setAttribute('data-target', '#add-aparato-modal');
             document.querySelector('#add-aparato-btn').setAttribute('data-toggle', 'modal');
+            document.getElementById('reporte-aparato-btn').classList.add('d-none');
             if (typeof aparatoController !== 'undefined')
-                gastoController.init();
+                aparatoController.init();
         },
 
         abrirCompras: function () {
+            document.querySelector('.modal-container').innerHTML = modalsCompras;
             limpiarDivAdicional();
             addScriptsCompras();
             document.querySelector(CSSClasses.active).classList.remove('active');
             document.querySelector(Li.compras).className = 'active';
             load('html/compras-components/compras.html', content);
             addBotones('Añadir compras', 'Reporte compras', 'add-compra-btn', 'reporte-compra-btn', 'buscar-compra-input');
+            document.querySelector('#add-compra-btn').setAttribute('data-target', '#add-compra-modal');
+            document.querySelector('#add-compra-btn').setAttribute('data-toggle', 'modal');
             if (typeof compraController !== 'undefined')
                 compraController.init();
         },

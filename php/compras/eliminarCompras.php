@@ -6,6 +6,6 @@
 
         $eliminar->execute();
     }catch(PDOException $e){
-        echo 'Error: '. $e->
+        echo 'error';
     }
 ?>

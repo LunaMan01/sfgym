@@ -1,13 +1,96 @@
 var compraController = (function() {
 
-    function setUpEvents() {
+    function addNuevaCompra() {
+        let data = UICompra.getDatosParaNuevaCompra();
+        let compra = new Compra();
 
+        if (compra.add(data)) {
+            UICompra.mostrarMensajeExito('Compra añadida correctamente');
+            UICompra.mostrarTodasLasCompras(compra.getTodosLasCompras());
+            UICompra.esconderModal('#add-compra-modal');
+        }
+    }
+
+    function setUpDeleteEvent() {
+        document.querySelector('#cuerpo-tabla-compras').addEventListener('click', function (e) {
+
+            if (e.target.matches('.delete-action')) {
+                UICompra.getId(e);
+            }
+        }, false);
+
+    }
+
+    function eliminarCompra() {
+
+        let compra = new Compra();
+        if (compra.eliminar()) {
+            UICompra.quitarRegistro();
+            UICompra.mostrarMensajeExito('Compra eliminada correctamente');
+        }
+    }
+
+    function setUpEditEvent() {
+        document.querySelector('#cuerpo-tabla-compras').addEventListener('click', function (e) {
+
+            if (e.target.matches('.edit-action')) {
+                UICompra.getId(e);
+                let compra = UICompra.getCompra();
+                UICompra.setDatosCompraEnInputs(compra);
+                
+            }
+        }, false);
+    }
+
+    function modificarCompra() {
+        let data = UICompra.getDatosModificados();
+        let compra = new Compra();
+        // UICliente.mostrarAnimacionBtn('#guardar-cliente-editado');
+        if (compra.modificar(data)) {
+            UICompra.mostrarMensajeExito('Compra modificada correctamente');
+            // UICliente.regresarBtnAEstadoInicial('#guardar-cliente-editado');
+            UICompra.esconderModal('#modificar-compra-modal');
+            UICompra.mostrarTodasLasCompras(compra.getTodosLasCompras());
+        }
+    }
+
+    function setUpWatchEvent() {
+        document.querySelector('#cuerpo-tabla-compras').addEventListener('click', function (e) {
+
+            if (e.target.matches('.watch-action')) {
+                UICompra.getId(e);
+                let compra = UICompra.getCompra();
+                UICompra.verCompra(compra);
+    
+            }
+        }, false);
+    }
+
+    function busquedaDinamica() {
+        let dato = UICompra.getDatosABuscar();
+        let compra = new Compra();
+        let datosEncontrados = compra.consultar(dato);
+        UICompra.mostrarDatosEncontrados(datosEncontrados);
+        
+    }
+
+
+    function setUpEvents() {
+        UICompra.mostrarTodasLasCompras(new Compra().getTodosLasCompras());
+        document.querySelector('#add-compra-form').addEventListener('submit', addNuevaCompra);
+        setUpDeleteEvent();
+        document.querySelector('#confirmar-eliminacion').addEventListener('click', eliminarCompra);
+        setUpEditEvent();
+        document.querySelector('#modificar-compra-form').addEventListener('submit', modificarCompra);
+        setUpWatchEvent();
+        document.querySelector('#buscar-compra-input').addEventListener('keyup', busquedaDinamica);
+        document.querySelector('#reporte-compra-btn').addEventListener('click',UICompra.abrirReportes);
     }
 
     return {
         init: function () {
             setUpEvents();
-            document.querySelector('#reporte-compra-btn').addEventListener('click',UICompra.abrirReportes);
+            
         }
     }
 })(UICompra);

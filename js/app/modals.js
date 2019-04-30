@@ -459,4 +459,40 @@ aria-labelledby="modal-modificar-producto" aria-hidden="true">
 </div>
 </div>
 
-`
+`;
+
+// mal
+let modalsGastos = `
+<div class="modal fade" id="add-gasto-modal" tabindex="-1" role="dialog" aria-labelledby="modal-añadir-gasto"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Añadir gasto</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form id="add-gasto-form>
+                <div class="form-group">
+                    <label>Gasto:</label>
+                    <input type="text" class="form-control" id="nombre-gasto"
+                        placeholder="Descripción de gasto">
+                </div>
+
+                <div class="form-group">
+                    <label>Monto:</label>
+                    <input type="text" class="form-control" id="monto-gasto" placeholder="Monto de gasto">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-success">Guardar</button>
+            </div>
+            </form>
+        </div>
+       
+    </div>
+</div>
+</div>
+`;

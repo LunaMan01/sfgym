@@ -75,16 +75,18 @@ create table VentasProductos(
 
 	cantidad_producto int,
 	total_venta double,
+	fecha_venta varchar(10),
 
 	primary key(Id_Venta, Id_Producto)
 );
 
 create table Productos(
 	Id_Producto int not null auto_increment,
-	descripcion_producto varchar(50),
-	precio_producto double,
-	existencia_producto int,
+	nombre_producto varchar(50),
 	fecha_caducidad varchar(10),
+	existencia_producto int,
+	precio_producto double,
+
 	primary key (Id_Producto)
 );
 
@@ -93,4 +95,43 @@ create table Instructores(
 	nombre_instructor varchar(20),
 
 	primary key(Id_Instructor)
+);
+
+create table Aparatos(
+	Id_Aparato int not null auto_increment,
+	nombre_aparato varchar(50),
+
+	primary key(Id_Aparato)
+);
+
+create table Compras(
+	Id_Compra int not null auto_increment,
+	Id_Instructor int not null,
+
+	descripcion_compra varchar(50),
+	monto_compra int,
+	cantidad int,
+	fecha_compra varchar(10),
+
+	primary key(Id_Compra),
+	foreign key(Id_Instructor) references Instructores(Id_Instructor) on delete cascade on update cascade
+);
+
+create table TipoGastos(
+	Id_Tipo int not null auto_increment,
+	tipo_gasto varchar(15),
+
+	primary key(Id_Tipo)
+);
+
+create table Gastos(
+	Id_Gasto int not null auto_increment,
+	monto_gasto double,
+	fechar_gasto varchar(10),
+	descripcion_gasto varchar(50),
+
+	Id_Tipo int not null,
+
+	primary key(Id_Gasto),
+	foreign key(Id_Tipo) references TipoGastos (Id_Tipo) on delete cascade on update cascade
 );

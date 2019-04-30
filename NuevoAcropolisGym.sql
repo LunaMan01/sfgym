@@ -126,9 +126,9 @@ create table TipoGastos(
 
 create table Gastos(
 	Id_Gasto int not null auto_increment,
+	descripcion_gasto varchar(50),
 	monto_gasto double,
 	fechar_gasto varchar(10),
-	descripcion_gasto varchar(50),
 
 	Id_Tipo int not null,
 

@@ -7,13 +7,13 @@ class Gasto {
         var req = new XMLHttpRequest();
         req.open("POST", 'php/gastos/añadirGasto.php', false);
         req.send(data);
-        console.log('added');
+        console.log(req.responseText);
         return true;
     }
 
     eliminar() {
         var req = new XMLHttpRequest();
-        req.open("POST", 'php/gastos/eliminarGasto.php', false);
+        req.open("POST", 'php/gastos/eliminarGastos.php', false);
         req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
         req.send('id-gasto=' + localStorage.getItem('id'));
         console.log('id='+localStorage.getItem('id'));
@@ -24,7 +24,7 @@ class Gasto {
 
     modificar(data) {
         var req = new XMLHttpRequest();
-        req.open("POST", 'php/gastos/modificarGasto.php', false);
+        req.open("POST", 'php/gastos/modificarGastos.php', false);
         req.send(data);
         console.log(req.responseText);
         return true;

@@ -57,7 +57,10 @@ var UIGasto = (function () {
         },
 
         setDatosGastoEnInputs: function (gasto) {
-            document.querySelector('#modificar-gasto-form #').value = gasto;
+            document.querySelector('#modificar-gasto-form #nombre-gasto').value = gasto.descripcionGasto;
+            document.querySelector('#modificar-gasto-form #monto-gasto').value = gasto.montoGasto;
+            document.querySelector('#modificar-gasto-form #fecha-gasto').value = gasto.fechaGasto;
+            // document.querySelector('#modificar-gasto-form #nombre-gasto').value = gasto;
         },
 
         getDatosModificados: function () {
@@ -67,13 +70,22 @@ var UIGasto = (function () {
             return data;
         },
 
-        verGasto: function (membresia) {
-            document.querySelector('#ver-gasto-form #id-cliente').innerHTML = gasto;
+        verGasto: function (gasto) {
+            document.querySelector('#ver-gasto-form #nombre-gasto').innerHTML = gasto.descripcionGasto;
+            document.querySelector('#ver-gasto-form #monto-gasto').innerHTML = gasto.montoGasto;
+            document.querySelector('#ver-gasto-form #fecha-gasto').innerHTML = gasto.fechaGasto;
+            // document.querySelector('#modificar-gasto-form #nombre-gasto').value = gasto;
         },
 
         getDatosABuscar: function () {
             return document.querySelector('#buscar-gasto-input').value;
         },
+
+        
+        mostrarDatosEncontrados: function(datos) {
+            document.querySelector('#cuerpo-tabla-gastos').innerHTML = datos;
+        },
+
 
         esconderModal: function (modal) {
             $(modal).modal('hide');

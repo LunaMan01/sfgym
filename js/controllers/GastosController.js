@@ -52,8 +52,8 @@ var gastoController = (function() {
         if (gasto.modificar(data)) {
             UIGasto.mostrarMensajeExito('Gasto modificado correctamente');
             // UICliente.regresarBtnAEstadoInicial('#guardar-cliente-editado');
-            UIMembresia.esconderModal('#modificar-gasto-modal');
-            UIMembresia.mostrarTodosLosGastos(gasto.getTodosLosGastos());
+            UIGasto.esconderModal('#modificar-gasto-modal');
+            UIGasto.mostrarTodosLosGastos(gasto.getTodosLosGastos());
         }
     }
 

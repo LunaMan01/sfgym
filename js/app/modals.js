@@ -463,7 +463,7 @@ aria-labelledby="modal-modificar-producto" aria-hidden="true">
 
 // mal
 let modalsGastos = `
-<div class="modal fade" id="add-gasto-modal" tabindex="-1" role="dialog" aria-labelledby="modal-añadir-gasto"
+<div class="modal fade" id="add-gasto-modal" tabindex="-1" role="dialog" aria-labelledby="add-gasto-modal"
 aria-hidden="true">
 <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -474,28 +474,176 @@ aria-hidden="true">
             </button>
         </div>
         <div class="modal-body">
-            <form id="add-gasto-form>
+            <form id="add-gasto-form" onsubmit="return false">
                 <div class="form-group">
                     <label>Gasto:</label>
-                    <input type="text" class="form-control" id="nombre-gasto"
+                    <input type="text" class="form-control" id="nombre-gasto" name="descripcion-gasto"
                         placeholder="Descripción de gasto">
                 </div>
 
                 <div class="form-group">
                     <label>Monto:</label>
-                    <input type="text" class="form-control" id="monto-gasto" placeholder="Monto de gasto">
+                    <input type="text" class="form-control" id="monto-gasto" name="monto-gasto" placeholder="Monto de gasto">
                 </div>
+
+                <div class="form-group">
+                    <label>Fecha:</label>
+                    <input type="text" class="form-control" id="fecha-gasto" name="fecha-gasto" placeholder="dd/mm/yyyy">
+                </div>
+
+                <div class="form-group">
+                    <label for="categorias-gastos">Categoria</label>
+                    <select class="form-control" id="categorias-gastos" name="tipo-gasto">
+                        <option  value="1">1</option>
+                        <option>2</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <a>
+                        <p class="text-right text-info"> + Nueva categoria</p>
+                    </a>
+                </div>
+
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-success">Guardar</button>
-            </div>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button>
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                </div>
+
             </form>
         </div>
-       
     </div>
 </div>
 </div>
-`;
+` + ` 
+
+<div class="modal fade" id="modificar-gasto-modal" tabindex="-1" role="dialog" aria-labelledby="add-gasto-modal"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Modificar gasto</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form id="modificar-gasto-form" onsubmit="return false">
+                <div class="form-group">
+                    <label>Gasto:</label>
+                    <input type="text" class="form-control" id="nombre-gasto" name="descripcion-gasto"
+                        placeholder="Descripción de gasto">
+                </div>
+
+                <div class="form-group">
+                    <label>Monto:</label>
+                    <input type="text" class="form-control" id="monto-gasto" name="monto-gasto" placeholder="Monto de gasto">
+                </div>
+
+                <div class="form-group">
+                    <label>Fecha:</label>
+                    <input type="text" class="form-control" id="fecha-gasto" name="fecha-gasto" placeholder="dd/mm/yyyy">
+                </div>
+
+                <div class="form-group">
+                    <label for="categorias-gastos">Categoria</label>
+                    <select class="form-control" id="categorias-gastos" name="tipo-gasto">
+                        <option  value="1">1</option>
+                        <option>2</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <a>
+                        <p class="text-right text-info"> + Nueva categoria</p>
+                    </a>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button>
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+` + ` 
+<div class="modal fade" id="eliminar-gasto-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">Eliminar gasto</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      Seguro que desea eliminar este aparato
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary rounded-pill " data-dismiss="modal">Cancelar</button>
+      <button type="button" class="btn btn-outline-success rounded-pill" id="confirmar-eliminacion" data-dismiss="modal">Confirmar</button>
+    </div>
+  </div>
+</div>
+</div>
+` + ` 
+<div class="modal fade" id="ver-gasto-modal" tabindex="-1" role="dialog" aria-labelledby="add-gasto-modal"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Modificar gasto</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form id="ver-gasto-form" onsubmit="return false">
+                <div class="form-group">
+                    <label>Gasto:</label>
+                    <p id="nombre-gasto"></p>
+                </div>
+
+                <div class="form-group">
+                    <label>Monto:</label>
+                    <p id="monto-gasto"></p>
+                </div>
+
+                <div class="form-group">
+                    <label>Fecha:</label>
+                    <p id="fecha-gasto"></p>
+                </div>
+
+                <div class="form-group">
+                    <label for="categorias-gastos">Categoria</label>
+                    <select class="form-control" id="categorias-gastos" name="tipo-gasto">
+                        <option  value="1">1</option>
+                        <option>2</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <a>
+                        <p class="text-right text-info"> + Nueva categoria</p>
+                    </a>
+                </div>
+
+                <div class="modal-footer">
+                    
+                    <button type="submit" class="btn btn-success" data-dismiss="modal">Ok</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+`
+;
 
 let modalsAparatos = `
 <div class="modal fade" id="add-aparato-modal" tabindex="-1" role="dialog" aria-labelledby="add-aparato-modal"

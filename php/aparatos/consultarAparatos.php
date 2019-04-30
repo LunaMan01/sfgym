@@ -2,15 +2,13 @@
     include '../conexion.php';
 
     try{
-        $consultar = 'SELECT Id_Membresia, nombre_cliente, fecha_inicio, fecha_fin 
-        FROM Membresias INNER JOIN Clientes ON Membresias.Id_Cliente = Clientes.Id_Cliente';
+        $consultar = 'SELECT Id_Aparato, nombre_aparato
+        FROM Aparatos';
 
         foreach($conn->query($consultar) as $row){
             echo '<tr>
-                <th scope="row" id="'.$row['Id_Membresia'].'">'.$row['Id_Membresia'].'</th>'.
-                '<td>'.$row['nombre_cliente'].'</td>'.
-                '<td>'.$row['fecha_inicio'].'</td>'.
-                '<td>'.$row['fecha_fin'].'</td>'.
+                <th scope="row" id="'.$row['Id_Aparatos'].'">'.$row['Id_Aparartos'].'</th>'.
+                '<td>'.$row['nombre_aparato'].'</td>'.
             '<td>
                 <i class="material-icons actions watch-action mr-2" data-toggle="modal" href="#ver-membresia-modal"> remove_red_eye</i>
                 <i class="material-icons actions edit-action mr-2" data-toggle="modal" href="#modificar-membresia-modal"> create</i>

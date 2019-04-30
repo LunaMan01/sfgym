@@ -110,6 +110,15 @@ var UIController = (function () {
         }
     }
 
+    function addScriptsAparatos() {
+        if (document.getElementById('aparatos-script') == null) {
+            let script = document.createElement('script');
+            script.setAttribute('src', 'js/controllers/AparatosController.js');
+            script.setAttribute('id', 'aparatos-script');
+            document.head.appendChild(script);
+        }
+    }
+
     function addScriptsCompras() {
         if (document.getElementById('compras-script') == null) {
             let script = document.createElement('script');
@@ -199,33 +208,44 @@ var UIController = (function () {
         },
 
         abrirGastos: function () {
+            document.querySelector('.modal-container').innerHTML = modalsGastos;
             limpiarDivAdicional();
             addScriptsGastos();
             document.querySelector(CSSClasses.active).classList.remove('active');
             document.querySelector(Li.gastos).className = 'active';
             load('html/gastos-components/gastos.html', content);
             addBotones('Añadir gasto', 'Reporte gastos', 'add-gasto-btn', 'reporte-gasto-btn', 'buscar-gasto-input');
+            document.querySelector('#add-gasto-btn').setAttribute('data-target', '#add-gasto-modal');
+            document.querySelector('#add-gasto-btn').setAttribute('data-toggle', 'modal');
             if (typeof gastoController !== 'undefined')
                 gastoController.init();
         },
 
         abrirAparatos: function () {
+            document.querySelector('.modal-container').innerHTML = modalsAparatos;
             limpiarDivAdicional();
-
+            addScriptsAparatos();
             document.querySelector(CSSClasses.active).classList.remove('active');
             document.querySelector(Li.aparatos).className = 'active';
             load('html/aparatos-components/aparatos.html', content);
             addBotones('Añadir aparato', '', 'add-aparato-btn', 'reporte-aparato-btn', 'buscar-aparato-input');
-            document.querySelector('#reporte-aparato-btn').remove();
+            document.querySelector('#add-aparato-btn').setAttribute('data-target', '#add-aparato-modal');
+            document.querySelector('#add-aparato-btn').setAttribute('data-toggle', 'modal');
+            document.getElementById('reporte-aparato-btn').classList.add('d-none');
+            if (typeof aparatoController !== 'undefined')
+                aparatoController.init();
         },
 
         abrirCompras: function () {
+            document.querySelector('.modal-container').innerHTML = modalsCompras;
             limpiarDivAdicional();
             addScriptsCompras();
             document.querySelector(CSSClasses.active).classList.remove('active');
             document.querySelector(Li.compras).className = 'active';
             load('html/compras-components/compras.html', content);
             addBotones('Añadir compras', 'Reporte compras', 'add-compra-btn', 'reporte-compra-btn', 'buscar-compra-input');
+            document.querySelector('#add-compra-btn').setAttribute('data-target', '#add-compra-modal');
+            document.querySelector('#add-compra-btn').setAttribute('data-toggle', 'modal');
             if (typeof compraController !== 'undefined')
                 compraController.init();
         },

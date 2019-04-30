@@ -11,7 +11,7 @@
         foreach ($conn->query($preparar) as $row) {
             $compra->idCompra = $row['Id_Compra'];
             $compra->idInstructor = $row['Id_Instructor'];
-            $compra->descripcionCompra = $row['descripcioin_compra'];
+            $compra->descripcionCompra = $row['descripcion_compra'];
             $compra->montoCompra = $row['fecha_compra'];
             $compra->cantidad = $row['cantidad'];
             $compra->fechaCompra = $row['fecha_compra'];

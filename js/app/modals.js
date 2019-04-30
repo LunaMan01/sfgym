@@ -459,4 +459,369 @@ aria-labelledby="modal-modificar-producto" aria-hidden="true">
 </div>
 </div>
 
-`
+`;
+
+// mal
+let modalsGastos = `
+<div class="modal fade" id="add-gasto-modal" tabindex="-1" role="dialog" aria-labelledby="modal-añadir-gasto"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Añadir gasto</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form id="add-gasto-form>
+                <div class="form-group">
+                    <label>Gasto:</label>
+                    <input type="text" class="form-control" id="nombre-gasto"
+                        placeholder="Descripción de gasto">
+                </div>
+
+                <div class="form-group">
+                    <label>Monto:</label>
+                    <input type="text" class="form-control" id="monto-gasto" placeholder="Monto de gasto">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-success">Guardar</button>
+            </div>
+            </form>
+        </div>
+       
+    </div>
+</div>
+</div>
+`;
+
+let modalsAparatos = `
+<div class="modal fade" id="add-aparato-modal" tabindex="-1" role="dialog" aria-labelledby="add-aparato-modal"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Añadir aparato</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form id="add-aparato-form" onsubmit="return false">
+                <div class="form-group">
+                    <label>Nombre:</label>
+                    <input type="text" class="form-control" id="nombre-aparato" name="nombre-aparato"
+                        placeholder="Nombre de aparato">
+                </div>
+
+                <div class="form-group">
+                    <label>Precio por compra:</label>
+                    <input type="text" class="form-control" id="precio-por-compra"
+                        placeholder="Precio por compra">
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button>
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+` + ` 
+<div class="modal fade" id="modificar-aparato-modal" tabindex="-1" role="dialog" aria-labelledby="add-aparato-modal"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Modificar aparato</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form id="modificar-aparato-form" onsubmit="return false">
+                <div class="form-group">
+                    <label>Id:</label>
+                    <input type="text" class="form-control" id="id-aparato"
+                        readonly >
+                </div>
+
+                <div class="form-group">
+                    <label>Descripción:</label>
+                    <input type="text" class="form-control" id="nombre-aparato"
+                        name="nombre-aparato">
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button>
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+` + `
+<div class="modal fade" id="eliminar-aparato-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">Eliminar aparato</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      Seguro que desea eliminar este aparato
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary rounded-pill " data-dismiss="modal">Cancelar</button>
+      <button type="button" class="btn btn-outline-success rounded-pill" id="confirmar-eliminacion" data-dismiss="modal">Confirmar</button>
+    </div>
+  </div>
+</div>
+</div>
+` + `
+<div class="modal fade" id="ver-aparato-modal" tabindex="-1" role="dialog" aria-labelledby="add-aparato-modal"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Aparato</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form id="ver-aparato-form">
+                <div class="form-group">
+                    <label>Id:</label>
+                    <p id="id-aparato"></p>
+                </div>
+
+                <div class="form-group">
+                    <label>Descripción:</label>
+                    <p id="nombre-aparato"></p>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success" data-dismiss="modal">Ok</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+`;
+
+let modalsCompras = ` 
+<div class="modal fade" id="add-compra-modal" tabindex="-1" role="dialog" aria-labelledby="add-compra-modal"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Añadir compra</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form id="add-compra-form" onsubmit="return false">
+                <div class="form-group">
+                <label>Id instructor:</label>
+                <input type="text" class="form-control" id="id-instructor" name="id-instructor"
+                    >
+                </div>
+                <div class="form-group">
+                    <label>Descripción:</label>
+                    <input type="text" class="form-control" id="descripcion-producto" name="descripcio-producto"
+                        placeholder="Descripción de compra">
+                </div>
+
+
+                <div class="form-group">
+                    <label>Cantidad:</label>
+                    <input type="text" class="form-control" id="cantidad" name="cantidad"
+                        placeholder="No. de articulos comprados">
+                </div>
+
+                <div class="form-group">
+                    <label>Monto:</label>
+                    <input type="text" class="form-control" id="monto-compra" name="monto_compra"
+                        placeholder="Monto de compra">
+                </div>
+
+                <div class="form-group">
+                    <label>Fecha:</label>
+                    <input type="text" class="form-control" id="fecha-compra"  name="fecha-compra" placeholder="dd/mm/yyyy">
+                </div>
+
+                <div class="form-group">
+                    <label for="categoria-compra">Categoria</label>
+                    <select class="form-control" id="categoria-compra">
+                        <option>1</option>
+                        <option>2</option>
+                    </select>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-success">Guargar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+` + `
+
+<div class="modal fade" id="modificar-compra-modal" tabindex="-1" role="dialog" aria-labelledby="add-compra-modal"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Modificar compra</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form id="modificar-compra-form" onsubmit="return false">
+                <div class="form-group">
+                    <label>Id compra:</label>
+                    <input type="text" class="form-control" id="id-compra" name="id-instructor" readonly>
+                </div>
+                <div class="form-group">
+                    <label>Id instructor:</label>
+                    <input type="text" class="form-control" id="id-instructor" name="id-instructor">
+                </div>
+                <div class="form-group">
+                    <label>Descripción:</label>
+                    <input type="text" class="form-control" id="descripcion-producto" name="descripcion-compra"
+                        placeholder="Descripción de compra">
+                </div>
+
+
+                <div class="form-group">
+                    <label>Cantidad:</label>
+                    <input type="text" class="form-control" id="cantidad" name="cantidad"
+                        placeholder="No. de articulos comprados">
+                </div>
+
+                <div class="form-group">
+                    <label>Monto:</label>
+                    <input type="text" class="form-control" id="monto-compra" name="monto_compra"
+                        placeholder="Monto de compra">
+                </div>
+
+                <div class="form-group">
+                    <label>Fecha:</label>
+                    <input type="text" class="form-control" id="fecha-compra"  name="fecha-compra" placeholder="dd/mm/yyyy">
+                </div>
+
+                <div class="form-group">
+                    <label for="categoria-compra">Categoria</label>
+                    <select class="form-control" id="categoria-compra">
+                        <option>1</option>
+                        <option>2</option>
+                    </select>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-success">Guargar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+` + ` 
+<div class="modal fade" id="eliminar-compra-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">Eliminar compra</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      Seguro que desea eliminar esta compra
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary rounded-pill " data-dismiss="modal">Cancelar</button>
+      <button type="button" class="btn btn-outline-success rounded-pill" id="confirmar-eliminacion" data-dismiss="modal">Confirmar</button>
+    </div>
+  </div>
+</div>
+</div>
+` + `
+<div class="modal fade" id="ver-compra-modal" tabindex="-1" role="dialog" aria-labelledby="add-compra-modal"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Modificar compra</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form id="ver-compra-form" onsubmit="return false">
+                <div class="form-group">
+                    <label>Id compra:</label>
+                    <p id="id-compra"></p>
+                </div>
+                <div class="form-group">
+                    <label>Id instructor:</label>
+                    <p id="id-instructor"></p>
+                </div>
+                <div class="form-group">
+                    <label>Descripción:</label>
+                    <p id="descripcion-producto"></p>
+                </div>
+
+
+                <div class="form-group">
+                    <label>Cantidad:</label>
+                    <p id="cantidad"></p>
+                </div>
+
+                <div class="form-group">
+                    <label>Monto:</label>
+                    <p id="monto-compra"></p>
+                </div>
+
+                <div class="form-group">
+                    <label>Fecha:</label>
+                    <p id="fecha-compra"></p>
+                </div>
+
+                <div class="form-group">
+                    <label for="categoria-compra">Categoria</label>
+                    <select class="form-control" id="categoria-compra">
+                        <option>1</option>
+                        <option>2</option>
+                    </select>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Ok</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+
+`;

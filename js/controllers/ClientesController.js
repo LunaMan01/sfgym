@@ -143,6 +143,20 @@ var clienteController = (function () {
         this.classList.add('d-none');
     }
 
+    function setUpVentanaReportes () {
+        UICliente.abrirReportes();
+        document.querySelector('#reporte-clientes-form').addEventListener('submit', generarReporte);
+
+    }
+
+    function generarReporte() {
+        let cliente = new Cliente();
+        let data = UICliente.getDatosParaReporte();
+
+        let res = cliente.reporte(data);
+        console.log(res);
+    }
+
     function setUpEvents() {
         UICliente.mostrarTodosLosClientes();
         console.log('iniciando clientes');
@@ -153,7 +167,7 @@ var clienteController = (function () {
         setUpEditEvent();
         setUpWatchEvent();
         document.querySelector('#buscar-cliente-input').addEventListener('keyup', busquedaDinamica);
-        document.querySelector('#reporte-cliente-btn').addEventListener('click',UICliente.abrirReportes);
+        document.querySelector('#reporte-cliente-btn').addEventListener('click', setUpVentanaReportes);
         document.querySelector('#clientes-inactivos-btn').addEventListener('click', mostrarClientesInactivos);
         document.querySelector('#clientes-todos-btn').addEventListener('click', mostrarActivosEInactivos);
         document.querySelector('#clientes-activos-btn').addEventListener('click', mostrarActivos);

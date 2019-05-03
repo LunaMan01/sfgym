@@ -209,7 +209,7 @@ var UICliente = (function () {
                 document.querySelector('#buscar-cliente-input').classList.remove('d-none');
             }
             load('html/clientes-components/clientes.html', document.querySelector('.content'));
-            mostrarTodosLosClientes();
+            mostrarActivos();
             clienteController.init();
         }
 

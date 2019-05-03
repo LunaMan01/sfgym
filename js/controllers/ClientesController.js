@@ -155,7 +155,14 @@ var clienteController = (function () {
 
         let res = cliente.reporte(data);
         UICliente.mostrarReporte(res);
+
+        document.querySelector('#descargar-pdf').addEventListener('click', descargarPDF);
     }
+
+    function descargarPDF() {
+        
+    }
+    
 
     function setUpEvents() {
         UICliente.mostrarTodosLosClientes();

@@ -30,7 +30,7 @@
                 activo ='.$inactivo;
         
         $rowConTabla = '
-        <div class="row">
+        <div class="row mb-5">
             <div class="col-12">
                 <div class="tablaPrincipal">
                     <div class="row mensajeAlert">
@@ -74,6 +74,11 @@
             return $rowConTabla;
     }
 
-    $html. '</div>';
+    $html.= '</div>';
+
+    $html.= '<button id="descargar-pdf" class="btn btn-outline-success btn-sm my-2 my-sm-0 mr-3 ml-5 mt-5 rounded-pill"
+    type="button">Descargar como PDF</button>';
     echo $html;
 ?>
+
+<!-- select nombre_cliente, count(*) from clientes inner join visitas on activo = 1 and Clientes.Id_Cliente = visitas.id_Cliente and visitas.fecha_visitas between '09/05/2019' and '09/06/2019' group by (nombre_cliente) order by 2 desc limit 10; -->

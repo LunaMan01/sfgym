@@ -22,7 +22,7 @@ var UICliente = (function () {
         req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
         req.send('opcion=' + 1);
         document.querySelector('#cuerpo-tabla-clientes').innerHTML = req.responseText
-        
+
     }
 
     return {
@@ -64,28 +64,28 @@ var UICliente = (function () {
             mostrarActivos();
         },
 
-        mostrarActivos: function() {
+        mostrarActivos: function () {
             document.querySelector('#dropdown-clientes').textContent = 'Clientes activos';
-            
-            document.querySelectorAll('.dropdown .d-none').forEach(function(element){
+
+            document.querySelectorAll('.dropdown .d-none').forEach(function (element) {
                 element.classList.remove('d-none');
             });
             mostrarActivos();
         },
 
-        mostrarInactivos: function (res){ 
+        mostrarInactivos: function (res) {
             document.querySelector('#dropdown-clientes').textContent = 'Clientes inactivos';
-            
-            document.querySelectorAll('.dropdown .d-none').forEach(function(element){
+
+            document.querySelectorAll('.dropdown .d-none').forEach(function (element) {
                 element.classList.remove('d-none');
             });
 
             document.querySelector('#cuerpo-tabla-clientes').innerHTML = res;
         },
 
-        mostrarActivosEInactivos: function(res) {
+        mostrarActivosEInactivos: function (res) {
             document.querySelector('#dropdown-clientes').textContent = 'Todos los clientes';
-            document.querySelectorAll('.dropdown .d-none').forEach(function(element){
+            document.querySelectorAll('.dropdown .d-none').forEach(function (element) {
                 element.classList.remove('d-none');
             });
             document.querySelector('#cuerpo-tabla-clientes').innerHTML = res;
@@ -97,11 +97,11 @@ var UICliente = (function () {
             let nombre = document.querySelector('#nombre').value;
             let apPaterno = document.querySelector('#ap-parno').value;
             let telefono = document.querySelector('#telefono').value;
-            if(!telefonoValido(telefono.length)) {
+            if (!telefonoValido(telefono.length)) {
                 new Toast('#add-cliente-alert', 'Ingrese un telefono con 10 digitos', 2000, 'alert-danger').getAndShow();
                 return false;
             }
-                
+
             if (!isEmpty(nombre.trim()) && !isEmpty(apPaterno.trim())) {
                 var form = document.querySelector('form');
                 var data = new FormData(form);
@@ -112,14 +112,14 @@ var UICliente = (function () {
                 return false;
             }
 
-            
+
         },
 
         getDatosModificados: function () {
             let nombre = document.querySelector('#nombre').value;
             let apPaterno = document.querySelector('#ap-parno').value;
             let telefono = document.querySelector('#telefono').value;
-            if(!telefonoValido(telefono.length)) {
+            if (!telefonoValido(telefono.length)) {
                 new Toast('#modificar-cliente-alert', 'Ingrese un telefono con 10 digitos', 2000, 'alert-danger').getAndShow();
                 return false;
             }
@@ -135,8 +135,8 @@ var UICliente = (function () {
         },
 
         verCliente: function (cliente) {
-            var vista = new VistaCliente(cliente.nombre, cliente.apPaterno, cliente.apMaterno, 
-                cliente.edad, cliente.numero, 
+            var vista = new VistaCliente(cliente.nombre, cliente.apPaterno, cliente.apMaterno,
+                cliente.edad, cliente.numero,
                 cliente.calle, cliente.numeroExterior, cliente.numeroInterior, cliente.colonia).render();
             document.querySelector('.content').innerHTML = vista;
         },
@@ -151,11 +151,11 @@ var UICliente = (function () {
             localStorage.setItem('id', id);
         },
 
-        getDatosABuscar: function() {
+        getDatosABuscar: function () {
             return document.querySelector('#buscar-cliente-input').value;
         },
 
-        mostrarDatosEncontrados: function(datos) {
+        mostrarDatosEncontrados: function (datos) {
             document.querySelector('#cuerpo-tabla-clientes').innerHTML = datos;
         },
 
@@ -166,7 +166,7 @@ var UICliente = (function () {
     `;
         },
 
-        regresarBtnAEstadoInicial : function (btnSelector) {
+        regresarBtnAEstadoInicial: function (btnSelector) {
             document.querySelector(btnSelector).innerHTML = `Guardar`;
         },
 
@@ -178,8 +178,24 @@ var UICliente = (function () {
             new Toast(idDivContainer, mensaje, 2000, 'alert-success').getAndShow();
         },
 
-        abrirReportes: function() {
+        abrirReportes: function () {
             load('html/clientes-components/reporte-clientes.html', document.querySelector('.content'));
+        },
+
+        getDatosParaReporte: function () {
+            var form = document.querySelector('#reporte-clientes-form');
+            var data = new FormData(form);
+            console.log(form)
+            console.log(data);
+            
+            return data;
+        },
+
+        mostrarReporte: function (req) {
+            document.querySelector('.reporte-generado').classList.remove('d-none');
+            document.querySelector('.panel-reportes').classList.add('d-none');
+            
+            document.querySelector(".reporte-generado").innerHTML = req;
         },
 
         regresar: function () {
@@ -193,10 +209,10 @@ var UICliente = (function () {
                 document.querySelector('#buscar-cliente-input').classList.remove('d-none');
             }
             load('html/clientes-components/clientes.html', document.querySelector('.content'));
-            mostrarTodosLosClientes();
+            mostrarActivos();
             clienteController.init();
         }
 
-       
+
     }
 })();

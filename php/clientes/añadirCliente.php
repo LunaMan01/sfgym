@@ -3,6 +3,11 @@
     
     try {
         echo "Conexion";
+        $sexo;
+        if(in_array('1', $_POST['clientes'])){
+            $html.= getClientesInactivos($conn);
+        }
+
         $activo = 1;
     //DATOS MAS BASICOS DEL CLIENTE    
         $cliente = $conn->prepare('INSERT INTO Clientes (nombre_cliente, apellido_paterno, apellido_materno, edad, activo) 

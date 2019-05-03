@@ -191,6 +191,13 @@ var UICliente = (function () {
             return data;
         },
 
+        mostrarReporte: function (req) {
+            document.querySelector('.reporte-generado').classList.remove('d-none');
+            document.querySelector('.panel-reportes').classList.add('d-none');
+            
+            document.querySelector(".reporte-generado").innerHTML = req;
+        },
+
         regresar: function () {
             if (document.querySelector('#add-cliente-btn').classList.contains('d-none')) {
                 document.querySelector('#add-cliente-btn').classList.remove('d-none');

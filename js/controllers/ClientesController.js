@@ -154,7 +154,7 @@ var clienteController = (function () {
         let data = UICliente.getDatosParaReporte();
 
         let res = cliente.reporte(data);
-        console.log(res);
+        UICliente.mostrarReporte(res);
     }
 
     function setUpEvents() {

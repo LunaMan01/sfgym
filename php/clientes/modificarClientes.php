@@ -2,18 +2,26 @@
     include '../conexion.php';
     
     try{
+        $sexo = '0';
+        if(in_array('1', $_POST['sexo'])){
+            $sexo = '1';
+        } else {
+            $sexo = '2';
+        }
         //MODIFICAR DATOS PERSONALES DE LA PERSONA
         $modfPerson = $conn->prepare('UPDATE Clientes SET 
             nombre_cliente = :nombre, 
             apellido_paterno = :paterno, 
             apellido_materno = :materno,
-            edad = :edad
+            edad = :edad,
+            Id_Genero = :genero
             WHERE Id_Cliente = '.$_POST['id-cliente']);
 
         $modfPerson->bindParam(':nombre', $_POST['nombre_cliente']);
         $modfPerson->bindParam(':paterno', $_POST['ap-parno']);
         $modfPerson->bindParam(':materno', $_POST['ap-marno']);
         $modfPerson->bindParam(':edad', $_POST['edad']);
+        $modfPerson->bindParam(':genero', $sexo);
 
         $modfPerson->execute();
 

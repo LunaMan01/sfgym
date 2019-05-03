@@ -3,20 +3,23 @@
     
     try {
         echo "Conexion";
-        $sexo;
-        if(in_array('1', $_POST['clientes'])){
-            $html.= getClientesInactivos($conn);
+        $sexo = '0';
+        if(in_array('1', $_POST['sexo'])){
+            $sexo = '1';
+        } else {
+            $sexo = '2';
         }
 
         $activo = 1;
     //DATOS MAS BASICOS DEL CLIENTE    
-        $cliente = $conn->prepare('INSERT INTO Clientes (nombre_cliente, apellido_paterno, apellido_materno, edad, activo) 
-        VALUES (:nombre, :paterno, :materno, :edad, '.$activo.')');
+        $cliente = $conn->prepare('INSERT INTO Clientes (nombre_cliente, apellido_paterno, apellido_materno, edad, activo, Id_Genero) 
+        VALUES (:nombre, :paterno, :materno, :edad, '.$activo.', :Id_Genero)');
         
         $cliente->bindParam(':nombre', $_POST['nombre_cliente']);
         $cliente->bindParam(':paterno', $_POST['ap-parno']);
         $cliente->bindParam(':materno', $_POST['ap-marno']);
         $cliente->bindParam(':edad', $_POST['edad']);
+        $cliente->bindParam(':Id_Genero', $sexo);
         $cliente->execute();
 
     //INSERTAR TELEFONO

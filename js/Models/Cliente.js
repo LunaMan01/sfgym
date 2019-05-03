@@ -53,4 +53,12 @@ class Cliente {
         req.send(null);
         return req.responseText;
     }
+
+    reporte(data) {
+        var req = new XMLHttpRequest();
+        req.open("POST", 'php/clientes/reporte.php', false);
+        // req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+        req.send(data);
+        return req.responseText;
+    }
 }

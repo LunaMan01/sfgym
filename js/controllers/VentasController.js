@@ -7,6 +7,7 @@ var ventaController = (function() {
     return {
         init: function () {
             setUpEvents();
+            document.querySelector('#add-venta-btn').addEventListener('click',UIVenta.abrirAddVenta);
             document.querySelector('#reporte-venta-btn').addEventListener('click',UIVenta.abrirReportes);
         }
     }

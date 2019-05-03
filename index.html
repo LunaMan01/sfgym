@@ -146,29 +146,7 @@
 
 
 			</div>
-			<script>
-
-				function print() {
-					var doc = new jsPDF();
-					doc.text('Reporte de visitas', 15, 10);
-					doc.autoTable(
-						{
-							html: '#tabla-visitas',
-							headStyles: { fillColor: [231, 76, 60] },
-							theme: 'grid'
-						});
-
-					doc.html('<h1>a ver</h1>');
-					doc.save();
-				}
-
-
-
-
-			</script>
-			<button onclick="print()">
-				imprimir
-			</button>
+			
 
 		</div>
 	</div>

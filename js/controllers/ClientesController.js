@@ -160,7 +160,35 @@ var clienteController = (function () {
     }
 
     function descargarPDF() {
-        
+        let yPos = 10;
+
+        var doc = new jsPDF();
+        doc.text('Reporte de clientes', 15, yPos);
+        if(document.querySelector('#clientes-inactivos-table') != null){ 
+            yPos += 5;
+            doc.text('Lista de clientes inactivos',15,yPos);
+            doc.autoTable(
+                {
+                    startY: number = 25,
+                    html: '#clientes-inactivos-table',
+                    headStyles: { fillColor: [84, 173, 88] },
+                    theme: 'grid'
+                });
+        }
+
+        if(document.querySelector('#clientes-masVisitas-table') != null) {
+            yPos += 5;
+            doc.text('Top 5 Clientes con mayor número de visitas',15, doc.autoTableEndPosY() + 40);
+            yPos += 20;
+            doc.autoTable(
+                {
+                    startY: number = doc.autoTableEndPosY() +50,
+                    html: '#clientes-masVisitas-table',
+                    headStyles: { fillColor: [84, 173, 88] },
+                    theme: 'grid'
+                });
+        }
+        doc.save();
     }
     
 

@@ -145,6 +145,12 @@ var clienteController = (function () {
 
     function setUpVentanaReportes () {
         UICliente.abrirReportes();
+
+        new Lightpick({field: document.querySelector('#rango-fecha'),
+                        singleDate : false
+                        
+        });
+                
         document.querySelector('#reporte-clientes-form').addEventListener('submit', generarReporte);
 
     }

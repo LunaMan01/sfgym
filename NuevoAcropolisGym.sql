@@ -51,7 +51,7 @@ create table Membresias(
 
 create table Visitas(
 	Id_Visita int not null auto_increment,
-	fecha_visita varchar(10),
+	fecha_visitas varchar(10),
 
 	Id_Cliente int not null,
 

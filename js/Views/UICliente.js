@@ -185,9 +185,9 @@ var UICliente = (function () {
         getDatosParaReporte: function () {
             var form = document.querySelector('#reporte-clientes-form');
             var data = new FormData(form);
-            console.log(form)
-            console.log(data);
             
+            data.append('fecha', document.querySelector('#rango-fecha').value);
+            console.log(document.querySelector('#rango-fecha').value);
             return data;
         },
 

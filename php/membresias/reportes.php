@@ -2,7 +2,7 @@
     include '../conexion.php';
 
     $fechaActual = date('d-m-Y');
-
+echo 'reportes';
     $html = ' 
     <div class="container" id="crear-reporte-card">
         <div class="row">

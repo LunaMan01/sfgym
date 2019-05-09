@@ -78,6 +78,23 @@ var membresiaController = (function () {
         
     }
 
+    function setUpVentanaReportes () {
+        UIMembresia.abrirReportes();
+        
+        document.querySelector('#reporte-clientes-form').addEventListener('submit', generarReporte);
+
+    }
+
+    function generarReporte() {
+        let membresia = new Membresia();
+        let data = UIMembresia.getDatosParaReporte();
+
+        let res = membresia.reporte(data);
+        UIMembresia.mostrarReporte(res);
+
+        document.querySelector('#descargar-pdf').addEventListener('click', descargarPDF);
+    }
+
     function setUpEvents() {
         UIMembresia.mostrarTodasLasMembresias();
         document.querySelector('#add-membresia-form').addEventListener('submit', addNuevaMembresia);

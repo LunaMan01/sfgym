@@ -81,7 +81,7 @@ var membresiaController = (function () {
     function setUpVentanaReportes () {
         UIMembresia.abrirReportes();
         
-        document.querySelector('#reporte-clientes-form').addEventListener('submit', generarReporte);
+        document.querySelector('#reporte-membresias-form').addEventListener('submit', generarReporte);
 
     }
 
@@ -90,9 +90,10 @@ var membresiaController = (function () {
         let data = UIMembresia.getDatosParaReporte();
 
         let res = membresia.reporte(data);
+        console.log(res);
         UIMembresia.mostrarReporte(res);
 
-        document.querySelector('#descargar-pdf').addEventListener('click', descargarPDF);
+        // document.querySelector('#descargar-pdf').addEventListener('click', descargarPDF);
     }
 
     function setUpEvents() {
@@ -106,7 +107,7 @@ var membresiaController = (function () {
         document.querySelector('#buscar-membresia-input').addEventListener('keyup', busquedaDinamica);
         new Lightpick({ field: document.getElementById('fecha-inicio') });
         new Lightpick({ field: document.getElementById('fecha-fin') });
-        document.querySelector('#reporte-membresia-btn').addEventListener('click',UIMembresia.abrirReportes);
+        document.querySelector('#reporte-membresia-btn').addEventListener('click',setUpVentanaReportes);
 
 
     }

@@ -39,6 +39,7 @@ class Membresia {
     }
 
     reporte(data) {
+        console.log('memb rep');
         var req = new XMLHttpRequest();
         req.open("POST", 'php/membresias/reportes.php', false);
         // req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');

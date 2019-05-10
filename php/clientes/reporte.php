@@ -5,9 +5,6 @@
 
     //separar la fecha
     $array = explode("-", $cadenaFecha);
-        
-    $fecha1 = $array[0];
-    $fecha2 = $array[1];
 
     $html = ' 
     <div class="container" id="crear-reporte-card">
@@ -34,8 +31,7 @@
     }
 
     function getClientesInactivos($conn) {
-        global $array, $fecha1, $fecha2;
-        
+
         $inactivo = 0;
         $datos = 'SELECT Clientes.Id_Cliente, nombre_cliente, numero
                 FROM Clientes INNER JOIN Telefonos ON Clientes.Id_Cliente LIKE Telefonos.Id_Cliente WHERE 
@@ -87,7 +83,10 @@
     }
 
     function getClientesMasVisitas($conn) {
-        global $array, $fecha1, $fecha2;
+        global $array;
+
+        $fecha1 = $array[0];
+        $fecha2 = $array[1];
 
         $activo = 1;
         $datos = $conn->prepare('SELECT Visitas.Id_Cliente AS Id_Cliente ,nombre_cliente, COUNT(*) AS nVisitas 
@@ -143,7 +142,10 @@
     }
 
     function getClientesMenosVisitas($conn) {
-        global $array, $fecha1, $fecha2;
+        global $array;
+
+        $fecha1 = $array[0];
+        $fecha2 = $array[1];
 
         $activo = 1;
         $datos = $conn->prepare('SELECT Visitas.Id_Cliente AS Id_Cliente ,nombre_cliente, COUNT(*) AS nVisitas 

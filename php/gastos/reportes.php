@@ -14,10 +14,9 @@
         </div>
     ';
 
-    getGastosReporte($conn);
+    $html.=getGastosReporte($conn);
 
     function getGastosReporte($conn) {
-        echo 'GOAL';
         global $array;    
 
         $fecha1 = $array[0];

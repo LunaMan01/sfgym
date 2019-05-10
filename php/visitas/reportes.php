@@ -13,12 +13,10 @@
             </div>
         </div>
     ';
-
-    getVisitasReporte($conn);
+    $html.=getVisitasReporte($conn);
 
 
     function getVisitasReporte($conn) {
-        echo 'hello';
         global $array;    
 
         $fecha1 = $array[0];

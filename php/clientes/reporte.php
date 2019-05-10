@@ -103,7 +103,7 @@
                             <i class="material-icons iconMessege">group</i>
                         </div>
                         <div class="col-lg-11">
-                            <p>Top 5 Clientes con mayor número de visitas <span> 09/05/2019 al 09/06/2019<span></p>
+                            <p>Top 5 Clientes con mayor número de visitas <span>'.$fecha1.' a '.$fecha2.'<span></p>
                         </div>
                     </div>
 
@@ -162,7 +162,7 @@
                             <i class="material-icons iconMessege">group</i>
                         </div>
                         <div class="col-lg-11">
-                            <p>Top 5 Clientes con menor número de visitas <span> 09/05/2019 al 09/06/2019<span></p>
+                            <p>Top 5 Clientes con menor número de visitas <span>'.$fecha1.' a '.$fecha2.'<span></p>
                         </div>
                     </div>
 

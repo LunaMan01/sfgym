@@ -92,6 +92,22 @@ var UIVisita  = (function() {
             load('html/visitas-components/reporte-visitas.html', document.querySelector('.content'));
         },
 
+        getDatosParaReporte: function () {
+            var form = document.querySelector('#reporte-visitas-form');
+            var data = new FormData(form);
+            
+            // data.append('fecha', document.querySelector('#rango-fecha').value);
+            // console.log(document.querySelector('#rango-fecha').value);
+            return data;
+        },
+
+        mostrarReporte: function (req) {
+            document.querySelector('.reporte-generado').classList.remove('d-none');
+            document.querySelector('.panel-reportes').classList.add('d-none');
+            
+            document.querySelector(".reporte-generado").innerHTML = req;
+        },
+
         mostrarMensajeExito: function (divContainerId, mensaje) {
             
             new Toast(divContainerId, mensaje, 2000, 'alert-success').getAndShow();

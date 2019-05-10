@@ -18,15 +18,17 @@
             </div>
         </div>
 
-        <div class="row">
-            <form class="ml-5">
-                <div class="form-group">
-                    <label><b>Fecha:</b></label>
-                    <input type="text" class="form-control rounded-pill" id="fecha-rango-reporte">
-                </div>
-            </form>
-        </div>
-        <button id="generar-reporte-visitas" class="btn btn-outline-success btn-sm my-2 my-sm-0 mr-3 rounded-pill"
-            type="submit">Generar</button>
+        <form onsubmit="return false" id="reporte-visitas-form">
+            <div class="row">
+                <form class="ml-5">
+                    <div class="form-group">
+                        <label><b>Fecha:</b></label>
+                        <input type="text" class="form-control rounded-pill" id="fecha-rango-reporte">
+                    </div>
+                </form>
+            </div>
+            <button id="generar-reporte-visitas" class="btn btn-outline-success btn-sm my-2 my-sm-0 mr-3 rounded-pill"
+                type="submit">Generar</button>
+        </form>
     </div>
 </div>

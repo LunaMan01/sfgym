@@ -1,8 +1,9 @@
 <?php 
     include '../conexion.php';
 
-    $fechaActual = date('d-m-Y');
-echo 'reportes';
+    date_default_timezone_set('America/Mexico_City');
+    $fechaActual = date('d/m/Y');
+
     $html = ' 
     <div class="container" id="crear-reporte-card">
         <div class="row">
@@ -29,12 +30,11 @@ echo 'reportes';
         $fechaNueva = menosSieteDias();
 
         $activo = 1;
-        $datos = $conn->prepare('SELECT Clientes.Id_Cliente AS Id_Cliente, nombre_cliente, numero 
-        FROM Clientes INNER JOIN Telefonos INNER JOIN Membresias ON activo = '.$activo." AND 
-        Clientes.Id_Cliente = Membresias.Id_Cliente AND Clientes.Id_Cliente = Membresias.Id_Cliente 
-        BETWEEN str_to_date('".$fechaNueva."','%d/%m/%Y') AND str_to_date('".$fechaActual."','%d/%m/%Y') 
-        GROUP BY (nombre_cliente) DESC LIMIT 5");
-        
+        $datos = $conn->prepare("SELECT Clientes.Id_Cliente, nombre_cliente, numero, fecha_inicio
+        FROM Clientes INNER JOIN Telefonos INNER JOIN Membresias ON Clientes.Id_Cliente LIKE Telefonos.Id_Cliente
+        AND Telefonos.Id_Cliente LIKE Membresias.Id_Cliente WHERE fecha_inicio BETWEEN '".$fechaNueva."' 
+        AND '".$fechaActual."'");
+
         $rowConTabla = '
         <div class="row mb-5">
             <div class="col-12">
@@ -44,7 +44,7 @@ echo 'reportes';
                             <i class="material-icons iconMessege">group</i>
                         </div>
                         <div class="col-lg-11">
-                            <p>Top 5 Clientes con membresías nuevas <span>'.$fechaNueva.' a '.$fechaActual.'<span></p>
+                            <p>Top 5 Clientes con membresías nuevas: <span>'.$fechaNueva.' a '.$fechaActual.'<span></p>
                         </div>
                     </div>
 
@@ -55,6 +55,7 @@ echo 'reportes';
                                     <th scope="col">Id</th>
                                     <th scope="col">Nombre Cliente</th>
                                     <th scope="col">Telefono</th>
+                                    <th scope="col">Fecha Inicio</th>
                                 </tr>
                             </thead>  
                             <tbody id="cuerpo-tabla-membresias-nuevas">   
@@ -66,7 +67,8 @@ echo 'reportes';
                 $rowConTabla.= '<tr>
                         <th scope="row" id="'.$r['Id_Cliente'].'">'.$r['Id_Cliente'].'</th>'.
                         '<td>'.$r['nombre_cliente'].'</td>'.
-                        '<td>'.$r['numero'].'</td>
+                        '<td>'.$r['numero'].'</td>'.
+                        '<td>'.$r['fecha_inicio'].'</td>
                     </tr>';
             }
 
@@ -87,11 +89,10 @@ echo 'reportes';
         $fechaNueva = masSieteDias();
 
         $activo = 1;
-        $datos = $conn->prepare('SELECT Clientes.Id_Cliente AS Id_Cliente, nombre_cliente, numero 
-        FROM Clientes INNER JOIN Telefonos INNER JOIN Membresias ON activo = '.$activo." AND 
-        Clientes.Id_Cliente = Membresias.Id_Cliente AND Clientes.Id_Cliente = Membresias.Id_Cliente 
-        BETWEEN str_to_date('".$fechaActual."','%d/%m/%Y') AND str_to_date('".$fechaNueva."','%d/%m/%Y') 
-        GROUP BY (nombre_cliente) DESC LIMIT 5");
+        $datos = $conn->prepare("SELECT Clientes.Id_Cliente, nombre_cliente, numero, fecha_fin
+        FROM Clientes INNER JOIN Telefonos INNER JOIN Membresias ON Clientes.Id_Cliente LIKE Telefonos.Id_Cliente
+        AND Telefonos.Id_Cliente LIKE Membresias.Id_Cliente WHERE fecha_fin BETWEEN '".$fechaActual."' 
+        AND '".$fechaNueva."'");
         
         $rowConTabla = '
         <div class="row mb-5">
@@ -102,7 +103,7 @@ echo 'reportes';
                             <i class="material-icons iconMessege">group</i>
                         </div>
                         <div class="col-lg-11">
-                            <p>Top 5 Clientes con menor número de visitas <span> 09/05/2019 al 09/06/2019<span></p>
+                            <p>Top 5 Clientes con membresias a vencer: <span>'.$fechaActual.' a '.$fechaNueva.'<span></p>
                         </div>
                     </div>
 
@@ -112,7 +113,8 @@ echo 'reportes';
                                 <tr>
                                     <th scope="col">Id</th>
                                     <th scope="col">Nombre Cliente</th>
-                                    <th scope="col">No. visitas</th>
+                                    <th scope="col">Telefono</th>
+                                    <th scope="col">Fecha Fin</th>
                                 </tr>
                             </thead>  
                             <tbody id="cuerpo-tabla-clientes-inactivos">   
@@ -124,7 +126,8 @@ echo 'reportes';
                 $rowConTabla.= '<tr>
                         <th scope="row" id="'.$r['Id_Cliente'].'">'.$r['Id_Cliente'].'</th>'.
                         '<td>'.$r['nombre_cliente'].'</td>'.
-                        '<td>'.$r['nVisitas'].'</td>
+                        '<td>'.$r['numero'].'</td>'.
+                        '<td>'.$r['fecha_fin'].'</td>
                     </tr>';
             }
 
@@ -143,7 +146,7 @@ echo 'reportes';
     function masSieteDias(){
         $fecha = date('d-m-Y');
         $nuevaFecha = strtotime ( '+7 day' , strtotime ( $fecha ) ) ;
-        $nuevaFecha = date ( 'd-m-Y' , $nuevaFecha );
+        $nuevaFecha = date ( 'd/m/Y' , $nuevaFecha );
 
         return $nuevaFecha;
     }
@@ -151,7 +154,7 @@ echo 'reportes';
     function menosSieteDias(){
         $fecha = date('d-m-Y');
         $nuevaFecha = strtotime ( '-7 day' , strtotime ( $fecha ) ) ;
-        $nuevaFecha = date ( 'd-m-Y' , $nuevaFecha );
+        $nuevaFecha = date ( 'd/m/Y' , $nuevaFecha );
 
         return $nuevaFecha;
     }

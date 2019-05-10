@@ -2,8 +2,8 @@
     include '../conexion.php';
 
     try{
-        $consultar = 'SELECT Id_Gasto, descripcion_gasto, fecha_gasto, monto_gasto, Id_tipo 
-        FROM Gastos';
+        $consultar = 'SELECT Id_Gasto, descripcion_gasto, fecha_gasto, monto_gasto, tipo_gasto 
+        FROM Gastos INNER JOIN TipoGastos ON Gastos.Id_Tipo LIKE TipoGastos.Id_Tipo';
 
         foreach($conn->query($consultar) as $row){
             echo '<tr>
@@ -11,7 +11,7 @@
                 '<td>'.$row['descripcion_gasto'].'</td>'.
                 '<td>'.$row['monto_gasto'].'</td>'.
                 '<td>'.$row['fecha_gasto'].'</td>'.
-                '<td>'.$row['Id_tipo'].'</td>'.
+                '<td>'.$row['tipo_gasto'].'</td>'.
             '<td>
                 <i class="material-icons actions watch-action mr-2" data-toggle="modal" href="#ver-gasto-modal"> remove_red_eye</i>
                 <i class="material-icons actions edit-action mr-2" data-toggle="modal" href="#modificar-gasto-modal"> create</i>

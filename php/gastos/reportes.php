@@ -14,19 +14,19 @@
         </div>
     ';
 
-    getVisitasReporte($conn);
+    getGastosReporte($conn);
 
-    function getVisitasReporte($conn) {
-        echo 'hello';
+    function getGastosReporte($conn) {
+        echo 'GOAL';
         global $array;    
 
         $fecha1 = $array[0];
         $fecha2 = $array[1];
         
         $activo = 1;
-        $datos = $conn->prepare("SELECT Clientes.Id_Cliente, nombre_cliente, fecha_visitas FROM Clientes 
-        INNER JOIN Visitas ON Clientes.Id_Cliente LIKE Visitas.Id_Cliente WHERE fecha_visitas BETWEEN 
-        '".$fecha1."' AND str_to_date('".$fecha2."', '%d/%m/%Y')");
+        $datos = $conn->prepare("SELECT Id_Gasto, descripcion_gasto, fecha_gasto, monto_gasto, tipo_gasto 
+        FROM Gastos INNER JOIN TipoGastos ON Gastos.Id_Tipo LIKE TipoGastos.Id_Tipo WHERE fecha_gasto 
+        BETWEEN '".$fecha1."' AND str_to_date('".$fecha2."' ,'%d/%m/%Y')");
         
         $rowConTabla = '
         <div class="row mb-5">
@@ -37,29 +37,33 @@
                             <i class="material-icons iconMessege">group</i>
                         </div>
                         <div class="col-lg-11">
-                            <p>Visitas: <span>'.$fecha1.' a '.$fecha2.'<span></p>
+                            <p>Gastos: <span>'.$fecha1.' a '.$fecha2.'<span></p>
                         </div>
                     </div>
 
                     <div class="table-responsive">
-                        <table class="table table-hover" id="visitas-table">
+                        <table class="table table-hover" id="gastos-table">
                             <thead>   
                                 <tr>
                                     <th scope="col">Id</th>
-                                    <th scope="col">Nombre Cliente</th>
-                                    <th scope="col">Fecha Visita</th>
+                                    <th scope="col">Descripción</th>
+                                    <th scope="col">Fecha Gasto</th>
+                                    <th scope="col">Monto</th>
+                                    <th scope="col">Tipo Gasto</th>
                                 </tr>
                             </thead>  
-                            <tbody id="cuerpo-tabla-visitas">   
+                            <tbody id="cuerpo-tabla-gastos">   
         ';
 
         $datos->execute();
         
         while($r = $datos->fetch()){
                 $rowConTabla.= '<tr>
-                        <th scope="row" id="'.$r['Id_Cliente'].'">'.$r['Id_Cliente'].'</th>'.
-                        '<td>'.$r['nombre_cliente'].'</td>'.
-                        '<td>'.$r['fecha_visitas'].'</td>
+                        <th scope="row" id="'.$r['Id_Gasto'].'">'.$r['Id_Gasto'].'</th>'.
+                        '<td>'.$r['descripcion_gasto'].'</td>'.
+                        '<td>'.$r['fecha_gasto'].'</td>'.
+                        '<td>'.$r['monto_gasto'].'</td>'.
+                        '<td>'.$r['tipo_gasto'].'</td>
                     </tr>';
             }
 

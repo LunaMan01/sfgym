@@ -119,7 +119,7 @@ create table Compras(
 
 create table TipoGastos(
 	Id_Tipo int not null auto_increment,
-	tipo_gasto varchar(15),
+	tipo_gasto varchar(25),
 
 	primary key(Id_Tipo)
 );

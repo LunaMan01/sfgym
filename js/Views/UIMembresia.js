@@ -103,10 +103,10 @@ var UIMembresia = (function () {
         },
 
         mostrarReporte: function (req) {
-            document.querySelector('.reporte-generado').classList.remove('d-none');
+            document.querySelector('#reporte-generado-membresias').classList.remove('d-none');
             document.querySelector('.panel-reportes').classList.add('d-none');
             
-            document.querySelector(".container .reporte-generado").innerHTML = req;
+            document.querySelector("#reporte-generado-membresias").innerHTML = req;
         },
     }
 })();

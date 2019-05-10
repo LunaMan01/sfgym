@@ -11,7 +11,7 @@
             </div>
         </div>
 
-        <div class="row ">
+        <div class="row">
             <div class="col-auto">
                 <p><i>Seleccione el rango
                         de fechas para la generación del reporte</i></p>
@@ -20,15 +20,56 @@
 
         <form onsubmit="return false" id="reporte-visitas-form">
             <div class="row">
-                <form class="ml-5">
+                <div class="ml-5">
                     <div class="form-group">
                         <label><b>Fecha:</b></label>
                         <input type="text" class="form-control rounded-pill" id="fecha-rango-reporte">
                     </div>
-                </form>
+                </div>
             </div>
             <button id="generar-reporte-visitas" class="btn btn-outline-success btn-sm my-2 my-sm-0 mr-3 rounded-pill"
                 type="submit">Generar</button>
         </form>
     </div>
+</div>
+
+<div class="container reporte-generado d-none mb-5">
+
+    <!-- <div class="container" id="crear-reporte-card">
+        <div class="row">
+            <div class="col-auto mt-3">
+                <p><b>Reporte de clientes</b></p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="tablaPrincipal">
+                    <div class="row mensajeAlert">
+                        <div class="col-lg-1">
+                            <i class="material-icons iconMessege">group</i>
+                        </div>
+                        <div class="col-lg-11">
+                            <p>Lista de clientes inactivos</p>
+                        </div>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Id</th>
+                                    <th scope="col">Nombre Cliente</th>
+                                    <th scope="col">Teléfono</th>
+                                </tr>
+                            </thead>
+                            <tbody id="cuerpo-tabla-clientes-inactivos">
+
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div> -->
 </div>

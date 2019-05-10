@@ -103,7 +103,7 @@ var UICompra  = (function() {
             var form = document.querySelector('#reporte-compras-form');
             var data = new FormData(form);
             
-            // data.append('fecha', document.querySelector('#rango-fecha').value);
+            data.append('fecha', document.querySelector('#fecha-rango-reporte').value);
             // console.log(document.querySelector('#rango-fecha').value);
             return data;
         },

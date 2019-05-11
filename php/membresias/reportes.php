@@ -8,7 +8,7 @@
     <div class="container" id="crear-reporte-card">
         <div class="row">
             <div class="col-auto mt-3">
-                <p><b>Reporte de clientes</b></p>
+                <p><b>Reporte de membresías</b></p>
             </div>
         </div>
     ';

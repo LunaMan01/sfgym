@@ -22,7 +22,8 @@
                         <div class="col-auto">
                             <div class="custom-control custom-checkbox">
                                 <input type="checkbox" class="custom-control-input"
-                                    id="reporte-productos-en-existencia">
+                                    id="reporte-productos-en-existencia" name="productos[]"
+                                    value="1">
                                 <label for="reporte-productos-en-existencia" class="custom-control-label">Productos en
                                     existencia</label>
                             </div>
@@ -32,7 +33,8 @@
                     <div class="row">
                         <div class="col-auto">
                             <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="reporte-productos-mas-venidos">
+                                <input type="checkbox" class="custom-control-input" id="reporte-productos-mas-venidos"
+                                name="productos[]" value="2">
                                 <label for="reporte-productos-mas-vendidos" class="custom-control-label">Productos más
                                     vendidos</label>
                             </div>
@@ -43,7 +45,7 @@
                         <div class="col-auto">
                             <div class="custom-control custom-checkbox">
                                 <input type="checkbox" class="custom-control-input"
-                                    id="reporte-productos-menos-vendidos">
+                                    id="reporte-productos-menos-vendidos" name="productos[]" value="3">
                                 <label for="reporte-productos-menos-vendidos" class="custom-control-label">Productos
                                     menos
                                     vendidos</label>
@@ -55,7 +57,7 @@
                         <div class="col-auto">
                             <div class="custom-control custom-checkbox">
                                 <input type="checkbox" class="custom-control-input"
-                                    id="reporte-productos-con-pocas-existencias">
+                                    id="reporte-productos-con-pocas-existencias" name="productos[]" value="4">
                                 <label for="reporte-productos-con-pocas-existencias"
                                     class="custom-control-label">Productos
                                     con pocas existencias</label>
@@ -67,7 +69,7 @@
                         <div class="col-auto">
                             <div class="custom-control custom-checkbox">
                                 <input type="checkbox" class="custom-control-input"
-                                    id="reporte-productos-proximos-a-caducar">
+                                    id="reporte-productos-proximos-a-caducar" name="productos[]" value="5">
                                 <label for="reporte-productos-proximos-a-caducar" class="custom-control-label">Productos
                                     proximos a caducar
                                 </label>
@@ -82,7 +84,7 @@
                 <div class="mt-5 ml-5">
                     <div class="form-group">
                         <label><b>Fecha:</b></label>
-                        <input type="text" class="form-control rounded-pill" id="fecha-rango-reporte">
+                        <input type="text" class="form-control rounded-pill" id="fecha-rango-reporte" name="fecha">
                     </div>
                 </div>
             </div>

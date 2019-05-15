@@ -25,12 +25,13 @@
         $totalMembresias = $resultMembresias->fetchColumn();
 
         $inicio->membresias = $totalMembresias;
-
+        $inicioJSON = json_encode($inicio);
+        echo $inicioJSON;
         //DATOS DE LAS MMBRSIAS QUE VENCEN HOY
         $vencer = "SELECT Id_Membresia, nombre_cliente FROM Membresias INNER JOIN Clientes 
         ON Membresias.Id_Cliente LIKE Clientes.Id_Cliente WHERE fecha_fin LIKE '".$fecha."'
         ORDER BY Id_Membresia ASC";
-        
+        echo '||';
         foreach ($conn->query($vencer) as $row) {
             echo '<tr>
                   <th scope="row" id="'.$row['Id_Membresia'].'">'.$row['Id_Membresia'].'</th>'.
@@ -38,8 +39,7 @@
                 </tr>';
         }
 
-        $inicioJSON = json_encode($inicio);
-        echo $inicioJSON;
+        
 
     }catch(PDOException $e){
         echo 'Error: '. $e->getMessage();

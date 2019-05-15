@@ -132,11 +132,17 @@ var UIController = (function () {
         var req = new XMLHttpRequest();
         req.open("POST", 'php/inicio.php', false);
         req.send(null);
-        console.log(req.responseText);
-    
-        var inicio = JSON.parse(req.responseText);
+        
+        
+        let res = req.responseText;
+        let responses = res.split("||");
+       
+        var inicio = JSON.parse(responses[0]);
     
         document.querySelector('#clientes-activos-label').innerHTML = inicio.activo;
+        document.querySelector('#visitas-label').innerHTML = inicio.visitas;
+        document.querySelector('#count-membresias').innerHTML = inicio.membresias;
+        document.querySelector('#cuerpo-tabla-inicio').innerHTML = responses[1];
     }
 
 

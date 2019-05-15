@@ -1,5 +1,5 @@
 <div class="d-none modal-ommission" id="alert-clientes">
-    
+
 </div>
 </div>
 <div class="container">
@@ -10,20 +10,15 @@
         <div class="col-12">
             <div class="row m-3 letrero">
                 <div class="col-auto">
-                    <p>Mostrar</p>
+                    <p class="mt-1">Mostrar:</p>
                 </div>
-                <div class="col-auto dropdown">
-                    <button class="btn btn-secondary dropdown-toggle btn-drop" type="button" id="dropdown-clientes"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Clientes activos
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                        <button class="dropdown-item" type="button" id="clientes-inactivos-btn">Clientes
-                            inactivos</button>
-                            <button class="dropdown-item d-none" type="button" id="clientes-activos-btn">Clientes activos</button>
-                        <button class="dropdown-item" type="button" id="clientes-nomem-btn">Sin membresía</button>
-                        <button class="dropdown-item" type="button" id="clientes-todos-btn">Todos los clientes</button>
-                    </div>
+                <div class="form-group">
+                    <select class="form-control" id="select-clientes">
+                        <option id="clientes-activos-btn">Clientes Activos</option>
+                        <option id="clientes-inactivos-btn">Clientes inactivos</option>
+                        <option id="clientes-nomem-btn">Clientes sin Membresía</option>
+                        <option id="clientes-todos-btn">Todos los clientes</option>
+                    </select>
                 </div>
             </div>
             <div class="col-12">

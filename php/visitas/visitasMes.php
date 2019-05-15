@@ -8,7 +8,6 @@
     $año = date('Y');
 
     $firstDay = primerDia($mes,$año);
-    echo $firstDay;
     $lastDay = ultimoDia($mes,$año);
 
     try{

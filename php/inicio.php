@@ -28,11 +28,14 @@
 
         //DATOS DE LAS MMBRSIAS QUE VENCEN HOY
         $vencer = "SELECT Id_Membresia, nombre_cliente FROM Membresias INNER JOIN Clientes 
-        ON Membresias.Id_Cliente LIKE Clientes.Id_Cliente ORDER BY Id_Membresia ASC";
+        ON Membresias.Id_Cliente LIKE Clientes.Id_Cliente WHERE fecha_fin LIKE '".$fecha."'
+        ORDER BY Id_Membresia ASC";
         
         foreach ($conn->query($vencer) as $row) {
-            $inicio->idMembresia = $row['Id_Membresia'];
-            $inicio->nombreCliente = $row['nombre_cliente'];
+            echo '<tr>
+                  <th scope="row" id="'.$row['Id_Membresia'].'">'.$row['Id_Membresia'].'</th>'.
+                 '<td>'.$row['nombre_cliente'].'</td>'.'
+                </tr>';
         }
 
         $inicioJSON = json_encode($inicio);

@@ -1,5 +1,5 @@
 <div class="d-none" id="alert-gastos">
-    
+
 </div>
 <div class="container">
 
@@ -7,18 +7,14 @@
         <div class="col-auto">
             <p>Mostrar</p>
         </div>
-        <div class="col-auto dropdown">
-            <button class="btn btn-secondary dropdown-toggle btn-drop" type="button" id="dropdown-gastos"
-                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Todas los gastos
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                <button class="dropdown-item d-none" type="button" id="">Todos los
-                    gastos</button>
-                <button class="dropdown-item" type="button" id="">Gastos del mes</button>
-                <button class="dropdown-item" type="button" id="">Gastos de la semana</button>
-                <button class="dropdown-item" type="button" id="">Gastos del dia</button>
-            </div>
+
+        <div class="form-group">
+            <select class="form-control" id="select-gastos">
+                <option id="gasto-mes">Gastos del mes</option>
+                <option id="gastos-semana">Gastos de la semana</option>
+                <option id="gastos-dia">Gastos del dìa</option>
+
+            </select>
         </div>
 
         <div class="container">
@@ -54,8 +50,6 @@
                         </table>
                     </div>
                 </div>
-
-
             </div>
         </div>
     </div>

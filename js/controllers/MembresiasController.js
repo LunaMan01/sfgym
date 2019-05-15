@@ -96,7 +96,42 @@ var membresiaController = (function () {
         // document.querySelector('#descargar-pdf').addEventListener('click', descargarPDF);
     }
 
+    function setUpInputs() {
+        new Cleave('#id-cliente', {
+            numericOnly: true,
+            blocks: [11]
+        });
+
+
+        new Cleave('#fecha-inicio-add', {
+            date: true,
+            delimiter: '/',
+            datePattern: ['d', 'm', 'Y']
+        });
+
+        new Cleave('#fecha-fin-add', {
+            date: true,
+            delimiter: '/',
+            datePattern: ['d', 'm', 'Y']
+        });
+
+
+        new Cleave('#fecha-inicio', {
+            date: true,
+            delimiter: '/',
+            datePattern: ['d', 'm', 'Y']
+        });
+
+        new Cleave('#fecha-fin', {
+            date: true,
+            delimiter: '/',
+            datePattern: ['d', 'm', 'Y']
+        });
+
+    }
+
     function setUpEvents() {
+        setUpInputs();
         UIMembresia.mostrarTodasLasMembresias();
         document.querySelector('#add-membresia-form').addEventListener('submit', addNuevaMembresia);
         setUpDeleteEvent();
@@ -105,8 +140,8 @@ var membresiaController = (function () {
         document.querySelector('#modificar-membresia-form').addEventListener('submit', modificarMembresia);
         setUpWatchEvent();
         document.querySelector('#buscar-membresia-input').addEventListener('keyup', busquedaDinamica);
-        new Lightpick({ field: document.getElementById('fecha-inicio') });
-        new Lightpick({ field: document.getElementById('fecha-fin') });
+        new Lightpick({ field: document.getElementById('fecha-inicio-add') });
+        new Lightpick({ field: document.getElementById('fecha-fin-add') });
         document.querySelector('#reporte-membresia-btn').addEventListener('click',setUpVentanaReportes);
 
 

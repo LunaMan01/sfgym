@@ -99,8 +99,36 @@ var gastoController = (function() {
         // document.querySelector('#descargar-pdf').addEventListener('click', 
     }
 
+    function setUpInputs () {
+        new Cleave ('.numeric-add', {
+            numericOnly: true,
+            blocks : [11]
+        });
+
+        new Cleave('.date-add', {
+            date: true,
+            delimiter: '/',
+            datePattern: ['d', 'm', 'Y']
+        });
+
+        new Lightpick({ field: document.getElementById('fecha-gasto') });
+
+
+        new Cleave ('.numeric-update', {
+            numericOnly: true,
+            blocks : [11]
+        });
+
+        new Cleave('.date-update', {
+            date: true,
+            delimiter: '/',
+            datePattern: ['d', 'm', 'Y']
+        });
+    }
+
 
     function setUpEvents() {
+        setUpInputs();
         UIGasto.mostrarTodosLosGastos(new Gasto().getTodosLosGastos());
         document.querySelector('#add-gasto-form').addEventListener('submit', addNuevoGasto);
         setUpDeleteEvent();

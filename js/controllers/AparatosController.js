@@ -72,7 +72,22 @@ var aparatoController = (function () {
         
     }
 
+    function setUpInputs () {
+        new Cleave ('.numeric-add', {
+            numericOnly: true,
+            blocks : [11]
+        });
+
+        new Cleave ('.numeric-update', {
+            numericOnly: true,
+            blocks : [11]
+        });
+
+       
+    }
+
     function setUpEvents () {
+        setUpInputs();
         UIAparato.mostrarTodosLosAparatos(new Aparato().getTodosLosAparatos());
         document.querySelector('#add-aparato-form').addEventListener('submit', addNuevoAparato);
         setUpDeleteEvent();

@@ -97,8 +97,45 @@ var compraController = (function() {
         // document.querySelector('#descargar-pdf').addEventListener('click', 
     }
 
+    function setUpInputs () {
+        new Cleave ('.numeric-c-add', {
+            numericOnly: true,
+            blocks : [11]
+        });
+
+        new Cleave ('.numeric-m-add', {
+            numericOnly: true,
+            blocks : [11]
+        });
+
+        new Cleave('.date-add', {
+            date: true,
+            delimiter: '/',
+            datePattern: ['d', 'm', 'Y']
+        });
+
+        new Cleave ('.numeric-c-update', {
+            numericOnly: true,
+            blocks : [11]
+        });
+
+        new Cleave ('.numeric-m-update', {
+            numericOnly: true,
+            blocks : [11]
+        });
+
+        new Cleave('.date-update', {
+            date: true,
+            delimiter: '/',
+            datePattern: ['d', 'm', 'Y']
+        });
+       
+    }
+
+
 
     function setUpEvents() {
+        setUpInputs();
         UICompra.mostrarTodasLasCompras(new Compra().getTodosLasCompras());
         document.querySelector('#add-compra-form').addEventListener('submit', addNuevaCompra);
         setUpDeleteEvent();

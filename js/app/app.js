@@ -128,6 +128,17 @@ var UIController = (function () {
         }
     }
 
+    function setUpInicio() {
+        var req = new XMLHttpRequest();
+        req.open("POST", 'php/inicio.php', false);
+        req.send(null);
+        console.log(req.responseText);
+    
+        var inicio = JSON.parse(req.responseText);
+    
+        document.querySelector('#clientes-activos-label').innerHTML = inicio.activo;
+    }
+
 
     return {
 
@@ -138,6 +149,7 @@ var UIController = (function () {
             document.querySelector(CSSClasses.active).classList.remove('active');
             document.querySelector(Li.inicio).className = 'active';
             load('html/inicio.html', content);
+            setUpInicio();
         },
 
         abrirClientes: function () {
@@ -275,6 +287,8 @@ var UIController = (function () {
 }());
 
 
+
+
 var controller = (function (UI) {
     var abrirInicio = UI.abrirInicio;
     var abrirClientes = UI.abrirClientes;
@@ -293,7 +307,7 @@ var controller = (function (UI) {
     document.querySelector(Links.respaldos).addEventListener('click', UI.abrirRespaldo);
 
 
-    
+
 
     UI.abrirInicio();
 }(UIController));

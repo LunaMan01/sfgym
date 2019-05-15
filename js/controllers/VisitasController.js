@@ -101,10 +101,38 @@ var visitaController = (function () {
         // document.querySelector('#descargar-pdf').addEventListener('click', descargarPDF);
     }
 
+    function setUpInputs() {
+
+
+        new Cleave('.numeric-id-add', {
+            numericOnly: true,
+            blocks: [10]
+        });
+
+        new Cleave('.numeric-id-update', {
+            numericOnly: true,
+            blocks: [10]
+        });
+
+        new Cleave('.date-add', {
+            date: true,
+            delimiter: '/',
+            datePattern: ['d', 'm', 'Y']
+        });
+
+        new Cleave('.date-update', {
+            date: true,
+            delimiter: '/',
+            datePattern: ['d', 'm', 'Y']
+        });
+
+
+
+    }
 
 
     function setUpEvents() {
-
+        setUpInputs();
         document.querySelector('#add-visita-form').addEventListener('submit', addNuevaVisita);
         new Lightpick({ field: document.getElementById('fecha-visita') });
         setUpDeleteEvent();

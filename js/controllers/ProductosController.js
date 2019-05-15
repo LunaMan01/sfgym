@@ -100,8 +100,48 @@ var productoController = (function() {
 
         // document.querySelector('#descargar-pdf').addEventListener('click', 
     }
+
+    function setUpInputs() {
+
+
+        new Cleave('.numeric-price-add', {
+            numericOnly: true,
+            blocks: [10]
+        });
+
+        new Cleave('.numeric-add', {
+            numericOnly: true,
+            blocks: [10]
+        });
+
+        new Cleave('.numeric-price-update', {
+            numericOnly: true,
+            blocks: [10]
+        });
+
+        new Cleave('.numeric-update', {
+            numericOnly: true,
+            blocks: [10]
+        });
+
+        new Cleave('.date-add', {
+            date: true,
+            delimiter: '/',
+            datePattern: ['d', 'm', 'Y']
+        });
+
+        new Cleave('.date-update', {
+            date: true,
+            delimiter: '/',
+            datePattern: ['d', 'm', 'Y']
+        });
+
+
+
+    }
     
     function setUpEvents() {
+        setUpInputs();
         UIProducto.mostrarTodosLosProductos();
         document.querySelector('#add-producto-form').addEventListener('submit', addNuevoProducto);
         setUpDeleteEvent();

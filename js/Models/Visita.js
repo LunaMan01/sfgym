@@ -38,4 +38,13 @@ class Visita {
         req.send('dato=' + datoABuscar);
         return req.responseText;
     }
+
+    reporte(data) {
+        var req = new XMLHttpRequest();
+        req.open("POST", 'php/visitas/reportes.php', false);
+        // req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+        req.send(data);
+        console.log(req.responseText);
+        return req.responseText;
+    }
 }

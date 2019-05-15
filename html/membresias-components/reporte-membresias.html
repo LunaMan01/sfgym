@@ -16,42 +16,48 @@
             </div>
         </div>
 
-        <div class="row">
-            <div class="container">
+        <form onsubmit="return false" id="reporte-membresias-form">
+            <div class="row">
+                <div class="container">
 
-                <div class="row mb-2">
-                    <div class="col-auto">
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="reporte-membresias-nuevas">
-                            <label class="custom-control-label" for="reporte-membresias-nuevas">Membresias
-                                nuevas</label>
+                    <div class="row mb-2">
+                        <div class="col-auto">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="reporte-membresias-nuevas"
+                                    name="membresias[]" value="1">
+                                <label class="custom-control-label" for="reporte-membresias-nuevas">Membresias
+                                    nuevas</label>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="row mb-2">
-                    <div class="col-auto">
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="reporte-membresias-a-vencer">
-                            <label class="custom-control-label" for="reporte-membresias-a-vencer">Membresias
-                                a vencer</label>
+                    <div class="row mb-2">
+                        <div class="col-auto">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="reporte-membresias-a-vencer"
+                                    name="membresias[]" value="2">
+                                <label class="custom-control-label" for="reporte-membresias-a-vencer">Membresias
+                                    a vencer</label>
+                            </div>
                         </div>
                     </div>
-                </div>
 
+                </div>
             </div>
-        </div>
-
-        <div class="row">
-            <form class="mt-2 ml-5">
-                <div class="form-group">
-                    <label><b>Fecha:</b></label>
-                    <input type="text" class="form-control rounded-pill" id="fecha-rango-reporte">
-                </div>
-            </form>
-        </div>
-        <button id="generar-reporte-membresias" class="btn btn-outline-success btn-sm my-2 my-sm-0 mr-3 rounded-pill"
-            type="submit">Generar</button>
+            <button id="generar-reporte-membresias"
+                class="btn btn-outline-success btn-sm my-2 my-sm-0 mr-3 rounded-pill" type="submit">Generar</button>
+        </form>
     </div>
 
+
+
+
 </div>
+<div class="container reporte-generado d-none mb-5" id="reporte-generado-membresias">
+
+
+
+</div>
+
+    
+

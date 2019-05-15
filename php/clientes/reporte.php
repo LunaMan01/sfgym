@@ -5,9 +5,6 @@
 
     //separar la fecha
     $array = explode("-", $cadenaFecha);
-        
-    $fecha1 = $array[0];
-    $fecha2 = $array[1];
 
     $html = ' 
     <div class="container" id="crear-reporte-card">
@@ -34,8 +31,7 @@
     }
 
     function getClientesInactivos($conn) {
-        global $array, $fecha1, $fecha2;
-        
+
         $inactivo = 0;
         $datos = 'SELECT Clientes.Id_Cliente, nombre_cliente, numero
                 FROM Clientes INNER JOIN Telefonos ON Clientes.Id_Cliente LIKE Telefonos.Id_Cliente WHERE 
@@ -87,7 +83,10 @@
     }
 
     function getClientesMasVisitas($conn) {
-        global $array, $fecha1, $fecha2;
+        global $array;
+
+        $fecha1 = $array[0];
+        $fecha2 = $array[1];
 
         $activo = 1;
         $datos = $conn->prepare('SELECT Visitas.Id_Cliente AS Id_Cliente ,nombre_cliente, COUNT(*) AS nVisitas 
@@ -104,7 +103,7 @@
                             <i class="material-icons iconMessege">group</i>
                         </div>
                         <div class="col-lg-11">
-                            <p>Top 5 Clientes con mayor número de visitas <span> 09/05/2019 al 09/06/2019<span></p>
+                            <p>Top 5 Clientes con mayor número de visitas <span>'.$fecha1.' a '.$fecha2.'<span></p>
                         </div>
                     </div>
 
@@ -143,7 +142,10 @@
     }
 
     function getClientesMenosVisitas($conn) {
-        global $array, $fecha1, $fecha2;
+        global $array;
+
+        $fecha1 = $array[0];
+        $fecha2 = $array[1];
 
         $activo = 1;
         $datos = $conn->prepare('SELECT Visitas.Id_Cliente AS Id_Cliente ,nombre_cliente, COUNT(*) AS nVisitas 
@@ -160,7 +162,7 @@
                             <i class="material-icons iconMessege">group</i>
                         </div>
                         <div class="col-lg-11">
-                            <p>Top 5 Clientes con menor número de visitas <span> 09/05/2019 al 09/06/2019<span></p>
+                            <p>Top 5 Clientes con menor número de visitas <span>'.$fecha1.' a '.$fecha2.'<span></p>
                         </div>
                     </div>
 

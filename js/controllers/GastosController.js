@@ -76,6 +76,29 @@ var gastoController = (function() {
         
     }
 
+    function setUpVentanaReportes() {
+        UIGasto.abrirReportes();
+
+        new Lightpick({
+            field: document.querySelector('#fecha-rango-reporte'),
+            singleDate: false
+
+        });
+
+        document.querySelector('#reporte-gastos-form').addEventListener('submit', generarReporte);
+
+    }
+
+    function generarReporte() {
+        let gasto = new Gasto();
+        let data = UIGasto.getDatosParaReporte();
+
+        let res = gasto.reporte(data);
+        UIGasto.mostrarReporte(res);
+
+        // document.querySelector('#descargar-pdf').addEventListener('click', 
+    }
+
 
     function setUpEvents() {
         UIGasto.mostrarTodosLosGastos(new Gasto().getTodosLosGastos());
@@ -86,7 +109,7 @@ var gastoController = (function() {
         document.querySelector('#modificar-gasto-form').addEventListener('submit', modificarGasto);
         setUpWatchEvent();
         document.querySelector('#buscar-gasto-input').addEventListener('keyup', busquedaDinamica);
-        document.querySelector('#reporte-gasto-btn').addEventListener('click',UIGasto.abrirReportes);
+        document.querySelector('#reporte-gasto-btn').addEventListener('click', setUpVentanaReportes);
     }
 
     return {

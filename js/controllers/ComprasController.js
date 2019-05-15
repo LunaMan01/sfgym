@@ -74,6 +74,29 @@ var compraController = (function() {
         
     }
 
+    function setUpVentanaReportes() {
+        UICompra.abrirReportes();
+
+        new Lightpick({
+            field: document.querySelector('#fecha-rango-reporte'),
+            singleDate: false
+
+        });
+
+        document.querySelector('#reporte-compras-form').addEventListener('submit', generarReporte);
+
+    }
+
+    function generarReporte() {
+        let compra = new Compra();
+        let data = UICompra.getDatosParaReporte();
+
+        let res = compra.reporte(data);
+        UICompra.mostrarReporte(res);
+
+        // document.querySelector('#descargar-pdf').addEventListener('click', 
+    }
+
 
     function setUpEvents() {
         UICompra.mostrarTodasLasCompras(new Compra().getTodosLasCompras());
@@ -84,7 +107,7 @@ var compraController = (function() {
         document.querySelector('#modificar-compra-form').addEventListener('submit', modificarCompra);
         setUpWatchEvent();
         document.querySelector('#buscar-compra-input').addEventListener('keyup', busquedaDinamica);
-        document.querySelector('#reporte-compra-btn').addEventListener('click',UICompra.abrirReportes);
+        document.querySelector('#reporte-compra-btn').addEventListener('click', setUpVentanaReportes);
     }
 
     return {

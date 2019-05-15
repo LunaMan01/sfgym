@@ -78,6 +78,29 @@ var productoController = (function() {
         
     }
 
+    function setUpVentanaReportes() {
+        UIProducto.abrirReportes();
+
+        // new Lightpick({
+        //     field: document.querySelector('#rango-fecha'),
+        //     singleDate: false
+
+        // });
+
+        document.querySelector('#reporte-productos-form').addEventListener('submit', generarReporte);
+
+    }
+
+    function generarReporte() {
+        let producto = new Producto();
+        let data = UIProducto.getDatosParaReporte();
+
+        let res = producto.reporte(data);
+        UIProducto.mostrarReporte(res);
+
+        // document.querySelector('#descargar-pdf').addEventListener('click', 
+    }
+    
     function setUpEvents() {
         UIProducto.mostrarTodosLosProductos();
         document.querySelector('#add-producto-form').addEventListener('submit', addNuevoProducto);
@@ -88,7 +111,7 @@ var productoController = (function() {
         setUpWatchEvent();
         document.querySelector('#buscar-producto-input').addEventListener('keyup', busquedaDinamica);
         new Lightpick({ field: document.getElementById('fecha-caducidad') });
-        document.querySelector('#reporte-producto-btn').addEventListener('click',UIProducto.abrirReportes);
+        document.querySelector('#reporte-producto-btn').addEventListener('click', setUpVentanaReportes);
 
 
     }

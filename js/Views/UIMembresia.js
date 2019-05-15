@@ -93,5 +93,20 @@ var UIMembresia = (function () {
         abrirReportes: function() {
             load('html/membresias-components/reporte-membresias.html', document.querySelector('.content'));
         },
+
+        
+        getDatosParaReporte: function () {
+            var form = document.querySelector('#reporte-membresias-form');
+            var data = new FormData(form);
+            
+            return data;
+        },
+
+        mostrarReporte: function (req) {
+            document.querySelector('#reporte-generado-membresias').classList.remove('d-none');
+            document.querySelector('.panel-reportes').classList.add('d-none');
+            
+            document.querySelector("#reporte-generado-membresias").innerHTML = req;
+        },
     }
 })();

@@ -1,9 +1,9 @@
-var visitaController = (function() {
+var visitaController = (function () {
 
 
     function addNuevaVisita() {
         let data = UIVisita.getDatosParaNuevaVisita();
-        console.log('data='+data);
+        console.log('data=' + data);
         let visita = new Visita();
 
         if (visita.add(data)) {
@@ -21,7 +21,7 @@ var visitaController = (function() {
         }, false);
 
     }
-    
+
     function eliminarVisita() {
 
         let visita = new Visita();
@@ -42,7 +42,7 @@ var visitaController = (function() {
                 let visita = UIVisita.getVisita();
                 UIVisita.setDatosVisitaEnInputs(visita);
                 new Lightpick({ field: document.querySelector('#modificar-visita-form #fecha-visita') });
-    
+
             }
         }, false);
     }
@@ -52,7 +52,7 @@ var visitaController = (function() {
         let visita = new Visita();
         // UICliente.mostrarAnimacionBtn('#guardar-cliente-editado');
         if (visita.modificar(data)) {
-            UIVisita.mostrarMensajeExito('#alert-visita','Visita modificada correctamente');
+            UIVisita.mostrarMensajeExito('#alert-visita', 'Visita modificada correctamente');
             UIVisita.esconderModal('#modificar-visita-modal');
             UIVisita.mostrarTodasLasVisitas();
         }
@@ -65,7 +65,7 @@ var visitaController = (function() {
                 UIVisita.getId(e);
                 let visita = UIVisita.getVisita();
                 UIVisita.verVisita(visita);
-    
+
             }
         }, false);
     }
@@ -75,12 +75,36 @@ var visitaController = (function() {
         let visita = new Visita();
         let datosEncontrados = visita.consultar(dato);
         UIVisita.mostrarDatosEncontrados(datosEncontrados);
-        
+
+    }
+
+    function setUpVentanaReportes() {
+        UIVisita.abrirReportes();
+
+        new Lightpick({
+            field: document.querySelector('#fecha-rango-reporte'),
+            singleDate: false
+
+        });
+
+        document.querySelector('#reporte-visitas-form').addEventListener('submit', generarReporte);
+
+    }
+
+    function generarReporte() {
+        let visita = new Visita();
+        let data = UIVisita.getDatosParaReporte();
+
+        let res = visita.reporte(data);
+        UIVisita.mostrarReporte(res);
+
+        // document.querySelector('#descargar-pdf').addEventListener('click', descargarPDF);
     }
 
 
+
     function setUpEvents() {
-        
+
         document.querySelector('#add-visita-form').addEventListener('submit', addNuevaVisita);
         new Lightpick({ field: document.getElementById('fecha-visita') });
         setUpDeleteEvent();
@@ -88,8 +112,9 @@ var visitaController = (function() {
         setUpEditEvent();
         document.querySelector('#modificar-visita-form').addEventListener('submit', modificarVisita);
         setUpWatchEvent();
-        document.querySelector('#reporte-visita-btn').addEventListener('click',UIVisita.abrirReportes);
-        document.querySelector('#buscar-visita-input').addEventListener('keyup', busquedaDinamica)
+        document.querySelector('#reporte-visita-btn').addEventListener('click', setUpVentanaReportes);
+        document.querySelector('#buscar-visita-input').addEventListener('keyup', busquedaDinamica);
+        document.querySelector('#reporte-visita-btn').addEventListener('click', setUpVentanaReportes);
 
     }
 
@@ -97,7 +122,7 @@ var visitaController = (function() {
         init: function () {
             UIVisita.mostrarTodasLasVisitas();
             setUpEvents();
-           
+
         }
     }
 })(UIVisita);

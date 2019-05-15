@@ -98,5 +98,21 @@ var UICompra  = (function() {
         abrirReportes: function() {
             load('html/compras-components/reporte-compras.html', document.querySelector('.content'));
         },
+
+        getDatosParaReporte: function () {
+            var form = document.querySelector('#reporte-compras-form');
+            var data = new FormData(form);
+            
+            data.append('fecha', document.querySelector('#fecha-rango-reporte').value);
+            // console.log(document.querySelector('#rango-fecha').value);
+            return data;
+        },
+
+        mostrarReporte: function (req) {
+            document.querySelector('.reporte-generado').classList.remove('d-none');
+            document.querySelector('.panel-reportes').classList.add('d-none');
+            
+            document.querySelector(".reporte-generado").innerHTML = req;
+        },
     }
 })();

@@ -25,16 +25,12 @@
     background: #F7F7F8;
 }
 
-.material-icons{
-    font-size: 100px;
-}
-
 nav i {
     font-size: 30px !important; 
 }
 
 .iconos-inicio{
-    
+    font-size: 170% !important;
 }
 
 .downCard i{
@@ -224,6 +220,6 @@ hr{
     white-space: nowrap;
     word-wrap: normal;
     direction: ltr;
-    -moz-font-feature-settings: 'liga';
+    -moz-font-feature-settings:'liga';
     -moz-osx-font-smoothing: grayscale;
   }

@@ -34,7 +34,7 @@ class Membresia {
         var req = new XMLHttpRequest();
         req.open("POST", 'php/membresias/consultaDinamica.php', false);
         req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-        req.send('dato=' + datoABuscar+"&select-membresias = "+selectActual);
+        req.send('dato=' + datoABuscar+"&select-membresias="+selectActual);
         return req.responseText;
     }
 

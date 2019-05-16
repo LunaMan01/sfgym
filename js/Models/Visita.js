@@ -31,11 +31,11 @@ class Visita {
         return true;
     }
 
-    consultar(datoABuscar) {
+    consultar(datoABuscar, selectActual) {
         var req = new XMLHttpRequest();
         req.open("POST", 'php/visitas/consultaDinamica.php', false);
         req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-        req.send('dato=' + datoABuscar);
+        req.send('dato=' + datoABuscar+"&select-visitas="+selectActual);
         return req.responseText;
     }
 

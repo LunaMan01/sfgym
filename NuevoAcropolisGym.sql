@@ -61,6 +61,7 @@ create table Visitas(
 
 create table Ventas(
 	Id_Venta int not null auto_increment,
+	total_venta int,
 
 	Id_Cliente int not null,
 	Id_Instructor int not null,

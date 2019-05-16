@@ -40,7 +40,7 @@ class Button {
 
     getButton() {
         return `
-            <div class="d-flex btn-add">
+            <div class="d-lg-flex btn-add d-none">
             <button class="btn btn-outline-success btn-sm my-2 my-sm-0 mr-3 rounded-pill" type="button" id="${this.id}">${this.text}</button>
             </div>
         `;

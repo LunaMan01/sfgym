@@ -28,17 +28,19 @@ var ventaController = (function() {
     }
 
     function guardarVenta () {
-        let nipCliente = document.querySelector('#nip-cliente');
-        let idInstructor = document.querySelector('#nip-instructor');
+        let nipCliente = document.querySelector('#nip-cliente').value;
+        console.log(nipCliente);
+        let idInstructor = document.querySelector('#nip-instructor').value;
+        let totalVenta = document.querySelector('#total-venta').value;
 
         let venta = {
             "nipCliente" : nipCliente,
             "idInstructor" : idInstructor,
+            "totalVenta" : totalVenta
         }
 
-        let ventaJSON = JSON.stringify(venta);
-        console.log(ventaJSON);
 
+        console.log(venta);
         let carrito = document.querySelectorAll('.carrito');
 
         
@@ -51,10 +53,9 @@ var ventaController = (function() {
             productosEnCarrito.push(producto);
         });
 
-        let carritoJSON = JSON.stringify(productosEnCarrito);
-        console.log(carritoJSON);
+        
 
-        new Venta().add(ventaJSON, productosEnCarrito);
+        new Venta().add(venta, productosEnCarrito);
     }
 
     function setUpEvents() {

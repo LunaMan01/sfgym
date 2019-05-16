@@ -1,6 +1,6 @@
 const divAdicional = document.querySelector('#elementos-adicionales');
 class Toast {
-   
+
     constructor(divContainerId, mensaje, time, type) {
         this.divContainerId = divContainerId;
         this.mensaje = mensaje;
@@ -11,7 +11,7 @@ class Toast {
     getAndShow() {
         console.log(this.divContainerId);
         document.querySelector(this.divContainerId).classList.remove('d-none');
-        
+
         document.querySelector(this.divContainerId).innerHTML = `
         <div class="d-flex justify-content-end mt-4 fixed-top">
             <div class="alert alert-dismissible fade show ${this.type} " role="alert">
@@ -26,7 +26,7 @@ class Toast {
         setTimeout(() => {
             document.querySelector(this.divContainerId).classList.add('d-none');
             document.querySelector(this.divContainerId).innerHTML = ' ';
-        },this.time);
+        }, this.time);
 
     }
 

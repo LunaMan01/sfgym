@@ -107,10 +107,10 @@
             //COMPRAS DEL DIA
             $fecha = date('d/m/Y');
 
-            $consulta = "SELECT Id_Compra, Compras.Id_Instructor, descripcion_compra, monto_compra, fecha_compra, cantidad
+            $consulta = $conn->prepare("SELECT Id_Compra, Compras.Id_Instructor, descripcion_compra, monto_compra, fecha_compra, cantidad
                 FROM Compras INNER JOIN Instructores ON Compras.Id_Instructor = Instructores.Id_Instructor
                 AND fecha_gasto LIKE '".$fecha."' WHERE Id_Compra LIKE ? OR Compras.Id_Instructor LIKE ? 
-                OR descripcion_compra LIKE ? OR monto_compra LIKE ? OR fecha_compra LIKE ? OR cantidad LIKE ?";
+                OR descripcion_compra LIKE ? OR monto_compra LIKE ? OR fecha_compra LIKE ? OR cantidad LIKE ?");
 
             $consulta->execute(array($dato."%", $dato."%", $dato."%", $dato."%", $dato."%", $dato."%"));
 

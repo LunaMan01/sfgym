@@ -25,21 +25,26 @@
                 </tr>';
             }
         }
+        
         if($_POST['select-membresias'] == 1){
             //MEMBRESIAS VIGENTES
             $fecha = date('d/m/Y');
-
-            $consultar = "SELECT Id_Membresia, nombre_cliente, fecha_inicio, fecha_fin 
+          
+            $consultar = $conn->prepare("SELECT Id_Membresia, nombre_cliente, fecha_inicio, fecha_fin 
                 FROM Membresias INNER JOIN Clientes ON Membresias.Id_Cliente = Clientes.Id_Cliente
-                WHERE '".$fecha."' BETWEEN fecha_inicio AND fecha_fin WHERE 
-                Id_Membresia LIKE ? OR nombre_cliente LIKE ? OR fecha_inicio LIKE ? OR fecha_fin LIKE ?";
+                AND str_to_date('".$fecha."', '%d/%m/%Y') BETWEEN str_to_date(fecha_inicio, '%d/%m/%Y') 
+                AND str_to_date(fecha_fin, '%d/%m/%Y')
+                WHERE Id_Membresia LIKE ? OR nombre_cliente LIKE ? OR fecha_inicio LIKE ? 
+                OR fecha_fin LIKE ?");
 
-            foreach($conn->query($consultar) as $row){
+            $consultar->execute(array($dato."%", $dato."%", $dato."%", $dato."%"));
+
+            while($results = $consultar->fetch()){
                 echo '<tr>
-                    <th scope="row" id="'.$row['Id_Membresia'].'">'.$row['Id_Membresia'].'</th>'.
-                    '<td>'.$row['nombre_cliente'].'</td>'.
-                    '<td>'.$row['fecha_inicio'].'</td>'.
-                    '<td>'.$row['fecha_fin'].'</td>'.
+                    <th scope="row" id="'.$results['Id_Membresia'].'">'.$results['Id_Membresia'].'</th>'.
+                    '<td>'.$results['nombre_cliente'].'</td>'.
+                    '<td>'.$results['fecha_inicio'].'</td>'.
+                    '<td>'.$results['fecha_fin'].'</td>'.
                 '<td>
                     <i class="material-icons actions watch-action mr-2" data-toggle="modal" href="#ver-membresia-modal"> remove_red_eye</i>
                     <i class="material-icons actions edit-action mr-2" data-toggle="modal" href="#modificar-membresia-modal"> create</i>

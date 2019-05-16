@@ -33,19 +33,21 @@
 
             $fechaSiguiente = masSieteDias();
             
-            $consultar = "SELECT Id_Producto, descripcion_producto, fecha_caducidad, existencia_producto, precio_producto 
+            $consultar = $conn->prepare("SELECT Id_Producto, descripcion_producto, fecha_caducidad, existencia_producto, precio_producto 
                 FROM productos WHERE str_to_date(fecha_caducidad, '%d/%m/%Y') 
                 BETWEEN str_to_date('".$fechaActual."', '%d/%m/%Y') AND str_to_date('".$fechaSiguiente."', '%d/%m/%Y')
-                WHERE Id_Producto LIKE ? OR descripcion_producto LIKE ? OR 
-                fecha_caducidad LIKE ? OR existencia_producto LIKE ? OR precio_producto LIKE ?";
+                AND Id_Producto LIKE ? OR descripcion_producto LIKE ? OR 
+                fecha_caducidad LIKE ? OR existencia_producto LIKE ? OR precio_producto LIKE ?");
 
-            foreach($conn->query($consultar) as $row){
+            $consultar->execute(array($dato."%", $dato."%", $dato."%", $dato."%", $dato."%"));
+
+            while($results = $consultar->fetch()){
                 echo '<tr>
-                    <th scope="row" id="'.$row['Id_Producto'].'">'.$row['Id_Producto'].'</th>'.
-                    '<td>'.$row['descripcion_producto'].'</td>'.
-                    '<td>'.$row['fecha_caducidad'].'</td>'.
-                    '<td>'.$row['existencia_producto'].'</td>'.
-                    '<td>'.$row['precio_producto'].'</td>'.
+                    <th scope="row" id="'.$results['Id_Producto'].'">'.$results['Id_Producto'].'</th>'.
+                    '<td>'.$results['descripcion_producto'].'</td>'.
+                    '<td>'.$results['fecha_caducidad'].'</td>'.
+                    '<td>'.$results['existencia_producto'].'</td>'.
+                    '<td>'.$results['precio_producto'].'</td>'.
                 '<td>
                     <i class="material-icons actions watch-action mr-2" data-toggle="modal" href="#ver-producto-modal"> remove_red_eye</i>
                     <i class="material-icons actions edit-action mr-2" data-toggle="modal" href="#modificar-producto-modal"> create</i>
@@ -56,17 +58,19 @@
 
         if($_POST['select-productos'] == 3){
             //PRODUCTOS POCA EXISTENCIA
-            $consultar = "SELECT Id_Producto, descripcion_producto, fecha_caducidad, existencia_producto, precio_producto 
-                FROM productos WHERE existencia_producto < 5 WHERE Id_Producto LIKE ? OR descripcion_producto LIKE ? OR 
-                fecha_caducidad LIKE ? OR existencia_producto LIKE ? OR precio_producto LIKE ?";
+            $consultar = $conn->prepare("SELECT Id_Producto, descripcion_producto, fecha_caducidad, existencia_producto, precio_producto 
+                FROM productos WHERE existencia_producto < 5 AND Id_Producto LIKE ? OR descripcion_producto LIKE ? OR 
+                fecha_caducidad LIKE ? OR existencia_producto LIKE ? OR precio_producto LIKE ?");
 
-            foreach($conn->query($consultar) as $row){
+            $consultar->execute(array($dato."%", $dato."%", $dato."%", $dato."%", $dato."%"));
+
+            while($results = $consultar->fetch()){
                 echo '<tr>
-                    <th scope="row" id="'.$row['Id_Producto'].'">'.$row['Id_Producto'].'</th>'.
-                    '<td>'.$row['descripcion_producto'].'</td>'.
-                    '<td>'.$row['fecha_caducidad'].'</td>'.
-                    '<td>'.$row['existencia_producto'].'</td>'.
-                    '<td>'.$row['precio_producto'].'</td>'.
+                    <th scope="row" id="'.$results['Id_Producto'].'">'.$results['Id_Producto'].'</th>'.
+                    '<td>'.$results['descripcion_producto'].'</td>'.
+                    '<td>'.$results['fecha_caducidad'].'</td>'.
+                    '<td>'.$results['existencia_producto'].'</td>'.
+                    '<td>'.$results['precio_producto'].'</td>'.
                 '<td>
                     <i class="material-icons actions watch-action mr-2" data-toggle="modal" href="#ver-producto-modal"> remove_red_eye</i>
                     <i class="material-icons actions edit-action mr-2" data-toggle="modal" href="#modificar-producto-modal"> create</i>

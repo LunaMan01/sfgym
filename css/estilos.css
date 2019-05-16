@@ -104,113 +104,99 @@ hr{
     padding: .5rem;
 }
 
-@media print {
-    body, html {
-        width: 100%;
-    }
-    .cards-inicio{
-        background-color: #FFFF;
-        border: 1px solid #AAAC;
-        border-radius: 10px;
-        padding: 0.5rem;
-        margin: 0px;
-    }
-    .btn {
-        background-color: #FFFF;
-        color: black;
-    }
-    
-    .actions {
-        font-size: 24px !important;
-        cursor: pointer;
-    }
-    
-    .btn-drop{
-        border-radius: 15px;
-        background-color: #FFFF;
-        color: black;
-    }
-    
-    .search{
-        width: 300px;
-    }
-    .content, .main-panel {
-        background: #F7F7F8;
-    }
-    
-    .material-icons{
-        font-size: 100px;
-    }
-    
-    nav i {
-        font-size: 30px !important; 
-    }
-    
-    .downCard i{
-        font-size: 20px;
-        float: left;
-        text-align: center; 
-        margin: 0px; 
-    }
-    
-    h3{
-        text-align: right;
-        font-size: 25px;
-        color: #6a6a6a;
-    }
-    
-    .iconCard{
-        color: #54ad58;
-    }
-    
-    hr{
-        margin:15px;
-    }
-    
-    .downCard hr{
-        margin: 8px;
-    }
-    
-    .parrDownCard{
-        color:#AAAC;
-    }
-    
-    .iconWarning {
-        color: red;
-        font-size: 25px;
-        margin: 10px;
-    }
-    .tablaPrincipal{
-        background-color: #FFFF;
-        border-radius: 15px;
-        border: 1px solid #AAAC;
-        
-    }
-    
-    .mensajeAlert p{
-        padding: 8px;
-    }
-    .mensajeAlert{
-        float: none;
-    }
-    
-    .form, .card-ver-cliente{
-        background: #FFFF;
-        padding: 10px;
-        border-radius: 15px;
-        border: #6a6a6a solid 1px;
-    }
-    
-    .iconMessege{
-        color: #54ad58;
-        font-size:30px;
-        margin: .5rem;
-    } 
-    
-    .panel-reportes{
-        background-color: #FFFF;
-        border-radius: 15px;
-        border: 1px solid #AAAC; 
-        padding: .5rem;
-    } 
-}
+.cont {
+    bottom: 0;
+    position: fixed;
+    margin: 1em;
+    right: 0px;
+  }
+  
+  .buttons {
+    box-shadow: 0px 5px 11px -2px rgba(0, 0, 0, 0.18), 
+                0px 4px 12px -7px rgba(0, 0, 0, 0.15);
+    border-radius: 50%;
+    display: block;
+    width: 56px;
+    height: 56px;
+    margin: 20px auto 0;
+    position: relative;
+    -webkit-transition: all .1s ease-out;
+            transition: all .1s ease-out;  
+  }
+  
+  .buttons:active, 
+  .buttons:focus, 
+  .buttons:hover {
+    box-shadow: 0 0 4px rgba(0,0,0,.14),
+      0 4px 8px rgba(0,0,0,.28);
+  }
+  
+  .buttons:not(:last-child) {
+    width: 40px;
+    height: 40px;
+    margin: 20px auto 0;
+    opacity: 0;
+    -webkit-transform: translateY(50px);
+        -ms-transform: translateY(50px);
+            transform: translateY(50px);
+  }
+  
+  .cont:hover 
+  .buttons:not(:last-child) {
+    opacity: 1;
+    -webkit-transform: none;
+        -ms-transform: none;
+            transform: none;
+    margin: 15px auto 0;
+  }
+  
+  /* Unessential styling for sliding up buttons at differnt speeds */
+  
+  .buttons:nth-last-child(1) {
+    -webkit-transition-delay: 25ms;
+            transition-delay: 25ms;
+            background-image: url('../img/add3.png');
+    background-size: contain;
+  }
+  
+  .buttons:not(:last-child):nth-last-child(2) {
+    -webkit-transition-delay: 50ms;
+            transition-delay: 20ms;
+            background-image: url('../img/add3.png');
+    background-size: contain;
+  }
+  
+  .buttons:not(:last-child):nth-last-child(3) {
+    -webkit-transition-delay: 75ms;
+            transition-delay: 40ms;
+    background-image: url('../img/report.png');
+    background-size: contain;
+  }
+  
+  
+  
+  /* Show tooltip content on hover */
+  
+  [tooltip]:before {
+    bottom: 25%;
+    font-family: arial;
+    font-weight: 600;
+    border-radius: 2px;
+    background: #585858;
+    color: #fff;
+    content: attr(tooltip);
+    font-size: 12px;
+    visibility: hidden;
+    opacity: 0;
+    padding: 5px 7px;
+    margin-right: 12px;
+    position: absolute;
+    right: 100%;
+    white-space: nowrap;
+  }
+  
+  [tooltip]:hover:before,
+  [tooltip]:hover:after {
+    visibility: visible;
+    opacity: 1;
+  }

@@ -550,8 +550,9 @@ aria-hidden="true">
                 <div class="form-group">
                     <label for="categorias-gastos">Categoria</label>
                     <select class="form-control" id="categorias-gastos" name="tipo-gasto">
-                        <option  value="1">1</option>
-                        <option>2</option>
+                        <option value="1">Gasto fijo</option>
+                        <option value="2">Gasto Mantenimiento</option>
+                        <option value="3">Inversión</option>
                     </select>
                 </div>
 

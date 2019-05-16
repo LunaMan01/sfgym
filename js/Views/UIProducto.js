@@ -1,27 +1,21 @@
-var UIProducto  = (function() {
-
-    function mostrarTodosLosProductos() {
-        var spinner = '<div class="d-flex mt-3">' +
-            '<div class="spinner-grow text-success" role="status"><span class="sr-only">Loading...</span></div>' +
-            '<div class="spinner-grow text-success" role="status"><span class="sr-only">Loading...</span></div>' +
-            '<div class="spinner-grow text-success" role="status"><span class="sr-only">Loading...</span></div></div>';
-        document.querySelector('#cuerpo-tabla-productos').innerHTML = spinner;
-        var req = new XMLHttpRequest();
-        req.open("POST", 'php/productos/consultarProductos.php', false);
-        req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-        req.send(null);
-        document.querySelector('#cuerpo-tabla-productos').innerHTML = req.responseText
-
-    }
-
+var UIProducto = (function () {
 
 
     return {
-        mostrarTodosLosProductos: function() {
+
+        mostrarCarga: function () {
+            var spinner = '<div class="d-flex mt-3">' +
+                '<div class="spinner-grow text-success" role="status"><span class="sr-only">Loading...</span></div>' +
+                '<div class="spinner-grow text-success" role="status"><span class="sr-only">Loading...</span></div>' +
+                '<div class="spinner-grow text-success" role="status"><span class="sr-only">Loading...</span></div></div>';
+            document.querySelector('#cuerpo-tabla-productos').innerHTML = spinner;
+        },
+
+        mostrarTodosLosProductos: function () {
             mostrarTodosLosProductos();
         },
 
-        getDatosParaNuevoProducto: function() {
+        getDatosParaNuevoProducto: function () {
             let form = document.querySelector('#add-producto-form');
             let data = new FormData(form);
             return data;
@@ -46,7 +40,7 @@ var UIProducto  = (function() {
             localStorage.setItem('id', id);
         },
 
-        
+
         quitarRegistro: function () {
             tr.remove();
         },
@@ -84,7 +78,8 @@ var UIProducto  = (function() {
             document.querySelector('#ver-producto-form #existencia-producto').innerHTML = producto.existenciaProducto;
             document.querySelector('#ver-producto-form #precio-producto').innerHTML = producto.precioProducto;
         },
-        mostrarDatosEncontrados: function(datos) {
+
+        mostrarProductosEnTabla: function (datos) {
             document.querySelector('#cuerpo-tabla-productos').innerHTML = datos;
         },
 
@@ -99,23 +94,23 @@ var UIProducto  = (function() {
 
 
 
-        abrirReportes: function() {
+        abrirReportes: function () {
             load('html/productos-components/reporte-productos.html', document.querySelector('.content'));
         },
 
         getDatosParaReporte: function () {
             var form = document.querySelector('#reporte-productos-form');
             var data = new FormData(form);
-            
+
             data.append('fecha', document.querySelector('#fecha-rango-reporte').value);
-            
+
             return data;
         },
 
         mostrarReporte: function (req) {
             document.querySelector('.reporte-generado').classList.remove('d-none');
             document.querySelector('.panel-reportes').classList.add('d-none');
-            
+
             document.querySelector(".reporte-generado").innerHTML = req;
         },
     }

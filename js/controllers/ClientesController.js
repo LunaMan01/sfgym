@@ -124,7 +124,7 @@ var clienteController = (function () {
         let dato = UICliente.getDatosABuscar();
         let cliente = new Cliente();
         let datosEncontrados = cliente.consultar(dato);
-        UICliente.mostrarDatosEncontrados(datosEncontrados);
+        UICliente.mostrarClientesEnTabla(datosEncontrados);
 
     }
 

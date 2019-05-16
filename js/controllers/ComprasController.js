@@ -70,7 +70,7 @@ var compraController = (function() {
         let dato = UICompra.getDatosABuscar();
         let compra = new Compra();
         let datosEncontrados = compra.consultar(dato);
-        UICompra.mostrarDatosEncontrados(datosEncontrados);
+        UICompra.mostrarComprasEnTabla(datosEncontrados);
         
     }
 

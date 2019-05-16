@@ -74,7 +74,7 @@ var productoController = (function() {
         let dato = UIProducto.getDatosABuscar();
         let producto = new Producto();
         let datosEncontrados = producto.consultar(dato);
-        UIProducto.mostrarDatosEncontrados(datosEncontrados);
+        UIProducto.mostrarProductosEnTabla(datosEncontrados);
         
     }
 

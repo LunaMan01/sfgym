@@ -813,8 +813,13 @@ aria-hidden="true">
                     <label>Fecha:</label>
                     <input type="text" class="form-control date-add" id="fecha-compra"  name="fecha-compra" placeholder="dd/mm/yyyy" required>
                 </div>
-
-
+                <div class="form-group">
+                    <select class="form-control" id="categorias-gastos" name="tipo-compra[]">
+                        <option value="1">Producto</option>
+                        <option value="2">Aparato</option>
+                        <option value="3">Otro</option>
+                    </select>
+                </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                     <button type="submit" class="btn btn-success">Guargar</button>

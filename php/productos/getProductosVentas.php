@@ -4,8 +4,7 @@
     try{
         $consultar = 'SELECT Id_Producto, descripcion_producto, fecha_caducidad, existencia_producto, precio_producto 
         FROM Productos';
-
-        
+  
         $productos =  array();
         $i = 0;
         foreach($conn->query($consultar) as $row){
@@ -15,7 +14,6 @@
             $producto->precioProducto = $row['precio_producto'];
             $productos[$i] = $producto;
             $i++;
-
         }
 
         $productosJSON = json_encode($productos);

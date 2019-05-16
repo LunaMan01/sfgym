@@ -2,11 +2,9 @@
     include '../conexion.php';
     
     try {
-        echo "Conexion";
-        $activo = 1;
     //DATOS MAS BASICOS DEL CLIENTE    
         $cliente = $conn->prepare('INSERT INTO Clientes (nombre_cliente, apellido_paterno, apellido_materno, edad, activo) 
-        VALUES (:nombre, :paterno, :materno, :edad, '.$activo.')');
+        VALUES (:nombre, :paterno, :materno, :edad, 1)');
         
         $cliente->bindParam(':nombre', $_POST['nombre_cliente']);
         $cliente->bindParam(':paterno', $_POST['ap-parno']);
@@ -36,17 +34,6 @@
         $direccion->bindParam('numeroex', $_POST['num-ext']);
         $direccion->bindParam('numeroin', $_POST['num-int']);
         $direccion->execute();
-    
-    // //MEMBRESIA
-    //     $membresia = $conn->prepare('INSERT INTO Membresias (Id_Cliente, fecha_inicio, fecha_fin)
-    //     VALUES (:ID, :inicio, :fin)');
-
-    //     $membresia->bindParam(':ID', $lastId);
-    //     $membresia->bindParam(':inicio', $_POST['inicio']);
-    //     $membresia->bindParam(':fin', $_POST['fin']);
-    //     $membresia->execute();
-
-        echo "New records created successfully";
     }   
     catch(PDOException $e){
         echo "Error: ". $e->getMessage();

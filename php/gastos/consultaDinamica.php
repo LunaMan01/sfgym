@@ -4,29 +4,6 @@
     $dato = $_POST['dato'];
 
     try{
-        // if($_POST['select-gastos'] == 4){
-        //     //TODOS LOD¿S GASTOS
-        //     $query = $conn->prepare('SELECT Id_Gasto, descripcion_gasto, fecha_gasto, monto_gasto, tipo_gasto
-        //         FROM Gastos INNER JOIN TipoGastos ON Gastos.Id_Tipo LIKE TipoGastos.Id_Tipo WHERE 
-        //         Id_Gasto LIKE ? OR descripcion_gasto LIKE ? OR fecha_gasto LIKE ? OR monto_gasto LIKE ? OR tipo_gasto LIKE ?');
-
-        //     $query->execute(array($dato."%", $dato."%", $dato."%", $dato."%", $dato."%"));
-
-        //     while($results = $query->fetch()){
-        //         echo '<tr>
-        //             <th scope="row" id="'.$results['Id_Gasto'].'">'.$results['Id_Gasto'].'</th>'.
-        //                 '<td>'.$results['descripcion_gasto'].'</td>'.
-        //                 '<td>'.$results['monto_gasto'].'</td>'.
-        //                 '<td>'.$results['fecha_gasto'].'</td>'.
-        //                 '<td>'.$results['tipo_gasto'].'</td>'.
-        //             '<td>
-        //                 <i class="material-icons actions watch-action mr-2"  data-toggle="modal" href="#ver-gasto-modal"> remove_red_eye</i>
-        //                 <i class="material-icons actions edit-action mr-2" data-toggle="modal" href="#modificar-gasto-modal"> create</i>
-        //                 <i class="material-icons actions delete-action mr-2" data-toggle="modal" href="#eliminar-gasto-modal"> delete</i> </td>
-        //         </tr>';
-        //     }
-        // }
-
         if($_POST['select-gastos'] == 3){
             //GASTOS DEL DIA
             $fecha = date('d/m/Y');
@@ -34,7 +11,8 @@
             $consultar = $conn->prepare("SELECT Id_Gasto, descripcion_gasto, fecha_gasto, monto_gasto, tipo_gasto 
                 FROM Gastos INNER JOIN TipoGastos ON Gastos.Id_Tipo LIKE TipoGastos.Id_Tipo
                 AND fecha_gasto LIKE '".$fecha."' WHERE 
-                Id_Gasto LIKE ? OR descripcion_gasto LIKE ? OR fecha_gasto LIKE ? OR monto_gasto LIKE ? OR tipo_gasto LIKE ?");
+                Id_Gasto LIKE ? OR descripcion_gasto LIKE ? OR fecha_gasto LIKE ? OR monto_gasto LIKE ? 
+                OR tipo_gasto LIKE ?");
 
             $consultar->execute(array($dato."%", $dato."%", $dato."%", $dato."%", $dato."%"));
 

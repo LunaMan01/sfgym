@@ -4,6 +4,7 @@
     $dato = $_POST['dato'];
     
     try{
+        if($_POST['value'] == 3){
         $query = $conn->prepare('SELECT Id_Visita, nombre_cliente, fecha_visitas
         FROM Visitas INNER JOIN Clientes ON Clientes.Id_Cliente LIKE Visitas.Id_Cliente WHERE 
         Id_Visita LIKE ? OR nombre_cliente LIKE ? OR fecha_visitas LIKE ?');
@@ -21,6 +22,7 @@
                 <i class="material-icons actions delete-action mr-2" data-toggle="modal" href="#eliminar-visita-modal"> delete</i> </td>
             </tr>';
         }
+    }
     }catch(PDOException $e){
         echo 'Error: '. $e->getMessage();
     }

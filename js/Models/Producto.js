@@ -45,4 +45,28 @@ class Producto {
         req.send(data);
         return req.responseText;
     }
+
+    getPocasExistencias () {
+        var req = new XMLHttpRequest();
+        req.open("POST", 'php/productos/consultaPocas.php', false);
+       
+        req.send(null);
+        return req.responseText;
+    }
+
+    getProximosACaducar () {
+        var req = new XMLHttpRequest();
+        req.open("POST", 'php/productos/consultaPocas.php', false);
+       
+        req.send(null);
+        return req.responseText;
+    }
+
+    getTodos () {
+        var req = new XMLHttpRequest();
+        req.open("POST", 'php/productos/consultarProductos.php', false);
+       
+        req.send(null);
+        return req.responseText;
+    }
 }

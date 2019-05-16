@@ -71,9 +71,22 @@ var visitaController = (function () {
     }
 
     function busquedaDinamica() {
+        let opcionSelect;
+
+        let visitasDia = document.querySelector('#visitas-dia');
+        let visitasSema = document.querySelector('#visitas-semana');
+        let visitasMes = document.querySelector('#visitas-mes');
+
+        if (visitasDia.selected)
+            opcionSelect = 1;
+        else if (visitasSema.selected)
+            opcionSelect = 2;
+        else if (visitasMes.selected)
+            opcionSelect = 3;
+
         let dato = UIVisita.getDatosABuscar();
         let visita = new Visita();
-        let datosEncontrados = visita.consultar(dato);
+        let datosEncontrados = visita.consultar(dato, opcionSelect);
         UIVisita.mostrarVisitasEnTabla(datosEncontrados);
 
     }

@@ -30,11 +30,11 @@ class Producto {
         return true;
     }
 
-    consultar(datoABuscar) {
+    consultar(datoABuscar, selectActual) {
         var req = new XMLHttpRequest();
         req.open("POST", 'php/productos/consultaDinamica.php', false);
         req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-        req.send('dato=' + datoABuscar);
+        req.send('dato=' + datoABuscar+"&select-productos="+selectActual);
         return req.responseText;
     }
 

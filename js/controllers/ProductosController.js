@@ -71,9 +71,22 @@ var productoController = (function() {
     }
 
     function busquedaDinamica() {
+        let opcionSelect;
+
+        let aCaducar = document.querySelector('#productos-proximos-caducidad');
+        let todosLosProductos = document.querySelector('#todos-los-productos');
+        let pocasExistencias = document.querySelector('#productos-pocas-existencias');
+
+        if(todosLosProductos.selected)
+            opcionSelect = 1;
+        else if(aCaducar.selected)
+            opcionSelect = 2;
+        else if (pocasExistencias.selected)
+            opcionSelect = 3;
+
         let dato = UIProducto.getDatosABuscar();
         let producto = new Producto();
-        let datosEncontrados = producto.consultar(dato);
+        let datosEncontrados = producto.consultar(dato, opcionSelect);
         UIProducto.mostrarProductosEnTabla(datosEncontrados);
         
     }

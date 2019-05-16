@@ -1,12 +1,10 @@
 <?php 
     include '../conexion.php';
 
+    date_default_timezone_set('America/Mexico_City');
+
     try{
         $fecha = date('d/m/Y');
-        
-        // $query= mysqli_query($conn, "SELECT fecha_inicio FROM Membresias");
-        // $fecha = mysqli_num_rows($query);
-        // echo $fecha;
 
         $consultar = "SELECT Id_Membresia, nombre_cliente, fecha_inicio, fecha_fin 
         FROM Membresias INNER JOIN Clientes ON Membresias.Id_Cliente = Clientes.Id_Cliente

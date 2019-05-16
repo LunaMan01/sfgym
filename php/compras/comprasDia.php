@@ -7,7 +7,7 @@
     try{
         $consulta = "SELECT Id_Compra, Compras.Id_Instructor, descripcion_compra, monto_compra, fecha_compra, cantidad
         FROM Compras INNER JOIN Instructores ON Compras.Id_Instructor = Instructores.Id_Instructor
-        AND fecha_gasto LIKE '".$fecha."'";
+        AND fecha_compra LIKE '".$fecha."'";
 
         foreach($conn->query($consulta) as $row){
             echo '<tr>

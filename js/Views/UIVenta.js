@@ -34,7 +34,10 @@ var UIVenta = (function () {
             let subtotal = precio * cantidad;
             let productoTr = `
                 <tr>
-                    <td scope="row" id="${productoId}">${productoId}</th>
+                    <td scope="row" class="carrito" id="${productoId}" 
+                    data-cantidad="${cantidad}"
+                    data-subtotal = "${subtotal}"
+                    >${productoId}</th>
                     <td>${producto}</td>
                     <td class="subtotales">${subtotal}</td>
                     <td>${cantidad}</td>

@@ -115,10 +115,7 @@ var compraController = (function() {
     function setUpInputs () {
         new Lightpick({ field: document.getElementById('fecha-compra') });
 
-        new Cleave ('.numeric-c-add', {
-            numericOnly: true,
-            blocks : [11]
-        });
+        
 
         new Cleave ('.numeric-m-add', {
             numericOnly: true,
@@ -131,10 +128,7 @@ var compraController = (function() {
             datePattern: ['d', 'm', 'Y']
         });
 
-        new Cleave ('.numeric-c-update', {
-            numericOnly: true,
-            blocks : [11]
-        });
+        
 
         new Cleave ('.numeric-m-update', {
             numericOnly: true,

@@ -4,7 +4,7 @@
     $dato = $_POST['dato'];
 
     try{
-        if($_POST['select-membresias' == 2]){
+        if($_POST['select-membresias'] == 2){
         //TODAS LAS MEMBRESIAS
             $query = $conn->prepare('SELECT Id_Membresia, nombre_cliente, fecha_inicio, fecha_fin
                 FROM Membresias INNER JOIN Clientes ON Clientes.Id_Cliente LIKE Membresias.Id_Cliente WHERE 

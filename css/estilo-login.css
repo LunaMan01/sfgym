@@ -1,0 +1,19 @@
+ /* LOG IN */
+*{
+    margin: 0;
+    padding: 0;
+}
+
+ body{
+    background:black;
+ }
+
+ .color-text-login{
+    color:#000;
+}
+
+.login-form{
+
+    background: #f3f3f3;
+    border: 1px solid rgba(0, 0, 50, 0.74)
+}

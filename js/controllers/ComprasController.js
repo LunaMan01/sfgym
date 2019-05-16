@@ -70,7 +70,7 @@ var compraController = (function() {
         let dato = UICompra.getDatosABuscar();
         let compra = new Compra();
         let datosEncontrados = compra.consultar(dato);
-        UICompra.mostrarDatosEncontrados(datosEncontrados);
+        UICompra.mostrarComprasEnTabla(datosEncontrados);
         
     }
 
@@ -134,11 +134,51 @@ var compraController = (function() {
        
     }
 
+  
+
+    
+    function mostrarTodas () {
+        UICompra.mostrarCarga();
+        UICompra.mostrarComprasEnTabla(new Compra().getTodosLasCompras());
+    }
+
+    function mostrarComprasDia () {
+        UICompra.mostrarCarga();
+        UICompra.mostrarComprasEnTabla(new Compra().getComprasDia());
+    }
+
+    function mostrarComprasMes () {
+        UICompra.mostrarCarga();
+        UICompra.mostrarComprasEnTabla(new Compra().getComprasMes());
+    }
+
+    function mostrarComprasSemana () {
+        UICompra.mostrarCarga();
+        UICompra.mostrarComprasEnTabla(new Compra().getComprasSemana());
+    }
+
+    function cambiarVista () {
+        let todasLasCompras = document.querySelector('#todas-las-compras');
+        let comprasMes = document.querySelector('#compras-ultimo-mes');
+        let comprasSemana = document.querySelector('#compras-semana');
+        let comprasDia = document.querySelector('#compras-dia');
+
+        if(todasLasCompras.selected)
+            mostrarTodas();
+        else if (comprasMes.selected)
+            mostrarComprasMes();
+        else if (comprasDia.selected)
+            mostrarComprasDia();
+        else if (comprasSemana.selected)
+            mostrarComprasSemana();
+    }
+
 
 
     function setUpEvents() {
+        mostrarTodas();
         setUpInputs();
-        UICompra.mostrarTodasLasCompras(new Compra().getTodosLasCompras());
+      
         document.querySelector('#add-compra-form').addEventListener('submit', addNuevaCompra);
         setUpDeleteEvent();
         document.querySelector('#confirmar-eliminacion').addEventListener('click', eliminarCompra);
@@ -147,6 +187,7 @@ var compraController = (function() {
         setUpWatchEvent();
         document.querySelector('#buscar-compra-input').addEventListener('keyup', busquedaDinamica);
         document.querySelector('#reporte-compra-btn').addEventListener('click', setUpVentanaReportes);
+        document.querySelector('#select-compras').addEventListener('change', cambiarVista);
     }
 
     return {

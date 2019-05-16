@@ -1,17 +1,13 @@
-var UICompra  = (function() {
+var UICompra = (function () {
 
-    function mostrarSpinner () {
-        var spinner = '<div class="d-flex mt-3">' +
-        '<div class="spinner-grow text-success" role="status"><span class="sr-only">Loading...</span></div>' +
-        '<div class="spinner-grow text-success" role="status"><span class="sr-only">Loading...</span></div>' +
-        '<div class="spinner-grow text-success" role="status"><span class="sr-only">Loading...</span></div></div>';
-        document.querySelector('#cuerpo-tabla-compras').innerHTML = spinner;
-    }
-
+    
     return {
-        mostrarTodasLasCompras: function (res) {
-            mostrarSpinner();
-            document.querySelector('#cuerpo-tabla-compras').innerHTML = res;
+        mostrarCarga: function () {
+            var spinner = '<div class="d-flex mt-3">' +
+                '<div class="spinner-grow text-success" role="status"><span class="sr-only">Loading...</span></div>' +
+                '<div class="spinner-grow text-success" role="status"><span class="sr-only">Loading...</span></div>' +
+                '<div class="spinner-grow text-success" role="status"><span class="sr-only">Loading...</span></div></div>';
+            document.querySelector('#cuerpo-tabla-compras').innerHTML = spinner;
         },
 
         getDatosParaNuevaCompra: function () {
@@ -60,8 +56,8 @@ var UICompra  = (function() {
             document.querySelector('#modificar-compra-form #cantidad').value = compra.cantidad;
             document.querySelector('#modificar-compra-form #monto-compra').value = compra.montoCompra;
             document.querySelector('#modificar-compra-form #fecha-compra').value = compra.fechaCompra;
-            
-           
+
+
         },
 
         getDatosModificados: function () {
@@ -79,10 +75,10 @@ var UICompra  = (function() {
             document.querySelector('#ver-compra-form #monto-compra').innerHTML = compra.montoCompra;
             document.querySelector('#ver-compra-form #fecha-compra').innerHTML = compra.fechaCompra;
 
-            
+
         },
 
-        mostrarDatosEncontrados: function(datos) {
+        mostrarComprasEnTabla: function (datos) {
             document.querySelector('#cuerpo-tabla-compras').innerHTML = datos;
         },
 
@@ -95,14 +91,14 @@ var UICompra  = (function() {
         },
 
 
-        abrirReportes: function() {
+        abrirReportes: function () {
             load('html/compras-components/reporte-compras.html', document.querySelector('.content'));
         },
 
         getDatosParaReporte: function () {
             var form = document.querySelector('#reporte-compras-form');
             var data = new FormData(form);
-            
+
             data.append('fecha', document.querySelector('#fecha-rango-reporte').value);
             // console.log(document.querySelector('#rango-fecha').value);
             return data;
@@ -111,7 +107,7 @@ var UICompra  = (function() {
         mostrarReporte: function (req) {
             document.querySelector('.reporte-generado').classList.remove('d-none');
             document.querySelector('.panel-reportes').classList.add('d-none');
-            
+
             document.querySelector(".reporte-generado").innerHTML = req;
         },
     }

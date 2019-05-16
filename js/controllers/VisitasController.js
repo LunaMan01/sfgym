@@ -74,7 +74,7 @@ var visitaController = (function () {
         let dato = UIVisita.getDatosABuscar();
         let visita = new Visita();
         let datosEncontrados = visita.consultar(dato);
-        UIVisita.mostrarDatosEncontrados(datosEncontrados);
+        UIVisita.mostrarVisitasEnTabla(datosEncontrados);
 
     }
 

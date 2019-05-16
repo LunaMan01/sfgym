@@ -77,7 +77,7 @@ var membresiaController = (function () {
         let dato = UIMembresia.getDatosABuscar();
         let membresia = new Membresia();
         let datosEncontrados = membresia.consultar(dato);
-        UIMembresia.mostrarDatosEncontrados(datosEncontrados);
+        UIMembresia.mostrarMembresiasEnTabla(datosEncontrados);
         
     }
 

@@ -12,14 +12,54 @@ var ventaController = (function() {
 
             let producto = document.getElementById('select-productos').value;
             let precio = selector.options[selector.selectedIndex].getAttribute('data-precio');
-            console.log('pre='+precio);
+            let id = selector.options[selector.selectedIndex].getAttribute('id');
             let cantidad = UIVenta.getCantidad();
-            UIVenta.agregarProductoACarrito(producto, cantidad, precio);
+            UIVenta.agregarProductoACarrito(producto, cantidad, precio, id);
         });
+
+        document.querySelector('#guardar-venta').addEventListener('click', guardarVenta);
+    }
+
+    function getProductosDelCarrito () {
+        
+        console.log(carritoJSON);
+        
+        
+    }
+
+    function guardarVenta () {
+        let nipCliente = document.querySelector('#nip-cliente').value;
+        console.log(nipCliente);
+        let idInstructor = document.querySelector('#nip-instructor').value;
+        let totalVenta = document.querySelector('#total-venta').value;
+
+        let venta = {
+            "nipCliente" : nipCliente,
+            "idInstructor" : idInstructor,
+            "totalVenta" : totalVenta
+        }
+
+
+        console.log(venta);
+        let carrito = document.querySelectorAll('.carrito');
+
+        
+        let productosEnCarrito = new Array();
+        carrito.forEach(element => {
+            let producto = new Object();
+            producto.id = element.getAttribute('id');
+            producto.cantidad = element.getAttribute('data-cantidad');
+            producto.subtotal = element.getAttribute('data-subtotal');
+            productosEnCarrito.push(producto);
+        });
+
+        
+
+        new Venta().add(venta, productosEnCarrito);
     }
 
     function setUpEvents() {
-
+        
     }
 
     return {

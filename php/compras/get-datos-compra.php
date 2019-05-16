@@ -12,9 +12,9 @@
             $compra->idCompra = $row['Id_Compra'];
             $compra->idInstructor = $row['Id_Instructor'];
             $compra->descripcionCompra = $row['descripcion_compra'];
-            $compra->montoCompra = $row['fecha_compra'];
-            $compra->cantidad = $row['cantidad'];
+            $compra->montoCompra = $row['monto_compra'];
             $compra->fechaCompra = $row['fecha_compra'];
+            $compra->tipoCompra = $row['Id_TipoCompra'];
         }
         
         $compraJSON = json_encode($compra);

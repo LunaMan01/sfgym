@@ -6,20 +6,22 @@
     try{
         if($_POST['select-compras'] == 1){
             //TODAS LAS COMPRAS
-            $consulta = $conn->prepare("SELECT Id_Compra, Compras.Id_Instructor, descripcion_compra, monto_compra, fecha_compra, cantidad
-                FROM Compras INNER JOIN Instructores ON Compras.Id_Instructor = Instructores.Id_Instructor
-                WHERE Id_Compra LIKE ? OR Compras.Id_Instructor LIKE ? OR descripcion_compra LIKE ? 
-                OR monto_compra LIKE ? OR fecha_compra LIKE ? OR cantidad LIKE ?");
+            $consulta = $conn->prepare("SELECT Id_Compra, descripcion_compra, monto_compra, fecha_compra, tipo_compra
+                FROM Compras INNER JOIN Instructores INNER JOIN TipoCompras
+                ON Compras.Id_Instructor = Instructores.Id_Instructor
+                AND Compras.Id_TipoCompra = TipoCompras.Id_TipoCompra
+                WHERE Id_Compra LIKE ? OR descripcion_compra LIKE ? 
+                OR monto_compra LIKE ? OR fecha_compra LIKE ? OR tipo_compra LIKE ?");
 
-            $consulta->execute(array($dato."%", $dato."%", $dato."%", $dato."%", $dato."%", $dato."%"));
+            $consulta->execute(array($dato."%", $dato."%", $dato."%", $dato."%", $dato."%"));
 
             while($results = $consulta->fetch()){
                 echo '<tr>
                     <th scope="row" id="'.$results['Id_Compra'].'">'.$results['Id_Compra'].'</th>'.
                         '<td>'.$results['descripcion_compra'].'</td>'.
-                        '<td>'.$results['cantidad'].'</td>'.
                         '<td>'.$results['monto_compra'].'</td>'.
                         '<td>'.$results['fecha_compra'].'</td>'.
+                        '<td>'.$results['tipo_compra'].'</td>'.
                     '<td>
                         <i class="material-icons actions watch-action mr-2" data-toggle="modal" href="#ver-compra-modal"> remove_red_eye</i>
                         <i class="material-icons actions edit-action mr-2" data-toggle="modal" href="#modificar-compra-modal"> create</i>
@@ -37,23 +39,25 @@
             $firstDay = primerDia($mes,$año);
             $lastDay = ultimoDia($mes,$año);
 
-            $consulta = $conn->prepare("SELECT Id_Compra, Compras.Id_Instructor, descripcion_compra, monto_compra, fecha_compra, cantidad
-                FROM Compras INNER JOIN Instructores ON Compras.Id_Instructor = Instructores.Id_Instructor
+            $consulta = $conn->prepare("SELECT Id_Compra, descripcion_compra, monto_compra, fecha_compra, tipo_compra
+                FROM Compras INNER JOIN Instructores INNER JOIN TipoCompras
+                ON Compras.Id_Instructor = Instructores.Id_Instructor
+                AND Compras.Id_TipoCompra = TipoCompras.Id_TipoCompra';                
                 AND str_to_date(fecha_compra, '%d/%m/%Y') 
                 BETWEEN str_to_date('".$firstDay."/".$mes."/".$año."', '%d/%m/%Y') 
                 AND str_to_date('".$lastDay."/".$mes."/".$año."', '%d/%m/%Y')
-                WHERE Id_Compra LIKE ? OR Compras.Id_Instructor LIKE ? OR descripcion_compra LIKE ? 
-                OR monto_compra LIKE ? OR fecha_compra LIKE ? OR cantidad LIKE ?");
+                WHERE Id_Compra LIKE ? OR descripcion_compra LIKE ? 
+                OR monto_compra LIKE ? OR fecha_compra LIKE ? OR tipo_compra LIKE ?");
 
-            $consulta->execute(array($dato."%", $dato."%", $dato."%", $dato."%", $dato."%", $dato."%"));
+            $consulta->execute(array($dato."%", $dato."%", $dato."%", $dato."%", $dato."%"));
 
             while($results = $consulta->fetch()){
                 echo '<tr>
                     <th scope="row" id="'.$results['Id_Compra'].'">'.$results['Id_Compra'].'</th>'.
                         '<td>'.$results['descripcion_compra'].'</td>'.
-                        '<td>'.$results['cantidad'].'</td>'.
                         '<td>'.$results['monto_compra'].'</td>'.
                         '<td>'.$results['fecha_compra'].'</td>'.
+                        '<td>'.$results['tipo_compra'].'</td>'.
                     '<td>
                         <i class="material-icons actions watch-action mr-2" data-toggle="modal" href="#ver-compra-modal"> remove_red_eye</i>
                         <i class="material-icons actions edit-action mr-2" data-toggle="modal" href="#modificar-compra-modal"> create</i>
@@ -78,22 +82,24 @@
             $primerDia=date("d/m/Y",mktime(0,0,0,$mes,$day-$diaSemana+1,$año));
             $ultimoDia=date("d/m/Y",mktime(0,0,0,$mes,$day+(5-$diaSemana),$año));
 
-            $consulta = $conn->prepare("SELECT Id_Compra, Compras.Id_Instructor, descripcion_compra, monto_compra, fecha_compra, cantidad
-                FROM Compras INNER JOIN Instructores ON Compras.Id_Instructor = Instructores.Id_Instructor
+            $consulta = $conn->prepare("SELECT Id_Compra, descripcion_compra, monto_compra, fecha_compra, tipo_compra
+                FROM Compras INNER JOIN Instructores INNER JOIN TipoCompras
+                ON Compras.Id_Instructor = Instructores.Id_Instructor
+                AND Compras.Id_TipoCompra = TipoCompras.Id_TipoCompra
                 AND str_to_date(fecha_compra, '%d/%m/%Y') 
                 BETWEEN str_to_date('".$primerDia."', '%d/%m/%Y') AND str_to_date('".$ultimoDia."', '%d/%m/%Y')
-                WHERE Id_Compra LIKE ? OR Compras.Id_Instructor LIKE ? OR descripcion_compra LIKE ? 
-                OR monto_compra LIKE ? OR fecha_compra LIKE ? OR cantidad LIKE ?");
+                WHERE Id_Compra LIKE ? OR descripcion_compra LIKE ? 
+                OR monto_compra LIKE ? OR fecha_compra LIKE ? OR tipo_compra LIKE ?");
 
-            $consulta->execute(array($dato."%", $dato."%", $dato."%", $dato."%", $dato."%", $dato."%"));
+            $consulta->execute(array($dato."%", $dato."%", $dato."%", $dato."%", $dato."%"));
 
             while($results = $consulta->fetch()){
                 echo '<tr>
                     <th scope="row" id="'.$results['Id_Compra'].'">'.$results['Id_Compra'].'</th>'.
                         '<td>'.$results['descripcion_compra'].'</td>'.
-                        '<td>'.$results['cantidad'].'</td>'.
                         '<td>'.$results['monto_compra'].'</td>'.
                         '<td>'.$results['fecha_compra'].'</td>'.
+                        '<td>'.$results['tipo_compra'].'</td>'.
                     '<td>
                         <i class="material-icons actions watch-action mr-2" data-toggle="modal" href="#ver-compra-modal"> remove_red_eye</i>
                         <i class="material-icons actions edit-action mr-2" data-toggle="modal" href="#modificar-compra-modal"> create</i>
@@ -107,20 +113,22 @@
             //COMPRAS DEL DIA
             $fecha = date('d/m/Y');
 
-            $consulta = $conn->prepare("SELECT Id_Compra, Compras.Id_Instructor, descripcion_compra, monto_compra, fecha_compra, cantidad
-                FROM Compras INNER JOIN Instructores ON Compras.Id_Instructor = Instructores.Id_Instructor
-                AND fecha_gasto LIKE '".$fecha."' WHERE Id_Compra LIKE ? OR Compras.Id_Instructor LIKE ? 
-                OR descripcion_compra LIKE ? OR monto_compra LIKE ? OR fecha_compra LIKE ? OR cantidad LIKE ?");
+            $consulta = $conn->prepare("SELECT Id_Compra, descripcion_compra, monto_compra, fecha_compra, tipo_compra
+                FROM Compras INNER JOIN Instructores INNER JOIN TipoCompras
+                ON Compras.Id_Instructor = Instructores.Id_Instructor
+                AND Compras.Id_TipoCompra = TipoCompras.Id_TipoCompra
+                AND fecha_gasto LIKE '".$fecha."' WHERE Id_Compra LIKE ? OR descripcion_compra LIKE ? 
+                OR monto_compra LIKE ? OR fecha_compra LIKE ? OR tipo_compra LIKE ?");
 
-            $consulta->execute(array($dato."%", $dato."%", $dato."%", $dato."%", $dato."%", $dato."%"));
+            $consulta->execute(array($dato."%", $dato."%", $dato."%", $dato."%", $dato."%"));
 
             while($results = $consulta->fetch()){
                 echo '<tr>
                     <th scope="row" id="'.$results['Id_Compra'].'">'.$results['Id_Compra'].'</th>'.
                         '<td>'.$results['descripcion_compra'].'</td>'.
-                        '<td>'.$results['cantidad'].'</td>'.
                         '<td>'.$results['monto_compra'].'</td>'.
                         '<td>'.$results['fecha_compra'].'</td>'.
+                        '<td>'.$results['tipo_compra'].'</td>'.
                     '<td>
                         <i class="material-icons actions watch-action mr-2" data-toggle="modal" href="#ver-compra-modal"> remove_red_eye</i>
                         <i class="material-icons actions edit-action mr-2" data-toggle="modal" href="#modificar-compra-modal"> create</i>

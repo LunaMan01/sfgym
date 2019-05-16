@@ -67,9 +67,24 @@ var compraController = (function() {
     }
 
     function busquedaDinamica() {
+        let opcionSelect;
+
+        let todasLasCompras = document.querySelector('#todas-las-compras');
+        let comprasMes = document.querySelector('#compras-ultimo-mes');
+        let comprasSemana = document.querySelector('#compras-semana');
+        let comprasDia = document.querySelector('#compras-dia');
+
+        if(todasLasCompras.selected)
+            opcionSelect = 1;
+        else if (comprasMes.selected)
+            opcionSelect = 2;
+        else if (comprasDia.selected)
+            opcionSelect = 3;
+        else if (comprasSemana.selected)
+            opcionSelect = 4;
         let dato = UICompra.getDatosABuscar();
         let compra = new Compra();
-        let datosEncontrados = compra.consultar(dato);
+        let datosEncontrados = compra.consultar(dato, opcionSelect);
         UICompra.mostrarComprasEnTabla(datosEncontrados);
         
     }

@@ -107,6 +107,7 @@ create table Aparatos(
 create table Compras(
 	Id_Compra int not null auto_increment,
 	Id_Instructor int not null,
+	Id_TipoCompra int not null,
 
 	descripcion_compra varchar(50),
 	monto_compra int,
@@ -114,7 +115,8 @@ create table Compras(
 	fecha_compra varchar(10),
 
 	primary key(Id_Compra),
-	foreign key(Id_Instructor) references Instructores(Id_Instructor) on delete cascade on update cascade
+	foreign key(Id_Instructor) references Instructores(Id_Instructor) on delete cascade on update cascade,
+	foreign key(Id_TipoCompra) references TipoCompras(Id_TipoCompra) on delete cascade on update cascade
 );
 
 create table TipoGastos(
@@ -134,4 +136,11 @@ create table Gastos(
 
 	primary key(Id_Gasto),
 	foreign key(Id_Tipo) references TipoGastos (Id_Tipo) on delete cascade on update cascade
+);
+
+create table TipoCompras(
+	Id_TipoCompra int not null auto_increment,
+	tipo_compra varchar(25),
+
+	primary key(Id_TipoCompra)
 );

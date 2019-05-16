@@ -11,10 +11,12 @@ var UIGasto = (function () {
 
 
     return {
-        mostrarTodosLosGastos: function(res) {
-            showSpinner();
-            console.log(res);
-            document.querySelector('#cuerpo-tabla-gastos').innerHTML = res;
+        mostrarCarga: function (res) {
+            var spinner = '<div class="d-flex mt-3">' +
+                '<div class="spinner-grow text-success" role="status"><span class="sr-only">Loading...</span></div>' +
+                '<div class="spinner-grow text-success" role="status"><span class="sr-only">Loading...</span></div>' +
+                '<div class="spinner-grow text-success" role="status"><span class="sr-only">Loading...</span></div></div>';
+            document.querySelector('#cuerpo-tabla-gastos').innerHTML = spinner;
         },
 
         getDatosParaNuevoGasto: function () {
@@ -81,8 +83,8 @@ var UIGasto = (function () {
             return document.querySelector('#buscar-gasto-input').value;
         },
 
-        
-        mostrarDatosEncontrados: function(datos) {
+
+        mostrarGastosEnTabla: function (datos) {
             document.querySelector('#cuerpo-tabla-gastos').innerHTML = datos;
         },
 
@@ -98,7 +100,7 @@ var UIGasto = (function () {
         getDatosParaReporte: function () {
             var form = document.querySelector('#reporte-gastos-form');
             var data = new FormData(form);
-            
+
             data.append('fecha', document.querySelector('#fecha-rango-reporte').value);
             // console.log(document.querySelector('#rango-fecha').value);
             return data;
@@ -107,7 +109,7 @@ var UIGasto = (function () {
         mostrarReporte: function (req) {
             document.querySelector('.reporte-generado').classList.remove('d-none');
             document.querySelector('.panel-reportes').classList.add('d-none');
-            
+
             document.querySelector(".reporte-generado").innerHTML = req;
         },
     }

@@ -54,7 +54,7 @@ var ventaController = (function() {
         let carritoJSON = JSON.stringify(productosEnCarrito);
         console.log(carritoJSON);
 
-        new Venta().add(ventaJSON, carritoJSON);
+        new Venta().add(ventaJSON, productosEnCarrito);
     }
 
     function setUpEvents() {

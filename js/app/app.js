@@ -166,7 +166,7 @@ var UIController = (function () {
             document.querySelector(CSSClasses.active).classList.remove('active');
             document.querySelector(Li.clientes).className = 'active';
             load('html/clientes-components/clientes.html', content);
-            addBotones('Añadir cliente', 'Reporte clientes', 'add-cliente-btn', 'reporte-cliente-btn', 'buscar-cliente-input');
+            addBotones('Añadir', 'Reportes', 'add-cliente-btn', 'reporte-cliente-btn', 'buscar-cliente-input');
             if (typeof clienteController !== 'undefined')
                 clienteController.init();
         },
@@ -179,7 +179,7 @@ var UIController = (function () {
             document.querySelector(CSSClasses.active).classList.remove('active');
             document.querySelector(Li.membresias).className = 'active';
             load('html/membresias-components/membresias.html', content);
-            addBotones('Añadir membresía', 'Reporte membresía', 'add-membresia-btn', 'reporte-membresia-btn', 'buscar-membresia-input');
+            addBotones('Añadir', 'Reportes', 'add-membresia-btn', 'reporte-membresia-btn', 'buscar-membresia-input');
             document.querySelector('#add-membresia-btn').setAttribute('data-target', '#add-membresia-modal');
             document.querySelector('#add-membresia-btn').setAttribute('data-toggle', 'modal');
             if (typeof membresiaController !== 'undefined')
@@ -193,7 +193,7 @@ var UIController = (function () {
             document.querySelector(CSSClasses.active).classList.remove('active');
             document.querySelector(Li.visitas).className = 'active';
             load('html/visitas-components/visitas.html', content);
-            addBotones('Añadir visita', 'Reporte visitas', 'add-visita-btn', 'reporte-visita-btn', 'buscar-visita-input');
+            addBotones('Añadir', 'Reportes', 'add-visita-btn', 'reporte-visita-btn', 'buscar-visita-input');
             document.querySelector('#add-visita-btn').setAttribute('data-target', '#add-visita-modal');
             document.querySelector('#add-visita-btn').setAttribute('data-toggle', 'modal');
             if (typeof visitaController !== 'undefined')
@@ -207,7 +207,7 @@ var UIController = (function () {
             document.querySelector(CSSClasses.active).classList.remove('active');
             document.querySelector(Li.productos).className = 'active';
             load('html/productos-components/productos.html', content);
-            addBotones('Añadir producto', 'Reporte productos', 'add-producto-btn', 'reporte-producto-btn', 'buscar-producto-input');
+            addBotones('Añadir', 'Reportes', 'add-producto-btn', 'reporte-producto-btn', 'buscar-producto-input');
             document.querySelector('#add-producto-btn').setAttribute('data-target', '#add-producto-modal');
             document.querySelector('#add-producto-btn').setAttribute('data-toggle', 'modal');
             if (typeof productoController !== 'undefined')
@@ -220,7 +220,7 @@ var UIController = (function () {
             document.querySelector(CSSClasses.active).classList.remove('active');
             document.querySelector(Li.ventas).className = 'active';
             load('html/ventas-components/ventas.html', content);
-            addBotones('Añadir venta', 'Reporte ventas', 'add-venta-btn', 'reporte-venta-btn', 'buscar-venta-input');
+            addBotones('Añadir', 'Reportes', 'add-venta-btn', 'reporte-venta-btn', 'buscar-venta-input');
             if (typeof ventaController !== 'undefined')
                 ventaController.init();
         },
@@ -232,7 +232,7 @@ var UIController = (function () {
             document.querySelector(CSSClasses.active).classList.remove('active');
             document.querySelector(Li.gastos).className = 'active';
             load('html/gastos-components/gastos.html', content);
-            addBotones('Añadir gasto', 'Reporte gastos', 'add-gasto-btn', 'reporte-gasto-btn', 'buscar-gasto-input');
+            addBotones('Añadir', 'Reportes', 'add-gasto-btn', 'reporte-gasto-btn', 'buscar-gasto-input');
             document.querySelector('#add-gasto-btn').setAttribute('data-target', '#add-gasto-modal');
             document.querySelector('#add-gasto-btn').setAttribute('data-toggle', 'modal');
             if (typeof gastoController !== 'undefined')
@@ -246,7 +246,7 @@ var UIController = (function () {
             document.querySelector(CSSClasses.active).classList.remove('active');
             document.querySelector(Li.aparatos).className = 'active';
             load('html/aparatos-components/aparatos.html', content);
-            addBotones('Añadir aparato', '', 'add-aparato-btn', 'reporte-aparato-btn', 'buscar-aparato-input');
+            addBotones('Añadir', '', 'add-aparato-btn', 'reporte-aparato-btn', 'buscar-aparato-input');
             document.querySelector('#add-aparato-btn').setAttribute('data-target', '#add-aparato-modal');
             document.querySelector('#add-aparato-btn').setAttribute('data-toggle', 'modal');
             document.getElementById('reporte-aparato-btn').classList.add('d-none');
@@ -261,7 +261,7 @@ var UIController = (function () {
             document.querySelector(CSSClasses.active).classList.remove('active');
             document.querySelector(Li.compras).className = 'active';
             load('html/compras-components/compras.html', content);
-            addBotones('Añadir compras', 'Reporte compras', 'add-compra-btn', 'reporte-compra-btn', 'buscar-compra-input');
+            addBotones('Añadir', 'Reportes', 'add-compra-btn', 'reporte-compra-btn', 'buscar-compra-input');
             document.querySelector('#add-compra-btn').setAttribute('data-target', '#add-compra-modal');
             document.querySelector('#add-compra-btn').setAttribute('data-toggle', 'modal');
             if (typeof compraController !== 'undefined')

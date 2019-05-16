@@ -28,8 +28,8 @@ var ventaController = (function() {
     }
 
     function guardarVenta () {
-        let nipCliente = document.querySelector('#nip-cliente');
-        let idInstructor = document.querySelector('#nip-instructor');
+        let nipCliente = document.querySelector('#nip-cliente').value;
+        let idInstructor = document.querySelector('#nip-instructor').value;
 
         let venta = {
             "nipCliente" : nipCliente,
@@ -54,7 +54,7 @@ var ventaController = (function() {
         let carritoJSON = JSON.stringify(productosEnCarrito);
         console.log(carritoJSON);
 
-        new Venta().add(ventaJSON, productosEnCarrito);
+        new Venta().add(venta, productosEnCarrito);
     }
 
     function setUpEvents() {

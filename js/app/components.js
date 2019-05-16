@@ -54,8 +54,8 @@ class SearchInput {
 
     getSearchInput() {
         return `
-        <div class"d-flex" id="buscar-div">
-            <input class="form-control  rounded-pill search" type="search" placeholder="Buscar" aria-label="Search" id="${this.id}">
+        <div class = "d-flex" id="buscar-div">
+            <input class="form-control  rounded-pill " type="search" placeholder="Buscar" aria-label="Search" id="${this.id}">
         </div>`;
     }
 }

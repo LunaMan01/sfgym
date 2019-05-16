@@ -2,7 +2,7 @@
     include '../conexion.php';
 
     $dato = $_POST['dato'];
-
+    
     try{
         if($_POST['value'] == 3){
             //TODOS LOS CLIENTES

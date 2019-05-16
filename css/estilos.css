@@ -21,9 +21,6 @@
     color: black;
 }
 
-/* .search{
-    width: 300px;
-} */
 .content, .main-panel {
     background: #F7F7F8;
 }
@@ -34,6 +31,10 @@
 
 nav i {
     font-size: 30px !important; 
+}
+
+.iconos-inicio{
+    
 }
 
 .downCard i{
@@ -51,6 +52,7 @@ h3{
 
 .iconCard{
     color: #54ad58;
+    font-size: 50px;
 }
 
 hr{

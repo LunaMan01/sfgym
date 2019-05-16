@@ -1,12 +1,9 @@
 <?php 
     include 'conexion.php';
 
-    date_default_timezone_set('America/Mexico_City');
-
     try{
         //CLIENTES ACTIVOS
-        $active = 1;
-        $preparar = 'SELECT COUNT(*) AS Activos FROM clientes WHERE activo = '. $active;
+        $preparar = 'SELECT COUNT(*) AS Activos FROM clientes WHERE activo = 1';
         $resultActivos = $conn->query($preparar); 
         $totalActivos = $resultActivos->fetchColumn();
         

@@ -1,6 +1,6 @@
 <?php
     include '../conexion.php';
-    $conex = $conn;
+
     $array = array();
     try {
         

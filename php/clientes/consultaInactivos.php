@@ -1,12 +1,10 @@
 <?php 
     include '../conexion.php';
 
-    try{
-        $inactivo = 0;
-        
+    try{        
         $inactivo = $conn->prepare('SELECT Clientes.Id_Cliente, nombre_cliente, numero
-        FROM Clientes INNER JOIN Telefonos ON Clientes.Id_Cliente LIKE Telefonos.Id_Cliente WHERE 
-        activo ='.$inactivo);
+            FROM Clientes INNER JOIN Telefonos ON Clientes.Id_Cliente LIKE Telefonos.Id_Cliente WHERE 
+            activo = 0');
 
         //$query->execute(array($dato."%", $dato."%", $dato."%"));
         $inactivo->execute();

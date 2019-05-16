@@ -2,9 +2,9 @@
     include '../conexion.php';
 
     $dato = $_POST['dato'];
-    $value = $_POST['select-clientes'];
+
     try{
-        if($value == 3){
+        if($_POST['select-clientes'] == 3){
             //TODOS LOS CLIENTES
             $query = $conn->prepare('SELECT Clientes.Id_Cliente, nombre_cliente, numero
                 FROM Clientes INNER JOIN Telefonos ON Clientes.Id_Cliente LIKE Telefonos.Id_Cliente WHERE 
@@ -25,7 +25,7 @@
             }
         }
 
-        if($value == 2){
+        if($_POST['select-clientes'] == 2){
             //CLIENTES INACTIVOS
             $query = $conn->prepare('SELECT Clientes.Id_Cliente, nombre_cliente, numero
                 FROM Clientes INNER JOIN Telefonos ON Clientes.Id_Cliente LIKE Telefonos.Id_Cliente 
@@ -47,7 +47,7 @@
             }
         }
 
-        if($value == 1){
+        if($_POST['select-clientes'] == 1){
             //CLIENTES ACTIVOS
             
             $query = $conn->prepare('SELECT Clientes.Id_Cliente, nombre_cliente, numero

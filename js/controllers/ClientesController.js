@@ -121,9 +121,23 @@ var clienteController = (function () {
     }
 
     function busquedaDinamica() {
+        let opcionSelect;
+
+        let clientesActivos = document.querySelector('#clientes-activos');
+        let clientesInactivos = document.querySelector('#clientes-inactivos');
+        let todosLosClientes = document.querySelector('#clientes-todos');
+
+        if (clientesActivos.selected)
+            opcionSelect = 1;
+        else if (clientesInactivos.selected)
+            opcionSelect = 2;
+        else if (todosLosClientes.selected)
+            opcionSelect = 3;
+        
+
         let dato = UICliente.getDatosABuscar();
         let cliente = new Cliente();
-        let datosEncontrados = cliente.consultar(dato);
+        let datosEncontrados = cliente.consultar(dato, opcionSelect);
         UICliente.mostrarClientesEnTabla(datosEncontrados);
 
     }
@@ -204,7 +218,6 @@ var clienteController = (function () {
     function cambiarVista() {
         let clientesActivos = document.querySelector('#clientes-activos');
         let clientesInactivos = document.querySelector('#clientes-inactivos');
-        let clientesSinMembresia = document.querySelector('#clientes-nomem');
         let todosLosClientes = document.querySelector('#clientes-todos');
 
         if (clientesActivos.selected)

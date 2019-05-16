@@ -493,18 +493,20 @@ aria-hidden="true">
 
                 <div class="form-group">
                     <label for="categorias-gastos">Categoria</label>
-                    <select class="form-control" id="categorias-gastos" name="tipo-gasto">
-                        <option  value="1">1</option>
-                        <option>2</option>
+                    <select class="form-control" id="categorias-gastos" name="tipo-gasto[]">
+                        <option value="1">Gasto fijo</option>
+                        <option value="2">Gasto mantenimiento</option>
+                        <option value="3">Inversión</option>
                     </select>
                 </div>
 
+                <!--
                 <div class="form-group">
                     <a>
                         <p class="text-right text-info"> + Nueva categoria</p>
                     </a>
                 </div>
-
+                -->
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button>
                     <button type="submit" class="btn btn-success">Guardar</button>

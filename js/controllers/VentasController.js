@@ -36,7 +36,7 @@ var ventaController = (function() {
             "idInstructor" : idInstructor,
         }
 
-        let ventaJSON = JSON.stringify(productosEnCarrito);
+        let ventaJSON = JSON.stringify(venta);
 
         let carrito = document.querySelectorAll('.carrito');
 

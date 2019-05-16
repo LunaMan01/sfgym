@@ -111,7 +111,7 @@ create table Compras(
 
 	descripcion_compra varchar(50),
 	monto_compra int,
-	cantidad int,
+	
 	fecha_compra varchar(10),
 
 	primary key(Id_Compra),

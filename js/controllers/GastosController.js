@@ -1,4 +1,4 @@
-var gastoController = (function() {
+var gastoController = (function () {
 
     function addNuevoGasto() {
         let data = UIGasto.getDatosParaNuevoGasto();
@@ -63,7 +63,7 @@ var gastoController = (function() {
                 UIGasto.getId(e);
                 let gasto = UIGasto.getGasto();
                 UIGasto.verGasto(gasto);
-    
+
             }
         }, false);
     }
@@ -73,7 +73,7 @@ var gastoController = (function() {
         let gasto = new Gasto();
         let datosEncontrados = gasto.consultar(dato);
         UIGasto.mostrarDatosEncontrados(datosEncontrados);
-        
+
     }
 
     function setUpVentanaReportes() {
@@ -99,10 +99,10 @@ var gastoController = (function() {
         // document.querySelector('#descargar-pdf').addEventListener('click', 
     }
 
-    function setUpInputs () {
-        new Cleave ('.numeric-add', {
+    function setUpInputs() {
+        new Cleave('.numeric-add', {
             numericOnly: true,
-            blocks : [11]
+            blocks: [11]
         });
 
         new Cleave('.date-add', {
@@ -114,9 +114,9 @@ var gastoController = (function() {
         new Lightpick({ field: document.getElementById('fecha-gasto') });
 
 
-        new Cleave ('.numeric-update', {
+        new Cleave('.numeric-update', {
             numericOnly: true,
-            blocks : [11]
+            blocks: [11]
         });
 
         new Cleave('.date-update', {
@@ -126,10 +126,37 @@ var gastoController = (function() {
         });
     }
 
+    function mostrarGastosMes() {
+        UIGasto.mostrarCarga();
+        UIGasto.mostrarGastosEnTabla(new Gasto().getGastosMes());
+    }
+
+    function mostrarGastosSemana() {
+        UIGasto.mostrarCarga();
+        UIGasto.mostrarGastosEnTabla(new Gasto().getGastosSemana());
+    }
+
+    function mostrarGastosDia() {
+        UIGasto.mostrarCarga();
+        UIGasto.mostrarGastosEnTabla(new Gasto().getGastosDia());
+    }
+
+    function cambiarVista() {
+        let gastosMes = document.querySelector('#gastos-mes');
+        let gastosSemana = document.querySelector('#gastos-semana');
+        let gastosDia = document.querySelector('#gastos-dia');
+
+        if (gastosMes.selected)
+            mostrarGastosMes();
+        else if (gastosSemana.selected)
+            mostrarGastosSemana();
+        else if (gastosDia.selected)
+            mostrarGastosDia();
+    }
 
     function setUpEvents() {
         setUpInputs();
-        UIGasto.mostrarTodosLosGastos(new Gasto().getTodosLosGastos());
+        mostrarGastosMes();
         document.querySelector('#add-gasto-form').addEventListener('submit', addNuevoGasto);
         setUpDeleteEvent();
         document.querySelector('#confirmar-eliminacion').addEventListener('click', eliminarGasto);
@@ -138,6 +165,7 @@ var gastoController = (function() {
         setUpWatchEvent();
         document.querySelector('#buscar-gasto-input').addEventListener('keyup', busquedaDinamica);
         document.querySelector('#reporte-gasto-btn').addEventListener('click', setUpVentanaReportes);
+        document.querySelector('#select-gastos').addEventListener('change', cambiarVista);
     }
 
     return {

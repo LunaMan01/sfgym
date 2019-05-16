@@ -46,6 +46,30 @@ class Gasto {
         return req.responseText;
     }
 
+    getGastosMes () {
+        var req = new XMLHttpRequest();
+        req.open("POST", 'php/gastos/gastosMes.php', false);
+        req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+        req.send(null);
+        return req.responseText;
+    }
+
+    getGastosDia () {
+        var req = new XMLHttpRequest();
+        req.open("POST", 'php/gastos/gastosDia.php', false);
+        req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+        req.send(null);
+        return req.responseText;
+    }
+
+    getGastosSemana () {
+        var req = new XMLHttpRequest();
+        req.open("POST", 'php/gastos/gastosSemana.php', false);
+        req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+        req.send(null);
+        return req.responseText;
+    }
+
     reporte(data) {
         var req = new XMLHttpRequest();
         req.open("POST", 'php/gastos/reportes.php', false);

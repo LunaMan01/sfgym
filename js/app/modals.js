@@ -797,13 +797,6 @@ aria-hidden="true">
                         placeholder="Descripción de compra" required>
                 </div>
 
-
-                <div class="form-group">
-                    <label>Cantidad:</label>
-                    <input type="text" class="form-control numeric-c-add" id="cantidad" name="cantidad"
-                        placeholder="No. de articulos comprados" required>
-                </div>
-
                 <div class="form-group">
                     <label>Monto:</label>
                     <input type="text" class="form-control numeric-m-add" id="monto-compra" name="monto_compra"
@@ -815,6 +808,7 @@ aria-hidden="true">
                     <input type="text" class="form-control date-add" id="fecha-compra"  name="fecha-compra" placeholder="dd/mm/yyyy" required>
                 </div>
                 <div class="form-group">
+                    <label>Categoría:</label>
                     <select class="form-control" id="categorias-gastos" name="tipo-compra[]">
                         <option value="1">Producto</option>
                         <option value="2">Aparato</option>

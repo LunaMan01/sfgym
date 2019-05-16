@@ -12,9 +12,9 @@ var ventaController = (function() {
 
             let producto = document.getElementById('select-productos').value;
             let precio = selector.options[selector.selectedIndex].getAttribute('data-precio');
-            console.log('pre='+precio);
+            let id = selector.options[selector.selectedIndex].getAttribute('id');
             let cantidad = UIVenta.getCantidad();
-            UIVenta.agregarProductoACarrito(producto, cantidad, precio);
+            UIVenta.agregarProductoACarrito(producto, cantidad, precio, id);
         });
     }
 

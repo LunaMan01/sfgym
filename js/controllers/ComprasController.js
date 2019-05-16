@@ -98,6 +98,8 @@ var compraController = (function() {
     }
 
     function setUpInputs () {
+        new Lightpick({ field: document.getElementById('fecha-compra') });
+
         new Cleave ('.numeric-c-add', {
             numericOnly: true,
             blocks : [11]

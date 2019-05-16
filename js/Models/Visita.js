@@ -47,4 +47,26 @@ class Visita {
         console.log(req.responseText);
         return req.responseText;
     }
+
+    getVisitasDelDia() {
+        var req = new XMLHttpRequest();
+        req.open("POST", 'php/visitas/visitasDia.php', false);
+        req.send(null);
+        return req.responseText;
+    }
+
+    getVisitasDelMes() {
+        var req = new XMLHttpRequest();
+        req.open("POST", 'php/visitas/visitasMes.php', false);
+       
+        req.send(null);
+        return req.responseText;
+    }
+
+    getVisitasDeSemana () {
+        var req = new XMLHttpRequest();
+        req.open("POST", 'php/visitas/visitasSemana.php', false);
+        req.send(null);
+        return req.responseText;
+    }
 }

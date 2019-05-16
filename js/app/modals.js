@@ -812,13 +812,6 @@ aria-hidden="true">
                     <input type="text" class="form-control date-add" id="fecha-compra"  name="fecha-compra" placeholder="dd/mm/yyyy" required>
                 </div>
 
-                <div class="form-group">
-                    <label for="categoria-compra">Categoria</label>
-                    <select class="form-control" id="categoria-compra">
-                        <option>1</option>
-                        <option>2</option>
-                    </select>
-                </div>
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -873,14 +866,6 @@ aria-hidden="true">
                 <div class="form-group">
                     <label>Fecha:</label>
                     <input type="text" class="form-control date-update" id="fecha-compra"  name="fecha-compra" placeholder="dd/mm/yyyy">
-                </div>
-
-                <div class="form-group">
-                    <label for="categoria-compra">Categoria</label>
-                    <select class="form-control" id="categoria-compra">
-                        <option>1</option>
-                        <option>2</option>
-                    </select>
                 </div>
 
                 <div class="modal-footer">

@@ -42,8 +42,24 @@ class Membresia {
         console.log('memb rep');
         var req = new XMLHttpRequest();
         req.open("POST", 'php/membresias/reportes.php', false);
-        // req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+        
         req.send(data);
+        return req.responseText;
+    }
+
+    getVigentes () {
+        var req = new XMLHttpRequest();
+        req.open("POST", 'php/membresias/consultarVigentes.php', false);
+        
+        req.send(null);
+        return req.responseText;
+    }
+
+    getTodas () {
+        var req = new XMLHttpRequest();
+        req.open("POST", 'php/membresias/consultarMembresias.php', false);
+        
+        req.send(null);
         return req.responseText;
     }
 }

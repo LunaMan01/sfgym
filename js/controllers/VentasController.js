@@ -37,6 +37,10 @@ var ventaController = (function() {
         }
 
         let ventaJSON = JSON.stringify(venta);
+<<<<<<< HEAD
+=======
+        console.log(ventaJSON);
+>>>>>>> master
 
         let carrito = document.querySelectorAll('.carrito');
 
@@ -51,6 +55,7 @@ var ventaController = (function() {
         });
 
         let carritoJSON = JSON.stringify(productosEnCarrito);
+        console.log(carritoJSON);
 
         new Venta().add(ventaJSON, carritoJSON);
     }

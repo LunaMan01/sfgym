@@ -809,7 +809,7 @@ aria-hidden="true">
                 </div>
                 <div class="form-group">
                     <label>Categoría:</label>
-                    <select class="form-control" id="categorias-gastos" name="tipo-compra[]">
+                    <select class="form-control" id="categorias-gastos" name="compras[]">
                         <option value="1">Producto</option>
                         <option value="2">Aparato</option>
                         <option value="3">Otro</option>
@@ -817,7 +817,7 @@ aria-hidden="true">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-success">Guargar</button>
+                    <button type="submit" class="btn btn-success">Guardar</button>
                 </div>
             </form>
         </div>

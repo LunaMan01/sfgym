@@ -16,10 +16,33 @@ var ventaController = (function() {
             let cantidad = UIVenta.getCantidad();
             UIVenta.agregarProductoACarrito(producto, cantidad, precio, id);
         });
+
+        document.querySelector('#guardar-venta').addEventListener('click', guardarVenta);
+    }
+
+    function getProductosDelCarrito () {
+        let carrito = document.querySelectorAll('#carrito td');
+
+        console.log(carrito);
+
+        
+        
+    }
+
+    function guardarVenta () {
+        let nipCliente = document.querySelector('#nip-cliente');
+        let idInstructor = document.querySelector('#nip-instructor');
+
+        let ventaJSON = {
+            "nipCliente" : nipCliente,
+            "idInstructor" : idInstructor,
+        }
+
+        getProductosDelCarrito();
     }
 
     function setUpEvents() {
-
+        
     }
 
     return {

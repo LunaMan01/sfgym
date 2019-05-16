@@ -1,7 +1,5 @@
 <?php 
     include '../conexion.php';
-
-    date_default_timezone_set('America/Mexico_City');
     
     $day = date('d');
     $mes = date('m');
@@ -17,8 +15,10 @@
     $ultimoDia=date("d/m/Y",mktime(0,0,0,$mes,$day+(5-$diaSemana),$año));
 
     try{
-        $consulta = "SELECT Id_Compra, Compras.Id_Instructor, descripcion_compra, monto_compra, fecha_compra, cantidad
-        FROM Compras INNER JOIN Instructores ON Compras.Id_Instructor = Instructores.Id_Instructor
+        $consulta = "SELECT Id_Compra, descripcion_compra, monto_compra, fecha_compra, tipo_compra
+        FROM Compras INNER JOIN Instructores INNER JOIN TipoCompras
+        ON Compras.Id_Instructor = Instructores.Id_Instructor
+        AND Compras.Id_TipoCompra = TipoCompras.Id_TipoCompra
         AND str_to_date(fecha_compra, '%d/%m/%Y') 
         BETWEEN str_to_date('".$primerDia."', '%d/%m/%Y') AND str_to_date('".$ultimoDia."', '%d/%m/%Y')";
 
@@ -26,9 +26,9 @@
             echo '<tr>
                 <th scope="row" id="'.$row['Id_Compra'].'">'.$row['Id_Compra'].'</th>'.
                 '<td>'.$row['descripcion_compra'].'</td>'.
-                '<td>'.$row['cantidad'].'</td>'.
                 '<td>'.$row['monto_compra'].'</td>'.
                 '<td>'.$row['fecha_compra'].'</td>'.
+                '<td>'.$row['tipo_compra'].'</td>'.
             '<td>
                 <i class="material-icons actions watch-action mr-2" data-toggle="modal" href="#ver-compra-modal"> remove_red_eye</i>
                 <i class="material-icons actions edit-action mr-2" data-toggle="modal" href="#modificar-compra-modal"> create</i>

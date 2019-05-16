@@ -37,15 +37,15 @@ let modalsMembresias =
                     <form onsubmit="return false" id="add-membresia-form">
                         <div class="form-group">
                             <label for="id-cliente">Id cliente:</label>
-                            <input class="form-control" id="id-cliente" name="id-cliente">
+                            <input class="form-control" id="id-cliente" name="id-cliente" required>
                         </div>
                         <div class="form-group">
                             <label for="fecha-inicio">Fecha inicio:</label>
-                            <input class="form-control" id="fecha-inicio" name="inicio">
+                            <input class="form-control" id="fecha-inicio-add" name="inicio" required>
                         </div>
                         <div class="form-group">
-                            <label for="fecha-fin">Fecha fin:</label>
-                            <input class="form-control" id="fecha-fin" name="fin">
+                            <label for="fecha-fin-add">Fecha fin:</label>
+                            <input class="form-control" id="fecha-fin-add" name="fin" required>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary rounded-pill" data-dismiss="modal">Cancelar</button>
@@ -186,12 +186,12 @@ aria-labelledby="modal-añadir-visita" aria-hidden="true">
             <form id="add-visita-form" onsubmit="return false">
                 <div class="form-group">
                     <label>Id Cliente:</label>
-                    <input type="text" class="form-control" id="id-cliente" placeholder="Id Cliente" name="id-cliente">
+                    <input type="text" class="form-control numeric-id-add" id="id-cliente" placeholder="Id Cliente" name="id-cliente" required>
                 </div>
                 <div class="form-group">
                     <label>Fecha:</label>
-                    <input type="text" class="form-control" id="fecha-visita" 
-                        placeholder="dd/mm/yyyy" name="fecha">
+                    <input type="text" class="form-control date-add" id="fecha-visita" 
+                        placeholder="dd/mm/yyyy" name="fecha" required>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -218,13 +218,13 @@ aria-labelledby="modal-añadir-visita" aria-hidden="true">
             <form id="modificar-visita-form" onsubmit="return false">
                 <div class="form-group" >
                     <label>Id Cliente:</label>
-                    <input type="text" class="form-control" id="id-cliente" placeholder="Id Cliente" name="id-cliente">
+                    <input type="text" class="form-control numeric-id-update" id="id-cliente" placeholder="Id Cliente" name="id-cliente" >
                 </div>
 
                 <div class="form-group">
                     <label>Fecha:</label>
-                    <input type="text" class="form-control" id="fecha-visita"
-                        placeholder="dd/mm/yyyy" name="fecha">
+                    <input type="text" class="form-control date-update" id="fecha-visita"
+                        placeholder="dd/mm/yyyy" name="fecha" required>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -311,19 +311,19 @@ aria-labelledby="modal-añadir-producto" aria-hidden="true">
 
                 <div class="form-group">
                     <label>Fecha de caducidad:</label>
-                    <input type="text" class="form-control" id="fecha-caducidad" name="fecha-caducidad"
+                    <input type="text" class="form-control date-add" id="fecha-caducidad" name="fecha-caducidad"
                         placeholder="dd/mm/yyyy">
                 </div>
 
                 <div class="form-group">
                     <label>Existencia:</label>
-                    <input type="text" class="form-control" id="existencia" name="existencia"
+                    <input type="text" class="form-control numeric-add" id="existencia" name="existencia"
                         placeholder="Cantidad de productos">
                 </div>
 
                 <div class="form-group">
                     <label>Precio:</label>
-                    <input type="text" class="form-control" id="precio-producto" name="precio"
+                    <input type="text" class="form-control numeric-price-add" id="precio-producto" name="precio"
                         placeholder="Precio">
                 </div>
 
@@ -353,7 +353,7 @@ aria-labelledby="modal-modificar-producto" aria-hidden="true">
                 <div class="form-group">
                     <label>Id Productos</label>
                     <input type="text" class="form-control" id="id-producto" name="id-prod"
-                    placeholder="Nombre del producto">
+                    placeholder="Nombre del producto" readonly>
                 </div>
                 <div class="form-group">
                     <label>Nombre:</label>
@@ -363,19 +363,19 @@ aria-labelledby="modal-modificar-producto" aria-hidden="true">
 
                 <div class="form-group">
                     <label>Fecha de caducidad:</label>
-                    <input type="text" class="form-control" id="fecha-caducidad" name="fecha-caducidad"
+                    <input type="text" class="form-control date-update" id="fecha-caducidad" name="fecha-caducidad"
                         placeholder="dd/mm/yyyy">
                 </div>
 
                 <div class="form-group">
                     <label>Existencia:</label>
-                    <input type="text" class="form-control" id="existencia-producto" name="existencia"
+                    <input type="text" class="form-control numeric-update" id="existencia-producto" name="existencia"
                         placeholder="Cantidad de productos">
                 </div>
 
                 <div class="form-group">
                     <label>Precio:</label>
-                     <input type="text" class="form-control" id="precio-producto" name="precio"
+                     <input type="text" class="form-control numeric-price-update" id="precio-producto" name="precio"
                         placeholder="Precio">
                  </div>
 
@@ -483,28 +483,30 @@ aria-hidden="true">
 
                 <div class="form-group">
                     <label>Monto:</label>
-                    <input type="text" class="form-control" id="monto-gasto" name="monto-gasto" placeholder="Monto de gasto">
+                    <input type="text" class="form-control numeric-add" id="monto-gasto" name="monto-gasto" placeholder="Monto de gasto">
                 </div>
 
                 <div class="form-group">
                     <label>Fecha:</label>
-                    <input type="text" class="form-control" id="fecha-gasto" name="fecha-gasto" placeholder="dd/mm/yyyy">
+                    <input type="text" class="form-control date-add" id="fecha-gasto" name="fecha-gasto" placeholder="dd/mm/yyyy">
                 </div>
 
                 <div class="form-group">
                     <label for="categorias-gastos">Categoria</label>
-                    <select class="form-control" id="categorias-gastos" name="tipo-gasto">
-                        <option  value="1">1</option>
-                        <option>2</option>
+                    <select class="form-control" id="categorias-gastos" name="tipo-gasto[]">
+                        <option value="1">Gasto fijo</option>
+                        <option value="2">Gasto mantenimiento</option>
+                        <option value="3">Inversión</option>
                     </select>
                 </div>
 
+                <!--
                 <div class="form-group">
                     <a>
                         <p class="text-right text-info"> + Nueva categoria</p>
                     </a>
                 </div>
-
+                -->
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button>
                     <button type="submit" class="btn btn-success">Guardar</button>
@@ -537,12 +539,12 @@ aria-hidden="true">
 
                 <div class="form-group">
                     <label>Monto:</label>
-                    <input type="text" class="form-control" id="monto-gasto" name="monto-gasto" placeholder="Monto de gasto">
+                    <input type="text" class="form-control numeric-update" id="monto-gasto" name="monto-gasto" placeholder="Monto de gasto">
                 </div>
 
                 <div class="form-group">
                     <label>Fecha:</label>
-                    <input type="text" class="form-control" id="fecha-gasto" name="fecha-gasto" placeholder="dd/mm/yyyy">
+                    <input type="text" class="form-control date-update" id="fecha-gasto" name="fecha-gasto" placeholder="dd/mm/yyyy">
                 </div>
 
                 <div class="form-group">
@@ -661,12 +663,12 @@ aria-hidden="true">
                 <div class="form-group">
                     <label>Nombre:</label>
                     <input type="text" class="form-control" id="nombre-aparato" name="nombre-aparato"
-                        placeholder="Nombre de aparato">
+                        placeholder="Nombre de aparato" required>
                 </div>
 
                 <div class="form-group">
                     <label>Precio por compra:</label>
-                    <input type="text" class="form-control" id="precio-por-compra"
+                    <input type="text" class="form-control numeric-add" id="precio-por-compra"
                         placeholder="Precio por compra">
                 </div>
 
@@ -701,8 +703,8 @@ aria-hidden="true">
 
                 <div class="form-group">
                     <label>Descripción:</label>
-                    <input type="text" class="form-control" id="nombre-aparato"
-                        name="nombre-aparato">
+                    <input type="text" class="form-control numeric-update" id="nombre-aparato"
+                        name="nombre-aparato" required>
                 </div>
 
                 <div class="modal-footer">
@@ -791,34 +793,27 @@ aria-hidden="true">
                 <div class="form-group">
                     <label>Descripción:</label>
                     <input type="text" class="form-control" id="descripcion-producto" name="descripcio-producto"
-                        placeholder="Descripción de compra">
+                        placeholder="Descripción de compra" required>
                 </div>
 
 
                 <div class="form-group">
                     <label>Cantidad:</label>
-                    <input type="text" class="form-control" id="cantidad" name="cantidad"
-                        placeholder="No. de articulos comprados">
+                    <input type="text" class="form-control numeric-c-add" id="cantidad" name="cantidad"
+                        placeholder="No. de articulos comprados" required>
                 </div>
 
                 <div class="form-group">
                     <label>Monto:</label>
-                    <input type="text" class="form-control" id="monto-compra" name="monto_compra"
-                        placeholder="Monto de compra">
+                    <input type="text" class="form-control numeric-m-add" id="monto-compra" name="monto_compra"
+                        placeholder="Monto de compra" required>
                 </div>
 
                 <div class="form-group">
                     <label>Fecha:</label>
-                    <input type="text" class="form-control" id="fecha-compra"  name="fecha-compra" placeholder="dd/mm/yyyy">
+                    <input type="text" class="form-control date-add" id="fecha-compra"  name="fecha-compra" placeholder="dd/mm/yyyy" required>
                 </div>
 
-                <div class="form-group">
-                    <label for="categoria-compra">Categoria</label>
-                    <select class="form-control" id="categoria-compra">
-                        <option>1</option>
-                        <option>2</option>
-                    </select>
-                </div>
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -854,33 +849,25 @@ aria-hidden="true">
                 <div class="form-group">
                     <label>Descripción:</label>
                     <input type="text" class="form-control" id="descripcion-producto" name="descripcion-compra"
-                        placeholder="Descripción de compra">
+                        placeholder="Descripción de compra" required>
                 </div>
 
 
                 <div class="form-group">
                     <label>Cantidad:</label>
-                    <input type="text" class="form-control" id="cantidad" name="cantidad"
+                    <input type="text" class="form-control numeric-c-update" id="cantidad" name="cantidad"
                         placeholder="No. de articulos comprados">
                 </div>
 
                 <div class="form-group">
                     <label>Monto:</label>
-                    <input type="text" class="form-control" id="monto-compra" name="monto_compra"
+                    <input type="text" class="form-control numeric-m-update" id="monto-compra" name="monto_compra"
                         placeholder="Monto de compra">
                 </div>
 
                 <div class="form-group">
                     <label>Fecha:</label>
-                    <input type="text" class="form-control" id="fecha-compra"  name="fecha-compra" placeholder="dd/mm/yyyy">
-                </div>
-
-                <div class="form-group">
-                    <label for="categoria-compra">Categoria</label>
-                    <select class="form-control" id="categoria-compra">
-                        <option>1</option>
-                        <option>2</option>
-                    </select>
+                    <input type="text" class="form-control date-update" id="fecha-compra"  name="fecha-compra" placeholder="dd/mm/yyyy">
                 </div>
 
                 <div class="modal-footer">

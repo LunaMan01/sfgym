@@ -30,11 +30,19 @@ class Cliente {
         return true;
     }
 
-    consultar(datoABuscar) {
+    consultar(datoABuscar, selectActual) {
         var req = new XMLHttpRequest();
         req.open("POST", 'php/clientes/consultaDinamica.php', false);
         req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-        req.send('dato=' + datoABuscar);
+        req.send('dato=' + datoABuscar+"&select-clientes="+selectActual);
+        return req.responseText;
+    }
+
+    getActivos() {
+        var req = new XMLHttpRequest();
+        req.open("POST", 'php/clientes/consultaActivos.php', false);
+        req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+        req.send('opcion=' + 1);
         return req.responseText;
     }
 

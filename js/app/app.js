@@ -128,6 +128,23 @@ var UIController = (function () {
         }
     }
 
+    function setUpInicio() {
+        var req = new XMLHttpRequest();
+        req.open("POST", 'php/inicio.php', false);
+        req.send(null);
+        
+        
+        let res = req.responseText;
+        let responses = res.split("||");
+       
+        var inicio = JSON.parse(responses[0]);
+    
+        document.querySelector('#clientes-activos-label').innerHTML = inicio.activo;
+        document.querySelector('#visitas-label').innerHTML = inicio.visitas;
+        document.querySelector('#count-membresias').innerHTML = inicio.membresias;
+        document.querySelector('#cuerpo-tabla-inicio').innerHTML = responses[1];
+    }
+
 
     return {
 
@@ -138,6 +155,7 @@ var UIController = (function () {
             document.querySelector(CSSClasses.active).classList.remove('active');
             document.querySelector(Li.inicio).className = 'active';
             load('html/inicio.html', content);
+            setUpInicio();
         },
 
         abrirClientes: function () {
@@ -275,6 +293,8 @@ var UIController = (function () {
 }());
 
 
+
+
 var controller = (function (UI) {
     var abrirInicio = UI.abrirInicio;
     var abrirClientes = UI.abrirClientes;
@@ -293,51 +313,15 @@ var controller = (function (UI) {
     document.querySelector(Links.respaldos).addEventListener('click', UI.abrirRespaldo);
 
 
+
+
     UI.abrirInicio();
 }(UIController));
 
 
 
 
-function addScriptsClientes() {
-    // let script = document.createElement('script');
-    // script.setAttribute('src', 'js/clientes/clientes.js');
-    // script.setAttribute('id', 'clientes-script');
-    // document.head.appendChild(script);
 
-    // let scriptEditarCliente = document.createElement('script');
-    // scriptEditarCliente.setAttribute('src', 'js/clientes/editar-cliente.js');
-    // document.head.appendChild(scriptEditarCliente);
-
-    // if (document.getElementById('eliminar-clientes-script') == null) {
-    //     let scriptEliminarCliente = document.createElement('script');
-    //     scriptEliminarCliente.setAttribute('src', 'js/clientes/eliminar-cliente.js');
-    //     scriptEliminarCliente.setAttribute('id', 'eliminar-clientes-script');
-    //     document.head.appendChild(scriptEliminarCliente);
-
-    // }
-
-    // if (document.getElementById('bucar-cliente-dinamico-script') == null) {
-    //     let scriptBuscar = document.createElement('script');
-    //     scriptBuscar.setAttribute('id', 'bucar-cliente-dinamico-script');
-    //     scriptBuscar.setAttribute('src', 'js/clientes/consulta-dinamica.js');
-    //     document.head.appendChild(scriptBuscar);
-    // }
-
-    // if (document.getElementById('ver-cliente-script') == null) {
-    //     let verCliente = document.createElement('script');
-    //     verCliente.setAttribute('id', 'ver-cliente-script');
-    //     verCliente.setAttribute('src', 'js/clientes/ver-cliente.js');
-    //     document.head.appendChild(verCliente);
-    // }
-
-    // if (document.getElementById('mostrar-cliente-script') != null) {
-    let scriptMostrarClientes = document.createElement('script');
-    scriptMostrarClientes.setAttribute('src', 'js/clientes/mostrar-clientes.js');
-    document.head.appendChild(scriptMostrarClientes);
-    // }
-
-}
 
 function load(url, element) {
     var req = new XMLHttpRequest();

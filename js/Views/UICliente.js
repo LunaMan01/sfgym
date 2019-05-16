@@ -11,19 +11,7 @@ var UICliente = (function () {
     //     return (!string || 0 === string.length);
     // }
 
-    function mostrarActivos() {
-        var spinner = '<div class="d-flex mt-3">' +
-            '<div class="spinner-grow text-success" role="status"><span class="sr-only">Loading...</span></div>' +
-            '<div class="spinner-grow text-success" role="status"><span class="sr-only">Loading...</span></div>' +
-            '<div class="spinner-grow text-success" role="status"><span class="sr-only">Loading...</span></div></div>';
-        document.querySelector('#cuerpo-tabla-clientes').innerHTML = spinner;
-        var req = new XMLHttpRequest();
-        req.open("POST", 'php/clientes/consultaActivos.php', false);
-        req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-        req.send('opcion=' + 1);
-        document.querySelector('#cuerpo-tabla-clientes').innerHTML = req.responseText
-
-    }
+    
 
     return {
         abrirAddCliente: function () {
@@ -56,40 +44,23 @@ var UICliente = (function () {
             document.querySelector('#colonia').value = cliente.colonia;
         },
 
+        mostrarCarga: function() {
+            var spinner = '<div class="d-flex mt-3">' +
+            '<div class="spinner-grow text-success" role="status"><span class="sr-only">Loading...</span></div>' +
+            '<div class="spinner-grow text-success" role="status"><span class="sr-only">Loading...</span></div>' +
+            '<div class="spinner-grow text-success" role="status"><span class="sr-only">Loading...</span></div></div>';
+            document.querySelector('#cuerpo-tabla-clientes').innerHTML = spinner;
+        },
+
         abrirModificarCliente: function () {
             load('html/clientes-components/editar-cliente.html', document.querySelector('.content'));
         },
 
-        mostrarTodosLosClientes: function () {
-            mostrarActivos();
-        },
-
-        mostrarActivos: function () {
-            document.querySelector('#dropdown-clientes').textContent = 'Clientes activos';
-
-            document.querySelectorAll('.dropdown .d-none').forEach(function (element) {
-                element.classList.remove('d-none');
-            });
-            mostrarActivos();
-        },
-
-        mostrarInactivos: function (res) {
-            document.querySelector('#dropdown-clientes').textContent = 'Clientes inactivos';
-
-            document.querySelectorAll('.dropdown .d-none').forEach(function (element) {
-                element.classList.remove('d-none');
-            });
-
+        mostrarClientesEnTabla: function (res) {
             document.querySelector('#cuerpo-tabla-clientes').innerHTML = res;
         },
 
-        mostrarActivosEInactivos: function (res) {
-            document.querySelector('#dropdown-clientes').textContent = 'Todos los clientes';
-            document.querySelectorAll('.dropdown .d-none').forEach(function (element) {
-                element.classList.remove('d-none');
-            });
-            document.querySelector('#cuerpo-tabla-clientes').innerHTML = res;
-        },
+        
 
 
 

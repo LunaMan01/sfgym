@@ -38,14 +38,6 @@ class Compra {
         return req.responseText;
     }
 
-    getTodosLasCompras() {
-        var req = new XMLHttpRequest();
-        req.open("POST", 'php/compras/consultarCompras.php', false);
-        req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-        req.send(null);
-        return req.responseText;
-    }
-
     reporte(data) {
         var req = new XMLHttpRequest();
         req.open("POST", 'php/compras/reportes.php', false);
@@ -55,4 +47,33 @@ class Compra {
         return req.responseText;
     }
 
+    
+    getTodosLasCompras() {
+        var req = new XMLHttpRequest();
+        req.open("POST", 'php/compras/consultarCompras.php', false);
+        req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+        req.send(null);
+        return req.responseText;
+    }
+
+    getComprasMes () {
+        var req = new XMLHttpRequest();
+        req.open("POST", 'php/compras/comprasMes.php', false);
+        req.send(null);
+        return req.responseText;
+    }
+
+    getComprasSemana () {
+        var req = new XMLHttpRequest();
+        req.open("POST", 'php/compras/comprasSemana.php', false);
+        req.send(null);
+        return req.responseText;
+    }
+
+    getComprasDia () {
+        var req = new XMLHttpRequest();
+        req.open("POST", 'php/compras/comprasDia.php', false);
+        req.send(null);
+        return req.responseText;
+    }
 }

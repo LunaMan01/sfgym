@@ -6,7 +6,10 @@ var membresiaController = (function () {
 
         if (membresia.add(data)) {
             UIMembresia.mostrarMensajeExito('Membresía añadida correctamente');
-            UIMembresia.mostrarTodasLasMembresias();
+            if(document.querySelector('#membresias-vigentes').selected)
+                mostrarVigentes();
+            if(document.querySelector('#membresias-todas').selected)
+                mostrarTodas();
             UIMembresia.esconderModal('#add-membresia-modal');
         }
     }
@@ -74,7 +77,7 @@ var membresiaController = (function () {
         let dato = UIMembresia.getDatosABuscar();
         let membresia = new Membresia();
         let datosEncontrados = membresia.consultar(dato);
-        UIMembresia.mostrarDatosEncontrados(datosEncontrados);
+        UIMembresia.mostrarMembresiasEnTabla(datosEncontrados);
         
     }
 
@@ -96,8 +99,64 @@ var membresiaController = (function () {
         // document.querySelector('#descargar-pdf').addEventListener('click', descargarPDF);
     }
 
+    function setUpInputs() {
+        new Cleave('#id-cliente', {
+            numericOnly: true,
+            blocks: [11]
+        });
+
+
+        new Cleave('#fecha-inicio-add', {
+            date: true,
+            delimiter: '/',
+            datePattern: ['d', 'm', 'Y']
+        });
+
+        new Cleave('#fecha-fin-add', {
+            date: true,
+            delimiter: '/',
+            datePattern: ['d', 'm', 'Y']
+        });
+
+
+        new Cleave('#fecha-inicio', {
+            date: true,
+            delimiter: '/',
+            datePattern: ['d', 'm', 'Y']
+        });
+
+        new Cleave('#fecha-fin', {
+            date: true,
+            delimiter: '/',
+            datePattern: ['d', 'm', 'Y']
+        });
+
+    }
+
+    function mostrarVigentes () {
+        UIMembresia.mostrarCarga();
+        UIMembresia.mostrarMembresiasEnTabla(new Membresia().getVigentes());
+    }
+
+    function mostrarTodas () {
+        UIMembresia.mostrarCarga();
+        UIMembresia.mostrarMembresiasEnTabla(new Membresia().getTodas());
+    }
+
+    function cambiarVista () {
+        let membresiasVigentes = document.querySelector('#membresias-vigentes');
+        let todasLasMembresias = document.querySelector('#membresias-todas');
+
+        if(membresiasVigentes.selected) 
+            mostrarVigentes();
+        if(todasLasMembresias.selected)
+            mostrarTodas();
+        
+    }
+
     function setUpEvents() {
-        UIMembresia.mostrarTodasLasMembresias();
+        setUpInputs();
+        mostrarVigentes();
         document.querySelector('#add-membresia-form').addEventListener('submit', addNuevaMembresia);
         setUpDeleteEvent();
         document.querySelector('#confirmar-eliminacion').addEventListener('click', eliminarMembresia);
@@ -105,9 +164,10 @@ var membresiaController = (function () {
         document.querySelector('#modificar-membresia-form').addEventListener('submit', modificarMembresia);
         setUpWatchEvent();
         document.querySelector('#buscar-membresia-input').addEventListener('keyup', busquedaDinamica);
-        new Lightpick({ field: document.getElementById('fecha-inicio') });
-        new Lightpick({ field: document.getElementById('fecha-fin') });
+        new Lightpick({ field: document.getElementById('fecha-inicio-add') });
+        new Lightpick({ field: document.getElementById('fecha-fin-add') });
         document.querySelector('#reporte-membresia-btn').addEventListener('click',setUpVentanaReportes);
+        document.querySelector('#select-membresias').addEventListener('change', cambiarVista);
 
 
     }

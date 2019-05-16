@@ -74,7 +74,7 @@ var productoController = (function() {
         let dato = UIProducto.getDatosABuscar();
         let producto = new Producto();
         let datosEncontrados = producto.consultar(dato);
-        UIProducto.mostrarDatosEncontrados(datosEncontrados);
+        UIProducto.mostrarProductosEnTabla(datosEncontrados);
         
     }
 
@@ -100,9 +100,78 @@ var productoController = (function() {
 
         // document.querySelector('#descargar-pdf').addEventListener('click', 
     }
+
+    function setUpInputs() {
+
+
+        new Cleave('.numeric-price-add', {
+            numericOnly: true,
+            blocks: [10]
+        });
+
+        new Cleave('.numeric-add', {
+            numericOnly: true,
+            blocks: [10]
+        });
+
+        new Cleave('.numeric-price-update', {
+            numericOnly: true,
+            blocks: [10]
+        });
+
+        new Cleave('.numeric-update', {
+            numericOnly: true,
+            blocks: [10]
+        });
+
+        new Cleave('.date-add', {
+            date: true,
+            delimiter: '/',
+            datePattern: ['d', 'm', 'Y']
+        });
+
+        new Cleave('.date-update', {
+            date: true,
+            delimiter: '/',
+            datePattern: ['d', 'm', 'Y']
+        });
+
+
+
+    }
+
+    function mostrarTodosLosProductos () {
+        UIProducto.mostrarCarga();
+        UIProducto.mostrarProductosEnTabla(new Producto().getTodos());
+    }
+
+    function mostrarProductosConPocasExistencias () {
+        UIProducto.mostrarCarga();
+        UIProducto.mostrarProductosEnTabla(new Producto().getPocasExistencias());
+    }
+
+    function mostrarProductosProximosACaducar () {
+        UIProducto.mostrarCarga();
+        UIProducto.mostrarProductosEnTabla(new Producto().getProximosACaducar());
+    }
+
+    function cambiarVista () {
+        let aCaducar = document.querySelector('#productos-proximos-caducidad');
+        let todosLosProductos = document.querySelector('#todos-los-productos');
+        let pocasExistencias = document.querySelector('#productos-pocas-existencias');
+
+        if(todosLosProductos.selected)
+            mostrarTodosLosProductos();
+        else if(aCaducar.selected)
+            mostrarProductosProximosACaducar();
+        else if (pocasExistencias.selected)
+            mostrarProductosConPocasExistencias();
+    }
+    
     
     function setUpEvents() {
-        UIProducto.mostrarTodosLosProductos();
+        setUpInputs();
+        mostrarTodosLosProductos();
         document.querySelector('#add-producto-form').addEventListener('submit', addNuevoProducto);
         setUpDeleteEvent();
         document.querySelector('#confirmar-eliminacion').addEventListener('click', eliminarProducto);
@@ -112,7 +181,7 @@ var productoController = (function() {
         document.querySelector('#buscar-producto-input').addEventListener('keyup', busquedaDinamica);
         new Lightpick({ field: document.getElementById('fecha-caducidad') });
         document.querySelector('#reporte-producto-btn').addEventListener('click', setUpVentanaReportes);
-
+        document.querySelector('#select-productos').addEventListener('change', cambiarVista);
 
     }
 

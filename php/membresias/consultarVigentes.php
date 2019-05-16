@@ -4,8 +4,11 @@
     date_default_timezone_set('America/Mexico_City');
 
     try{
-        $consultar = 'SELECT Id_Membresia, nombre_cliente, fecha_inicio, fecha_fin 
-        FROM Membresias INNER JOIN Clientes ON Membresias.Id_Cliente = Clientes.Id_Cliente';
+        $fecha = date('d/m/Y');
+
+        $consultar = "SELECT Id_Membresia, nombre_cliente, fecha_inicio, fecha_fin 
+        FROM Membresias INNER JOIN Clientes ON Membresias.Id_Cliente = Clientes.Id_Cliente
+        WHERE '".$fecha."' BETWEEN fecha_inicio AND fecha_fin";
 
         foreach($conn->query($consultar) as $row){
             echo '<tr>
@@ -20,7 +23,7 @@
             </tr>';
         }
     }catch(PDOException $e){
-        echo 'Error: '. $e->getMessage();
+        echo 'Error: '.$e->getMessage();
     }
     $conn = null;
 ?>

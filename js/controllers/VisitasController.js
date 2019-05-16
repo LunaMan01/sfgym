@@ -74,7 +74,7 @@ var visitaController = (function () {
         let dato = UIVisita.getDatosABuscar();
         let visita = new Visita();
         let datosEncontrados = visita.consultar(dato);
-        UIVisita.mostrarDatosEncontrados(datosEncontrados);
+        UIVisita.mostrarVisitasEnTabla(datosEncontrados);
 
     }
 
@@ -101,10 +101,67 @@ var visitaController = (function () {
         // document.querySelector('#descargar-pdf').addEventListener('click', descargarPDF);
     }
 
+    function setUpInputs() {
+
+
+        new Cleave('.numeric-id-add', {
+            numericOnly: true,
+            blocks: [10]
+        });
+
+        new Cleave('.numeric-id-update', {
+            numericOnly: true,
+            blocks: [10]
+        });
+
+        new Cleave('.date-add', {
+            date: true,
+            delimiter: '/',
+            datePattern: ['d', 'm', 'Y']
+        });
+
+        new Cleave('.date-update', {
+            date: true,
+            delimiter: '/',
+            datePattern: ['d', 'm', 'Y']
+        });
+
+
+
+    }
+
+    function mostrarVisitasDelDia() {
+        UIVisita.mostrarCarga();
+        UIVisita.mostrarVisitasEnTabla(new Visita().getVisitasDelDia());
+    }
+
+    function mostrarVisitasDeLaSemana() {
+        UIVisita.mostrarCarga();
+        UIVisita.mostrarVisitasEnTabla(new Visita().getVisitasDeSemana());
+    }
+
+    function mostrarVisitasDelMes() {
+        UIVisita.mostrarCarga();
+        UIVisita.mostrarVisitasEnTabla(new Visita().getVisitasDelMes());
+    }
+
+    function cambiarVista() {
+        let visitasDia = document.querySelector('#visitas-dia');
+        let visitasSema = document.querySelector('#visitas-semana');
+        let visitasMes = document.querySelector('#visitas-mes');
+
+        if (visitasDia.selected)
+            mostrarVisitasDelDia();
+        else if (visitasSema.selected)
+            mostrarVisitasDeLaSemana();
+        else if (visitasMes.selected)
+            mostrarVisitasDelMes();
+    }
 
 
     function setUpEvents() {
-
+        mostrarVisitasDelDia();
+        setUpInputs();
         document.querySelector('#add-visita-form').addEventListener('submit', addNuevaVisita);
         new Lightpick({ field: document.getElementById('fecha-visita') });
         setUpDeleteEvent();
@@ -115,12 +172,11 @@ var visitaController = (function () {
         document.querySelector('#reporte-visita-btn').addEventListener('click', setUpVentanaReportes);
         document.querySelector('#buscar-visita-input').addEventListener('keyup', busquedaDinamica);
         document.querySelector('#reporte-visita-btn').addEventListener('click', setUpVentanaReportes);
-
+        document.querySelector('#select-visitas').addEventListener('change', cambiarVista);
     }
 
     return {
         init: function () {
-            UIVisita.mostrarTodasLasVisitas();
             setUpEvents();
 
         }

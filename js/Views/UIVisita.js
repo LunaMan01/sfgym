@@ -1,25 +1,16 @@
-var UIVisita  = (function() {
+var UIVisita = (function () {
 
-    function mostrarTodasLasVisitas() {
-        console.log('v');
-        var spinner = '<div class="d-flex mt-3">' +
-            '<div class="spinner-grow text-success" role="status"><span class="sr-only">Loading...</span></div>' +
-            '<div class="spinner-grow text-success" role="status"><span class="sr-only">Loading...</span></div>' +
-            '<div class="spinner-grow text-success" role="status"><span class="sr-only">Loading...</span></div></div>';
-        document.querySelector('#cuerpo-tabla-visitas').innerHTML = spinner;
-        var req = new XMLHttpRequest();
-        req.open("POST", 'php/visitas/consultarVisitas.php', false);
-        req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-        req.send(null);
-        document.querySelector('#cuerpo-tabla-visitas').innerHTML = req.responseText
 
-    }
 
     return {
 
-        mostrarTodasLasVisitas: function () {
-
-            mostrarTodasLasVisitas();
+        mostrarCarga: function () {
+            var spinner = '<div class="d-flex mt-3">' +
+                '<div class="spinner-grow text-success" role="status"><span class="sr-only">Loading...</span></div>' +
+                '<div class="spinner-grow text-success" role="status"><span class="sr-only">Loading...</span></div>' +
+                '<div class="spinner-grow text-success" role="status"><span class="sr-only">Loading...</span></div></div>';
+            document.querySelector('#cuerpo-tabla-visitas').innerHTML = spinner;
+            
         },
 
         getDatosParaNuevaVisita: function () {
@@ -59,7 +50,7 @@ var UIVisita  = (function() {
         setDatosVisitaEnInputs: function (visita) {
             document.querySelector('#modificar-visita-form #id-cliente').value = visita.idCliente;
             document.querySelector('#modificar-visita-form #fecha-visita').value = visita.fechaVisitas;
-            
+
         },
 
         getDatosModificados: function () {
@@ -70,12 +61,12 @@ var UIVisita  = (function() {
         },
 
         verVisita: function (visita) {
-            document.querySelector('#ver-visita-form #id-visita').innerHTML =  visita.idCliente;
-            document.querySelector('#ver-visita-form #fecha-visita').innerHTML= visita.fechaVisitas;
-            
+            document.querySelector('#ver-visita-form #id-visita').innerHTML = visita.idCliente;
+            document.querySelector('#ver-visita-form #fecha-visita').innerHTML = visita.fechaVisitas;
+
         },
 
-        mostrarDatosEncontrados: function(datos) {
+        mostrarVisitasEnTabla: function (datos) {
             document.querySelector('#cuerpo-tabla-visitas').innerHTML = datos;
         },
 
@@ -88,14 +79,14 @@ var UIVisita  = (function() {
         },
 
 
-        abrirReportes: function() {
+        abrirReportes: function () {
             load('html/visitas-components/reporte-visitas.html', document.querySelector('.content'));
         },
 
         getDatosParaReporte: function () {
             var form = document.querySelector('#reporte-visitas-form');
             var data = new FormData(form);
-            
+
             // data.append('fecha', document.querySelector('#rango-fecha').value);
             // console.log(document.querySelector('#rango-fecha').value);
             return data;
@@ -104,12 +95,12 @@ var UIVisita  = (function() {
         mostrarReporte: function (req) {
             document.querySelector('.reporte-generado').classList.remove('d-none');
             document.querySelector('.panel-reportes').classList.add('d-none');
-            
+
             document.querySelector(".reporte-generado").innerHTML = req;
         },
 
         mostrarMensajeExito: function (divContainerId, mensaje) {
-            
+
             new Toast(divContainerId, mensaje, 2000, 'alert-success').getAndShow();
             console.log('dsa');
         },

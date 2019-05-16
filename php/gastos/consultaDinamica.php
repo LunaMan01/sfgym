@@ -31,14 +31,14 @@
             //GASTOS DEL DIA
             $fecha = date('d/m/Y');
 
-            $consultar = "SELECT Id_Gasto, descripcion_gasto, fecha_gasto, monto_gasto, tipo_gasto 
+            $consultar = $conn->prepare("SELECT Id_Gasto, descripcion_gasto, fecha_gasto, monto_gasto, tipo_gasto 
                 FROM Gastos INNER JOIN TipoGastos ON Gastos.Id_Tipo LIKE TipoGastos.Id_Tipo
                 AND fecha_gasto LIKE '".$fecha."' WHERE 
-                Id_Gasto LIKE ? OR descripcion_gasto LIKE ? OR fecha_gasto LIKE ? OR monto_gasto LIKE ? OR tipo_gasto LIKE ?";
+                Id_Gasto LIKE ? OR descripcion_gasto LIKE ? OR fecha_gasto LIKE ? OR monto_gasto LIKE ? OR tipo_gasto LIKE ?");
 
             $consultar->execute(array($dato."%", $dato."%", $dato."%", $dato."%", $dato."%"));
 
-            while($results = $query->fetch()){
+            while($results = $consultar->fetch()){
                 echo '<tr>
                     <th scope="row" id="'.$results['Id_Gasto'].'">'.$results['Id_Gasto'].'</th>'.
                         '<td>'.$results['descripcion_gasto'].'</td>'.
@@ -68,16 +68,16 @@
             $primerDia=date("d/m/Y",mktime(0,0,0,$mes,$day-$diaSemana+1,$año));
             $ultimoDia=date("d/m/Y",mktime(0,0,0,$mes,$day+(5-$diaSemana),$año));
 
-            $consultar = "SELECT Id_Gasto, descripcion_gasto, fecha_gasto, monto_gasto, tipo_gasto 
+            $consultar = $conn->prepare("SELECT Id_Gasto, descripcion_gasto, fecha_gasto, monto_gasto, tipo_gasto 
                 FROM Gastos INNER JOIN TipoGastos ON Gastos.Id_Tipo LIKE TipoGastos.Id_Tipo 
                 AND str_to_date(fecha_gasto, '%d/%m/%Y') 
                 BETWEEN str_to_date('".$primerDia."', '%d/%m/%Y') AND str_to_date('".$ultimoDia."', '%d/%m/%Y')
                 WHERE Id_Gasto LIKE ? OR descripcion_gasto LIKE ? OR fecha_gasto LIKE ? 
-                OR monto_gasto LIKE ? OR tipo_gasto LIKE ?";
+                OR monto_gasto LIKE ? OR tipo_gasto LIKE ?");
 
             $consultar->execute(array($dato."%", $dato."%", $dato."%", $dato."%", $dato."%"));
 
-            while($results = $query->fetch()){
+            while($results = $consultar->fetch()){
                 echo '<tr>
                     <th scope="row" id="'.$results['Id_Gasto'].'">'.$results['Id_Gasto'].'</th>'.
                         '<td>'.$results['descripcion_gasto'].'</td>'.
@@ -100,17 +100,17 @@
             $firstDay = primerDia($mes,$año);
             $lastDay = ultimoDia($mes,$año);
             
-            $consultar = "SELECT Id_Gasto, descripcion_gasto, fecha_gasto, monto_gasto, tipo_gasto 
+            $consultar = $conn->prepare("SELECT Id_Gasto, descripcion_gasto, fecha_gasto, monto_gasto, tipo_gasto 
                 FROM Gastos INNER JOIN TipoGastos ON Gastos.Id_Tipo LIKE TipoGastos.Id_Tipo
                 AND str_to_date(fecha_gasto, '%d/%m/%Y') 
                 BETWEEN str_to_date('".$firstDay."/".$mes."/".$año."', '%d/%m/%Y') 
                 AND str_to_date('".$lastDay."/".$mes."/".$año."', '%d/%m/%Y')
                 WHERE Id_Gasto LIKE ? OR descripcion_gasto LIKE ? OR fecha_gasto LIKE ? 
-                OR monto_gasto LIKE ? OR tipo_gasto LIKE ?";
+                OR monto_gasto LIKE ? OR tipo_gasto LIKE ?");
 
             $consultar->execute(array($dato."%", $dato."%", $dato."%", $dato."%", $dato."%"));
 
-            while($results = $query->fetch()){
+            while($results = $consultar->fetch()){
                 echo '<tr>
                     <th scope="row" id="'.$results['Id_Gasto'].'">'.$results['Id_Gasto'].'</th>'.
                         '<td>'.$results['descripcion_gasto'].'</td>'.

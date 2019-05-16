@@ -25,14 +25,17 @@
                 </tr>';
             }
         }
+        
         if($_POST['select-membresias'] == 1){
             //MEMBRESIAS VIGENTES
             $fecha = date('d/m/Y');
-
+          
             $consultar = $conn->prepare("SELECT Id_Membresia, nombre_cliente, fecha_inicio, fecha_fin 
                 FROM Membresias INNER JOIN Clientes ON Membresias.Id_Cliente = Clientes.Id_Cliente
+                AND str_to_date('".$fecha."', '%d/%m/%Y') BETWEEN str_to_date(fecha_inicio, '%d/%m/%Y') 
+                AND str_to_date(fecha_fin, '%d/%m/%Y')
                 WHERE Id_Membresia LIKE ? OR nombre_cliente LIKE ? OR fecha_inicio LIKE ? 
-                OR fecha_fin LIKE ? AND '".$fecha."' BETWEEN fecha_inicio AND fecha_fin");
+                OR fecha_fin LIKE ?");
 
             $consultar->execute(array($dato."%", $dato."%", $dato."%", $dato."%"));
 

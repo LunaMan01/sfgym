@@ -21,10 +21,8 @@ var ventaController = (function() {
     }
 
     function getProductosDelCarrito () {
-        let carrito = document.querySelectorAll('#carrito td');
-
-        console.log(carrito);
-
+        
+        console.log(carritoJSON);
         
         
     }
@@ -33,12 +31,28 @@ var ventaController = (function() {
         let nipCliente = document.querySelector('#nip-cliente');
         let idInstructor = document.querySelector('#nip-instructor');
 
-        let ventaJSON = {
+        let venta = {
             "nipCliente" : nipCliente,
             "idInstructor" : idInstructor,
         }
 
-        getProductosDelCarrito();
+        let ventaJSON = JSON.stringify(productosEnCarrito);
+
+        let carrito = document.querySelectorAll('.carrito');
+
+        
+        let productosEnCarrito = new Array();
+        carrito.forEach(element => {
+            let producto = new Object();
+            producto.id = element.getAttribute('id');
+            producto.cantidad = element.getAttribute('data-cantidad');
+            producto.subtotal = element.getAttribute('data-subtotal');
+            productosEnCarrito.push(producto);
+        });
+
+        let carritoJSON = JSON.stringify(productosEnCarrito);
+
+        new Venta().add(ventaJSON, carritoJSON);
     }
 
     function setUpEvents() {

@@ -87,30 +87,6 @@ var clienteController = (function () {
         document.querySelector('#form').addEventListener('submit', addNuevoCliente);
         document.querySelector('#cancelar-cliente').addEventListener('click', UICliente.regresar);
 
-        
-
-      
-
-
-
-
-
-        // document.querySelector('#telefono').addEventListener('keydown', function(e) {
-        //     aceptarSoloNumeros(e);
-        //     limitarLongitud(9, this.value.length, e);
-        // });
-        // document.querySelector('#edad').addEventListener('keydown', function(e) {
-        //     aceptarSoloNumeros(e);
-
-        // });
-        // document.querySelector('#num-ext').addEventListener('keydown', function(e) {
-        //     aceptarSoloNumeros(e);
-
-        // });
-        // document.querySelector('#num-int').addEventListener('keydown', function(e) {
-        //     aceptarSoloNumeros(e);
-
-        // });
     }
 
     function setUpDeleteEvent() {
@@ -235,8 +211,6 @@ var clienteController = (function () {
             mostrarActivos();
         else if (clientesInactivos.selected)
             mostrarClientesInactivos();
-        else if (clientesSinMembresia.selected)
-            console.log('sin mem');
         else if (todosLosClientes.selected)
             mostrarActivosEInactivos();
     }

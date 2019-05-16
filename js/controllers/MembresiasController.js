@@ -6,7 +6,10 @@ var membresiaController = (function () {
 
         if (membresia.add(data)) {
             UIMembresia.mostrarMensajeExito('Membresía añadida correctamente');
-            UIMembresia.mostrarTodasLasMembresias();
+            if(document.querySelector('#membresias-vigentes').selected)
+                mostrarVigentes();
+            if(document.querySelector('#membresias-todas').selected)
+                mostrarTodas();
             UIMembresia.esconderModal('#add-membresia-modal');
         }
     }
@@ -130,9 +133,30 @@ var membresiaController = (function () {
 
     }
 
+    function mostrarVigentes () {
+        UIMembresia.mostrarCarga();
+        UIMembresia.mostrarMembresiasEnTabla(new Membresia().getVigentes());
+    }
+
+    function mostrarTodas () {
+        UIMembresia.mostrarCarga();
+        UIMembresia.mostrarMembresiasEnTabla(new Membresia().getTodas());
+    }
+
+    function cambiarVista () {
+        let membresiasVigentes = document.querySelector('#membresias-vigentes');
+        let todasLasMembresias = document.querySelector('#membresias-todas');
+
+        if(membresiasVigentes.selected) 
+            mostrarVigentes();
+        if(todasLasMembresias.selected)
+            mostrarTodas();
+        
+    }
+
     function setUpEvents() {
         setUpInputs();
-        UIMembresia.mostrarTodasLasMembresias();
+        mostrarVigentes();
         document.querySelector('#add-membresia-form').addEventListener('submit', addNuevaMembresia);
         setUpDeleteEvent();
         document.querySelector('#confirmar-eliminacion').addEventListener('click', eliminarMembresia);
@@ -143,6 +167,7 @@ var membresiaController = (function () {
         new Lightpick({ field: document.getElementById('fecha-inicio-add') });
         new Lightpick({ field: document.getElementById('fecha-fin-add') });
         document.querySelector('#reporte-membresia-btn').addEventListener('click',setUpVentanaReportes);
+        document.querySelector('#select-membresias').addEventListener('change', cambiarVista);
 
 
     }

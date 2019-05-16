@@ -130,8 +130,37 @@ var visitaController = (function () {
 
     }
 
+    function mostrarVisitasDelDia() {
+        UIVisita.mostrarCarga();
+        UIVisita.mostrarVisitasEnTabla(new Visita().getVisitasDelDia());
+    }
+
+    function mostrarVisitasDeLaSemana() {
+        UIVisita.mostrarCarga();
+        UIVisita.mostrarVisitasEnTabla(new Visita().getVisitasDeSemana());
+    }
+
+    function mostrarVisitasDelMes() {
+        UIVisita.mostrarCarga();
+        UIVisita.mostrarVisitasEnTabla(new Visita().getVisitasDelMes());
+    }
+
+    function cambiarVista() {
+        let visitasDia = document.querySelector('#visitas-dia');
+        let visitasSema = document.querySelector('#visitas-semana');
+        let visitasMes = document.querySelector('#visitas-mes');
+
+        if (visitasDia.selected)
+            mostrarVisitasDelDia();
+        else if (visitasSema.selected)
+            mostrarVisitasDeLaSemana();
+        else if (visitasMes.selected)
+            mostrarVisitasDelMes();
+    }
+
 
     function setUpEvents() {
+        mostrarVisitasDelDia();
         setUpInputs();
         document.querySelector('#add-visita-form').addEventListener('submit', addNuevaVisita);
         new Lightpick({ field: document.getElementById('fecha-visita') });
@@ -143,12 +172,11 @@ var visitaController = (function () {
         document.querySelector('#reporte-visita-btn').addEventListener('click', setUpVentanaReportes);
         document.querySelector('#buscar-visita-input').addEventListener('keyup', busquedaDinamica);
         document.querySelector('#reporte-visita-btn').addEventListener('click', setUpVentanaReportes);
-
+        document.querySelector('#select-visitas').addEventListener('change', cambiarVista);
     }
 
     return {
         init: function () {
-            UIVisita.mostrarTodasLasVisitas();
             setUpEvents();
 
         }

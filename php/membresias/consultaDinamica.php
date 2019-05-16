@@ -4,7 +4,7 @@
     $dato = $_POST['dato'];
 
     try{
-        if($_POST['value' == 2]){
+        if($_POST['select-membresias' == 2]){
         //TODAS LAS MEMBRESIAS
             $query = $conn->prepare('SELECT Id_Membresia, nombre_cliente, fecha_inicio, fecha_fin
                 FROM Membresias INNER JOIN Clientes ON Clientes.Id_Cliente LIKE Membresias.Id_Cliente WHERE 
@@ -25,7 +25,7 @@
                 </tr>';
             }
         }
-        if($_POST['value'] == 1){
+        if($_POST['select-membresias'] == 1){
             //MEMBRESIAS VIGENTES
             $fecha = date('d/m/Y');
 
@@ -51,8 +51,4 @@
         echo "Error: ". $e->getMessage();
     }
     $conn = null;
-
-    //  SELECT Membresias.Id_Cliente, nombre_cliente, fecha_inicio, fecha_fin
-    //      FROM Membresias INNER JOIN Clientes ON Clientes.Id_Cliente LIKE Membresias.Id_Cliente WHERE 
-    //      Membresias.Id_Cliente LIKE '1%';
 ?>

@@ -4,7 +4,7 @@
     $dato = $_POST['dato'];
 
     try{
-        if($_POST['value'] == 3){
+        if($_POST['select-productos'] == 1){
         //TODOS LOS PRODUCTOS
             $query = $conn->prepare('SELECT Id_Producto, descripcion_producto, fecha_caducidad, existencia_producto, precio_producto
                 FROM Productos WHERE Id_Producto LIKE ? OR descripcion_producto LIKE ? OR 
@@ -27,10 +27,16 @@
             }
         }
 
-        if($_POST['value'] == 2){
-            //PRODUCTOS NUEVOS
+        if($_POST['select-productos'] == 2){
+            //PROXIMOS A CADUCAR
+            $fechaActual = actual();
+
+            $fechaSiguiente = masSieteDias();
+            
             $consultar = "SELECT Id_Producto, descripcion_producto, fecha_caducidad, existencia_producto, precio_producto 
-                FROM productos WHERE existencia_producto < 5 WHERE Id_Producto LIKE ? OR descripcion_producto LIKE ? OR 
+                FROM productos WHERE str_to_date(fecha_caducidad, '%d/%m/%Y') 
+                BETWEEN str_to_date('".$fechaActual."', '%d/%m/%Y') AND str_to_date('".$fechaSiguiente."', '%d/%m/%Y')
+                WHERE Id_Producto LIKE ? OR descripcion_producto LIKE ? OR 
                 fecha_caducidad LIKE ? OR existencia_producto LIKE ? OR precio_producto LIKE ?";
 
             foreach($conn->query($consultar) as $row){
@@ -48,16 +54,10 @@
             }
         }
 
-        if($_POST['value'] == 1){
-            //PROXIMOS A CADUCAR
-            $fechaActual = actual();
-
-            $fechaSiguiente = masSieteDias();
-            
+        if($_POST['select-productos'] == 3){
+            //PRODUCTOS POCA EXISTENCIA
             $consultar = "SELECT Id_Producto, descripcion_producto, fecha_caducidad, existencia_producto, precio_producto 
-                FROM productos WHERE str_to_date(fecha_caducidad, '%d/%m/%Y') 
-                BETWEEN str_to_date('".$fechaActual."', '%d/%m/%Y') AND str_to_date('".$fechaSiguiente."', '%d/%m/%Y')
-                WHERE Id_Producto LIKE ? OR descripcion_producto LIKE ? OR 
+                FROM productos WHERE existencia_producto < 5 WHERE Id_Producto LIKE ? OR descripcion_producto LIKE ? OR 
                 fecha_caducidad LIKE ? OR existencia_producto LIKE ? OR precio_producto LIKE ?";
 
             foreach($conn->query($consultar) as $row){

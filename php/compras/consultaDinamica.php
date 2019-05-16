@@ -2,9 +2,34 @@
     include '../conexion.php';
 
     $dato = $_POST['dato'];
-
+    
     try{
-        if($_POST['value'] == 3){
+        if($_POST['select-compras'] == 1){
+            //TODAS LAS COMPRAS
+            $consulta = $conn->prepare("SELECT Id_Compra, Compras.Id_Instructor, descripcion_compra, monto_compra, fecha_compra, cantidad
+                FROM Compras INNER JOIN Instructores ON Compras.Id_Instructor = Instructores.Id_Instructor
+                WHERE Id_Compra LIKE ? OR Compras.Id_Instructor LIKE ? OR descripcion_compra LIKE ? 
+                OR monto_compra LIKE ? OR fecha_compra LIKE ? OR cantidad LIKE ?");
+
+            $consulta->execute(array($dato."%", $dato."%", $dato."%", $dato."%", $dato."%", $dato."%"));
+
+            while($results = $consulta->fetch()){
+                echo '<tr>
+                    <th scope="row" id="'.$results['Id_Compra'].'">'.$results['Id_Compra'].'</th>'.
+                        '<td>'.$results['descripcion_compra'].'</td>'.
+                        '<td>'.$results['cantidad'].'</td>'.
+                        '<td>'.$results['monto_compra'].'</td>'.
+                        '<td>'.$results['fecha_compra'].'</td>'.
+                    '<td>
+                        <i class="material-icons actions watch-action mr-2" data-toggle="modal" href="#ver-compra-modal"> remove_red_eye</i>
+                        <i class="material-icons actions edit-action mr-2" data-toggle="modal" href="#modificar-compra-modal"> create</i>
+                        <i class="material-icons actions delete-action mr-2" data-toggle="modal" href="#eliminar-compra-modal"> delete</i> 
+                    </td>
+                </tr>';
+            }
+        }
+
+        if($_POST['select-compras'] == 2){
             //COMPRAS DEL MES
             $mes = date('m');
             $año = date('Y');
@@ -38,7 +63,7 @@
             }
         }
 
-        if($_POST['value'] == 2){
+        if($_POST['select-compras'] == 3){
             //COMPRAS DE LA SEMANA
             $day = date('d');
             $mes = date('m');
@@ -78,7 +103,7 @@
             }
         }
         
-        if($_POST['value'] == 1){
+        if($_POST['select-compras'] == 4){
             //COMPRAS DEL DIA
             $fecha = date('d/m/Y');
 

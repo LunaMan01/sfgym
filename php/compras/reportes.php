@@ -24,8 +24,10 @@
         $fecha2 = $array[1];
 
         $activo = 1;
-        $datos = $conn->prepare("SELECT Id_Compra, descripcion_compra, monto_compra, fecha_compra, cantidad, nombre_instructor
-        FROM Compras INNER JOIN Instructores ON Compras.Id_Instructor = Instructores.Id_Instructor 
+        $datos = $conn->prepare("SELECT Id_Compra, descripcion_compra, monto_compra, fecha_compra, tipo_compra, nombre_instructor
+        FROM Compras INNER JOIN Instructores INNER JOIN TipoCompras
+        ON Compras.Id_Instructor = Instructores.Id_Instructor
+        AND Compras.Id_TipoCompra = TipoCompras.Id_TipoCompra
         AND str_to_date(fecha_compra, '%d/%m/%Y') BETWEEN str_to_date('".$fecha1."','%d/%m/%Y') 
         AND str_to_date('".$fecha2."','%d/%m/%Y')");
         
@@ -50,7 +52,7 @@
                                     <th scope="col">Descripcion</th>
                                     <th scope="col">Monto</th>
                                     <th scope="col">Fecha</th>
-                                    <th scope="col">Cantidad</th>
+                                    <th scope="col">Tipo de Compra</th>
                                     <th scope="col">Comprado por</th>
                                 </tr>
                             </thead>  
@@ -65,7 +67,7 @@
                         '<td>'.$r['descripcion_compra'].'</td>'.
                         '<td>'.$r['monto_compra'].'</td>'.
                         '<td>'.$r['fecha_compra'].'</td>'.
-                        '<td>'.$r['cantidad'].'</td>'.
+                        '<td>'.$r['tipo_compra'].'</td>'.
                         '<td>'.$r['nombre_instructor'].'</td>
                     </tr>';
             }

@@ -810,9 +810,9 @@ aria-hidden="true">
                 <div class="form-group">
                     <label>Categoría:</label>
                     <select class="form-control" id="categorias-gastos" name="compras[]">
-                        <option value="1">Producto</option>
-                        <option value="2">Aparato</option>
-                        <option value="3">Otro</option>
+                        <option value="1" id="categoria-producto">Producto</option>
+                        <option value="2" id="categoria-aparato">Aparato</option>
+                        <option value="3" id="categoria-otro">Otro</option>
                     </select>
                 </div>
                 <div class="modal-footer">

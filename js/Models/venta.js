@@ -18,4 +18,20 @@ class Venta {
         req.send(null);
         return req.responseText;
     }
+
+    getVentasDia () {
+        var req = new XMLHttpRequest();
+        req.open("POST", 'php/ventas/ventasDia.php', false);
+        
+        req.send(null);
+        return req.responseText;
+    }
+
+    getVentasSemana () {
+        var req = new XMLHttpRequest();
+        req.open("POST", 'php/ventas/ventasSemana.php', false);
+        
+        req.send(null);
+        return req.responseText;
+    }
 }

@@ -58,8 +58,31 @@ var ventaController = (function () {
         UIVenta.mostrarVentasEnTabla(new Venta().getVentasMes());
     }
 
+    function getVentasDia() {
+        UIVenta.mostrarCarga();
+        UIVenta.mostrarVentasEnTabla(new Venta().getVentasSemana());
+    }
+
+    function getVentasSemana() {
+        UIVenta.mostrarCarga();
+        UIVenta.mostrarVentasEnTabla(new Venta().getVentasDia());
+    }
+
+    function cambiarVista () {
+        let ventasDia = document.querySelector('#ventas-dia');
+        let ventasMes = document.querySelector('#ventas-mensuales');
+        let ventasSemana = document.querySelector('#ventas-semanales');
+
+        if(ventasDia.selected)
+            getVentasDia();
+        else if(ventasMes.selected)
+            getVentasMes();
+        else if(ventasSemana.selected)
+            getVentasSemana();
+    }
+
     function setUpEvents() {
-        getVentasMes();
+        getVentasDia();
         document.querySelector('#add-venta-btn').addEventListener('click', setUpNuevaVenta);
         document.querySelector('#reporte-venta-btn').addEventListener('click', UIVenta.abrirReportes);
     }

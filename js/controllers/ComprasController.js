@@ -4,9 +4,10 @@ var compraController = (function() {
         let data = UICompra.getDatosParaNuevaCompra();
         let compra = new Compra();
 
+        
         if (compra.add(data)) {
             UICompra.mostrarMensajeExito('Compra añadida correctamente');
-            UICompra.mostrarTodasLasCompras(compra.getTodosLasCompras());
+            UICompra.mostrarComprasEnTabla(compra.getTodosLasCompras());
             UICompra.esconderModal('#add-compra-modal');
         }
     }

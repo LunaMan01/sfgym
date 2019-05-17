@@ -51,8 +51,12 @@
         $agregar->bindParam(':descripcion', $_POST['descripcion-compra']);
         $agregar->bindParam(':monto', $_POST['monto-compra']);
         $agregar->bindParam(':fecha', $_POST['fecha-compra']);
-  
+        try{
         $agregar->execute();
+        echo 'sejen';
+        }catch(PDOException $e){
+            echo 'Error: '. $e->getMessage();
+        }
     }
     $conn = null;
 ?>

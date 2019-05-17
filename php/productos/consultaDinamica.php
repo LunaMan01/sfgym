@@ -28,6 +28,7 @@
         }
 
         if($_POST['select-productos'] == 2){
+            echo 'a caducar';
             //PROXIMOS A CADUCAR
             $fechaActual = actual();
 
@@ -57,6 +58,7 @@
         }
 
         if($_POST['select-productos'] == 3){
+            echo 'poca';
             //PRODUCTOS POCA EXISTENCIA
             $consultar = $conn->prepare("SELECT Id_Producto, descripcion_producto, fecha_caducidad, existencia_producto, precio_producto 
                 FROM Productos WHERE existencia_producto < 5 AND Id_Producto LIKE ? OR descripcion_producto LIKE ? OR 

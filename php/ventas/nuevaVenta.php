@@ -6,16 +6,13 @@
     try{
         $sell = $_POST['venta'];
         $arraySell = json_decode($sell, true);
-        print_r($arraySell);
 
         $items = $_POST['productos'];
         $arrayItems = json_decode($items, true);
-        print_r($arrayItems);
 
         agregarVentas($conn, $arraySell['nipCliente'], $arraySell['idInstructor'], $arraySell['totalVenta']);
 
         $lastId = $conn->lastInsertId();
-        echo $lastId;
 
         foreach($arrayItems as $row){
             detalleVenta($conn, $lastId, $row['id'], $row['cantidad'], $row['subtotal']);

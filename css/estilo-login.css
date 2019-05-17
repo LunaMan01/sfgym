@@ -8,12 +8,14 @@
     background:black;
  }
 
- .color-text-login{
+ .text-login{
     color:#000;
+    margin-top: .5em;
 }
 
 .login-form{
-
     background: #f3f3f3;
-    border: 1px solid rgba(0, 0, 50, 0.74)
+    border: 2px solid rgba(0, 0, 50, 0.74);
+    border-radius: 15px;
+    margin-top: 15%;
 }

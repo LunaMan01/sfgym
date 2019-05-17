@@ -60,12 +60,12 @@ var ventaController = (function () {
 
     function getVentasDia() {
         UIVenta.mostrarCarga();
-        UIVenta.mostrarVentasEnTabla(new Venta().getVentasSemana());
+        UIVenta.mostrarVentasEnTabla(new Venta().getVentasDia());
     }
 
     function getVentasSemana() {
         UIVenta.mostrarCarga();
-        UIVenta.mostrarVentasEnTabla(new Venta().getVentasDia());
+        UIVenta.mostrarVentasEnTabla(new Venta().getVentasSemana());
     }
 
     function cambiarVista () {

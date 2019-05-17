@@ -144,3 +144,19 @@ create table Gastos(
 	primary key(Id_Gasto),
 	foreign key(Id_Tipo) references TipoGastos (Id_Tipo) on delete cascade on update cascade
 );
+
+insert into Generos (sexo) values ('Masculino');
+insert into Generos (sexo) values ('Femenino');
+insert into Generos (sexo) values ('Otro');
+
+insert into Instructores (nombre_instructor) values ('Luna');
+insert into Instructores (nombre_instructor) values ('Carlos');
+insert into Instructores (nombre_instructor) values ('Alberto');
+
+insert into TipoCompras (tipo_compra) values ('Producto');
+insert into TipoCompras (tipo_compra) values ('Aparato');
+
+insert into TipoGastos (tipo_gasto) values ('Gasto Fijo');
+insert into TipoGastos (tipo_gasto) values ('Gasto Mantenimiento');
+insert into TipoGastos (tipo_gasto) values ('Inversion');
+

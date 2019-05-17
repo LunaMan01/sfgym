@@ -6,7 +6,7 @@ var gastoController = (function () {
 
         if (gasto.add(data)) {
             UIGasto.mostrarMensajeExito('Gasto añadido correctamente');
-            UIGasto.mostrarTodosLosGastos(gasto.getTodosLosGastos());
+            UIGasto.mostrarGastosEnTabla(gasto.getTodosLosGastos());
             UIGasto.esconderModal('#add-gasto-modal');
         }
     }
@@ -53,7 +53,7 @@ var gastoController = (function () {
             UIGasto.mostrarMensajeExito('Gasto modificado correctamente');
             // UICliente.regresarBtnAEstadoInicial('#guardar-cliente-editado');
             UIGasto.esconderModal('#modificar-gasto-modal');
-            UIGasto.mostrarTodosLosGastos(gasto.getTodosLosGastos());
+            UIGasto.mostrarGastosEnTabla(gasto.getTodosLosGastos());
         }
     }
 
@@ -69,9 +69,23 @@ var gastoController = (function () {
     }
 
     function busquedaDinamica() {
+        let opcionSelect;
+
+
+        let gastosMes = document.querySelector('#gastos-mes');
+        let gastosSemana = document.querySelector('#gastos-semana');
+        let gastosDia = document.querySelector('#gastos-dia');
+
+        if (gastosMes.selected)
+            opcionSelect = 1;
+        else if (gastosSemana.selected)
+            opcionSelect = 2;
+        else if (gastosDia.selected)
+            opcionSelect = 3;
+
         let dato = UIGasto.getDatosABuscar();
         let gasto = new Gasto();
-        let datosEncontrados = gasto.consultar(dato);
+        let datosEncontrados = gasto.consultar(dato, opcionSelect);
         UIGasto.mostrarGastosEnTabla(datosEncontrados);
 
     }

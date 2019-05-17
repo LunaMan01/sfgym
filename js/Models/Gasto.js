@@ -30,11 +30,11 @@ class Gasto {
         return true;
     }
 
-    consultar(datoABuscar) {
+    consultar(datoABuscar, selectActual) {
         var req = new XMLHttpRequest();
         req.open("POST", 'php/gastos/consultaDinamica.php', false);
         req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-        req.send('dato=' + datoABuscar);
+        req.send('dato=' + datoABuscar+"&select-gastos="+selectActual);
         return req.responseText;
     }
 

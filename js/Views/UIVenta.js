@@ -30,6 +30,14 @@ var UIVenta = (function () {
 
         },
 
+        mostrarCarga : function () {
+            var spinner = '<div class="d-flex mt-3">' +
+            '<div class="spinner-grow text-success" role="status"><span class="sr-only">Loading...</span></div>' +
+            '<div class="spinner-grow text-success" role="status"><span class="sr-only">Loading...</span></div>' +
+            '<div class="spinner-grow text-success" role="status"><span class="sr-only">Loading...</span></div></div>';
+            document.querySelector('#cuerpo-tabla-membresias').innerHTML = spinner;
+        },
+
         agregarProductoACarrito: function (producto, cantidad, precio, productoId) {
             let subtotal = precio * cantidad;
             let productoTr = `
@@ -62,6 +70,10 @@ var UIVenta = (function () {
 
         getCantidad : function () {
             return document.querySelector('#cantidad-productos').value;
+        },
+
+        mostrarVentasEnTabla : function (ventas){
+            document.querySelector('#cuerpo-tabla-ventas').innerHTML = ventas;
         },
 
         abrirReportes: function () {

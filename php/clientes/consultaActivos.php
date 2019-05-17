@@ -2,11 +2,9 @@
     include '../conexion.php';
 
     try{
-        $activo = 1;
-
         $activo = $conn->prepare('SELECT Clientes.Id_Cliente, nombre_cliente, numero
         FROM Clientes INNER JOIN Telefonos ON Clientes.Id_Cliente LIKE Telefonos.Id_Cliente WHERE 
-        activo ='.$activo);
+        activo = 1');
 
         $activo->execute();
 

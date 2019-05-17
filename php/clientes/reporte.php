@@ -84,7 +84,7 @@
 
     function getClientesMasVisitas($conn) {
         global $array;
-
+        
         $fecha1 = $array[0];
         $fecha2 = $array[1];
 

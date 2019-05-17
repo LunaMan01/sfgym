@@ -22,7 +22,6 @@
         $fecha1 = $array[0];
         $fecha2 = $array[1];
         
-        $activo = 1;
         $datos = $conn->prepare("SELECT Clientes.Id_Cliente, nombre_cliente, fecha_visitas FROM Clientes 
         INNER JOIN Visitas ON Clientes.Id_Cliente LIKE Visitas.Id_Cliente WHERE fecha_visitas BETWEEN 
         '".$fecha1."' AND str_to_date('".$fecha2."', '%d/%m/%Y')");

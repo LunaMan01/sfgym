@@ -1,7 +1,7 @@
 <?php
     $servername = "localhost";
-    $username = "luna";
-    $password = "luna";
+    $username = "root";
+    $password = "";
     
     try {
       date_default_timezone_set('America/Mexico_City');

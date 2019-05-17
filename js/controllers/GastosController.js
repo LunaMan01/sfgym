@@ -72,7 +72,7 @@ var gastoController = (function () {
         let dato = UIGasto.getDatosABuscar();
         let gasto = new Gasto();
         let datosEncontrados = gasto.consultar(dato);
-        UIGasto.mostrarDatosEncontrados(datosEncontrados);
+        UIGasto.mostrarGastosEnTabla(datosEncontrados);
 
     }
 

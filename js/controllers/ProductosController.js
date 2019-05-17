@@ -72,7 +72,7 @@ var productoController = (function() {
             else if(pocasExistencias.selected)
                 mostrarProductosConPocasExistencias();
             UIProducto.esconderModal('#modificar-producto-modal');
-            UIProducto.mostrarTodosLosProductos();
+            mostrarTodosLosProductos();
         }
     }
 

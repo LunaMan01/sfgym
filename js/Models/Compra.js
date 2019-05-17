@@ -6,7 +6,8 @@ class Compra {
     add(data, opcion) {
         var req = new XMLHttpRequest();
         req.open("POST", 'php/compras/añadirCompras.php', false);
-        req.send(data+"&compras="+opcion);
+        data.append('compras', opcion)
+        req.send(data);
         console.log(req.responseText);
         return true;
     }

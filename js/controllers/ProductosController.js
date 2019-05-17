@@ -54,7 +54,7 @@ var productoController = (function() {
             UIProducto.mostrarMensajeExito('Producto modificado correctamente');
             // UICliente.regresarBtnAEstadoInicial('#guardar-cliente-editado');
             UIProducto.esconderModal('#modificar-producto-modal');
-            UIProducto.mostrarTodosLosProductos();
+            mostrarTodosLosProductos();
         }
     }
 

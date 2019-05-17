@@ -793,13 +793,13 @@ aria-hidden="true">
                 </div>
                 <div class="form-group">
                     <label>Descripción:</label>
-                    <input type="text" class="form-control" id="descripcion-producto" name="descripcio-producto"
+                    <input type="text" class="form-control" id="descripcion-compra" name="descripcion-compra"
                         placeholder="Descripción de compra" required>
                 </div>
 
                 <div class="form-group">
                     <label>Monto:</label>
-                    <input type="text" class="form-control numeric-m-add" id="monto-compra" name="monto_compra"
+                    <input type="text" class="form-control numeric-m-add" id="monto-compra" name="monto-compra"
                         placeholder="Monto de compra" required>
                 </div>
 

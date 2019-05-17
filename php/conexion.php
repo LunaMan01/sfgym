@@ -1,14 +1,12 @@
 <?php
-    // $servername = "localhost";
-    // $username = "luna";
-    // $password = "luna";
+    $servername = "localhost";
+    $username = "luna";
+    $password = "luna";
     
     try {
-      session_start();
-
       date_default_timezone_set('America/Mexico_City');
 
-      $conn = new PDO("mysql:host=localhost;dbname=nuevoacropolisgym", $_SESSION['user'], $_SESSION['pass']);
+      $conn = new PDO("mysql:host=$servername;dbname=nuevoacropolisgym", $username, $password);
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
     catch(PDOException $e){

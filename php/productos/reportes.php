@@ -92,10 +92,6 @@
 
             return $rowConTabla;
     }
-    //FALTA ESTA FUNCINON
-    function getProductosMasVendidos($conn) {}
-    //FALTA ESTA FUNCION
-    function getProductosMenosVendidos($conn){}
 
     function getProductosPocaExistencia($conn){
         $datos = $conn->prepare("SELECT Id_Producto, descripcion_producto, fecha_caducidad, existencia_producto

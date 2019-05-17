@@ -28,7 +28,6 @@
         global $fechaActual;
         $fechaNueva = menosSieteDias();
 
-        $activo = 1;
         $datos = $conn->prepare("SELECT Clientes.Id_Cliente, nombre_cliente, numero, fecha_inicio
         FROM Clientes INNER JOIN Telefonos INNER JOIN Membresias ON Clientes.Id_Cliente LIKE Telefonos.Id_Cliente
         AND Telefonos.Id_Cliente LIKE Membresias.Id_Cliente WHERE fecha_inicio BETWEEN '".$fechaNueva."' 

@@ -77,12 +77,18 @@ var productoController = (function() {
         let todosLosProductos = document.querySelector('#todos-los-productos');
         let pocasExistencias = document.querySelector('#productos-pocas-existencias');
 
-        if(todosLosProductos.selected)
+        if(todosLosProductos.selected){
             opcionSelect = 1;
-        else if(aCaducar.selected)
+            console.log(opcionSelect);
+        }
+        else if(aCaducar.selected) {
             opcionSelect = 2;
-        else if (pocasExistencias.selected)
+            console.log(opcionSelect);
+        }
+        else if (pocasExistencias.selected){
             opcionSelect = 3;
+            console.log(opcionSelect);
+        }
 
         let dato = UIProducto.getDatosABuscar();
         let producto = new Producto();

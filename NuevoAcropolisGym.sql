@@ -2,6 +2,13 @@ create database NuevoAcropolisGym
 
 use NuevoAcropolisGym
 
+create table Generos(
+	Id_Genero int not null auto_increment,
+	sexo varchar(15),
+
+	primary key (Id_Genero)
+);
+
 create table Clientes(
 	Id_Cliente int not null auto_increment,
 	nombre_cliente varchar(20),
@@ -13,13 +20,6 @@ create table Clientes(
 
 	primary key (Id_Cliente),
 	foreign key (Id_Genero) references Generos(Id_Genero) on update cascade on delete cascade
-);
-
-create table Generos(
-	Id_Genero int not null auto_increment,
-	sexo varchar(15),
-
-	primary key (Id_Genero)
 );
 
 create table Telefonos(
@@ -61,6 +61,7 @@ create table Visitas(
 
 create table Ventas(
 	Id_Venta int not null auto_increment,
+	total_venta double,
 
 	Id_Cliente int not null,
 	Id_Instructor int not null,
@@ -90,6 +91,13 @@ create table Productos(
 	primary key (Id_Producto)
 );
 
+create table Aparatos(
+	Id_Aparato int not null auto_increment,
+	nombre_aparato varchar(50),
+
+	primary key(Id_Aparato)
+);
+
 create table Instructores(
 	Id_Instructor int not null auto_increment,
 	nombre_instructor varchar(20),
@@ -97,11 +105,11 @@ create table Instructores(
 	primary key(Id_Instructor)
 );
 
-create table Aparatos(
-	Id_Aparato int not null auto_increment,
-	nombre_aparato varchar(50),
+create table TipoCompras(
+	Id_TipoCompra int not null auto_increment,
+	tipo_compra varchar(25),
 
-	primary key(Id_Aparato)
+	primary key(Id_TipoCompra)
 );
 
 create table Compras(
@@ -137,9 +145,18 @@ create table Gastos(
 	foreign key(Id_Tipo) references TipoGastos (Id_Tipo) on delete cascade on update cascade
 );
 
-create table TipoCompras(
-	Id_TipoCompra int not null auto_increment,
-	tipo_compra varchar(25),
+insert into Generos (sexo) values ('Masculino');
+insert into Generos (sexo) values ('Femenino');
+insert into Generos (sexo) values ('Otro');
 
-	primary key(Id_TipoCompra)
-);
+insert into Instructores (nombre_instructor) values ('Luna');
+insert into Instructores (nombre_instructor) values ('Carlos');
+insert into Instructores (nombre_instructor) values ('Alberto');
+
+insert into TipoCompras (tipo_compra) values ('Producto');
+insert into TipoCompras (tipo_compra) values ('Aparato');
+
+insert into TipoGastos (tipo_gasto) values ('Gasto Fijo');
+insert into TipoGastos (tipo_gasto) values ('Gasto Mantenimiento');
+insert into TipoGastos (tipo_gasto) values ('Inversion');
+

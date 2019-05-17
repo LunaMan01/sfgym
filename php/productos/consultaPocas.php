@@ -3,7 +3,7 @@
 
     try{
         $consultar = "SELECT Id_Producto, descripcion_producto, fecha_caducidad, existencia_producto, precio_producto 
-        FROM productos WHERE existencia_producto < 5";
+        FROM Productos WHERE existencia_producto < 5";
 
         foreach($conn->query($consultar) as $row){
             echo '<tr>

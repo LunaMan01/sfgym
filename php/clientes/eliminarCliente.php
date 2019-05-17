@@ -1,10 +1,8 @@
 <?php
     include '../conexion.php';
     try{
-        echo "eliminado";
 
-        $inactivo = 0;
-        $delete = $conn->prepare('UPDATE Clientes SET activo ='.$inactivo.' WHERE Id_Cliente ='.$_POST['id-cliente']);
+        $delete = $conn->prepare('UPDATE Clientes SET activo = 0 WHERE Id_Cliente ='.$_POST['id-cliente']);
         $delete->execute();
         
     }   

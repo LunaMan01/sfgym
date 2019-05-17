@@ -7,9 +7,9 @@
 
     try{
         $consultar = "SELECT Id_Producto, descripcion_producto, fecha_caducidad, existencia_producto, precio_producto 
-        FROM productos WHERE str_to_date(fecha_caducidad, '%d/%m/%Y') 
+        FROM Productos WHERE str_to_date(fecha_caducidad, '%d/%m/%Y') 
         BETWEEN str_to_date('".$fechaActual."', '%d/%m/%Y') AND str_to_date('".$fechaSiguiente."', '%d/%m/%Y')";
-
+                                
         foreach($conn->query($consultar) as $row){
             echo '<tr>
                 <th scope="row" id="'.$row['Id_Producto'].'">'.$row['Id_Producto'].'</th>'.

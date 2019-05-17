@@ -34,9 +34,9 @@
             $fechaSiguiente = masSieteDias();
             
             $consultar = $conn->prepare("SELECT Id_Producto, descripcion_producto, fecha_caducidad, existencia_producto, precio_producto 
-                FROM productos WHERE str_to_date(fecha_caducidad, '%d/%m/%Y') 
+                FROM Productos WHERE str_to_date(fecha_caducidad, '%d/%m/%Y') 
                 BETWEEN str_to_date('".$fechaActual."', '%d/%m/%Y') AND str_to_date('".$fechaSiguiente."', '%d/%m/%Y')
-                AND Id_Producto LIKE ? OR descripcion_producto LIKE ? OR 
+                HAVING Id_Producto LIKE ? OR descripcion_producto LIKE ? OR 
                 fecha_caducidad LIKE ? OR existencia_producto LIKE ? OR precio_producto LIKE ?");
 
             $consultar->execute(array($dato."%", $dato."%", $dato."%", $dato."%", $dato."%"));
@@ -59,7 +59,7 @@
         if($_POST['select-productos'] == 3){
             //PRODUCTOS POCA EXISTENCIA
             $consultar = $conn->prepare("SELECT Id_Producto, descripcion_producto, fecha_caducidad, existencia_producto, precio_producto 
-                FROM productos WHERE existencia_producto < 5 AND Id_Producto LIKE ? OR descripcion_producto LIKE ? OR 
+                FROM Productos WHERE existencia_producto <= 5 HAVING Id_Producto LIKE ? OR descripcion_producto LIKE ? OR 
                 fecha_caducidad LIKE ? OR existencia_producto LIKE ? OR precio_producto LIKE ?");
 
             $consultar->execute(array($dato."%", $dato."%", $dato."%", $dato."%", $dato."%"));

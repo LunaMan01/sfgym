@@ -47,7 +47,7 @@
             (:instructor, :tipo, :descripcion, :monto, :fecha)');
 
         $agregar->bindParam(':instructor', $_POST['id-instructor']);
-        $agregar->bindParam(':tipo', $_POST['tipo-compra']);
+        $agregar->bindParam(':tipo', $_POST['compras']);
         $agregar->bindParam(':descripcion', $_POST['descripcion-compra']);
         $agregar->bindParam(':monto', $_POST['monto-compra']);
         $agregar->bindParam(':fecha', $_POST['fecha-compra']);

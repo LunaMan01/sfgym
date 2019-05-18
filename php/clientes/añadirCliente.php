@@ -34,6 +34,7 @@
         $direccion->bindParam('numeroex', $_POST['num-ext']);
         $direccion->bindParam('numeroin', $_POST['num-int']);
         $direccion->execute();
+        echo 1;
     }   
     catch(PDOException $e){
         echo "Error: ". $e->getMessage();

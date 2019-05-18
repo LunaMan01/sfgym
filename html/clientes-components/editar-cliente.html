@@ -50,8 +50,8 @@
                     <label class="col-lg-4 col-form-label text-right">Sexo: </label>
                     <div class="col-lg-8">
                         <select class="form-control form-control-lg rounded-pill" id="sexo" name="sexo">
-                            <option class="rounded-pill">Hombre</option>
-                            <option class="rounded-pill">Mujer</option>
+                            <option class="rounded-pill" id="gm-u">Hombre</option>
+                            <option class="rounded-pill" id="gf-u">Mujer</option>
                         </select>
                     </div>
                 </div>
@@ -59,7 +59,7 @@
                 <div class="form-group row">
                     <label class="col-lg-4 col-form-label text-right">Teléfono: </label>
                     <div class="col-lg-8">
-                        <input type="text" class="form-control rounded-pill" id="telefono" name="telefono">
+                        <input type="text" class="form-control rounded-pill" id="telefono" name="telefono" pattern=".{12,}">
                     </div>
                 </div>
 

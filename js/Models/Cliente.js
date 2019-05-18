@@ -3,11 +3,18 @@ class Cliente {
 
     }
 
-    add(data) {
+    add(data, genero) {
+        data.append('genero', genero)
         var req = new XMLHttpRequest();
         req.open("POST", 'php/clientes/añadirCliente.php', false);
         req.send(data);
+        if (req.responseText != 1) {
+            console.log('Error');
+            console.log(req.responseText);
 
+            return false;
+        }
+        console.log(req.responseText);
         return true;
     }
 
@@ -17,16 +24,30 @@ class Cliente {
         req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
         req.send('id-cliente=' + localStorage.getItem('id'));
         console.log(localStorage.getItem('id'));
+        if (req.responseText != 1) {
+            console.log('Error');
+            console.log(req.responseText);
 
+            return false;
+        }
+        console.log(req.responseText);
         return true;
 
     }
 
-    modificar(data) {
+    modificar(data, genero) {
+        data.append('genero', genero);
         var req = new XMLHttpRequest();
         req.open("POST", 'php/clientes/modificarClientes.php', false);
         req.send(data);
+        if (req.responseText != 1) {
+            console.log('Error');
+            console.log(req.responseText);
+
+            return false;
+        }
         console.log(req.responseText);
+        return true;
         return true;
     }
 

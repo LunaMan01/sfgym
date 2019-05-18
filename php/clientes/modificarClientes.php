@@ -40,7 +40,7 @@
         $modfDirecc->bindParam(':interior', $_POST['num-int']);
 
         $modfDirecc->execute();
-
+        echo 1;
     }catch(PDOException $e){
         echo "Error: ". $e->getMessage();
     }

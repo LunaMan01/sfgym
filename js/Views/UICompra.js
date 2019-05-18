@@ -32,8 +32,8 @@ var UICompra = (function () {
             tr.remove();
         },
 
-        mostrarMensajeExito: function (mensaje) {
-            new Toast('#alert-compras', mensaje, 2000, 'alert-success').getAndShow();
+        mostrarAlert: function (mensaje, type) {
+            new Toast('#alert-compras', mensaje, 2000, type).getAndShow();
 
         },
 
@@ -53,7 +53,7 @@ var UICompra = (function () {
             document.querySelector('#modificar-compra-form #id-compra').value = compra.idCompra;
             document.querySelector('#modificar-compra-form #id-instructor').value = compra.idInstructor;
             document.querySelector('#modificar-compra-form #descripcion-producto').value = compra.descripcionCompra;
-            document.querySelector('#modificar-compra-form #cantidad').value = compra.cantidad;
+            
             document.querySelector('#modificar-compra-form #monto-compra').value = compra.montoCompra;
             document.querySelector('#modificar-compra-form #fecha-compra').value = compra.fechaCompra;
 

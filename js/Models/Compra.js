@@ -17,7 +17,7 @@ class Compra {
         req.open("POST", 'php/compras/eliminarCompras.php', false);
         req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
         req.send('id-compra=' + localStorage.getItem('id'));
-        console.log('id='+localStorage.getItem('id'));
+        console.log('id=' + localStorage.getItem('id'));
         console.log(req.responseText);
         return true;
 
@@ -27,7 +27,14 @@ class Compra {
         var req = new XMLHttpRequest();
         req.open("POST", 'php/compras/modificarCompras.php', false);
         req.send(data);
-        console.log(req.responseText);
+        if (req.responseText != 1) {
+            console.log('Error');
+            console.log(req.responseText);
+
+            return false;
+        }
+
+        console.log('jalo');
         return true;
     }
 
@@ -35,7 +42,7 @@ class Compra {
         var req = new XMLHttpRequest();
         req.open("POST", 'php/compras/consultaDinamica.php', false);
         req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-        req.send('dato=' + datoABuscar+"&select-compras="+selectActual);
+        req.send('dato=' + datoABuscar + "&select-compras=" + selectActual);
         return req.responseText;
     }
 
@@ -48,7 +55,7 @@ class Compra {
         return req.responseText;
     }
 
-    
+
     getTodosLasCompras() {
         var req = new XMLHttpRequest();
         req.open("POST", 'php/compras/consultarCompras.php', false);
@@ -57,21 +64,21 @@ class Compra {
         return req.responseText;
     }
 
-    getComprasMes () {
+    getComprasMes() {
         var req = new XMLHttpRequest();
         req.open("POST", 'php/compras/comprasMes.php', false);
         req.send(null);
         return req.responseText;
     }
 
-    getComprasSemana () {
+    getComprasSemana() {
         var req = new XMLHttpRequest();
         req.open("POST", 'php/compras/comprasSemana.php', false);
         req.send(null);
         return req.responseText;
     }
 
-    getComprasDia () {
+    getComprasDia() {
         var req = new XMLHttpRequest();
         req.open("POST", 'php/compras/comprasDia.php', false);
         req.send(null);

@@ -852,16 +852,9 @@ aria-hidden="true">
                         placeholder="Descripción de compra" required>
                 </div>
 
-
-                <div class="form-group">
-                    <label>Cantidad:</label>
-                    <input type="text" class="form-control numeric-c-update" id="cantidad" name="cantidad"
-                        placeholder="No. de articulos comprados">
-                </div>
-
                 <div class="form-group">
                     <label>Monto:</label>
-                    <input type="text" class="form-control numeric-m-update" id="monto-compra" name="monto_compra"
+                    <input type="text" class="form-control numeric-m-update" id="monto-compra" name="monto-compra"
                         placeholder="Monto de compra">
                 </div>
 

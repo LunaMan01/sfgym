@@ -1,4 +1,16 @@
-var compraController = (function() {
+var compraController = (function () {
+
+    function actualizarTabla() {
+
+        if (document.querySelector('#todas-las-compras').selected)
+            mostrarTodas();
+        else if (document.querySelector('#compras-ultimo-mes').selected)
+             mostrarComprasMes();
+        else if (document.querySelector('#compras-semana').selected)
+            mostrarComprasSemana();
+        else if (document.querySelector('#compras-dia').selected)
+            mostrarComprasDia();
+    }
 
     function addNuevaCompra() {
         let data = UICompra.getDatosParaNuevaCompra();
@@ -6,18 +18,18 @@ var compraController = (function() {
 
         let opcionSelect;
 
-        if(document.querySelector('#categoria-producto').selected)
+        if (document.querySelector('#categoria-producto').selected)
             opcionSelect = 1;
-        else if(document.querySelector('#categoria-aparato').selected)
+        else if (document.querySelector('#categoria-aparato').selected)
             opcionSelect = 2;
-        else if(document.querySelector('#categoria-otro').selected)
+        else if (document.querySelector('#categoria-otro').selected)
             opcionSelect = 3;
 
         if (compra.add(data, opcionSelect)) {
             UICompra.mostrarMensajeExito('Compra añadida correctamente');
-            UICompra.mostrarComprasEnTabla(compra.getTodosLasCompras());
+            actualizarTabla();
             UICompra.esconderModal('#add-compra-modal');
-        }
+        } 
     }
 
     function setUpDeleteEvent() {
@@ -46,7 +58,7 @@ var compraController = (function() {
                 UICompra.getId(e);
                 let compra = UICompra.getCompra();
                 UICompra.setDatosCompraEnInputs(compra);
-                
+
             }
         }, false);
     }
@@ -54,14 +66,18 @@ var compraController = (function() {
     function modificarCompra() {
         let data = UICompra.getDatosModificados();
         let compra = new Compra();
-        // UICliente.mostrarAnimacionBtn('#guardar-cliente-editado');
         if (compra.modificar(data)) {
-            UICompra.mostrarMensajeExito('Compra modificada correctamente');
-            // UICliente.regresarBtnAEstadoInicial('#guardar-cliente-editado');
+            UICompra.mostrarAlert('Compra modificada correctamente', 'alert-success');
+            actualizarTabla();
             UICompra.esconderModal('#modificar-compra-modal');
-            UICompra.mostrarTodasLasCompras(compra.getTodosLasCompras());
+        } else {
+            UICompra.mostrarAlert('Algo salio mal', 'alert-danger');
+            actualizarTabla();
+            UICompra.esconderModal('#modificar-compra-modal');
         }
     }
+
+
 
     function setUpWatchEvent() {
         document.querySelector('#cuerpo-tabla-compras').addEventListener('click', function (e) {
@@ -70,7 +86,7 @@ var compraController = (function() {
                 UICompra.getId(e);
                 let compra = UICompra.getCompra();
                 UICompra.verCompra(compra);
-    
+
             }
         }, false);
     }
@@ -83,7 +99,7 @@ var compraController = (function() {
         let comprasSemana = document.querySelector('#compras-semana');
         let comprasDia = document.querySelector('#compras-dia');
 
-        if(todasLasCompras.selected)
+        if (todasLasCompras.selected)
             opcionSelect = 1;
         else if (comprasMes.selected)
             opcionSelect = 2;
@@ -95,7 +111,7 @@ var compraController = (function() {
         let compra = new Compra();
         let datosEncontrados = compra.consultar(dato, opcionSelect);
         UICompra.mostrarComprasEnTabla(datosEncontrados);
-        
+
     }
 
     function setUpVentanaReportes() {
@@ -121,14 +137,14 @@ var compraController = (function() {
         // document.querySelector('#descargar-pdf').addEventListener('click', 
     }
 
-    function setUpInputs () {
+    function setUpInputs() {
         new Lightpick({ field: document.getElementById('fecha-compra') });
 
-        
 
-        new Cleave ('.numeric-m-add', {
+
+        new Cleave('.numeric-m-add', {
             numericOnly: true,
-            blocks : [11]
+            blocks: [11]
         });
 
         new Cleave('.date-add', {
@@ -137,11 +153,11 @@ var compraController = (function() {
             datePattern: ['d', 'm', 'Y']
         });
 
-        
 
-        new Cleave ('.numeric-m-update', {
+
+        new Cleave('.numeric-m-update', {
             numericOnly: true,
-            blocks : [11]
+            blocks: [11]
         });
 
         new Cleave('.date-update', {
@@ -149,39 +165,39 @@ var compraController = (function() {
             delimiter: '/',
             datePattern: ['d', 'm', 'Y']
         });
-       
+
     }
 
-  
 
-    
-    function mostrarTodas () {
+
+
+    function mostrarTodas() {
         UICompra.mostrarCarga();
         UICompra.mostrarComprasEnTabla(new Compra().getTodosLasCompras());
     }
 
-    function mostrarComprasDia () {
+    function mostrarComprasDia() {
         UICompra.mostrarCarga();
         UICompra.mostrarComprasEnTabla(new Compra().getComprasDia());
     }
 
-    function mostrarComprasMes () {
+    function mostrarComprasMes() {
         UICompra.mostrarCarga();
         UICompra.mostrarComprasEnTabla(new Compra().getComprasMes());
     }
 
-    function mostrarComprasSemana () {
+    function mostrarComprasSemana() {
         UICompra.mostrarCarga();
         UICompra.mostrarComprasEnTabla(new Compra().getComprasSemana());
     }
 
-    function cambiarVista () {
+    function cambiarVista() {
         let todasLasCompras = document.querySelector('#todas-las-compras');
         let comprasMes = document.querySelector('#compras-ultimo-mes');
         let comprasSemana = document.querySelector('#compras-semana');
         let comprasDia = document.querySelector('#compras-dia');
 
-        if(todasLasCompras.selected)
+        if (todasLasCompras.selected)
             mostrarTodas();
         else if (comprasMes.selected)
             mostrarComprasMes();
@@ -196,7 +212,7 @@ var compraController = (function() {
     function setUpEvents() {
         mostrarTodas();
         setUpInputs();
-      
+
         document.querySelector('#add-compra-form').addEventListener('submit', addNuevaCompra);
         setUpDeleteEvent();
         document.querySelector('#confirmar-eliminacion').addEventListener('click', eliminarCompra);
@@ -211,7 +227,7 @@ var compraController = (function() {
     return {
         init: function () {
             setUpEvents();
-            
+
         }
     }
 })(UICompra);

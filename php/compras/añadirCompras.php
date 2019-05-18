@@ -56,7 +56,7 @@
         $agregar->bindParam(':fecha', $_POST['fecha-compra']);
         try{
         $agregar->execute();
-        echo 'sejen';
+        
         }catch(PDOException $e){
             echo 'Error: '. $e->getMessage();
         }

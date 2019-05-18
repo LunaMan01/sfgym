@@ -8,6 +8,12 @@ class Compra {
         req.open("POST", 'php/compras/añadirCompras.php', false);
         data.append('compras', opcion)
         req.send(data);
+        if (req.responseText != 1) {
+            console.log('Error');
+            console.log(req.responseText);
+
+            return false;
+        }
         console.log(req.responseText);
         return true;
     }
@@ -18,9 +24,15 @@ class Compra {
         req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
         req.send('id-compra=' + localStorage.getItem('id'));
         console.log('id=' + localStorage.getItem('id'));
+        if (req.responseText != 1) {
+            console.log('Error');
+            console.log(req.responseText);
+
+            return false;
+        }
         console.log(req.responseText);
         return true;
-
+        
     }
 
     modificar(data) {

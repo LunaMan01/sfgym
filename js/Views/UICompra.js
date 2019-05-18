@@ -54,8 +54,9 @@ var UICompra = (function () {
             document.querySelector('#modificar-compra-form #id-instructor').value = compra.idInstructor;
             document.querySelector('#modificar-compra-form #descripcion-producto').value = compra.descripcionCompra;
             
+
             document.querySelector('#modificar-compra-form #monto-compra').value = compra.montoCompra;
-            document.querySelector('#modificar-compra-form #fecha-compra').value = compra.fechaCompra;
+            document.querySelector('#modificar-compra-form #fecha-compra-update').value = compra.fechaCompra;
 
 
         },
@@ -71,7 +72,16 @@ var UICompra = (function () {
             document.querySelector('#ver-compra-form #id-compra').innerHTML = compra.idCompra;
             document.querySelector('#ver-compra-form #id-instructor').innerHTML = compra.idInstructor;
             document.querySelector('#ver-compra-form #descripcion-producto').innerHTML = compra.descripcionCompra;
-            document.querySelector('#ver-compra-form #cantidad').innerHTML = compra.cantidad;
+            if(compra.tipoCompra == 1) {
+                document.querySelector('#ver-compra-form #tipo-compra').innerHTML = 'Productos';
+            }
+            else if(compra.tipoCompra == 2) {
+                document.querySelector('#ver-compra-form #tipo-compra').innerHTML = 'Aparatos';
+            }
+            else if(compra.tipoCompra == 3) {
+                document.querySelector('#ver-compra-form #tipo-compra').innerHTML = 'Otros';
+            }
+            
             document.querySelector('#ver-compra-form #monto-compra').innerHTML = compra.montoCompra;
             document.querySelector('#ver-compra-form #fecha-compra').innerHTML = compra.fechaCompra;
 

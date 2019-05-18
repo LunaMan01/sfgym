@@ -26,10 +26,17 @@ var compraController = (function () {
             opcionSelect = 3;
 
         if (compra.add(data, opcionSelect)) {
-            UICompra.mostrarMensajeExito('Compra añadida correctamente');
+            UICompra.mostrarAlert('Compra añadida correctamente', 'alert-success');
+            actualizarTabla();
+            document.querySelector('#add-compra-form').reset();
+            UICompra.esconderModal('#add-compra-modal');
+
+        } else {
+            UICompra.mostrarAlert('Algo salió mal', 'alert-danger');
+            document.querySelector('#add-compra-form').reset();
             actualizarTabla();
             UICompra.esconderModal('#add-compra-modal');
-        } 
+        }
     }
 
     function setUpDeleteEvent() {
@@ -46,9 +53,14 @@ var compraController = (function () {
 
         let compra = new Compra();
         if (compra.eliminar()) {
+            UICompra.mostrarAlert('Compra eliminada correctamente', 'alert-success');
             UICompra.quitarRegistro();
-            UICompra.mostrarMensajeExito('Compra eliminada correctamente');
+            
+        } else {
+            UICompra.mostrarAlert('Algo salió mal', 'alert-danger');
+            
         }
+
     }
 
     function setUpEditEvent() {

@@ -918,13 +918,7 @@ aria-hidden="true">
                     <label>Descripción:</label>
                     <p id="descripcion-producto"></p>
                 </div>
-
-
-                <div class="form-group">
-                    <label>Cantidad:</label>
-                    <p id="cantidad"></p>
-                </div>
-
+                
                 <div class="form-group">
                     <label>Monto:</label>
                     <p id="monto-compra"></p>
@@ -937,10 +931,7 @@ aria-hidden="true">
 
                 <div class="form-group">
                     <label for="categoria-compra">Categoria</label>
-                    <select class="form-control" id="categoria-compra">
-                        <option>1</option>
-                        <option>2</option>
-                    </select>
+                    <p id="tipo-compra"></p>
                 </div>
 
                 <div class="modal-footer">

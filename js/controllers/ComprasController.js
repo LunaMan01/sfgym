@@ -140,7 +140,7 @@ var compraController = (function () {
     function setUpInputs() {
         new Lightpick({ field: document.getElementById('fecha-compra') });
 
-
+        new Lightpick({ field: document.getElementById('fecha-compra-update') });
 
         new Cleave('.numeric-m-add', {
             numericOnly: true,

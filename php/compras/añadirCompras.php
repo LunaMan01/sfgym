@@ -4,14 +4,17 @@
     try{
         if($_POST['compras'] == 1){
             agregarProducto($conn);
+            echo 1;
         }
 
         if($_POST['compras'] == 2){
             agregarAparato($conn);
+            echo 1;
         }
 
         if($_POST['compras'] == 3){
             agregarCompra($conn);
+            echo 1;
         }
     }catch(PDOException $e){
         echo 'Error: '. $e->getMessage();

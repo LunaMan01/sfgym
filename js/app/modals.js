@@ -860,7 +860,7 @@ aria-hidden="true">
 
                 <div class="form-group">
                     <label>Fecha:</label>
-                    <input type="text" class="form-control date-update" id="fecha-compra"  name="fecha-compra" placeholder="dd/mm/yyyy">
+                    <input type="text" class="form-control date-update" id="fecha-compra-update"  name="fecha-compra" placeholder="dd/mm/yyyy">
                 </div>
 
                 <div class="modal-footer">

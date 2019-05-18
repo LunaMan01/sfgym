@@ -11,10 +11,7 @@ var UIProducto = (function () {
             document.querySelector('#cuerpo-tabla-productos').innerHTML = spinner;
         },
 
-        mostrarTodosLosProductos: function () {
-            mostrarTodosLosProductos();
-        },
-
+        
         getDatosParaNuevoProducto: function () {
             let form = document.querySelector('#add-producto-form');
             let data = new FormData(form);

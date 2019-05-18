@@ -786,10 +786,11 @@ aria-hidden="true">
         </div>
         <div class="modal-body">
             <form id="add-compra-form" onsubmit="return false">
+              
                 <div class="form-group">
                 <label>Id instructor:</label>
-                <input type="text" class="form-control" id="id-instructor" name="id-instructor"
-                    >
+                <input type="text" class="form-control id-add" id="id-instructor" name="id-instructor"
+                    required>
                 </div>
                 <div class="form-group">
                     <label>Descripción:</label>
@@ -805,7 +806,8 @@ aria-hidden="true">
 
                 <div class="form-group">
                     <label>Fecha:</label>
-                    <input type="text" class="form-control date-add" id="fecha-compra"  name="fecha-compra" placeholder="dd/mm/yyyy" required>
+                    <input type="text" class="form-control date-add" id="fecha-compra"  name="fecha-compra" placeholder="dd/mm/yyyy" 
+                    pattern=".{10,}">
                 </div>
                 <div class="form-group">
                     <label>Categoría:</label>
@@ -840,11 +842,11 @@ aria-hidden="true">
             <form id="modificar-compra-form" onsubmit="return false">
                 <div class="form-group">
                     <label>Id compra:</label>
-                    <input type="text" class="form-control" id="id-compra" name="id-instructor" readonly>
+                    <input type="text" class="form-control" id="id-compra" name="id-compra" readonly>
                 </div>
                 <div class="form-group">
                     <label>Id instructor:</label>
-                    <input type="text" class="form-control" id="id-instructor" name="id-instructor">
+                    <input type="text" class="form-control id-update" id="id-instructor" name="id-instructor" required>
                 </div>
                 <div class="form-group">
                     <label>Descripción:</label>
@@ -852,22 +854,15 @@ aria-hidden="true">
                         placeholder="Descripción de compra" required>
                 </div>
 
-
-                <div class="form-group">
-                    <label>Cantidad:</label>
-                    <input type="text" class="form-control numeric-c-update" id="cantidad" name="cantidad"
-                        placeholder="No. de articulos comprados">
-                </div>
-
                 <div class="form-group">
                     <label>Monto:</label>
-                    <input type="text" class="form-control numeric-m-update" id="monto-compra" name="monto_compra"
+                    <input type="text" class="form-control numeric-m-update" id="monto-compra" name="monto-compra"
                         placeholder="Monto de compra">
                 </div>
 
                 <div class="form-group">
                     <label>Fecha:</label>
-                    <input type="text" class="form-control date-update" id="fecha-compra"  name="fecha-compra" placeholder="dd/mm/yyyy">
+                    <input type="text" class="form-control date-update" id="fecha-compra-update"  name="fecha-compra" placeholder="dd/mm/yyyy" pattern=".{10,}">
                 </div>
 
                 <div class="modal-footer">
@@ -925,13 +920,7 @@ aria-hidden="true">
                     <label>Descripción:</label>
                     <p id="descripcion-producto"></p>
                 </div>
-
-
-                <div class="form-group">
-                    <label>Cantidad:</label>
-                    <p id="cantidad"></p>
-                </div>
-
+                
                 <div class="form-group">
                     <label>Monto:</label>
                     <p id="monto-compra"></p>
@@ -944,10 +933,7 @@ aria-hidden="true">
 
                 <div class="form-group">
                     <label for="categoria-compra">Categoria</label>
-                    <select class="form-control" id="categoria-compra">
-                        <option>1</option>
-                        <option>2</option>
-                    </select>
+                    <p id="tipo-compra"></p>
                 </div>
 
                 <div class="modal-footer">

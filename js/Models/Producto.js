@@ -35,6 +35,7 @@ class Producto {
         req.open("POST", 'php/productos/consultaDinamica.php', false);
         req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
         req.send('dato=' + datoABuscar+"&select-productos="+selectActual);
+        console.log(req.responseText);
         return req.responseText;
     }
 

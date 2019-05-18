@@ -786,10 +786,11 @@ aria-hidden="true">
         </div>
         <div class="modal-body">
             <form id="add-compra-form" onsubmit="return false">
+              
                 <div class="form-group">
                 <label>Id instructor:</label>
-                <input type="text" class="form-control" id="id-instructor" name="id-instructor"
-                    >
+                <input type="text" class="form-control id-add" id="id-instructor" name="id-instructor"
+                    required>
                 </div>
                 <div class="form-group">
                     <label>Descripción:</label>
@@ -805,7 +806,8 @@ aria-hidden="true">
 
                 <div class="form-group">
                     <label>Fecha:</label>
-                    <input type="text" class="form-control date-add" id="fecha-compra"  name="fecha-compra" placeholder="dd/mm/yyyy" required>
+                    <input type="text" class="form-control date-add" id="fecha-compra"  name="fecha-compra" placeholder="dd/mm/yyyy" 
+                    pattern=".{10,}">
                 </div>
                 <div class="form-group">
                     <label>Categoría:</label>
@@ -840,11 +842,11 @@ aria-hidden="true">
             <form id="modificar-compra-form" onsubmit="return false">
                 <div class="form-group">
                     <label>Id compra:</label>
-                    <input type="text" class="form-control" id="id-compra" name="id-instructor" readonly>
+                    <input type="text" class="form-control" id="id-compra" name="id-compra" readonly>
                 </div>
                 <div class="form-group">
                     <label>Id instructor:</label>
-                    <input type="text" class="form-control" id="id-instructor" name="id-instructor">
+                    <input type="text" class="form-control id-update" id="id-instructor" name="id-instructor" required>
                 </div>
                 <div class="form-group">
                     <label>Descripción:</label>
@@ -860,7 +862,7 @@ aria-hidden="true">
 
                 <div class="form-group">
                     <label>Fecha:</label>
-                    <input type="text" class="form-control date-update" id="fecha-compra-update"  name="fecha-compra" placeholder="dd/mm/yyyy">
+                    <input type="text" class="form-control date-update" id="fecha-compra-update"  name="fecha-compra" placeholder="dd/mm/yyyy" pattern=".{10,}">
                 </div>
 
                 <div class="modal-footer">

@@ -37,6 +37,8 @@ var UICompra = (function () {
 
         },
 
+      
+
         getCompra: function () {
             var req = new XMLHttpRequest();
             req.open("POST", 'php/compras/get-datos-compra.php', false);

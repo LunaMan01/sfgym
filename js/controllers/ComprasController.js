@@ -5,7 +5,7 @@ var compraController = (function () {
         if (document.querySelector('#todas-las-compras').selected)
             mostrarTodas();
         else if (document.querySelector('#compras-ultimo-mes').selected)
-             mostrarComprasMes();
+            mostrarComprasMes();
         else if (document.querySelector('#compras-semana').selected)
             mostrarComprasSemana();
         else if (document.querySelector('#compras-dia').selected)
@@ -18,12 +18,19 @@ var compraController = (function () {
 
         let opcionSelect;
 
+     
+        
+
+
+
         if (document.querySelector('#categoria-producto').selected)
             opcionSelect = 1;
         else if (document.querySelector('#categoria-aparato').selected)
             opcionSelect = 2;
         else if (document.querySelector('#categoria-otro').selected)
             opcionSelect = 3;
+
+
 
         if (compra.add(data, opcionSelect)) {
             UICompra.mostrarAlert('Compra añadida correctamente', 'alert-success');
@@ -55,10 +62,10 @@ var compraController = (function () {
         if (compra.eliminar()) {
             UICompra.mostrarAlert('Compra eliminada correctamente', 'alert-success');
             UICompra.quitarRegistro();
-            
+
         } else {
             UICompra.mostrarAlert('Algo salió mal', 'alert-danger');
-            
+
         }
 
     }
@@ -78,6 +85,12 @@ var compraController = (function () {
     function modificarCompra() {
         let data = UICompra.getDatosModificados();
         let compra = new Compra();
+
+        if (!fechaValida(document.querySelector('#fecha-compra-update').value)) {
+            
+            return;
+        }
+
         if (compra.modificar(data)) {
             UICompra.mostrarAlert('Compra modificada correctamente', 'alert-success');
             actualizarTabla();
@@ -153,6 +166,16 @@ var compraController = (function () {
         new Lightpick({ field: document.getElementById('fecha-compra') });
 
         new Lightpick({ field: document.getElementById('fecha-compra-update') });
+
+        new Cleave('.id-add', {
+            numericOnly: true,
+            blocks: [11]
+        });
+
+        new Cleave('.id-update', {
+            numericOnly: true,
+            blocks: [11]
+        });
 
         new Cleave('.numeric-m-add', {
             numericOnly: true,

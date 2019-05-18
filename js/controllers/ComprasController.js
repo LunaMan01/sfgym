@@ -86,10 +86,6 @@ var compraController = (function () {
         let data = UICompra.getDatosModificados();
         let compra = new Compra();
 
-        if (!fechaValida(document.querySelector('#fecha-compra-update').value)) {
-            
-            return;
-        }
 
         if (compra.modificar(data)) {
             UICompra.mostrarAlert('Compra modificada correctamente', 'alert-success');
@@ -129,9 +125,9 @@ var compraController = (function () {
         else if (comprasMes.selected)
             opcionSelect = 2;
         else if (comprasDia.selected)
-            opcionSelect = 3;
-        else if (comprasSemana.selected)
             opcionSelect = 4;
+        else if (comprasSemana.selected)
+            opcionSelect = 3;
         let dato = UICompra.getDatosABuscar();
         let compra = new Compra();
         let datosEncontrados = compra.consultar(dato, opcionSelect);

@@ -191,7 +191,7 @@ aria-labelledby="modal-añadir-visita" aria-hidden="true">
                 <div class="form-group">
                     <label>Fecha:</label>
                     <input type="text" class="form-control date-add" id="fecha-visita" 
-                        placeholder="dd/mm/yyyy" name="fecha" required>
+                        placeholder="dd/mm/yyyy" name="fecha"   pattern=".{10,}" required>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -224,7 +224,7 @@ aria-labelledby="modal-añadir-visita" aria-hidden="true">
                 <div class="form-group">
                     <label>Fecha:</label>
                     <input type="text" class="form-control date-update" id="fecha-visita"
-                        placeholder="dd/mm/yyyy" name="fecha" required>
+                        placeholder="dd/mm/yyyy" name="fecha"  pattern=".{10,}" required>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -272,7 +272,7 @@ aria-labelledby="modal-añadir-visita" aria-hidden="true">
         <div class="modal-body">
             <form id="ver-visita-form">
                 <div class="form-group" >
-                    <label>Id visita:</label>
+                    <label>Cliente:</label>
                     <p id="id-visita"></p>
                 </div>
 
@@ -306,13 +306,13 @@ aria-labelledby="modal-añadir-producto" aria-hidden="true">
                 <div class="form-group">
                     <label>Nombre:</label>
                     <input type="text" class="form-control" id="nombre-producto" name="nombre-producto"
-                        placeholder="Nombre del producto">
+                        placeholder="Nombre del producto" required>
                 </div>
 
                 <div class="form-group">
                     <label>Fecha de caducidad:</label>
                     <input type="text" class="form-control date-add" id="fecha-caducidad" name="fecha-caducidad"
-                        placeholder="dd/mm/yyyy">
+                        placeholder="dd/mm/yyyy"  pattern=".{10,}">
                 </div>
 
                 <div class="form-group">

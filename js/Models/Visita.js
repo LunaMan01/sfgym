@@ -22,7 +22,12 @@ class Visita {
         req.open("POST", 'php/visitas/eliminarVisita.php', false);
         req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
         req.send('id-visita=' + localStorage.getItem('id'));
-        console.log('id-visita='+localStorage.getItem('id'));
+        if (req.responseText != 1) {
+            console.log('Error');
+            console.log(req.responseText);
+
+            return false;
+        }
         console.log(req.responseText);
         return true;
 
@@ -33,6 +38,12 @@ class Visita {
         var req = new XMLHttpRequest();
         req.open("POST", 'php/visitas/modificarVisita.php', false);
         req.send(data);
+        if (req.responseText != 1) {
+            console.log('Error');
+            console.log(req.responseText);
+
+            return false;
+        }
         console.log(req.responseText);
         return true;
     }

@@ -45,7 +45,9 @@ var visitaController = (function () {
         if (visita.eliminar()) {
 
             UIVisita.quitarRegistro();
-            UIVisita.mostrarMensajeExito('#alert-visita', 'Visita eliminada correctamente');
+            UIVisita.mostrarAlert('#alert-visita', 'Visita eliminada correctamente', 'alert-success');
+        } else {
+            UIVisita.mostrarAlert('#alert-visita', 'Algo salió mal', 'alert-danger');
         }
 
 
@@ -69,9 +71,12 @@ var visitaController = (function () {
         let visita = new Visita();
         // UICliente.mostrarAnimacionBtn('#guardar-cliente-editado');
         if (visita.modificar(data)) {
-            UIVisita.mostrarMensajeExito('#alert-visita', 'Visita modificada correctamente');
+            UIVisita.mostrarAlert('#alert-visita', 'Visita modificada correctamente', 'alert-success');
             UIVisita.esconderModal('#modificar-visita-modal');
-            UIVisita.mostrarTodasLasVisitas();
+            actualizarTabla();
+        } else {
+            UIVisita.mostrarAlert('#alert-visita', 'Algo salió mal', 'alert-danger');
+            UIVisita.esconderModal('#modificar-visita-modal');
         }
     }
 

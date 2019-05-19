@@ -8,6 +8,7 @@
 
         $modificar->bindParam(':aparato', $_POST['nombre-aparato']);
         $modificar->execute();
+        echo 1;
     }catch(PDOException $e){
         echo 'Error: '. $e->getMessage();
     }

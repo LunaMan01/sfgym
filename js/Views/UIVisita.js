@@ -61,7 +61,7 @@ var UIVisita = (function () {
         },
 
         verVisita: function (visita) {
-            document.querySelector('#ver-visita-form #id-visita').innerHTML = visita.idCliente;
+            document.querySelector('#ver-visita-form #id-visita').innerHTML = visita.nombreCliente;
             document.querySelector('#ver-visita-form #fecha-visita').innerHTML = visita.fechaVisitas;
 
         },

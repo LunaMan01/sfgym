@@ -11,6 +11,7 @@
         $modificar->bindParam(':ID', $_POST['id-cliente']);
 
         $modificar->execute();
+        echo 1;
     }catch(PDOException $e){
         echo 'Error: '. $e->getMessage();
     }

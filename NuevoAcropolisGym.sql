@@ -75,7 +75,7 @@ create table VentasProductos(
 	Id_Producto int not null,
 
 	cantidad_producto int,
-	total_venta double,
+	subtotal_venta double,
 	fecha_venta varchar(10),
 
 	primary key(Id_Venta, Id_Producto)

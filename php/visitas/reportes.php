@@ -22,9 +22,10 @@
         $fecha1 = $array[0];
         $fecha2 = $array[1];
         
-        $datos = $conn->prepare("SELECT Clientes.Id_Cliente, nombre_cliente, fecha_visitas FROM Clientes 
-        INNER JOIN Visitas ON Clientes.Id_Cliente LIKE Visitas.Id_Cliente WHERE fecha_visitas BETWEEN 
-        '".$fecha1."' AND str_to_date('".$fecha2."', '%d/%m/%Y')");
+        $datos = $conn->prepare("SELECT Id_Visita, nombre_cliente, fecha_visitas FROM Clientes 
+        INNER JOIN Visitas ON Clientes.Id_Cliente LIKE Visitas.Id_Cliente 
+        WHERE str_to_date(fecha_visitas, '%d/%m/%Y') BETWEEN 
+        str_to_date('".$fecha1."', '%d/%m/%Y') AND str_to_date('".$fecha2."', '%d/%m/%Y')");
         
         $rowConTabla = '
         <div class="row mb-5">
@@ -55,7 +56,7 @@
         
         while($r = $datos->fetch()){
                 $rowConTabla.= '<tr>
-                        <th scope="row" id="'.$r['Id_Cliente'].'">'.$r['Id_Cliente'].'</th>'.
+                        <th scope="row" id="'.$r['Id_Visita'].'">'.$r['Id_Visita'].'</th>'.
                         '<td>'.$r['nombre_cliente'].'</td>'.
                         '<td>'.$r['fecha_visitas'].'</td>
                     </tr>';

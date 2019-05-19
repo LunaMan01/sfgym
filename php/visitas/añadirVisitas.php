@@ -8,7 +8,7 @@
         $añadir->bindParam(':fecha', $_POST['fecha']);
         $añadir->bindParam(':ID', $_POST['id-cliente']);
         $añadir->execute();
-
+        echo 1;
     }catch(PDOException $e){
         echo 'Error: '. $e->getMessage();
     }

@@ -7,7 +7,13 @@ class Membresia {
         var req = new XMLHttpRequest();
         req.open("POST", 'php/membresias/añadirMembresia.php', false);
         req.send(data);
-        console.log('added');
+        if (req.responseText != 1) {
+            console.log('Error');
+            console.log(req.responseText);
+
+            return false;
+        }
+        console.log(req.responseText);
         return true;
     }
 
@@ -16,7 +22,12 @@ class Membresia {
         req.open("POST", 'php/membresias/eliminarMembresias.php', false);
         req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
         req.send('id-membresia=' + localStorage.getItem('id'));
-        console.log('id='+localStorage.getItem('id'));
+        if (req.responseText != 1) {
+            console.log('Error');
+            console.log(req.responseText);
+
+            return false;
+        }
         console.log(req.responseText);
         return true;
 
@@ -26,6 +37,12 @@ class Membresia {
         var req = new XMLHttpRequest();
         req.open("POST", 'php/membresias/modificarMembresia.php', false);
         req.send(data);
+        if (req.responseText != 1) {
+            console.log('Error');
+            console.log(req.responseText);
+
+            return false;
+        }
         console.log(req.responseText);
         return true;
     }

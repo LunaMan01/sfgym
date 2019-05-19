@@ -7,6 +7,12 @@ class Visita {
         var req = new XMLHttpRequest();
         req.open("POST", 'php/visitas/añadirVisitas.php', false);
         req.send(data);
+        if (req.responseText != 1) {
+            console.log('Error');
+            console.log(req.responseText);
+
+            return false;
+        }
         console.log(req.responseText);
         return true;
     }

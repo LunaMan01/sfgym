@@ -2,14 +2,22 @@ var clienteController = (function () {
 
 
     function addNuevoCliente() {
+        let genero;
+        if(document.querySelector('#gm').selected)
+            genero = 1;
+        else
+            genero = 2;
         var data = UICliente.getDatosParaNuevoCliente();
 
         if (!data)
             return;
         let cliente = new Cliente();
 
-        if (cliente.add(data)) {
-            UICliente.mostrarMensajeExito('#add-cliente-alert', 'Cliente añadido correctamente');
+        if (cliente.add(data, genero)) {
+            UICliente.mostrarAlert('#add-cliente-alert', 'Cliente añadido correctamente', 'alert-success');
+            document.querySelector('#form').reset();
+        } else {
+            UICliente.mostrarAlert('#add-cliente-alert', 'Ha ocurrido un error', 'alert-danger');
         }
 
     }
@@ -18,19 +26,27 @@ var clienteController = (function () {
     function eliminarCliente() {
         let cliente = new Cliente();
         if (cliente.eliminar()) {
-            UICliente.mostrarMensajeExito('#alert-clientes', 'Cliente eliminado correctamente');
+            UICliente.mostrarAlert('#alert-clientes', 'Cliente eliminado correctamente', 'alert-success');
             UICliente.quitarRegistro();
         }
     }
 
     function modificarCliente() {
+        let genero;
+        if(document.querySelector('#gm-u').selected)
+            genero = 1;
+        else
+            genero = 2;
         let data = UICliente.getDatosModificados();
         if (!data)
             return;
         let cliente = new Cliente();
         UICliente.mostrarAnimacionBtn('#guardar-cliente-editado');
-        if (cliente.modificar(data)) {
-            UICliente.mostrarMensajeExito('#modificar-cliente-alert', 'Cliente modificado correctamente');
+        if (cliente.modificar(data, genero)) {
+            UICliente.mostrarAlert('#modificar-cliente-alert', 'Cliente modificado correctamente', 'alert-success');
+            UICliente.regresarBtnAEstadoInicial('#guardar-cliente-editado');
+        } else {
+            UICliente.mostrarAlert('#modificar-cliente-alert', 'Algo salió mal', 'alert-danger');
             UICliente.regresarBtnAEstadoInicial('#guardar-cliente-editado');
         }
     }
@@ -42,24 +58,18 @@ var clienteController = (function () {
         UICliente.setDatosClienteEnInputs(cliente);
         document.getElementById('form-edit-cliente').addEventListener('submit', modificarCliente);
         document.querySelector('#cancelar-cliente').addEventListener('click', UICliente.regresar);
-        document.querySelector('#telefono').addEventListener('keydown', function (e) {
-            aceptarSoloNumeros(e);
-            limitarLongitud(9, this.value.length, e);
-        });
-        document.querySelector('#edad').addEventListener('keydown', function (e) {
-            aceptarSoloNumeros(e);
+        
 
-        });
-        document.querySelector('#num-ext').addEventListener('keydown', function (e) {
-            aceptarSoloNumeros(e);
-
-        });
-        document.querySelector('#num-int').addEventListener('keydown', function (e) {
-            aceptarSoloNumeros(e);
-
+        new Cleave('#edad', {
+            numericOnly: true,
+            blocks: [11]
         });
     }
 
+    function regresar () {
+        UICliente.regresar();
+        mostrarActivos();
+    }
 
 
     function setUpVentantaNuevoCliente() {
@@ -85,7 +95,7 @@ var clienteController = (function () {
         });
 
         document.querySelector('#form').addEventListener('submit', addNuevoCliente);
-        document.querySelector('#cancelar-cliente').addEventListener('click', UICliente.regresar);
+        document.querySelector('#cancelar-cliente').addEventListener('click', regresar);
 
     }
 
@@ -161,7 +171,13 @@ var clienteController = (function () {
     }
 
     function setUpVentanaReportes() {
+        
         UICliente.abrirReportes();
+        document.querySelector('#buscar-cliente-input').classList.add('d-none');
+
+        document.querySelector('#clientes-inactivos').addEventListener('change', setRequiredAttr);
+        document.querySelector('#clientes-mas-visitas').addEventListener('change', setRequiredAttr);
+        document.querySelector('#clientes-menos-visitas').addEventListener('change', setRequiredAttr);
 
         new Lightpick({
             field: document.querySelector('#rango-fecha'),
@@ -173,7 +189,26 @@ var clienteController = (function () {
 
     }
 
+    function setRequiredAttr () {
+        if(document.querySelector('#clientes-mas-visitas').checked || 
+        document.querySelector('#clientes-menos-visitas').checked) {
+            console.log('click');
+            document.querySelector('#rango-fecha').setAttribute("required", "");
+            document.querySelector('#rango-fecha').required = true;
+        }
+        if(document.querySelector('#clientes-inactivos').checked
+            && (document.querySelector('#clientes-mas-visitas').checked == false && 
+            document.querySelector('#clientes-menos-visitas').checked == false) 
+        ) {
+            console.log('quitar attr');
+            document.querySelector('#rango-fecha').removeAttribute("required");
+            document.querySelector('#rango-fecha').required = false;
+        }
+    }
+
     function generarReporte() {
+        
+
         let cliente = new Cliente();
         let data = UICliente.getDatosParaReporte();
 

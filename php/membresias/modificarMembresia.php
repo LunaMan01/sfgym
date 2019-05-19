@@ -11,6 +11,7 @@
         $modificar->bindParam(':fin', $_POST['fin']);
 
         $modificar->execute();
+        echo 1;
     }catch(PDOException $e){
         echo 'Error: '. $e->getMessage();
     }

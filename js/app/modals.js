@@ -86,11 +86,11 @@ let modalsMembresias =
                     </div>
                     <div class="form-group">
                         <label for="fecha-inicio">Fecha inicio:</label>
-                        <input class="form-control" id="fecha-inicio" name="inicio">
+                        <input class="form-control" id="fecha-inicio" name="inicio" required>
                     </div>
                     <div class="form-group">
                         <label for="fecha-fin">Fecha inicio:</label>
-                        <input class="form-control" id="fecha-fin" name="fin">
+                        <input class="form-control" id="fecha-fin" name="fin" required>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary rounded-pill" data-dismiss="modal">Cancelar</button>

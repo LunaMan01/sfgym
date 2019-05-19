@@ -1,14 +1,31 @@
 var visitaController = (function () {
 
+    function actualizarTabla () {
+        let visitasDia = document.querySelector('#visitas-dia');
+        let visitasSema = document.querySelector('#visitas-semana');
+        let visitasMes = document.querySelector('#visitas-mes');
+
+        if (visitasDia.selected)
+            mostrarVisitasDelDia();
+        else if (visitasSema.selected)
+            mostrarVisitasDeLaSemana();
+        else if (visitasMes.selected)
+            mostrarVisitasDelMes();
+    }
 
     function addNuevaVisita() {
         let data = UIVisita.getDatosParaNuevaVisita();
+        
         console.log('data=' + data);
         let visita = new Visita();
 
         if (visita.add(data)) {
-            UIVisita.mostrarMensajeExito('#alert-add-visita', 'Visita añadida correctamente');
-            UIVisita.mostrarTodasLasVisitas();
+            UIVisita.mostrarAlert('#alert-add-visita', 'Visita añadida correctamente', 'alert-success');
+            actualizarTabla();
+            document.querySelector('#id-cliente').value = '';
+        } else {
+            UIVisita.mostrarAlert('#alert-add-visita', 'Algo salió mal', 'alert-danger');
+            document.querySelector('#id-cliente').value = '';
         }
     }
 

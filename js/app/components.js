@@ -74,7 +74,7 @@ class Tr {
 
 
 class VistaCliente {
-    constructor(nombre, apPaterno, apMaterno, edad, telefono, calle, numExterior, numInterior, colonia) {
+    constructor(nombre, apPaterno, apMaterno, edad, telefono, calle, numExterior, numInterior, colonia, genero) {
         this.nombre = nombre;
         this.apPaterno = apPaterno;
         this.apMaterno = apMaterno;
@@ -84,7 +84,7 @@ class VistaCliente {
         this.numExterior = numExterior;
         this.numInterior = numInterior;
         this.colonia = colonia;
-
+        this.genero = genero;
     }
 
     render() {
@@ -139,7 +139,7 @@ class VistaCliente {
                     <div class="form-group row">
                         <label class="col-lg-4 col-form-label text-right">Sexo: </label>
                         <div class="col-lg-8">
-                            <p id="sexo">Hombre</p>
+                            <p id="sexo">${this.genero}</p>
                         </div>
                     </div>
                     <!--Form: TELÉFONO-->

@@ -38,10 +38,15 @@ var UIMembresia = (function () {
             tr.remove();
         },
 
-        mostrarMensajeExito: function (mensaje) {
-            new Toast('#alert-membresias', mensaje, 2000, 'alert-success').getAndShow();
+        mostrarAlert: function (mensaje, type) {
+            new Toast('#alert-membresias', mensaje, 2000, type).getAndShow();
 
         },
+
+        resetForm: function(formId) {
+            document.querySelector(formId).reset();
+        },
+
 
         getMembresia: function () {
             var req = new XMLHttpRequest();

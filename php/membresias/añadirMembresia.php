@@ -10,7 +10,7 @@
         $membresia->bindParam(':fin', $_POST['fin']);
 
         $membresia->execute();
-
+        echo 1;
     }catch(PDOException $e){
         echo "Error: " .$e->getMessage();
     }

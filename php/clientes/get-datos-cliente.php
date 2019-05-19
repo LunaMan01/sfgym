@@ -4,7 +4,7 @@
     $array = array();
     try {
         $idC = $_POST["id-cliente"];
-        $preparar = "SELECT nombre_cliente, apellido_paterno, apellido_materno, edad, numero, colonia, 
+        $preparar = "SELECT nombre_cliente, apellido_paterno, apellido_materno, edad, numero, colonia, Id_Genero,
         calle, numero_exterior, numero_interior 
         FROM Clientes, Telefonos, Direcciones WHERE Clientes.Id_Cliente = ".$_POST['id-cliente']." AND 
         Telefonos.Id_Cliente = ".$_POST['id-cliente']." AND Direcciones.Id_Cliente = ".$_POST['id-cliente'];
@@ -20,6 +20,7 @@
             $cliente->calle = $row['calle'];
             $cliente->numeroExterior = $row['numero_exterior'];
             $cliente->numeroInterior = $row['numero_interior'];
+            $cliente->genero = $row['Id_Genero'];
         }
         
         $clienteJSON = json_encode($cliente);

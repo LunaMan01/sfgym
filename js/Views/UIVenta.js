@@ -37,13 +37,10 @@ var UIVenta = (function () {
             req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
             req.send(null);
             let productosJSON = req.responseText;
-          
-
-            console.log(productosJSON);
-
             let productos = JSON.parse(productosJSON);
-
             agregarProductosASelector(productos);
+
+            
         },
 
         mostrarCarga : function () {

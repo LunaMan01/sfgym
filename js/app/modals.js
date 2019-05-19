@@ -478,17 +478,17 @@ aria-hidden="true">
                 <div class="form-group">
                     <label>Gasto:</label>
                     <input type="text" class="form-control" id="nombre-gasto" name="descripcion-gasto"
-                        placeholder="Descripción de gasto">
+                        placeholder="Descripción de gasto" required>
                 </div>
 
                 <div class="form-group">
                     <label>Monto:</label>
-                    <input type="text" class="form-control numeric-add" id="monto-gasto" name="monto-gasto" placeholder="Monto de gasto">
+                    <input type="text" class="form-control numeric-add" id="monto-gasto" name="monto-gasto" placeholder="Monto de gasto" required>
                 </div>
 
                 <div class="form-group">
                     <label>Fecha:</label>
-                    <input type="text" class="form-control date-add" id="fecha-gasto" name="fecha-gasto" placeholder="dd/mm/yyyy">
+                    <input type="text" class="form-control date-add" id="fecha-gasto" name="fecha-gasto" placeholder="dd/mm/yyyy" pattern=".{10,}" required>
                 </div>
 
                 <div class="form-group">
@@ -500,13 +500,6 @@ aria-hidden="true">
                     </select>
                 </div>
 
-                <!--
-                <div class="form-group">
-                    <a>
-                        <p class="text-right text-info"> + Nueva categoria</p>
-                    </a>
-                </div>
-                -->
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button>
                     <button type="submit" class="btn btn-success">Guardar</button>
@@ -534,17 +527,17 @@ aria-hidden="true">
                 <div class="form-group">
                     <label>Gasto:</label>
                     <input type="text" class="form-control" id="nombre-gasto" name="descripcion-gasto"
-                        placeholder="Descripción de gasto">
+                        placeholder="Descripción de gasto" required>
                 </div>
 
                 <div class="form-group">
                     <label>Monto:</label>
-                    <input type="text" class="form-control numeric-update" id="monto-gasto" name="monto-gasto" placeholder="Monto de gasto">
+                    <input type="text" class="form-control numeric-update" id="monto-gasto" name="monto-gasto" placeholder="Monto de gasto" required>
                 </div>
 
                 <div class="form-group">
                     <label>Fecha:</label>
-                    <input type="text" class="form-control date-update" id="fecha-gasto" name="fecha-gasto" placeholder="dd/mm/yyyy">
+                    <input type="text" class="form-control date-update" id="fecha-gasto-update" name="fecha-gasto" placeholder="dd/mm/yyyy" pattern=".{10,}" required>
                 </div>
 
                 <div class="form-group">
@@ -556,11 +549,7 @@ aria-hidden="true">
                     </select>
                 </div>
 
-                <div class="form-group">
-                    <a>
-                        <p class="text-right text-info"> + Nueva categoria</p>
-                    </a>
-                </div>
+              
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button>
@@ -622,17 +611,8 @@ aria-hidden="true">
                 </div>
 
                 <div class="form-group">
-                    <label for="categorias-gastos">Categoria</label>
-                    <select class="form-control" id="categorias-gastos" name="tipo-gasto">
-                        <option  value="1">1</option>
-                        <option>2</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <a>
-                        <p class="text-right text-info"> + Nueva categoria</p>
-                    </a>
+                    <label for="categorias-gastos">Tipo de gasto</label>
+                    <p id="categorias-gastos"></p>
                 </div>
 
                 <div class="modal-footer">
@@ -667,12 +647,6 @@ aria-hidden="true">
                         placeholder="Nombre de aparato" required>
                 </div>
 
-                <div class="form-group">
-                    <label>Precio por compra:</label>
-                    <input type="text" class="form-control numeric-add" id="precio-por-compra"
-                        placeholder="Precio por compra">
-                </div>
-
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button>
                     <button type="submit" class="btn btn-success">Guardar</button>
@@ -704,7 +678,7 @@ aria-hidden="true">
 
                 <div class="form-group">
                     <label>Descripción:</label>
-                    <input type="text" class="form-control numeric-update" id="nombre-aparato"
+                    <input type="text" class="form-control" id="nombre-aparato"
                         name="nombre-aparato" required>
                 </div>
 

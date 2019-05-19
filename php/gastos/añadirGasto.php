@@ -14,6 +14,7 @@
         $añadir->bindParam(':tipo', $type);
         
         $añadir->execute();
+        echo 1;
     }catch(PDOException $e){
         echo 'Error: '. $e->getMessage();
     }

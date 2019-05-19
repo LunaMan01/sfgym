@@ -7,6 +7,12 @@ class Gasto {
         var req = new XMLHttpRequest();
         req.open("POST", 'php/gastos/añadirGasto.php', false);
         req.send(data);
+        if (req.responseText != 1) {
+            console.log('Error');
+            console.log(req.responseText);
+
+            return false;
+        }
         console.log(req.responseText);
         return true;
     }
@@ -16,7 +22,12 @@ class Gasto {
         req.open("POST", 'php/gastos/eliminarGastos.php', false);
         req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
         req.send('id-gasto=' + localStorage.getItem('id'));
-        console.log('id='+localStorage.getItem('id'));
+        if (req.responseText != 1) {
+            console.log('Error');
+            console.log(req.responseText);
+
+            return false;
+        }
         console.log(req.responseText);
         return true;
 
@@ -26,6 +37,12 @@ class Gasto {
         var req = new XMLHttpRequest();
         req.open("POST", 'php/gastos/modificarGastos.php', false);
         req.send(data);
+        if (req.responseText != 1) {
+            console.log('Error');
+            console.log(req.responseText);
+
+            return false;
+        }
         console.log(req.responseText);
         return true;
     }

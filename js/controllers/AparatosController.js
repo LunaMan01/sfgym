@@ -72,19 +72,7 @@ var aparatoController = (function () {
         
     }
 
-    function setUpInputs () {
-        new Cleave ('.numeric-add', {
-            numericOnly: true,
-            blocks : [11]
-        });
 
-        new Cleave ('.numeric-update', {
-            numericOnly: true,
-            blocks : [11]
-        });
-
-       
-    }
 
     function setUpEvents () {
         setUpInputs();

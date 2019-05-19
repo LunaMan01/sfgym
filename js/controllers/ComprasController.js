@@ -153,6 +153,7 @@ var compraController = (function () {
         let data = UICompra.getDatosParaReporte();
 
         let res = compra.reporte(data);
+        console.log(res);
         UICompra.mostrarReporte(res);
 
         // document.querySelector('#descargar-pdf').addEventListener('click', 

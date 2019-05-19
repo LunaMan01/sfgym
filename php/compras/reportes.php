@@ -83,4 +83,6 @@
 
             return $rowConTabla;
     }
+
+    echo $html;
 ?>

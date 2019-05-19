@@ -75,7 +75,6 @@ class Producto {
     getProximosACaducar () {
         var req = new XMLHttpRequest();
         req.open("POST", 'php/productos/consultaAVencer.php', false);
-       
         req.send(null);
         return req.responseText;
     }

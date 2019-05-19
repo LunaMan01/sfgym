@@ -23,8 +23,8 @@
         $fecha2 = $array[1];
         
         $datos = $conn->prepare("SELECT Id_Gasto, descripcion_gasto, fecha_gasto, monto_gasto, tipo_gasto 
-        FROM Gastos INNER JOIN TipoGastos ON Gastos.Id_Tipo LIKE TipoGastos.Id_Tipo WHERE fecha_gasto 
-        BETWEEN '".$fecha1."' AND str_to_date('".$fecha2."' ,'%d/%m/%Y')");
+        FROM Gastos INNER JOIN TipoGastos ON Gastos.Id_Tipo LIKE TipoGastos.Id_Tipo WHERE str_to_date(fecha_gasto, '%d/%m/%Y') 
+        BETWEEN str_to_date('".$fecha1."', '%d/%m/%Y') AND str_to_date('".$fecha2."' ,'%d/%m/%Y')");
         
         $rowConTabla = '
         <div class="row mb-5">

@@ -40,6 +40,14 @@
     
     }
 
+    function getProductosMasVendidos($conn){
+
+    }
+
+    function getProductosMenosVendidos($conn){
+
+    }
+
     function getProductosExistencia($conn) {
         $datos = $conn->prepare("SELECT Id_Producto, descripcion_producto, fecha_caducidad, existencia_producto
         FROM Productos WHERE existencia_producto > 0");

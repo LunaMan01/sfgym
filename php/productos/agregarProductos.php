@@ -11,6 +11,7 @@
         $agregar->bindParam(':precio', $_POST['precio']);
 
         $agregar->execute();
+        echo 1;
     }catch(PDOException $e){
         echo 'Error: '. $e->getMessage();
     }

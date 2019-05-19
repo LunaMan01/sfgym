@@ -1,12 +1,63 @@
 var ventaController = (function () {
 
+    var cantidadTd;
+    var precioProducto;
+    var subtotalTd;
+
+    function setUpEditEvent() {
+        document.querySelector('#carrito').addEventListener('click', function (e) {
+
+            if (e.target.matches('.edit-action')) {
+                cantidadTd = UIVenta.getCantidadTd(e);
+                subtotalTd = UIVenta.getSubtotalTd(e);
+                precioProducto = cantidadTd.getAttribute('data-precio');
+
+            }
+        }, false);
+    }
+
+    function modificarCantidad () {
+        let nuevaCantidad = document.querySelector('#nueva-cantidad').value;
+       
+        UIVenta.modificarProductoEnCarrito(cantidadTd, subtotalTd, nuevaCantidad, precioProducto);
+
+        UIVenta.esconderModal('#modificar-cantidad-producto-modal');
+    }
+
+    function setUpDeleteEvent() {
+        document.querySelector('#carrito').addEventListener('click', function (e) {
+
+            if (e.target.matches('.delete-action')) {
+                UIVenta.getProductoEnCarritoId();
+                UIVenta.quitarRegistroDeCarrito();
+            }
+        }, false);
+
+    }
+
+
+    function setUpEditEventVenta() {
+        document.querySelector('#cuerpo-tabla-ventas').addEventListener('click', function (e) {
+
+            if (e.target.matches('.edit-venta')) {
+                UIVenta.abrirEditVenta();
+
+            }
+        }, false);
+    }
+    
+   
+
+
     function setUpNuevaVenta() {
+        
+        document.querySelector('.modal-container').innerHTML = nuevaVentaModals;
         UIVenta.abrirAddVenta();
         document.querySelector('#agregar-producto-seleccionado').addEventListener('click', () => {
 
             var selector = document.getElementById("select-productos");
 
-            // var selCar = carList.options[carList.selectedIndex].value;
+        
 
 
 
@@ -14,11 +65,24 @@ var ventaController = (function () {
             let precio = selector.options[selector.selectedIndex].getAttribute('data-precio');
             let id = selector.options[selector.selectedIndex].getAttribute('id');
             let cantidad = UIVenta.getCantidad();
+            if(cantidad == 0){
+                UIVenta.mostrarAlert('#add-venta-alert','Añade una cantidad', 'alert-danger');
+                return;
+            }
+
             UIVenta.agregarProductoACarrito(producto, cantidad, precio, id);
         });
 
-        document.querySelector('#guardar-venta').addEventListener('click', guardarVenta);
+        
+
+        document.querySelector('#add-venta-form').addEventListener('submit', guardarVenta);
+        setUpEditEvent();
+        setUpDeleteEvent();
+        document.querySelector('#modificar-cantidad-form').addEventListener('submit', modificarCantidad);
     }
+
+    
+    
 
 
 
@@ -48,9 +112,20 @@ var ventaController = (function () {
             productosEnCarrito.push(producto);
         });
 
+        if (productosEnCarrito.length == 0) {
+            UIVenta.mostrarAlert('#add-venta-alert', 'Añade al menos un producto a la venta', 'alert-danger');
+            return;
+        }
 
-
-        new Venta().add(venta, productosEnCarrito);
+        if(new Venta().add(venta, productosEnCarrito)) {
+            UIVenta.mostrarAlert('#add-venta-alert', 'Venta realizada exitosamente', 'alert-success');
+            document.querySelector('#add-venta-form').reset();
+            UIVenta.limpiarCarrito();
+        } else {
+            UIVenta.mostrarAlert('#add-venta-alert', 'Algo salió mal', 'alert-danger');
+            document.querySelector('#nip-cliente').value = '';
+            document.querySelector('#nip-instructor').value = '';
+        }
     }
 
     function getVentasMes() {
@@ -82,7 +157,9 @@ var ventaController = (function () {
     }
 
     function setUpEvents() {
+
         getVentasDia();
+        setUpEditEventVenta();
         document.querySelector('#add-venta-btn').addEventListener('click', setUpNuevaVenta);
         document.querySelector('#reporte-venta-btn').addEventListener('click', UIVenta.abrirReportes);
     }

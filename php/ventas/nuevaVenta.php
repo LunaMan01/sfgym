@@ -18,6 +18,7 @@
             detalleVenta($conn, $lastId, $row['id'], $row['cantidad'], $row['subtotal']);
         }
 
+        echo 1;
     }catch(PDOException $e){
         echo 'Error: '. $e->getMessage();
     }

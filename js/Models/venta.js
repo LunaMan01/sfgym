@@ -7,6 +7,12 @@ class Venta {
         req.open("POST", 'php/ventas/nuevaVenta.php', false);
         req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         req.send("venta="+encodeURIComponent(JSON.stringify(venta))+"&productos="+encodeURIComponent(JSON.stringify(productos)));
+        if (req.responseText != 1) {
+            console.log('Error');
+            console.log(req.responseText);
+
+            return false;
+        }
         console.log(req.responseText);
         return true;
     }

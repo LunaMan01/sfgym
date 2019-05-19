@@ -15,6 +15,7 @@
         $modificar->bindParam(':precio', $_POST['precio']);
 
         $modificar->execute();
+        echo 1;
     }catch(PDOException $e){
         echo 'Error: '. $e->getMessage();
     }

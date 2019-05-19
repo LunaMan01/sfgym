@@ -42,8 +42,8 @@ var UIProducto = (function () {
             tr.remove();
         },
 
-        mostrarMensajeExito: function (mensaje) {
-            new Toast('#alert-productos', mensaje, 2000, 'alert-success').getAndShow();
+        mostrarAlert: function (mensaje, type) {
+            new Toast('#alert-productos', mensaje, 2000, type).getAndShow();
 
         },
 

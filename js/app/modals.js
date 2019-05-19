@@ -318,13 +318,13 @@ aria-labelledby="modal-añadir-producto" aria-hidden="true">
                 <div class="form-group">
                     <label>Existencia:</label>
                     <input type="text" class="form-control numeric-add" id="existencia" name="existencia"
-                        placeholder="Cantidad de productos">
+                        placeholder="Cantidad de productos" required>
                 </div>
 
                 <div class="form-group">
                     <label>Precio:</label>
                     <input type="text" class="form-control numeric-price-add" id="precio-producto" name="precio"
-                        placeholder="Precio">
+                        placeholder="Precio" required>
                 </div>
 
                 <div class="modal-footer">
@@ -343,7 +343,7 @@ aria-labelledby="modal-modificar-producto" aria-hidden="true">
 <div class="modal-dialog" role="document">
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title">Añadir producto</h5>
+            <h5 class="modal-title">Modificar producto</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -358,25 +358,25 @@ aria-labelledby="modal-modificar-producto" aria-hidden="true">
                 <div class="form-group">
                     <label>Nombre:</label>
                     <input type="text" class="form-control" id="nombre-producto" name="nombre-producto"
-                        placeholder="Nombre del producto">
+                        placeholder="Nombre del producto" required>
                 </div>
 
                 <div class="form-group">
                     <label>Fecha de caducidad:</label>
                     <input type="text" class="form-control date-update" id="fecha-caducidad" name="fecha-caducidad"
-                        placeholder="dd/mm/yyyy">
+                        placeholder="dd/mm/yyyy" pattern=".{10,}">
                 </div>
 
                 <div class="form-group">
                     <label>Existencia:</label>
                     <input type="text" class="form-control numeric-update" id="existencia-producto" name="existencia"
-                        placeholder="Cantidad de productos">
+                        placeholder="Cantidad de productos" required>
                 </div>
 
                 <div class="form-group">
                     <label>Precio:</label>
                      <input type="text" class="form-control numeric-price-update" id="precio-producto" name="precio"
-                        placeholder="Precio">
+                        placeholder="Precio" required>
                  </div>
 
                 <div class="modal-footer">

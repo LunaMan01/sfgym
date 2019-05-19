@@ -626,7 +626,7 @@ aria-hidden="true">
 </div>
 </div>
 `
-;
+    ;
 
 let modalsAparatos = `
 <div class="modal fade" id="add-aparato-modal" tabindex="-1" role="dialog" aria-labelledby="add-aparato-modal"
@@ -920,3 +920,31 @@ aria-hidden="true">
 </div>
 
 `;
+
+let nuevaVentaModals = `
+<div class="modal fade" id="modificar-cantidad-producto-modal" tabindex="-1" role="dialog" aria-labelledby="add-compra-modal"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Modificar cantidad</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form id="modificar-cantidad-form" onsubmit="return false">
+                <div class="form-group">
+                    <label>Cantidad:</label>
+                    <input type="text" class="form-control" id="nueva-cantidad">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary rounded-pill " data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-outline-success rounded-pill" id="confirmar-nueva-cantidad">Confirmar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+`

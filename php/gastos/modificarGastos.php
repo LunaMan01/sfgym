@@ -15,6 +15,7 @@
         $modificar->bindParam(':tipo', $_POST['tipo-gasto']);
 
         $modificar->execute();
+        echo 1;
     }catch(PDOException $e){
         echo 'Error: '. $e->getMessage();
     }

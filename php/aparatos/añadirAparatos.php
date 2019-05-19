@@ -8,6 +8,7 @@
         $agregar->bindParam(':aparato', $_POST['nombre-aparato']);
 
         $agregar->execute();
+        echo 1;
     }catch(PDOException $e){
         echo 'Error: '. $e->getMessage();
     }

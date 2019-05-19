@@ -104,6 +104,7 @@ var UICliente = (function () {
     verCliente: function (cliente) {
         let genero;
 
+        console.log(cliente.genero);
         if (cliente.genero == 1)
             genero = 'Hombre';
         else

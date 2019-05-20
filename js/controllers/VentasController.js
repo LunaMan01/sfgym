@@ -5,6 +5,8 @@ var ventaController = (function () {
     var subtotalTd;
     var id;
 
+    var productosEliminadosDeCarrito = new Array();
+
     function setUpEditEvent() {
         document.querySelector('#carrito').addEventListener('click', function (e) {
 
@@ -56,7 +58,8 @@ var ventaController = (function () {
         document.querySelector('#carrito').addEventListener('click', function (e) {
 
             if (e.target.matches('.delete-action')) {
-                UIVenta.getProductoEnCarritoId();
+                let idCar = UIVenta.getProductoEnCarritoId();
+                productosEliminadosDeCarrito.push(idCar);
                 UIVenta.quitarRegistroDeCarrito();
             }
         }, false);
@@ -153,16 +156,15 @@ var ventaController = (function () {
             productosNuevosEnCarrito.push(producto);
         });
 
-        console.log('productos viejos = '+productosEnCarrito);
-
-        console.log('carr nuevo '+carritoNuevo);
 
         if (productosEnCarrito.length == 0) {
             UIVenta.mostrarAlert('#add-venta-alert', 'Añade al menos un producto a la venta', 'alert-danger');
             return;
         }
 
-        if(new Venta().modificar(venta, productosEnCarrito, productosNuevosEnCarrito, id)) {
+        
+
+        if(new Venta().modificar(venta, productosEnCarrito, productosNuevosEnCarrito, productosEliminadosDeCarrito, id)) {
             UIVenta.mostrarAlert('#add-venta-alert', 'Venta modificada exitosamente', 'alert-success');
             
             

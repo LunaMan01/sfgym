@@ -3,9 +3,8 @@
 
     try{
         $consultar = "SELECT VentasProductos.Id_Venta, nombre_cliente, fecha_venta, Ventas.total_venta 
-        FROM Ventas INNER JOIN Clientes INNER JOIN VentasProductos 
-        ON Ventas.Id_Cliente = Clientes.Id_Cliente 
-        AND VentasProductos.Id_Venta = Ventas.Id_Venta";
+        FROM Ventas INNER JOIN Clientes 
+        ON Ventas.Id_Cliente = Clientes.Id_Cliente";
 
         foreach($conn->query($consultar) as $row){
             echo '<tr>

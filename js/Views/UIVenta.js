@@ -166,6 +166,7 @@ var UIVenta = (function () {
             var id = th.getAttribute('id');
             console.log(id);
             localStorage.setItem('id', id);
+            return id;
         },
 
         quitarRegistroDeCarrito: function () {

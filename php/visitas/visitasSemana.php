@@ -19,7 +19,8 @@
     try{
         $datos = "SELECT Id_Visita, nombre_cliente, fecha_visitas FROM Visitas, Clientes 
         WHERE Visitas.Id_Cliente = Clientes.Id_Cliente AND str_to_date(fecha_visitas, '%d/%m/%Y') 
-        BETWEEN str_to_date('".$primerDia."', '%d/%m/%Y') AND str_to_date('".$ultimoDia."', '%d/%m/%Y')";
+        BETWEEN str_to_date('".$primerDia."', '%d/%m/%Y') AND str_to_date('".$ultimoDia."', '%d/%m/%Y')
+        ORDER BY Id_Vista ASC";
         //$datos->execute();
     
         foreach($conn->query($datos) as $row){

@@ -20,7 +20,7 @@
         
         while($r = $datos->fetch()){
                echo '<tr>
-                        <th scope="row" id="'.$r['Id_Producto'].'">'.$r['Id_Producto'].'</th>'.
+                        <th scope="row" class=".carrito" id="'.$r['Id_Producto'].'">'.$r['Id_Producto'].'</th>'.
                         '<td>'.$r['descripcion_producto'].'</td>'.
                         '<td>'.$r['total_venta'].'</td>'.
                         '<td>'.$r['cantidad_producto'].'</td>'.

@@ -1,6 +1,8 @@
 <?php 
     include '../conexion.php';
 
+    $fecha = date('d/m/Y');
+
     try{
         $sell = $_POST['venta'];
         $arraySell = json_decode($sell, true);
@@ -8,11 +10,13 @@
         $items = $_POST['productos'];
         $arrayItems = json_decode($items, true);
 
-        modificarVenta($conn, $arraySell['nipCliente'], $arraySell['idInstructor'], $arraySell['totalVenta']);
+        modificarVenta($conn, $arraySell['nipCliente'], $arraySell['idInstructor'], $arraySell['totalVenta'], );
 
         foreach($arrayItems as $row){
-            detalleVenta($conn, $row['id'], $row['cantidad'], $row['subtotal'], $row['fecha']);
+            modificarProductos($conn, $row['id'], $row['cantidad'], $row['subtotal'], $row['fecha'], $fecha);
         }
+
+        echo 1;
     }catch(PDOException $e){
         echo 'Error: '. $e->getMessage();
     }
@@ -29,6 +33,7 @@
         $modificar->bindParam(':subtotal', $subtotal);
 
         $modificar->execute();
+    
     }
 
     function modificarProductos($conn, $idProducto, $cantidad, $totalVenta, $fechaVenta){

@@ -24,7 +24,7 @@
         }
 
         foreach($arrayNewItems as $row){
-            echo 2;
+            
             detalleVenta($conn, $row['id'], $row['cantidad'], $row['subtotal']);
         }
       

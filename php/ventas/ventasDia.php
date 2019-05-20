@@ -4,10 +4,9 @@
     $fecha = date('d/m/Y');
 
     try{
-        $datos = "SELECT VentasProductos.Id_Venta, nombre_cliente, fecha_venta, Ventas.total_venta 
-        FROM Ventas INNER JOIN Clientes INNER JOIN VentasProductos 
+        $datos = "SELECT Id_Venta, nombre_cliente, fecha_venta, Ventas.total_venta 
+        FROM Ventas INNER JOIN Clientes
         ON Ventas.Id_Cliente = Clientes.Id_Cliente 
-        AND VentasProductos.Id_Venta = Ventas.Id_Venta 
         AND fecha_venta LIKE '".$fecha."'";
         //$datos->execute();
     

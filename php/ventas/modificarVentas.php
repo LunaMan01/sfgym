@@ -13,7 +13,17 @@
         $newItems = $_POST['productosNuevos'];
         $arrayNewItems = json_decode($newItems, true);
 
+
+
         modificarVenta($conn, $arraySell['nipCliente'], $arraySell['idInstructor'], $arraySell['totalVenta']);
+
+        $deleteItems = $_POST['eliminados'];
+        $arrayDelete = json_decode($deleteItems, true);
+
+        
+        foreach($arrayDelete as $row){
+            eliminarProductos($conn, $row['id'], $_POST['id-venta']);
+        }
 
         foreach($arrayItems as $row){
             modificarProductos($conn, $row['id'], $row['cantidad'], $row['subtotal']);
@@ -22,7 +32,6 @@
         foreach($arrayNewItems as $row){
             detalleVenta($conn, $row['id'], $row['cantidad'], $row['subtotal']);
         }
-      
 
         echo 1;
     }catch(PDOException $e){
@@ -69,6 +78,13 @@
         $modificar->bindParam(':subtotalVenta', $totalVenta);
 
         $modificar->execute();
+    }
+
+    function eliminarProductos($conn, $idProducto, $idVenta){
+        $eliminar = $conn->prepare("DELETE FROM VentasProductos
+            WHERE Id_Producto = ".$idProducto." AND Id_Venta = ".$idVenta);
+        
+        $eliminar->execute();
     }
 
    

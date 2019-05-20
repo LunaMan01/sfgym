@@ -159,7 +159,7 @@ var ventaController = (function () {
         });
 
 
-        if (productosEnCarrito.length == 0) {
+        if (productosEnCarrito.length == 0 && carritoNuevo.length == 0) {
             UIVenta.mostrarAlert('#add-venta-alert', 'Añade al menos un producto a la venta', 'alert-danger');
             return;
         }

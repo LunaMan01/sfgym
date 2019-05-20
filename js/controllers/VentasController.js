@@ -8,14 +8,41 @@ var ventaController = (function () {
     function setUpEditEvent() {
         document.querySelector('#carrito').addEventListener('click', function (e) {
 
+            if (e.target.matches('.detalle')) {
+                console.log('hara');
+                cantidadTd = UIVenta.getCantidadTdDetalle(e);
+                subtotalTd = UIVenta.getSubtotalTdDetalle(e);
+                precioProducto = cantidadTd.getAttribute('data-precio');
+                return;
+            }
             if (e.target.matches('.edit-action')) {
+                console.log('here');
                 cantidadTd = UIVenta.getCantidadTd(e);
                 subtotalTd = UIVenta.getSubtotalTd(e);
                 precioProducto = cantidadTd.getAttribute('data-precio');
 
             }
+           
         }, false);
     }
+
+
+    function setUpWatchEvent() {
+        document.querySelector('#cuerpo-tabla-ventas').addEventListener('click', function (e) {
+
+            if (e.target.matches('.watch-action')) {
+                id = UIVenta.getId(e);
+                let venta = new Venta().getVenta(id);
+                UIVenta.abrirVista(venta);
+                UIVenta.setProductosEnTabla(new Venta().getDetalleVenta(id));
+            }
+          
+           
+        }, false);
+    }
+
+
+    
 
     function modificarCantidad () {
         let nuevaCantidad = document.querySelector('#nueva-cantidad').value;
@@ -49,6 +76,7 @@ var ventaController = (function () {
                 UIVenta.setDatosVentaEnInputs(venta);
                 UIVenta.setProductosEnTabla(new Venta().getDetalleVenta(id));
             }
+            
         }, false);
 
 
@@ -81,6 +109,7 @@ var ventaController = (function () {
         
 
         document.querySelector('#add-venta-form').addEventListener('submit', modificarVenta);
+        
         setUpEditEvent();
         setUpDeleteEvent();
         document.querySelector('#modificar-cantidad-form').addEventListener('submit', modificarCantidad);
@@ -100,24 +129,40 @@ var ventaController = (function () {
 
 
         console.log(venta);
-        let carrito = document.querySelectorAll('.carrito');
+        let carrito = document.querySelectorAll('.carrito-u');
 
 
         let productosEnCarrito = new Array();
         carrito.forEach(element => {
             let producto = new Object();
             producto.id = element.getAttribute('id');
+            console.log(producto.id);
             producto.cantidad = element.getAttribute('data-cantidad');
             producto.subtotal = element.getAttribute('data-subtotal');
             productosEnCarrito.push(producto);
         });
+
+        let carritoNuevo = document.querySelectorAll('.carrito');
+        let productosNuevosEnCarrito = new Array();
+
+        carritoNuevo.forEach(element => {
+            let producto = new Object();
+            producto.id = element.getAttribute('id');
+            producto.cantidad = element.getAttribute('data-cantidad');
+            producto.subtotal = element.getAttribute('data-subtotal');
+            productosNuevosEnCarrito.push(producto);
+        });
+
+        console.log('productos viejos = '+productosEnCarrito);
+
+        console.log('carr nuevo '+carritoNuevo);
 
         if (productosEnCarrito.length == 0) {
             UIVenta.mostrarAlert('#add-venta-alert', 'Añade al menos un producto a la venta', 'alert-danger');
             return;
         }
 
-        if(new Venta().modificar(venta, productosEnCarrito, id)) {
+        if(new Venta().modificar(venta, productosEnCarrito, productosNuevosEnCarrito, id)) {
             UIVenta.mostrarAlert('#add-venta-alert', 'Venta modificada exitosamente', 'alert-success');
             
             
@@ -239,6 +284,7 @@ var ventaController = (function () {
     function setUpEvents() {
 
         getVentasDia();
+        setUpWatchEvent();
         setUpEditEventVenta();
         document.querySelector('#add-venta-btn').addEventListener('click', setUpNuevaVenta);
         document.querySelector('#reporte-venta-btn').addEventListener('click', UIVenta.abrirReportes);

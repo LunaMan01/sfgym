@@ -55,9 +55,7 @@ var UIVenta = (function () {
             let subtotal = precio * cantidad;
             let productoTr = `
                 <tr>
-                    <td scope="row" class="carrito" id="${productoId}" 
-                    data-cantidad="${cantidad}"
-                    data-subtotal = "${subtotal}"
+                    <th scope="row" class="carrito" id="${productoId}" data-cantidad="${cantidad}" data-subtotal = "${subtotal}"
                     >${productoId}</th>
                     <td>${producto}</td>
                     <td class="subtotales">${subtotal}</td>
@@ -105,22 +103,55 @@ var UIVenta = (function () {
             document.querySelector('#carrito').innerHTML = productos;
         },
 
+
+
+        verVenta : function (venta){
+            document.querySelector('#nip-cliente').innerHTML = venta.idCliente;
+            document.querySelector('#nip-instructor').innerHTML = venta.idInstructor;
+            document.querySelector('#total-venta').innerHTML = venta.totalVenta;
+        },
+
+
+
+
+
         getCantidadTd: function (event) {
             var i = event.target;
             var td = i.parentNode;
             tr = td.parentNode;
             var elements = tr.childNodes;
-            var th = elements[6];
+            var th = elements[7];
             console.log(th);
             return th;
         },
 
-        getSubtotalTd : function () {
+        getCantidadTdDetalle: function (event) {
             var i = event.target;
             var td = i.parentNode;
             tr = td.parentNode;
             var elements = tr.childNodes;
             var th = elements[4];
+            console.log(th);
+            return th;
+        },
+
+
+        getSubtotalTdDetalle : function () {
+            var i = event.target;
+            var td = i.parentNode;
+            tr = td.parentNode;
+            var elements = tr.childNodes;
+            var th = elements[5];
+            console.log(th);
+            return th;
+        },
+
+        getSubtotalTdDetalle : function () {
+            var i = event.target;
+            var td = i.parentNode;
+            tr = td.parentNode;
+            var elements = tr.childNodes;
+            var th = elements[3];
             console.log(th);
             return th;
         },
@@ -165,6 +196,11 @@ var UIVenta = (function () {
         abrirReportes: function () {
             load('html/ventas-components/reporte-ventas.html', document.querySelector('.content'));
         },
+
+        abrirVista: function () {
+            load('html/ventas-components/vista-ventas.html', document.querySelector('.content'));
+        },
+
 
         mostrarAlert: function (container, mensaje, type) {
             new Toast(container, mensaje, 2000, type).getAndShow();

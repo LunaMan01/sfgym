@@ -17,12 +17,15 @@ class Venta {
         return true;
     }
 
-    modificar(venta, productos, idVenta) {
+    modificar(venta, productos, productosNuevos, idVenta) {
         var req = new XMLHttpRequest();
-        
+        console.log('productos viejos = '+JSON.stringify(productos));
+
+        console.log('carr nuevo '+JSON.stringify(productosNuevos));
+
         req.open("POST", 'php/ventas/modificarVentas.php', false);
         req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        req.send("venta="+encodeURIComponent(JSON.stringify(venta))+"&productos="+encodeURIComponent(JSON.stringify(productos))+"&id-venta="+idVenta);
+        req.send("venta="+encodeURIComponent(JSON.stringify(venta))+"&productos="+encodeURIComponent(JSON.stringify(productos))+"&id-venta="+idVenta+"&productosNuevos="+encodeURIComponent(JSON.stringify(productosNuevos)));
         if (req.responseText != 1) {
             console.log('Error');
             console.log(req.responseText);

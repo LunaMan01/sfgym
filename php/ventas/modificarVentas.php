@@ -82,7 +82,7 @@
 
     function eliminarProductos($conn, $idProducto){
         $eliminar = $conn->prepare("DELETE FROM VentasProductos
-            WHERE Id_Producto = ".$idProducto.);
+            WHERE Id_Producto = ".$idProducto);
         
         $eliminar->execute();
     }

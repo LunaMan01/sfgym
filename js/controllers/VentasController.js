@@ -58,8 +58,10 @@ var ventaController = (function () {
         document.querySelector('#carrito').addEventListener('click', function (e) {
 
             if (e.target.matches('.delete-action')) {
+                let ids = new Object();
                 let idCar = UIVenta.getProductoEnCarritoId();
-                productosEliminadosDeCarrito.push(idCar);
+                ids.id = idCar;
+                productosEliminadosDeCarrito.push(ids);
                 UIVenta.quitarRegistroDeCarrito();
             }
         }, false);

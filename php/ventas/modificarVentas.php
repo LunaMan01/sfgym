@@ -22,7 +22,7 @@
 
         
         foreach($arrayDelete as $row){
-            eliminarProductos($conn, $row['id']);
+            eliminarProductos($conn, $row['id'], $_POST['id-venta']);
         }
 
         foreach($arrayItems as $row){
@@ -80,9 +80,9 @@
         $modificar->execute();
     }
 
-    function eliminarProductos($conn, $idProducto){
+    function eliminarProductos($conn, $idProducto, $idVenta){
         $eliminar = $conn->prepare("DELETE FROM VentasProductos
-            WHERE Id_Producto = ".$idProducto);
+            WHERE Id_Producto = ".$idProducto." AND Id_Venta = ".$idVenta);
         
         $eliminar->execute();
     }

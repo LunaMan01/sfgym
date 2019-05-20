@@ -1,6 +1,6 @@
-create database NuevoAcropolisGym
+create database NuevoAcropolisGym;
 
-use NuevoAcropolisGym
+use NuevoAcropolisGym;
 
 create table Generos(
 	Id_Genero int not null auto_increment,
@@ -61,24 +61,14 @@ create table Visitas(
 
 create table Ventas(
 	Id_Venta int not null auto_increment,
-	total_venta double,
+	total_venta double,	
+	fecha_venta varchar(10),
 
 	Id_Cliente int not null,
 	Id_Instructor int not null,
 
 	primary key(Id_Venta),
 	foreign key(Id_Cliente) references Clientes (Id_Cliente) on delete cascade on update cascade
-);
-
-create table VentasProductos(
-	Id_Venta int not null,
-	Id_Producto int not null,
-
-	cantidad_producto int,
-	subtotal_venta double,
-	fecha_venta varchar(10),
-
-	primary key(Id_Venta, Id_Producto)
 );
 
 create table Productos(
@@ -89,6 +79,17 @@ create table Productos(
 	precio_producto double,
 
 	primary key (Id_Producto)
+);
+
+create table VentasProductos(
+	Id_Venta int not null,
+	Id_Producto int not null,
+
+	cantidad_producto int,
+	subtotal_venta double,
+
+	foreign key(Id_Venta) references Ventas (Id_Venta) on delete cascade on update cascade,
+	foreign key(Id_Producto) references Productos (Id_Producto) on delete cascade on update cascade
 );
 
 create table Aparatos(

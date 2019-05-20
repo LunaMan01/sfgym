@@ -17,7 +17,7 @@ class Venta {
         return true;
     }
 
-    modificar(venta, productos, productosNuevos, , productosEliminadosDeCarrito, idVenta) {
+    modificar(venta, productos, productosNuevos,  productosEliminadosDeCarrito, idVenta) {
         var req = new XMLHttpRequest();
         console.log('productos viejos = '+JSON.stringify(productos));
 

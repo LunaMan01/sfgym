@@ -17,7 +17,6 @@
             $venta->fechaVenta = $row['fecha_venta'];
             $venta->totalVenta = $row['total_venta'];
             $venta->idInstructor = $row['Id_Instructor'];
-
         }
         
         $ventaJSON = json_encode($venta);

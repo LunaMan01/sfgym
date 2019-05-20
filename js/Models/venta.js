@@ -40,4 +40,29 @@ class Venta {
         req.send(null);
         return req.responseText;
     }
+
+
+    getVenta (id) {
+        let data = new FormData();
+        data.append('id-venta', id)
+        var req = new XMLHttpRequest();
+        req.open("POST", 'php/ventas/datosVentas.php', false);
+        console.log('id='+id);
+        req.send(data);
+        console.log(req.responseText);
+        let venta = JSON.parse(req.responseText);
+        return venta;
+    }
+
+    getDetalleVenta (id)  {
+        let data = new FormData();
+        data.append('id', id)
+        console.log('id a enviar'+id);
+        var req = new XMLHttpRequest();
+        req.open("POST", 'php/ventas/detalleVenta.php', false);
+        
+        req.send(data);
+        return req.responseText;
+    }
+
 }

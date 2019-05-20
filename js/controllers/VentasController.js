@@ -3,6 +3,7 @@ var ventaController = (function () {
     var cantidadTd;
     var precioProducto;
     var subtotalTd;
+    var id;
 
     function setUpEditEvent() {
         document.querySelector('#carrito').addEventListener('click', function (e) {
@@ -41,7 +42,10 @@ var ventaController = (function () {
 
             if (e.target.matches('.edit-venta')) {
                 UIVenta.abrirEditVenta();
-
+                id = UIVenta.getId(e);
+                let venta = new Venta().getVenta(id);
+                UIVenta.setDatosVentaEnInputs(venta);
+                UIVenta.setProductosEnTabla(new Venta().getDetalleVenta(id));
             }
         }, false);
     }

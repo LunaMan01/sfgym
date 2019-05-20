@@ -84,6 +84,27 @@ var UIVenta = (function () {
             
         },
 
+        getId: function (event) {
+            var i = event.target;
+            var td = i.parentNode;
+            tr = td.parentNode;
+            var elements = tr.childNodes;
+            var th = elements[1];
+            var id = th.getAttribute('id');
+            console.log('id=='+id);
+            return id;
+        },
+
+        setDatosVentaEnInputs : function (venta) {
+            document.querySelector('#nip-cliente').value = venta.idCliente;
+            document.querySelector('#nip-instructor').value = venta.idInstructor;
+            document.querySelector('#total-venta').value = venta.totalVenta;
+        },
+
+        setProductosEnTabla : function (productos) {
+            document.querySelector('#carrito').innerHTML = productos;
+        },
+
         getCantidadTd: function (event) {
             var i = event.target;
             var td = i.parentNode;

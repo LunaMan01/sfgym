@@ -7,7 +7,13 @@ class Aparato {
         var req = new XMLHttpRequest();
         req.open("POST", 'php/aparatos/añadirAparatos.php', false);
         req.send(data);
-        console.log('added');
+        if (req.responseText != 1) {
+            console.log('Error');
+            console.log(req.responseText);
+
+            return false;
+        }
+        console.log(req.responseText);
         return true;
     }
 
@@ -16,16 +22,26 @@ class Aparato {
         req.open("POST", 'php/aparatos/eliminarAparato.php', false);
         req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
         req.send('id-aparato=' + localStorage.getItem('id'));
-        console.log('id='+localStorage.getItem('id'));
+        if (req.responseText != 1) {
+            console.log('Error');
+            console.log(req.responseText);
+
+            return false;
+        }
         console.log(req.responseText);
         return true;
-
     }
 
     modificar(data) {
         var req = new XMLHttpRequest();
         req.open("POST", 'php/aparatos/modificarAparato.php', false);
         req.send(data);
+        if (req.responseText != 1) {
+            console.log('Error');
+            console.log(req.responseText);
+
+            return false;
+        }
         console.log(req.responseText);
         return true;
     }

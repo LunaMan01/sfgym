@@ -41,8 +41,8 @@ var UIGasto = (function () {
             tr.remove();
         },
 
-        mostrarMensajeExito: function (mensaje) {
-            new Toast('#alert-gastos', mensaje, 2000, 'alert-success').getAndShow();
+        mostrarAlert: function (mensaje, type) {
+            new Toast('#alert-gastos', mensaje, 2000, type).getAndShow();
 
         },
 
@@ -61,7 +61,7 @@ var UIGasto = (function () {
         setDatosGastoEnInputs: function (gasto) {
             document.querySelector('#modificar-gasto-form #nombre-gasto').value = gasto.descripcionGasto;
             document.querySelector('#modificar-gasto-form #monto-gasto').value = gasto.montoGasto;
-            document.querySelector('#modificar-gasto-form #fecha-gasto').value = gasto.fechaGasto;
+            document.querySelector('#modificar-gasto-form #fecha-gasto-update').value = gasto.fechaGasto;
             // document.querySelector('#modificar-gasto-form #nombre-gasto').value = gasto;
         },
 
@@ -76,7 +76,12 @@ var UIGasto = (function () {
             document.querySelector('#ver-gasto-form #nombre-gasto').innerHTML = gasto.descripcionGasto;
             document.querySelector('#ver-gasto-form #monto-gasto').innerHTML = gasto.montoGasto;
             document.querySelector('#ver-gasto-form #fecha-gasto').innerHTML = gasto.fechaGasto;
-            // document.querySelector('#modificar-gasto-form #nombre-gasto').value = gasto;
+            if (gasto.tipoGasto == 1)
+                document.querySelector('#ver-gasto-form #categorias-gastos').innerHTML = "Fijo";
+            else if (gasto.tipoGasto == 2)
+                document.querySelector('#ver-gasto-form #categorias-gastos').innerHTML = "Mantenimiento";
+            else if(gasto.tipoGasto == 3)
+                document.querySelector('#ver-gasto-form #categorias-gastos').innerHTML = "Inversión";
         },
 
         getDatosABuscar: function () {

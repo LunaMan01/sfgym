@@ -7,13 +7,15 @@
             nombre_cliente = :nombre, 
             apellido_paterno = :paterno, 
             apellido_materno = :materno,
-            edad = :edad
+            edad = :edad,
+            Id_Genero = :genero
             WHERE Id_Cliente = '.$_POST['id-cliente']);
 
         $modfPerson->bindParam(':nombre', $_POST['nombre_cliente']);
         $modfPerson->bindParam(':paterno', $_POST['ap-parno']);
         $modfPerson->bindParam(':materno', $_POST['ap-marno']);
         $modfPerson->bindParam(':edad', $_POST['edad']);
+        $modfPerson->bindParam(':genero', $_POST['genero']);
 
         $modfPerson->execute();
 
@@ -40,7 +42,7 @@
         $modfDirecc->bindParam(':interior', $_POST['num-int']);
 
         $modfDirecc->execute();
-
+        echo 1;
     }catch(PDOException $e){
         echo "Error: ". $e->getMessage();
     }

@@ -11,10 +11,7 @@ var UIProducto = (function () {
             document.querySelector('#cuerpo-tabla-productos').innerHTML = spinner;
         },
 
-        mostrarTodosLosProductos: function () {
-            mostrarTodosLosProductos();
-        },
-
+        
         getDatosParaNuevoProducto: function () {
             let form = document.querySelector('#add-producto-form');
             let data = new FormData(form);
@@ -45,8 +42,8 @@ var UIProducto = (function () {
             tr.remove();
         },
 
-        mostrarMensajeExito: function (mensaje) {
-            new Toast('#alert-productos', mensaje, 2000, 'alert-success').getAndShow();
+        mostrarAlert: function (mensaje, type) {
+            new Toast('#alert-productos', mensaje, 2000, type).getAndShow();
 
         },
 

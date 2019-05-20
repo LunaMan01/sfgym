@@ -1,14 +1,31 @@
 var visitaController = (function () {
 
+    function actualizarTabla () {
+        let visitasDia = document.querySelector('#visitas-dia');
+        let visitasSema = document.querySelector('#visitas-semana');
+        let visitasMes = document.querySelector('#visitas-mes');
+
+        if (visitasDia.selected)
+            mostrarVisitasDelDia();
+        else if (visitasSema.selected)
+            mostrarVisitasDeLaSemana();
+        else if (visitasMes.selected)
+            mostrarVisitasDelMes();
+    }
 
     function addNuevaVisita() {
         let data = UIVisita.getDatosParaNuevaVisita();
+        
         console.log('data=' + data);
         let visita = new Visita();
 
         if (visita.add(data)) {
-            UIVisita.mostrarMensajeExito('#alert-add-visita', 'Visita añadida correctamente');
-            UIVisita.mostrarTodasLasVisitas();
+            UIVisita.mostrarAlert('#alert-add-visita', 'Visita añadida correctamente', 'alert-success');
+            actualizarTabla();
+            document.querySelector('#id-cliente').value = '';
+        } else {
+            UIVisita.mostrarAlert('#alert-add-visita', 'Algo salió mal', 'alert-danger');
+            document.querySelector('#id-cliente').value = '';
         }
     }
 
@@ -28,7 +45,9 @@ var visitaController = (function () {
         if (visita.eliminar()) {
 
             UIVisita.quitarRegistro();
-            UIVisita.mostrarMensajeExito('#alert-visita', 'Visita eliminada correctamente');
+            UIVisita.mostrarAlert('#alert-visita', 'Visita eliminada correctamente', 'alert-success');
+        } else {
+            UIVisita.mostrarAlert('#alert-visita', 'Algo salió mal', 'alert-danger');
         }
 
 
@@ -52,9 +71,12 @@ var visitaController = (function () {
         let visita = new Visita();
         // UICliente.mostrarAnimacionBtn('#guardar-cliente-editado');
         if (visita.modificar(data)) {
-            UIVisita.mostrarMensajeExito('#alert-visita', 'Visita modificada correctamente');
+            UIVisita.mostrarAlert('#alert-visita', 'Visita modificada correctamente', 'alert-success');
             UIVisita.esconderModal('#modificar-visita-modal');
-            UIVisita.mostrarTodasLasVisitas();
+            actualizarTabla();
+        } else {
+            UIVisita.mostrarAlert('#alert-visita', 'Algo salió mal', 'alert-danger');
+            UIVisita.esconderModal('#modificar-visita-modal');
         }
     }
 

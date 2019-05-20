@@ -45,16 +45,16 @@
                     <div class="form-group row">
                         <label class="col-lg-4 col-form-label text-left">Edad: </label>
                         <div class="col-lg-8">
-                            <input type="text" class="form-control rounded-pill" id="edad" name="edad">
+                            <input type="text" class="form-control rounded-pill" id="edad" name="edad" required>
                         </div>
                     </div>
                     <!--Form: Menu SEXO-->
                     <div class="form-group row">
                         <label class="col-lg-4 col-form-label text-left">Sexo: </label>
                         <div class="col-lg-8">
-                            <select class="form-control form-control-lg rounded-pill" id="sexo" name="sexo">
-                                <option class="rounded-pill">Hombre</option>
-                                <option class="rounded-pill">Mujer</option>
+                            <select class="form-control form-control-lg rounded-pill" id="sexo" name="genero[]">
+                                <option value="1" class="rounded-pill" id="gm">Hombre</option>
+                                <option value="2" class="rounded-pill" id="gf">Mujer</option>
                             </select>
                         </div>
                     </div>
@@ -62,7 +62,7 @@
                     <div class="form-group row">
                         <label class="col-lg-4 col-form-label text-left">Teléfono: </label>
                         <div class="col-lg-8">
-                            <input type="text" class="form-control rounded-pill" id="telefono" name="telefono">
+                            <input type="text" class="form-control rounded-pill" id="telefono" name="telefono" pattern=".{12,}" required="Ingresa 10 dígitos">
                         </div>
                     </div>
 

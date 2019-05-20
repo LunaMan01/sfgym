@@ -1,13 +1,28 @@
 var gastoController = (function () {
 
+    function actualizarTabla () {
+        let gastosMes = document.querySelector('#gastos-mes');
+        let gastosSemana = document.querySelector('#gastos-semana');
+        let gastosDia = document.querySelector('#gastos-dia');
+
+        if (gastosMes.selected)
+            mostrarGastosMes();
+        else if (gastosSemana.selected)
+            mostrarGastosSemana();
+        else if (gastosDia.selected)
+            mostrarGastosDia();
+    }
+
     function addNuevoGasto() {
         let data = UIGasto.getDatosParaNuevoGasto();
         let gasto = new Gasto();
 
         if (gasto.add(data)) {
-            UIGasto.mostrarMensajeExito('Gasto añadido correctamente');
-            UIGasto.mostrarGastosEnTabla(gasto.getTodosLosGastos());
+            UIGasto.mostrarAlert('Gasto añadido correctamente', 'alert-success');
+            actualizarTabla();
             UIGasto.esconderModal('#add-gasto-modal');
+        } else {
+            UIGasto.mostrarAlert('Algo salió mal', 'alert-danger');
         }
     }
 
@@ -27,7 +42,9 @@ var gastoController = (function () {
         if (gasto.eliminar()) {
 
             UIGasto.quitarRegistro();
-            UIGasto.mostrarMensajeExito('Gasto eliminado correctamente');
+            UIGasto.mostrarAlert('Gasto eliminado correctamente', 'alert-success');
+        } else {
+            UIGasto.mostrarAlert('Algo salió mal', 'alert-danger');
         }
 
     }
@@ -50,10 +67,14 @@ var gastoController = (function () {
         let gasto = new Gasto();
         // UICliente.mostrarAnimacionBtn('#guardar-cliente-editado');
         if (gasto.modificar(data)) {
-            UIGasto.mostrarMensajeExito('Gasto modificado correctamente');
+            UIGasto.mostrarAlert('Gasto modificado correctamente', 'alert-success');
             // UICliente.regresarBtnAEstadoInicial('#guardar-cliente-editado');
+            actualizarTabla();
             UIGasto.esconderModal('#modificar-gasto-modal');
-            UIGasto.mostrarGastosEnTabla(gasto.getTodosLosGastos());
+            
+        } else {
+            UIGasto.mostrarAlert('Algo salió mal', 'alert-danger');
+            UIGasto.esconderModal('#modificar-gasto-modal');
         }
     }
 
@@ -126,6 +147,7 @@ var gastoController = (function () {
         });
 
         new Lightpick({ field: document.getElementById('fecha-gasto') });
+        new Lightpick({ field: document.getElementById('fecha-gasto-update') });
 
 
         new Cleave('.numeric-update', {

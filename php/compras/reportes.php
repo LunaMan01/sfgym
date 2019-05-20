@@ -1,7 +1,7 @@
 <?php
     include '../conexion.php';
 
-    $cadenaFecha = $_POST['rango-fecha'];
+    $cadenaFecha = $_POST['fecha-rango-reporte'];
 
     //separar la fecha
     $array = explode("-", $cadenaFecha);
@@ -83,4 +83,6 @@
 
             return $rowConTabla;
     }
+
+    echo $html;
 ?>

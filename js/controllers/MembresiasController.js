@@ -1,16 +1,25 @@
 var membresiaController = (function () {
 
+    function actualizarTabla() {
+        if (document.querySelector('#membresias-vigentes').selected)
+            mostrarVigentes();
+        if (document.querySelector('#membresias-todas').selected)
+            mostrarTodas();
+    }
+
     function addNuevaMembresia() {
         let data = UIMembresia.getDatosParaNuevaMembresia();
         let membresia = new Membresia();
 
         if (membresia.add(data)) {
-            UIMembresia.mostrarMensajeExito('Membresía añadida correctamente');
-            if (document.querySelector('#membresias-vigentes').selected)
-                mostrarVigentes();
-            if (document.querySelector('#membresias-todas').selected)
-                mostrarTodas();
+            UIMembresia.mostrarAlert('Membresía añadida correctamente', 'alert-success');
+            actualizarTabla();
+            document.querySelector('#add-membresia-form').reset();
             UIMembresia.esconderModal('#add-membresia-modal');
+        } else {
+            UIMembresia.esconderModal('#add-membresia-modal');
+            document.querySelector('#add-membresia-form').reset();
+            UIMembresia.mostrarAlert('Algo salió mal', 'alert-danger');
         }
     }
 
@@ -30,7 +39,9 @@ var membresiaController = (function () {
         if (membresia.eliminar()) {
 
             UIMembresia.quitarRegistro();
-            UIMembresia.mostrarMensajeExito('Membresía eliminada correctamente');
+            UIMembresia.mostrarAlert('Membresía eliminada correctamente', 'alert-success');
+        } else {
+            UIMembresia.mostrarAlert('Algo salió mal', 'alert-danger');
         }
 
 
@@ -54,9 +65,14 @@ var membresiaController = (function () {
         let membresia = new Membresia();
         // UICliente.mostrarAnimacionBtn('#guardar-cliente-editado');
         if (membresia.modificar(data)) {
-            UIMembresia.mostrarMensajeExito('Membresía modificada correctamente');
+            UIMembresia.mostrarAlert('Membresía modificada correctamente', 'alert-success');
             // UICliente.regresarBtnAEstadoInicial('#guardar-cliente-editado');
             UIMembresia.esconderModal('#modificar-membresia-modal');
+            actualizarTabla();
+        } else {
+            UIMembresia.mostrarAlert('Algo salió mal', 'alert-danger');
+            // UICliente.regresarBtnAEstadoInicial('#guardar-cliente-editado');
+            UIMembresia.esconderModal('#modificar-membresia-modal', 'alert-danger');
             UIMembresia.mostrarTodasLasMembresias();
         }
     }

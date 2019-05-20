@@ -61,7 +61,7 @@ var UIVisita = (function () {
         },
 
         verVisita: function (visita) {
-            document.querySelector('#ver-visita-form #id-visita').innerHTML = visita.idCliente;
+            document.querySelector('#ver-visita-form #id-visita').innerHTML = visita.nombreCliente;
             document.querySelector('#ver-visita-form #fecha-visita').innerHTML = visita.fechaVisitas;
 
         },
@@ -99,10 +99,10 @@ var UIVisita = (function () {
             document.querySelector(".reporte-generado").innerHTML = req;
         },
 
-        mostrarMensajeExito: function (divContainerId, mensaje) {
+        mostrarAlert: function (divContainerId, mensaje, type) {
 
-            new Toast(divContainerId, mensaje, 2000, 'alert-success').getAndShow();
-            console.log('dsa');
+            new Toast(divContainerId, mensaje, 2000, type).getAndShow();
+            
         },
     }
 })();

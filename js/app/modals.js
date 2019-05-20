@@ -86,11 +86,11 @@ let modalsMembresias =
                     </div>
                     <div class="form-group">
                         <label for="fecha-inicio">Fecha inicio:</label>
-                        <input class="form-control" id="fecha-inicio" name="inicio">
+                        <input class="form-control" id="fecha-inicio" name="inicio" required>
                     </div>
                     <div class="form-group">
                         <label for="fecha-fin">Fecha inicio:</label>
-                        <input class="form-control" id="fecha-fin" name="fin">
+                        <input class="form-control" id="fecha-fin" name="fin" required>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary rounded-pill" data-dismiss="modal">Cancelar</button>
@@ -191,7 +191,7 @@ aria-labelledby="modal-añadir-visita" aria-hidden="true">
                 <div class="form-group">
                     <label>Fecha:</label>
                     <input type="text" class="form-control date-add" id="fecha-visita" 
-                        placeholder="dd/mm/yyyy" name="fecha" required>
+                        placeholder="dd/mm/yyyy" name="fecha"   pattern=".{10,}" required>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -224,7 +224,7 @@ aria-labelledby="modal-añadir-visita" aria-hidden="true">
                 <div class="form-group">
                     <label>Fecha:</label>
                     <input type="text" class="form-control date-update" id="fecha-visita"
-                        placeholder="dd/mm/yyyy" name="fecha" required>
+                        placeholder="dd/mm/yyyy" name="fecha"  pattern=".{10,}" required>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -272,7 +272,7 @@ aria-labelledby="modal-añadir-visita" aria-hidden="true">
         <div class="modal-body">
             <form id="ver-visita-form">
                 <div class="form-group" >
-                    <label>Id visita:</label>
+                    <label>Cliente:</label>
                     <p id="id-visita"></p>
                 </div>
 
@@ -306,25 +306,25 @@ aria-labelledby="modal-añadir-producto" aria-hidden="true">
                 <div class="form-group">
                     <label>Nombre:</label>
                     <input type="text" class="form-control" id="nombre-producto" name="nombre-producto"
-                        placeholder="Nombre del producto">
+                        placeholder="Nombre del producto" required>
                 </div>
 
                 <div class="form-group">
                     <label>Fecha de caducidad:</label>
                     <input type="text" class="form-control date-add" id="fecha-caducidad" name="fecha-caducidad"
-                        placeholder="dd/mm/yyyy">
+                        placeholder="dd/mm/yyyy"  pattern=".{10,}">
                 </div>
 
                 <div class="form-group">
                     <label>Existencia:</label>
                     <input type="text" class="form-control numeric-add" id="existencia" name="existencia"
-                        placeholder="Cantidad de productos">
+                        placeholder="Cantidad de productos" required>
                 </div>
 
                 <div class="form-group">
                     <label>Precio:</label>
                     <input type="text" class="form-control numeric-price-add" id="precio-producto" name="precio"
-                        placeholder="Precio">
+                        placeholder="Precio" required>
                 </div>
 
                 <div class="modal-footer">
@@ -343,7 +343,7 @@ aria-labelledby="modal-modificar-producto" aria-hidden="true">
 <div class="modal-dialog" role="document">
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title">Añadir producto</h5>
+            <h5 class="modal-title">Modificar producto</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -358,25 +358,25 @@ aria-labelledby="modal-modificar-producto" aria-hidden="true">
                 <div class="form-group">
                     <label>Nombre:</label>
                     <input type="text" class="form-control" id="nombre-producto" name="nombre-producto"
-                        placeholder="Nombre del producto">
+                        placeholder="Nombre del producto" required>
                 </div>
 
                 <div class="form-group">
                     <label>Fecha de caducidad:</label>
                     <input type="text" class="form-control date-update" id="fecha-caducidad" name="fecha-caducidad"
-                        placeholder="dd/mm/yyyy">
+                        placeholder="dd/mm/yyyy" pattern=".{10,}">
                 </div>
 
                 <div class="form-group">
                     <label>Existencia:</label>
                     <input type="text" class="form-control numeric-update" id="existencia-producto" name="existencia"
-                        placeholder="Cantidad de productos">
+                        placeholder="Cantidad de productos" required>
                 </div>
 
                 <div class="form-group">
                     <label>Precio:</label>
                      <input type="text" class="form-control numeric-price-update" id="precio-producto" name="precio"
-                        placeholder="Precio">
+                        placeholder="Precio" required>
                  </div>
 
                 <div class="modal-footer">
@@ -478,17 +478,17 @@ aria-hidden="true">
                 <div class="form-group">
                     <label>Gasto:</label>
                     <input type="text" class="form-control" id="nombre-gasto" name="descripcion-gasto"
-                        placeholder="Descripción de gasto">
+                        placeholder="Descripción de gasto" required>
                 </div>
 
                 <div class="form-group">
                     <label>Monto:</label>
-                    <input type="text" class="form-control numeric-add" id="monto-gasto" name="monto-gasto" placeholder="Monto de gasto">
+                    <input type="text" class="form-control numeric-add" id="monto-gasto" name="monto-gasto" placeholder="Monto de gasto" required>
                 </div>
 
                 <div class="form-group">
                     <label>Fecha:</label>
-                    <input type="text" class="form-control date-add" id="fecha-gasto" name="fecha-gasto" placeholder="dd/mm/yyyy">
+                    <input type="text" class="form-control date-add" id="fecha-gasto" name="fecha-gasto" placeholder="dd/mm/yyyy" pattern=".{10,}" required>
                 </div>
 
                 <div class="form-group">
@@ -500,13 +500,6 @@ aria-hidden="true">
                     </select>
                 </div>
 
-                <!--
-                <div class="form-group">
-                    <a>
-                        <p class="text-right text-info"> + Nueva categoria</p>
-                    </a>
-                </div>
-                -->
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button>
                     <button type="submit" class="btn btn-success">Guardar</button>
@@ -534,17 +527,17 @@ aria-hidden="true">
                 <div class="form-group">
                     <label>Gasto:</label>
                     <input type="text" class="form-control" id="nombre-gasto" name="descripcion-gasto"
-                        placeholder="Descripción de gasto">
+                        placeholder="Descripción de gasto" required>
                 </div>
 
                 <div class="form-group">
                     <label>Monto:</label>
-                    <input type="text" class="form-control numeric-update" id="monto-gasto" name="monto-gasto" placeholder="Monto de gasto">
+                    <input type="text" class="form-control numeric-update" id="monto-gasto" name="monto-gasto" placeholder="Monto de gasto" required>
                 </div>
 
                 <div class="form-group">
                     <label>Fecha:</label>
-                    <input type="text" class="form-control date-update" id="fecha-gasto" name="fecha-gasto" placeholder="dd/mm/yyyy">
+                    <input type="text" class="form-control date-update" id="fecha-gasto-update" name="fecha-gasto" placeholder="dd/mm/yyyy" pattern=".{10,}" required>
                 </div>
 
                 <div class="form-group">
@@ -556,11 +549,7 @@ aria-hidden="true">
                     </select>
                 </div>
 
-                <div class="form-group">
-                    <a>
-                        <p class="text-right text-info"> + Nueva categoria</p>
-                    </a>
-                </div>
+              
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button>
@@ -622,17 +611,8 @@ aria-hidden="true">
                 </div>
 
                 <div class="form-group">
-                    <label for="categorias-gastos">Categoria</label>
-                    <select class="form-control" id="categorias-gastos" name="tipo-gasto">
-                        <option  value="1">1</option>
-                        <option>2</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <a>
-                        <p class="text-right text-info"> + Nueva categoria</p>
-                    </a>
+                    <label for="categorias-gastos">Tipo de gasto</label>
+                    <p id="categorias-gastos"></p>
                 </div>
 
                 <div class="modal-footer">
@@ -646,7 +626,7 @@ aria-hidden="true">
 </div>
 </div>
 `
-;
+    ;
 
 let modalsAparatos = `
 <div class="modal fade" id="add-aparato-modal" tabindex="-1" role="dialog" aria-labelledby="add-aparato-modal"
@@ -665,12 +645,6 @@ aria-hidden="true">
                     <label>Nombre:</label>
                     <input type="text" class="form-control" id="nombre-aparato" name="nombre-aparato"
                         placeholder="Nombre de aparato" required>
-                </div>
-
-                <div class="form-group">
-                    <label>Precio por compra:</label>
-                    <input type="text" class="form-control numeric-add" id="precio-por-compra"
-                        placeholder="Precio por compra">
                 </div>
 
                 <div class="modal-footer">
@@ -704,7 +678,7 @@ aria-hidden="true">
 
                 <div class="form-group">
                     <label>Descripción:</label>
-                    <input type="text" class="form-control numeric-update" id="nombre-aparato"
+                    <input type="text" class="form-control" id="nombre-aparato"
                         name="nombre-aparato" required>
                 </div>
 
@@ -786,10 +760,11 @@ aria-hidden="true">
         </div>
         <div class="modal-body">
             <form id="add-compra-form" onsubmit="return false">
+              
                 <div class="form-group">
                 <label>Id instructor:</label>
-                <input type="text" class="form-control" id="id-instructor" name="id-instructor"
-                    >
+                <input type="text" class="form-control id-add" id="id-instructor" name="id-instructor"
+                    required>
                 </div>
                 <div class="form-group">
                     <label>Descripción:</label>
@@ -805,7 +780,8 @@ aria-hidden="true">
 
                 <div class="form-group">
                     <label>Fecha:</label>
-                    <input type="text" class="form-control date-add" id="fecha-compra"  name="fecha-compra" placeholder="dd/mm/yyyy" required>
+                    <input type="text" class="form-control date-add" id="fecha-compra"  name="fecha-compra" placeholder="dd/mm/yyyy" 
+                    pattern=".{10,}">
                 </div>
                 <div class="form-group">
                     <label>Categoría:</label>
@@ -840,11 +816,11 @@ aria-hidden="true">
             <form id="modificar-compra-form" onsubmit="return false">
                 <div class="form-group">
                     <label>Id compra:</label>
-                    <input type="text" class="form-control" id="id-compra" name="id-instructor" readonly>
+                    <input type="text" class="form-control" id="id-compra" name="id-compra" readonly>
                 </div>
                 <div class="form-group">
                     <label>Id instructor:</label>
-                    <input type="text" class="form-control" id="id-instructor" name="id-instructor">
+                    <input type="text" class="form-control id-update" id="id-instructor" name="id-instructor" required>
                 </div>
                 <div class="form-group">
                     <label>Descripción:</label>
@@ -852,22 +828,15 @@ aria-hidden="true">
                         placeholder="Descripción de compra" required>
                 </div>
 
-
-                <div class="form-group">
-                    <label>Cantidad:</label>
-                    <input type="text" class="form-control numeric-c-update" id="cantidad" name="cantidad"
-                        placeholder="No. de articulos comprados">
-                </div>
-
                 <div class="form-group">
                     <label>Monto:</label>
-                    <input type="text" class="form-control numeric-m-update" id="monto-compra" name="monto_compra"
+                    <input type="text" class="form-control numeric-m-update" id="monto-compra" name="monto-compra"
                         placeholder="Monto de compra">
                 </div>
 
                 <div class="form-group">
                     <label>Fecha:</label>
-                    <input type="text" class="form-control date-update" id="fecha-compra"  name="fecha-compra" placeholder="dd/mm/yyyy">
+                    <input type="text" class="form-control date-update" id="fecha-compra-update"  name="fecha-compra" placeholder="dd/mm/yyyy" pattern=".{10,}">
                 </div>
 
                 <div class="modal-footer">
@@ -925,13 +894,7 @@ aria-hidden="true">
                     <label>Descripción:</label>
                     <p id="descripcion-producto"></p>
                 </div>
-
-
-                <div class="form-group">
-                    <label>Cantidad:</label>
-                    <p id="cantidad"></p>
-                </div>
-
+                
                 <div class="form-group">
                     <label>Monto:</label>
                     <p id="monto-compra"></p>
@@ -944,10 +907,7 @@ aria-hidden="true">
 
                 <div class="form-group">
                     <label for="categoria-compra">Categoria</label>
-                    <select class="form-control" id="categoria-compra">
-                        <option>1</option>
-                        <option>2</option>
-                    </select>
+                    <p id="tipo-compra"></p>
                 </div>
 
                 <div class="modal-footer">
@@ -960,3 +920,31 @@ aria-hidden="true">
 </div>
 
 `;
+
+let nuevaVentaModals = `
+<div class="modal fade" id="modificar-cantidad-producto-modal" tabindex="-1" role="dialog" aria-labelledby="add-compra-modal"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Modificar cantidad</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form id="modificar-cantidad-form" onsubmit="return false">
+                <div class="form-group">
+                    <label>Cantidad:</label>
+                    <input type="text" class="form-control" id="nueva-cantidad">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary rounded-pill " data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-outline-success rounded-pill" id="confirmar-nueva-cantidad">Confirmar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+`

@@ -36,8 +36,8 @@ var UIAparato = (function () {
             tr.remove();
         },
 
-        mostrarMensajeExito: function (mensaje) {
-            new Toast('#alert-aparatos', mensaje, 2000, 'alert-success').getAndShow();
+        mostrarAlert: function (mensaje, type) {
+            new Toast('#alert-aparatos', mensaje, 2000, type).getAndShow();
 
         },
 

@@ -4,9 +4,11 @@ var aparatoController = (function () {
         let aparato = new Aparato();
 
         if (aparato.add(data)) {
-            UIAparato.mostrarMensajeExito('Aparato añadido correctamente');
+            UIAparato.mostrarAlert('Aparato añadido correctamente', 'alert-success');
             UIAparato.mostrarTodosLosAparatos(aparato.getTodosLosAparatos());
             UIAparato.esconderModal('#add-aparato-modal');
+        } else {
+            UIAparato.mostrarAlert('Algo salió mal', 'alert-danger');
         }
     }
 
@@ -25,7 +27,9 @@ var aparatoController = (function () {
         if (aparato.eliminar()) {
 
             UIAparato.quitarRegistro();
-            UIAparato.mostrarMensajeExito('Aparato eliminado correctamente');
+            UIAparato.mostrarAlert('Aparato eliminado correctamente', 'alert-success');
+        } else {
+            UIAparato.mostrarAlert('Algo salió mal', 'alert-danger');
         }
     }
 
@@ -46,10 +50,13 @@ var aparatoController = (function () {
         let aparato = new Aparato();
         // UICliente.mostrarAnimacionBtn('#guardar-cliente-editado');
         if (aparato.modificar(data)) {
-            UIAparato.mostrarMensajeExito('Aparato modificado correctamente');
+            UIAparato.mostrarAlert('Aparato modificado correctamente', 'alert-success');
             // UICliente.regresarBtnAEstadoInicial('#guardar-cliente-editado');
             UIAparato.esconderModal('#modificar-aparato-modal');
             UIAparato.mostrarTodosLosAparatos(aparato.getTodosLosAparatos());
+        } else {
+            UIAparato.mostrarAlert('Algo salió mal', 'alert-danger');
+            UIAparato.esconderModal('#modificar-aparato-modal');
         }
     }
 
@@ -72,22 +79,10 @@ var aparatoController = (function () {
         
     }
 
-    function setUpInputs () {
-        new Cleave ('.numeric-add', {
-            numericOnly: true,
-            blocks : [11]
-        });
 
-        new Cleave ('.numeric-update', {
-            numericOnly: true,
-            blocks : [11]
-        });
-
-       
-    }
 
     function setUpEvents () {
-        setUpInputs();
+        
         UIAparato.mostrarTodosLosAparatos(new Aparato().getTodosLosAparatos());
         document.querySelector('#add-aparato-form').addEventListener('submit', addNuevoAparato);
         setUpDeleteEvent();

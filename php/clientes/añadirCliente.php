@@ -3,13 +3,14 @@
     
     try {
     //DATOS MAS BASICOS DEL CLIENTE    
-        $cliente = $conn->prepare('INSERT INTO Clientes (nombre_cliente, apellido_paterno, apellido_materno, edad, activo) 
-        VALUES (:nombre, :paterno, :materno, :edad, 1)');
+        $cliente = $conn->prepare('INSERT INTO Clientes (nombre_cliente, apellido_paterno, apellido_materno, edad, activo, Id_Genero) 
+        VALUES (:nombre, :paterno, :materno, :edad, 1, :genero)');
         
         $cliente->bindParam(':nombre', $_POST['nombre_cliente']);
         $cliente->bindParam(':paterno', $_POST['ap-parno']);
         $cliente->bindParam(':materno', $_POST['ap-marno']);
         $cliente->bindParam(':edad', $_POST['edad']);
+        $cliente->bindParam(':genero', $_POST['genero']);
         $cliente->execute();
 
     //INSERTAR TELEFONO
@@ -34,6 +35,7 @@
         $direccion->bindParam('numeroex', $_POST['num-ext']);
         $direccion->bindParam('numeroin', $_POST['num-int']);
         $direccion->execute();
+        echo 1;
     }   
     catch(PDOException $e){
         echo "Error: ". $e->getMessage();

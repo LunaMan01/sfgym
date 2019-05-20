@@ -1,12 +1,31 @@
-var productoController = (function() {
+var productoController = (function () {
+
+    function actualizarTabla() {
+        let aCaducar = document.querySelector('#productos-proximos-caducidad');
+        let todosLosProductos = document.querySelector('#todos-los-productos');
+        let pocasExistencias = document.querySelector('#productos-pocas-existencias');
+
+        if (todosLosProductos.selected)
+            mostrarTodosLosProductos();
+        else if (aCaducar.selected)
+            mostrarProductosProximosACaducar();
+        else if (pocasExistencias.selected)
+            mostrarProductosConPocasExistencias();
+    }
 
     function addNuevoProducto() {
         let data = UIProducto.getDatosParaNuevoProducto();
         let producto = new Producto();
 
         if (producto.add(data)) {
-            UIProducto.mostrarMensajeExito('Producto añadido correctamente');
-            UIProducto.mostrarTodosLosProductos();
+            UIProducto.mostrarAlert('Producto añadido correctamente', 'alert-success');
+            actualizarTabla();
+
+            UIProducto.esconderModal('#add-producto-modal');
+        } else {
+            UIProducto.mostrarAlert('Algo salió mal', 'alert-danger');
+            actualizarTabla();
+
             UIProducto.esconderModal('#add-producto-modal');
         }
     }
@@ -27,7 +46,9 @@ var productoController = (function() {
         if (producto.eliminar()) {
 
             UIProducto.quitarRegistro();
-            UIProducto.mostrarMensajeExito('Producto eliminado correctamente');
+            UIProducto.mostrarAlert('Producto eliminado correctamente', 'alert-success');
+        } else {
+            UIProducto.mostrarAlert('Algo salió mal', 'alert-success');
         }
 
 
@@ -41,20 +62,24 @@ var productoController = (function() {
                 UIProducto.getId(e);
                 let producto = UIProducto.getProducto();
                 UIProducto.setDatosProductoEnInputs(producto);
-                new Lightpick({ field: document.querySelector('#modificar-producto-form #fecha-caducidad')});
+                new Lightpick({ field: document.querySelector('#modificar-producto-form #fecha-caducidad') });
             }
         }, false);
     }
 
+    //modificar producto
     function modificarMembresia() {
+
         let data = UIProducto.getDatosModificados();
         let producto = new Producto();
-        // UICliente.mostrarAnimacionBtn('#guardar-cliente-editado');
+
         if (producto.modificar(data)) {
-            UIProducto.mostrarMensajeExito('Producto modificado correctamente');
-            // UICliente.regresarBtnAEstadoInicial('#guardar-cliente-editado');
+            UIProducto.mostrarAlert('Producto modificado correctamente', 'alert-success');
+
             UIProducto.esconderModal('#modificar-producto-modal');
-            UIProducto.mostrarTodosLosProductos();
+            actualizarTabla();
+        } else {
+            UIProducto.mostrarAlert('Algo salió mal', 'alert-danger');
         }
     }
 
@@ -65,7 +90,7 @@ var productoController = (function() {
                 UIProducto.getId(e);
                 let producto = UIProducto.getProducto();
                 UIProducto.verProducto(producto);
-                
+
             }
         }, false);
     }
@@ -77,15 +102,15 @@ var productoController = (function() {
         let todosLosProductos = document.querySelector('#todos-los-productos');
         let pocasExistencias = document.querySelector('#productos-pocas-existencias');
 
-        if(todosLosProductos.selected){
+        if (todosLosProductos.selected) {
             opcionSelect = 1;
             console.log(opcionSelect);
         }
-        else if(aCaducar.selected) {
+        else if (aCaducar.selected) {
             opcionSelect = 2;
             console.log(opcionSelect);
         }
-        else if (pocasExistencias.selected){
+        else if (pocasExistencias.selected) {
             opcionSelect = 3;
             console.log(opcionSelect);
         }
@@ -94,17 +119,36 @@ var productoController = (function() {
         let producto = new Producto();
         let datosEncontrados = producto.consultar(dato, opcionSelect);
         UIProducto.mostrarProductosEnTabla(datosEncontrados);
-        
+
+    }
+
+    function setFechaRequired() {
+        let masVendidos = document.querySelector('#reporte-productos-mas-vendidos');
+        let menosVendidos = document.querySelector('#reporte-productos-menos-vendidos');
+        let productosACaducar = document.querySelector('#reporte-productos-proximos-a-caducar');
+
+        if (masVendidos.checked || menosVendidos.checked || productosACaducar.checked) {
+            document.querySelector('#fecha-rango-reporte').setAttribute("required", "");
+            document.querySelector('#fecha-rango-reporte').required = true;
+        } else {
+            document.querySelector('#fecha-rango-reporte').removeAttribute("required");
+            document.querySelector('#fecha-rango-reporte').required = false;
+        }
     }
 
     function setUpVentanaReportes() {
         UIProducto.abrirReportes();
 
-        // new Lightpick({
-        //     field: document.querySelector('#rango-fecha'),
-        //     singleDate: false
+        new Lightpick({
+            field: document.querySelector('#fecha-rango-reporte'),
+            singleDate: false
 
-        // });
+        });
+
+        document.querySelector('#reporte-productos-mas-vendidos').addEventListener('change', setFechaRequired);
+        document.querySelector('#reporte-productos-menos-vendidos').addEventListener('change', setFechaRequired);
+        document.querySelector('#reporte-productos-proximos-a-caducar').addEventListener('change', setFechaRequired);
+
 
         document.querySelector('#reporte-productos-form').addEventListener('submit', generarReporte);
 
@@ -159,35 +203,35 @@ var productoController = (function() {
 
     }
 
-    function mostrarTodosLosProductos () {
+    function mostrarTodosLosProductos() {
         UIProducto.mostrarCarga();
         UIProducto.mostrarProductosEnTabla(new Producto().getTodos());
     }
 
-    function mostrarProductosConPocasExistencias () {
+    function mostrarProductosConPocasExistencias() {
         UIProducto.mostrarCarga();
         UIProducto.mostrarProductosEnTabla(new Producto().getPocasExistencias());
     }
 
-    function mostrarProductosProximosACaducar () {
+    function mostrarProductosProximosACaducar() {
         UIProducto.mostrarCarga();
         UIProducto.mostrarProductosEnTabla(new Producto().getProximosACaducar());
     }
 
-    function cambiarVista () {
+    function cambiarVista() {
         let aCaducar = document.querySelector('#productos-proximos-caducidad');
         let todosLosProductos = document.querySelector('#todos-los-productos');
         let pocasExistencias = document.querySelector('#productos-pocas-existencias');
 
-        if(todosLosProductos.selected)
+        if (todosLosProductos.selected)
             mostrarTodosLosProductos();
-        else if(aCaducar.selected)
+        else if (aCaducar.selected)
             mostrarProductosProximosACaducar();
         else if (pocasExistencias.selected)
             mostrarProductosConPocasExistencias();
     }
-    
-    
+
+
     function setUpEvents() {
         setUpInputs();
         mostrarTodosLosProductos();

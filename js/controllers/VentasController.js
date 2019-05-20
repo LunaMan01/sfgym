@@ -38,6 +38,7 @@ var ventaController = (function () {
 
 
     function setUpEditEventVenta() {
+        document.querySelector('.modal-container').innerHTML = nuevaVentaModals;
         document.querySelector('#cuerpo-tabla-ventas').addEventListener('click', function (e) {
 
             if (e.target.matches('.edit-venta')) {
@@ -48,6 +49,40 @@ var ventaController = (function () {
                 UIVenta.setProductosEnTabla(new Venta().getDetalleVenta(id));
             }
         }, false);
+
+
+
+
+
+        document.querySelector('#agregar-producto-seleccionado').addEventListener('click', () => {
+
+            var selector = document.getElementById("select-productos");
+
+        
+
+
+
+            let producto = document.getElementById('select-productos').value;
+            let precio = selector.options[selector.selectedIndex].getAttribute('data-precio');
+            let id = selector.options[selector.selectedIndex].getAttribute('id');
+            let cantidad = UIVenta.getCantidad();
+            if(cantidad == 0){
+                UIVenta.mostrarAlert('#add-venta-alert','Añade una cantidad', 'alert-danger');
+                return;
+            }
+
+            UIVenta.agregarProductoACarrito(producto, cantidad, precio, id);
+        });
+
+        
+
+        document.querySelector('#add-venta-form').addEventListener('submit', guardarVenta);
+        setUpEditEvent();
+        setUpDeleteEvent();
+        document.querySelector('#modificar-cantidad-form').addEventListener('submit', modificarCantidad);
+
+
+
     }
     
    

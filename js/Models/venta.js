@@ -56,10 +56,10 @@ class Venta {
 
     getDetalleVenta (id)  {
         let data = new FormData();
-        data.append('id', id)
+        data.append('id-venta', id)
         console.log('id a enviar'+id);
         var req = new XMLHttpRequest();
-        req.open("POST", 'php/ventas/detalleVenta.php', false);
+        req.open("POST", 'php/ventas/datosVentasProductos.php', false);
         
         req.send(data);
         return req.responseText;

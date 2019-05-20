@@ -225,6 +225,7 @@ var UIVenta = (function () {
             document.querySelector('#total-venta').value = total;
         },
 
+        
 
         esconderModal: function (modal) {
             $(modal).modal('hide');

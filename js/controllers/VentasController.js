@@ -33,10 +33,14 @@ var ventaController = (function () {
         document.querySelector('#cuerpo-tabla-ventas').addEventListener('click', function (e) {
 
             if (e.target.matches('.watch-action')) {
-                id = UIVenta.getId(e);
-                let venta = new Venta().getVenta(id);
                 UIVenta.abrirVista(venta);
+                id = UIVenta.getId(e);
+                let venta = new Venta().getVenta();
                 UIVenta.setProductosEnTabla(new Venta().getDetalleVenta(id));
+                UIVenta.setDatosVentaEnInputs(venta);
+                
+                
+                
             }
           
            

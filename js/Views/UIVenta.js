@@ -136,7 +136,7 @@ var UIVenta = (function () {
         },
 
 
-        getSubtotalTdDetalle : function () {
+        getSubtotalTd : function () {
             var i = event.target;
             var td = i.parentNode;
             tr = td.parentNode;
@@ -225,6 +225,7 @@ var UIVenta = (function () {
             document.querySelector('#total-venta').value = total;
         },
 
+        
 
         esconderModal: function (modal) {
             $(modal).modal('hide');

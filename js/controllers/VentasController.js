@@ -37,7 +37,7 @@ var ventaController = (function () {
                 id = UIVenta.getId(e);
                 let venta = new Venta().getVenta(id);
                 UIVenta.setProductosEnTabla(new Venta().getDetalleVenta(id));
-                UIVenta.setDatosVentaEnInputs(venta);
+                UIVenta.verVenta(venta);
                 
                 
                 

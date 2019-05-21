@@ -106,6 +106,7 @@ var UIVenta = (function () {
 
 
         verVenta : function (venta){
+            console.log('idc-'+venta.idCliente);
             document.querySelector('#nip-cliente').innerHTML = venta.idCliente;
             document.querySelector('#nip-instructor').innerHTML = venta.idInstructor;
             document.querySelector('#total-venta').innerHTML = venta.totalVenta;

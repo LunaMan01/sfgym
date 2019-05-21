@@ -338,6 +338,8 @@ var ventaController = (function () {
             getVentasSemana();
         else if (todasLasVentas.selected)
             getTodasLasVentas();
+
+            
     }
 
     function setUpEvents() {

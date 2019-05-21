@@ -2,8 +2,12 @@
     include '../conexion.php';
 
     try{
-        $consultar = "SELECT VentasProductos.Id_Venta, nombre_cliente, fecha_venta, Ventas.total_venta 
-        FROM Ventas INNER JOIN Clientes 
+        // $consultar = "SELECT VentasProductos.Id_Venta, nombre_cliente, fecha_venta, Ventas.total_venta 
+        // FROM Ventas INNER JOIN Clientes 
+        // ON Ventas.Id_Cliente = Clientes.Id_Cliente";
+
+        $consultar = "SELECT Id_Venta, nombre_cliente, fecha_venta, Ventas.total_venta 
+        FROM Ventas INNER JOIN Clientes
         ON Ventas.Id_Cliente = Clientes.Id_Cliente";
 
         foreach($conn->query($consultar) as $row){

@@ -24,7 +24,7 @@ var ventaController = (function () {
                 precioProducto = cantidadTd.getAttribute('data-precio');
 
             }
-           
+
         }, false);
     }
 
@@ -38,21 +38,21 @@ var ventaController = (function () {
                 let venta = new Venta().getVenta(id);
                 UIVenta.setProductosEnTabla(new Venta().getDetalleVenta(id));
                 UIVenta.verVenta(venta);
-                
-                
-                
+
+
+
             }
-          
-           
+
+
         }, false);
     }
 
 
-    
 
-    function modificarCantidad () {
+
+    function modificarCantidad() {
         let nuevaCantidad = document.querySelector('#nueva-cantidad').value;
-       
+
         UIVenta.modificarProductoEnCarrito(cantidadTd, subtotalTd, nuevaCantidad, precioProducto);
 
         UIVenta.esconderModal('#modificar-cantidad-producto-modal');
@@ -85,13 +85,13 @@ var ventaController = (function () {
                 UIVenta.setDatosVentaEnInputs(venta);
                 UIVenta.setProductosEnTabla(new Venta().getDetalleVenta(id));
             }
-            
+
         }, false);
 
 
     }
 
-    function setUpVentanaEditar () {
+    function setUpVentanaEditar() {
         document.querySelector('.modal-container').innerHTML = nuevaVentaModals;
         UIVenta.abrirEditVenta();
 
@@ -99,7 +99,7 @@ var ventaController = (function () {
 
             var selector = document.getElementById("select-productos");
 
-        
+
 
 
 
@@ -107,24 +107,24 @@ var ventaController = (function () {
             let precio = selector.options[selector.selectedIndex].getAttribute('data-precio');
             let id = selector.options[selector.selectedIndex].getAttribute('id');
             let cantidad = UIVenta.getCantidad();
-            if(cantidad == 0){
-                UIVenta.mostrarAlert('#add-venta-alert','Añade una cantidad', 'alert-danger');
+            if (cantidad == 0) {
+                UIVenta.mostrarAlert('#add-venta-alert', 'Añade una cantidad', 'alert-danger');
                 return;
             }
 
             UIVenta.agregarProductoACarrito(producto, cantidad, precio, id);
         });
 
-        
+
 
         document.querySelector('#add-venta-form').addEventListener('submit', modificarVenta);
-        
+
         setUpEditEvent();
         setUpDeleteEvent();
         document.querySelector('#modificar-cantidad-form').addEventListener('submit', modificarCantidad);
     }
-    
-    function modificarVenta () {
+
+    function modificarVenta() {
         let nipCliente = document.querySelector('#nip-cliente').value;
         console.log(nipCliente);
         let idInstructor = document.querySelector('#nip-instructor').value;
@@ -168,12 +168,12 @@ var ventaController = (function () {
             return;
         }
 
-        
 
-        if(new Venta().modificar(venta, productosEnCarrito, productosNuevosEnCarrito, productosEliminadosDeCarrito, id)) {
+
+        if (new Venta().modificar(venta, productosEnCarrito, productosNuevosEnCarrito, productosEliminadosDeCarrito, id)) {
             UIVenta.mostrarAlert('#add-venta-alert', 'Venta modificada exitosamente', 'alert-success');
-            
-            
+
+
         } else {
             UIVenta.mostrarAlert('#add-venta-alert', 'Algo salió mal', 'alert-danger');
             document.querySelector('#nip-cliente').value = '';
@@ -183,14 +183,14 @@ var ventaController = (function () {
 
 
     function setUpNuevaVenta() {
-        
+
         document.querySelector('.modal-container').innerHTML = nuevaVentaModals;
         UIVenta.abrirAddVenta();
         document.querySelector('#agregar-producto-seleccionado').addEventListener('click', () => {
 
             var selector = document.getElementById("select-productos");
 
-        
+
 
 
 
@@ -198,15 +198,15 @@ var ventaController = (function () {
             let precio = selector.options[selector.selectedIndex].getAttribute('data-precio');
             let id = selector.options[selector.selectedIndex].getAttribute('id');
             let cantidad = UIVenta.getCantidad();
-            if(cantidad == 0){
-                UIVenta.mostrarAlert('#add-venta-alert','Añade una cantidad', 'alert-danger');
+            if (cantidad == 0) {
+                UIVenta.mostrarAlert('#add-venta-alert', 'Añade una cantidad', 'alert-danger');
                 return;
             }
 
             UIVenta.agregarProductoACarrito(producto, cantidad, precio, id);
         });
 
-        
+
 
         document.querySelector('#add-venta-form').addEventListener('submit', guardarVenta);
         setUpEditEvent();
@@ -214,9 +214,9 @@ var ventaController = (function () {
         document.querySelector('#modificar-cantidad-form').addEventListener('submit', modificarCantidad);
     }
 
-    
 
-    function setUpEliminarEvent () {
+
+    function setUpEliminarEvent() {
         document.querySelector('#cuerpo-tabla-ventas').addEventListener('click', function (e) {
 
             if (e.target.matches('.delete-venta')) {
@@ -226,17 +226,17 @@ var ventaController = (function () {
 
     }
 
-    function eliminarVenta () {
+    function eliminarVenta() {
         let venta = new Venta();
 
-        if(venta.eliminar(id))  {
+        if (venta.eliminar(id)) {
             UIVenta.mostrarAlert('#alert-ventas', 'Venta eliminada correctamente', 'alert-success');
             UIVenta.quitarRegistro();
         } else {
             UIVenta.mostrarAlert('#alert-ventas', 'Algo salió mal', 'alert-danger');
         }
     }
-    
+
 
 
 
@@ -271,7 +271,7 @@ var ventaController = (function () {
             return;
         }
 
-        if(new Venta().add(venta, productosEnCarrito)) {
+        if (new Venta().add(venta, productosEnCarrito)) {
             UIVenta.mostrarAlert('#add-venta-alert', 'Venta realizada exitosamente', 'alert-success');
             document.querySelector('#add-venta-form').reset();
             UIVenta.limpiarCarrito();
@@ -280,6 +280,11 @@ var ventaController = (function () {
             document.querySelector('#nip-cliente').value = '';
             document.querySelector('#nip-instructor').value = '';
         }
+    }
+
+    function getTodasLasVentas() {
+        UIVenta.mostrarCarga();
+        UIVenta.mostrarVentasEnTabla(new Venta().getVentasTodas());
     }
 
     function getVentasMes() {
@@ -297,27 +302,58 @@ var ventaController = (function () {
         UIVenta.mostrarVentasEnTabla(new Venta().getVentasSemana());
     }
 
-    function cambiarVista () {
+
+    function busquedaDinamica () {
+        let opcionSelect;
+        let todasLasVentas = document.querySelector('#ventas-todas');
         let ventasDia = document.querySelector('#ventas-dia');
         let ventasMes = document.querySelector('#ventas-mensuales');
         let ventasSemana = document.querySelector('#ventas-semanales');
 
-        if(ventasDia.selected)
+        if (ventasDia.selected)
+            opcionSelect = 1;
+        else if (ventasMes.selected)
+            opcionSelect = 2;
+        else if (ventasSemana.selected)
+            opcionSelect = 3;
+        else if (todasLasVentas.selected)
+            opcionSelect = 4;
+
+        let dato = UIVenta.getDatosABuscar();
+        let venta = new Venta();
+        UIVenta.mostrarVentasEnTabla(venta.consultar(dato, opcionSelect));
+    }
+
+    function cambiarVista() {
+        let todasLasVentas = document.querySelector('#ventas-todas');
+        let ventasDia = document.querySelector('#ventas-dia');
+        let ventasMes = document.querySelector('#ventas-mensuales');
+        let ventasSemana = document.querySelector('#ventas-semanales');
+
+        if (ventasDia.selected)
             getVentasDia();
-        else if(ventasMes.selected)
+        else if (ventasMes.selected)
             getVentasMes();
-        else if(ventasSemana.selected)
+        else if (ventasSemana.selected)
             getVentasSemana();
+        else if (todasLasVentas.selected)
+            getTodasLasVentas();
+
+            
     }
 
     function setUpEvents() {
         setUpEliminarEvent();
-        getVentasDia();
+        getTodasLasVentas();
         setUpWatchEvent();
         setUpEditEventVenta();
         document.querySelector('#add-venta-btn').addEventListener('click', setUpNuevaVenta);
         document.querySelector('#reporte-venta-btn').addEventListener('click', UIVenta.abrirReportes);
         document.querySelector('#confirmar-eliminacion').addEventListener('click', eliminarVenta);
+
+        document.querySelector('#select-ventas').addEventListener('change', cambiarVista);
+
+        document.querySelector('#buscar-venta-input').addEventListener('keyup', busquedaDinamica);
     }
 
     return {

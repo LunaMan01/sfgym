@@ -282,6 +282,11 @@ var ventaController = (function () {
         }
     }
 
+    function getTodasLasVentas () {
+        UIVenta.mostrarCarga();
+        UIVenta.mostrarVentasEnTabla(new Venta().getVentasTodas());
+    }
+
     function getVentasMes() {
         UIVenta.mostrarCarga();
         UIVenta.mostrarVentasEnTabla(new Venta().getVentasMes());
@@ -298,6 +303,7 @@ var ventaController = (function () {
     }
 
     function cambiarVista () {
+        let todasLasVentas = document.querySelector('#ventas-todas');
         let ventasDia = document.querySelector('#ventas-dia');
         let ventasMes = document.querySelector('#ventas-mensuales');
         let ventasSemana = document.querySelector('#ventas-semanales');
@@ -312,12 +318,14 @@ var ventaController = (function () {
 
     function setUpEvents() {
         setUpEliminarEvent();
-        getVentasDia();
+        getTodasLasVentas();
         setUpWatchEvent();
         setUpEditEventVenta();
         document.querySelector('#add-venta-btn').addEventListener('click', setUpNuevaVenta);
         document.querySelector('#reporte-venta-btn').addEventListener('click', UIVenta.abrirReportes);
         document.querySelector('#confirmar-eliminacion').addEventListener('click', eliminarVenta);
+
+        document.querySelector('#select-ventas').addEventListener('change', cambiarVista);
     }
 
     return {

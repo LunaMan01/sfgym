@@ -54,6 +54,14 @@ class Venta {
 
     }
 
+    getVentasTodas () {
+        var req = new XMLHttpRequest();
+        req.open("POST", 'php/ventas/consultarVentas.php', false);
+        
+        req.send(null);
+        return req.responseText;
+    }
+
     getVentasMes () {
         var req = new XMLHttpRequest();
         req.open("POST", 'php/ventas/ventasMes.php', false);

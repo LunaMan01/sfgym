@@ -136,7 +136,7 @@ var UIVenta = (function () {
         },
 
 
-        getSubtotalTdDetalle : function () {
+        getSubtotalTd : function () {
             var i = event.target;
             var td = i.parentNode;
             tr = td.parentNode;

@@ -182,6 +182,10 @@ var UIVenta = (function () {
             document.querySelector('#total-venta').value = total;
         },
 
+        quitarRegistro : function () {
+            tr.remove();
+        },
+
         limpiarCarrito : function () {
             document.querySelector('#carrito').innerHTML = '';
         },

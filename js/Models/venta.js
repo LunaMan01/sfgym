@@ -37,6 +37,23 @@ class Venta {
         
     }
 
+    eliminar(id) {
+        var req = new XMLHttpRequest();
+        req.open("POST", 'php/ventas/eliminarVenta.php', false);
+        req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        req.send('id-venta=' + id);
+        console.log(localStorage.getItem('id'));
+        if (req.responseText != 1) {
+            console.log('Error');
+            console.log(req.responseText);
+
+            return false;
+        }
+        console.log(req.responseText);
+        return true;
+
+    }
+
     getVentasMes () {
         var req = new XMLHttpRequest();
         req.open("POST", 'php/ventas/ventasMes.php', false);

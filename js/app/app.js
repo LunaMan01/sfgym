@@ -215,6 +215,7 @@ var UIController = (function () {
         },
 
         abrirVentas: function () {
+            document.querySelector('.modal-container').innerHTML = modalsVentas;
             limpiarDivAdicional();
             addScriptsVentas();
             document.querySelector(CSSClasses.active).classList.remove('active');

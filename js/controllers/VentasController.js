@@ -215,6 +215,27 @@ var ventaController = (function () {
     }
 
     
+
+    function setUpEliminarEvent () {
+        document.querySelector('#cuerpo-tabla-ventas').addEventListener('click', function (e) {
+
+            if (e.target.matches('.delete-venta')) {
+                id = UIVenta.getId(e);
+            }
+        }, false);
+
+    }
+
+    function eliminarVenta () {
+        let venta = new Venta();
+
+        if(venta.eliminar(id))  {
+            UIVenta.mostrarAlert('#alert-ventas', 'Venta eliminada correctamente', 'alert-success');
+            UIVenta.quitarRegistro();
+        } else {
+            UIVenta.mostrarAlert('#alert-ventas', 'Algo salió mal', 'alert-danger');
+        }
+    }
     
 
 
@@ -290,12 +311,13 @@ var ventaController = (function () {
     }
 
     function setUpEvents() {
-
+        setUpEliminarEvent();
         getVentasDia();
         setUpWatchEvent();
         setUpEditEventVenta();
         document.querySelector('#add-venta-btn').addEventListener('click', setUpNuevaVenta);
         document.querySelector('#reporte-venta-btn').addEventListener('click', UIVenta.abrirReportes);
+        document.querySelector('#confirmar-eliminacion').addEventListener('click', eliminarVenta);
     }
 
     return {

@@ -147,6 +147,10 @@ var UIVenta = (function () {
             return th;
         },
 
+        getDatosABuscar: function () {
+            return document.querySelector('#buscar-venta-input').value;
+        },
+
         getSubtotalTdDetalle : function () {
             var i = event.target;
             var td = i.parentNode;

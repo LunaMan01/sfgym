@@ -54,6 +54,16 @@ class Venta {
 
     }
 
+    //Cambiar nombre a select
+    consultar(datoABuscar, selectActual) {
+        var req = new XMLHttpRequest();
+        req.open("POST", 'php/ventas/consultaDinamica.php', false);
+        req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+        req.send('dato=' + datoABuscar+"&select-visitas="+selectActual);
+        return req.responseText;
+    }
+
+
     getVentasTodas () {
         var req = new XMLHttpRequest();
         req.open("POST", 'php/ventas/consultarVentas.php', false);

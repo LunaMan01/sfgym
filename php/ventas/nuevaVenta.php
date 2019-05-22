@@ -50,7 +50,8 @@
         
         $cantidadTotal = 0;
 
-        $busqueda = $conn->prepare("SELECT existencia_producto FROM Productos");
+        $busqueda = $conn->prepare("SELECT existencia_producto FROM Productos
+        WHERE Id_Producto = ". $producto);
         $busqueda->execute();
         $resultado = $busqueda->fetchAll();
 
@@ -63,6 +64,7 @@
             WHERE Id_Producto = ". $producto);
 
         $resta = $cantidadTotal-$cantidad;
+        echo '<br>'. $cantidadTotal . '<br>' . $resta;
         $productos->bindParam(':cantidad', $resta);
 
         $productos->execute();

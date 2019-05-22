@@ -66,7 +66,8 @@
         $detalle->execute(); 
     }
 
-    function modificarProductos($conn, $idProducto, $cantidad, $totalVenta){
+    function modificarProductos($conn, $idProducto, $cantidadNueva, $totalVenta){
+        
         $modificar = $conn->prepare('UPDATE VentasProductos SET
         Id_Producto = :idProducto,
         cantidad_producto = :cantidad,
@@ -74,27 +75,16 @@
         WHERE Id_Venta = '. $_POST['id-venta'].' AND Id_Producto = '. $idProducto);
 
         $modificar->bindParam(':idProducto', $idProducto);
-        $modificar->bindParam(':cantidad', $cantidad);
+        $modificar->bindParam(':cantidad', $cantidadNueva);
         $modificar->bindParam(':subtotalVenta', $totalVenta);
 
         $modificar->execute();
-
-        $cantidadTotal = 0;
-
-        $busqueda = $conn->prepare("SELECT existencia_producto FROM Productos");
-        $busqueda->execute();
-        $resultado = $busqueda->fetchAll();
-
-        foreach($resultado as $row){
-            $cantidadTotal = $row['existencia_producto'];
-        } 
 
         $productos = $conn->prepare("UPDATE Productos SET
             existencia_producto = :cantidad
             WHERE Id_Producto = ". $idProducto);
 
-        $resta = $cantidadTotal-$cantidad;
-        $productos->bindParam(':cantidad', $resta);
+        $productos->bindParam(':cantidad', $cantidad);
 
         $productos->execute();
     }

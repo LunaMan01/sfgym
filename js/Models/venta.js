@@ -23,7 +23,7 @@ class Venta {
 
         console.log('carr nuevo '+JSON.stringify(productosNuevos));
 
-        console.log('cantidades '+JSON.stringify(cantidades));
+        
 
         req.open("POST", 'php/ventas/modificarVentas.php', false);
         req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");

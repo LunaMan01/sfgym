@@ -68,9 +68,9 @@ var ventaController = (function () {
                 let idCar = UIVenta.getProductoEnCarritoId();
                 let cantidades = UIVenta.getCantidadesEnCarritoTd();
                 ids.id = idCar;
-                cantidad.cantidad = cantidades;
+                ids.cantidad = cantidades;
                 productosEliminadosDeCarrito.push(ids);
-                cantidadesDeProductosEliminadosDeCarrito.push(cantidad);
+                
                 UIVenta.quitarRegistroDeCarrito();
             }
         }, false);

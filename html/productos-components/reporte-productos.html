@@ -1,103 +1,112 @@
-<div class="container panel-reportes">
+<div class="r-productos">
+    <div class="r-productos">
+        <div class="container panel-reportes">
 
-    <div class="container">
-        <div class="row">
-            <div class="col-auto">
-                <i class="material-icons iconMessege">view_list</i>
-            </div>
-            <div class="col-auto mt-2">
-                <p><b>Crear reporte</b></p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-aut">
-                <p><i>Seleccione los datos que desea ver en el reporte</i></p>
-            </div>
-        </div>
-        <form onsubmit="return false" id="reporte-productos-form">
-            <div class="row">
-                <div class="container">
-
-                    <div class="row">
-                        <div class="col-auto">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input"
-                                    id="reporte-productos-en-existencia" name="productos[]"
-                                    value="1">
-                                <label for="reporte-productos-en-existencia" class="custom-control-label">Productos en
-                                    existencia</label>
-                            </div>
-                        </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-auto">
+                        <i class="material-icons iconMessege">view_list</i>
                     </div>
-
-                    <div class="row">
-                        <div class="col-auto">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="reporte-productos-mas-vendidos"
-                                name="productos[]" value="2">
-                                <label for="reporte-productos-mas-vendidos" class="custom-control-label">Productos más
-                                    vendidos</label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-auto">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input"
-                                    id="reporte-productos-menos-vendidos" name="productos[]" value="3">
-                                <label for="reporte-productos-menos-vendidos" class="custom-control-label">Productos
-                                    menos
-                                    vendidos</label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-auto">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input"
-                                    id="reporte-productos-con-pocas-existencias" name="productos[]" value="4">
-                                <label for="reporte-productos-con-pocas-existencias"
-                                    class="custom-control-label">Productos
-                                    con pocas existencias</label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-auto">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input"
-                                    id="reporte-productos-proximos-a-caducar" name="productos[]" value="5">
-                                <label for="reporte-productos-proximos-a-caducar" class="custom-control-label">Productos
-                                    proximos a caducar
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="mt-5 ml-5">
-                    <div class="form-group">
-                        <label><b>Fecha:</b></label>
-                        <input type="text" class="form-control rounded-pill" id="fecha-rango-reporte" name="fecha">
+                    <div class="col-auto mt-2">
+                        <p><b>Crear reporte</b></p>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-aut">
+                        <p><i>Seleccione los datos que desea ver en el reporte</i></p>
+                    </div>
+                </div>
+                <form onsubmit="return false" id="reporte-productos-form">
+                    <div class="row">
+                        <div class="container">
+
+                            <div class="row">
+                                <div class="col-auto">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input"
+                                            id="reporte-productos-en-existencia" name="productos[]" value="1">
+                                        <label for="reporte-productos-en-existencia"
+                                            class="custom-control-label">Productos
+                                            en
+                                            existencia</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-auto">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input"
+                                            id="reporte-productos-mas-vendidos" name="productos[]" value="2">
+                                        <label for="reporte-productos-mas-vendidos"
+                                            class="custom-control-label">Productos
+                                            más
+                                            vendidos</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-auto">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input"
+                                            id="reporte-productos-menos-vendidos" name="productos[]" value="3">
+                                        <label for="reporte-productos-menos-vendidos"
+                                            class="custom-control-label">Productos
+                                            menos
+                                            vendidos</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-auto">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input"
+                                            id="reporte-productos-con-pocas-existencias" name="productos[]" value="4">
+                                        <label for="reporte-productos-con-pocas-existencias"
+                                            class="custom-control-label">Productos
+                                            con pocas existencias</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-auto">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input"
+                                            id="reporte-productos-proximos-a-caducar" name="productos[]" value="5">
+                                        <label for="reporte-productos-proximos-a-caducar"
+                                            class="custom-control-label">Productos
+                                            proximos a caducar
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="mt-5 ml-5">
+                            <div class="form-group">
+                                <label><b>Fecha:</b></label>
+                                <input type="text" class="form-control rounded-pill" id="fecha-rango-reporte"
+                                    name="fecha">
+                            </div>
+                        </div>
+                    </div>
+                    <button id="generar-reporte-productos"
+                        class="btn btn-outline-success btn-sm my-2 my-sm-0 mr-3 rounded-pill hidable"
+                        type="submit">Generar</button>
+                </form>
+
             </div>
-            <button id="generar-reporte-productos" class="btn btn-outline-success btn-sm my-2 my-sm-0 mr-3 rounded-pill"
-                type="submit">Generar</button>
-        </form>
 
-    </div>
+        </div>
+        <div class="container reporte-generado d-none mb-5">
 
-</div>
-<div class="container reporte-generado d-none mb-5">
-
-    <!-- <div class="container" id="crear-reporte-card">
+            <!-- <div class="container" id="crear-reporte-card">
         <div class="row">
             <div class="col-auto mt-3">
                 <p><b>Reporte de clientes</b></p>
@@ -134,4 +143,6 @@
                 </div>
             </div>
         </div> -->
+        </div>
+    </div>
 </div>

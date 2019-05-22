@@ -175,7 +175,7 @@ var ventaController = (function () {
 
 
 
-        if (new Venta().modificar(venta, productosEnCarrito, productosNuevosEnCarrito, productosEliminadosDeCarrito, cantidadesDeProductosEliminadosDeCarrito, id)) {
+        if (new Venta().modificar(venta, productosEnCarrito, productosNuevosEnCarrito, productosEliminadosDeCarrito, id)) {
             UIVenta.mostrarAlert('#add-venta-alert', 'Venta modificada exitosamente', 'alert-success');
 
 

@@ -22,7 +22,8 @@
 
         
         foreach($arrayDelete as $row){
-            eliminarProductos($conn, $row['id'], $_POST['id-venta']);
+            eliminarProductos($conn, $row['id'], $_POST['id-venta'], $row['cantidad']);
+            echo $row['cantidad'];
         }
 
         foreach($arrayItems as $row){
@@ -30,7 +31,7 @@
         }
 
         foreach($arrayNewItems as $row){
-            detalleVenta($conn, $row['id'], $row['cantidad'], $row['subtotal']);
+            nuevosProductos($conn, $row['id'], $row['cantidad'], $row['subtotal']);
         }
 
         echo 1;
@@ -54,7 +55,7 @@
         
     }
 
-    function detalleVenta($conn, $producto, $cantidad, $total){
+    function nuevosProductos($conn, $producto, $cantidad, $total){
         $detalle = $conn->prepare("INSERT INTO VentasProductos (Id_Venta, Id_Producto, cantidad_producto, subtotal_venta)
         VALUES (:idVenta, :idProducto, :cantidad, :subtotal)");
 
@@ -64,6 +65,21 @@
         $detalle->bindParam(':subtotal', $total);
 
         $detalle->execute(); 
+
+        $cantidadP = 0;
+        $cantidadProductos = "SELECT existencia_producto from Productos
+            WHERE Id_Producto = ". $producto;
+
+        foreach($conn->query($cantidadProductos) as $row){
+            $cantidadP = $row['existencia_producto'];
+        }
+        $resta = $cantidadP - $cantidad;
+        $productos = $conn->prepare("UPDATE Productos SET
+            existencia_producto = :cantidad
+            WHERE Id_Producto = ". $producto);
+        $productos->bindParam(':cantidad', $resta);
+
+        $productos->execute();
     }
 
     function modificarProductos($conn, $idProducto, $cantidadNueva, $totalVenta){
@@ -79,21 +95,28 @@
         $modificar->bindParam(':subtotalVenta', $totalVenta);
 
         $modificar->execute();
-
-        $productos = $conn->prepare("UPDATE Productos SET
-            existencia_producto = :cantidad
-            WHERE Id_Producto = ". $idProducto);
-
-        $productos->bindParam(':cantidad', $cantidad);
-
-        $productos->execute();
     }
 
-    function eliminarProductos($conn, $idProducto, $idVenta){
+    function eliminarProductos($conn, $idProducto, $idVenta, $cantidad){
         $eliminar = $conn->prepare("DELETE FROM VentasProductos
             WHERE Id_Producto = ".$idProducto." AND Id_Venta = ".$idVenta);
         
         $eliminar->execute();
+
+        $cantidadP = 0;
+        $cantidadProductos = "SELECT existencia_producto from Productos
+            WHERE Id_Producto = ". $idProducto;
+
+        foreach($conn->query($cantidadProductos) as $row){
+            $cantidadP = $row['existencia_producto'];
+        }
+        $suma = $cantidadP + $cantidad;
+        $productos = $conn->prepare("UPDATE Productos SET
+            existencia_producto = :cantidad
+            WHERE Id_Producto = ". $idProducto);
+        $productos->bindParam(':cantidad', $suma);
+
+        $productos->execute();
     }
 
    

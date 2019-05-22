@@ -46,25 +46,18 @@
         $detalle->bindParam(':subtotal', $total);
 
         $detalle->execute();
-        
-        
-        $cantidadTotal = 0;
 
-        $busqueda = $conn->prepare("SELECT existencia_producto FROM Productos
-        WHERE Id_Producto = ". $producto);
-        $busqueda->execute();
-        $resultado = $busqueda->fetchAll();
+        $cantidadP = 0;
+        $cantidadProductos = "SELECT existencia_producto from Productos
+            WHERE Id_Producto = ". $producto;
 
-        foreach($resultado as $row){
-            $cantidadTotal = $row['existencia_producto'];
-        } 
-
+        foreach($conn->query($cantidadProductos) as $row){
+            $cantidadP = $row['existencia_producto'];
+        }
+        $resta = $cantidadP - $cantidad;
         $productos = $conn->prepare("UPDATE Productos SET
             existencia_producto = :cantidad
             WHERE Id_Producto = ". $producto);
-
-        $resta = $cantidadTotal-$cantidad;
-        echo '<br>'. $cantidadTotal . '<br>' . $resta;
         $productos->bindParam(':cantidad', $resta);
 
         $productos->execute();

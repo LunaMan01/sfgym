@@ -163,9 +163,9 @@ insert into TipoGastos (tipo_gasto) values ('Inversion');
 
 create trigger actualizarProductosA after update on ventasproductos for each 
 row update productos, ventasproductos set existencia_producto = existencia_producto-new.cantidad_producto 
-where old.id_venta = new.id_venta and old.productos.id_producto = new.productos.id_producto;
+where id_venta = new.id_venta and productos.id_producto = ventasproductos.id_producto;
 
 create trigger actualizarProductosB before update on ventasproductos for each 
 row update productos, ventasproductos set existencia_producto = existencia_producto+old.cantidad_producto 
-where old.id_venta = new.id_venta and old.productos.id_producto = new.productos.id_producto;
+where id_venta = new.id_venta and productos.id_producto = ventasproductos.id_producto;
 

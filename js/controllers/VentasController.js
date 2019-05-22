@@ -64,7 +64,7 @@ var ventaController = (function () {
 
             if (e.target.matches('.delete-action')) {
                 let ids = new Object();
-                let cantidad = new Object();
+                
                 let idCar = UIVenta.getProductoEnCarritoId();
                 let cantidades = UIVenta.getCantidadesEnCarritoTd();
                 ids.id = idCar;
@@ -178,7 +178,7 @@ var ventaController = (function () {
         if (new Venta().modificar(venta, productosEnCarrito, productosNuevosEnCarrito, productosEliminadosDeCarrito, id)) {
             UIVenta.mostrarAlert('#add-venta-alert', 'Venta modificada exitosamente', 'alert-success');
 
-
+            productosEliminadosDeCarrito.length = 0;
         } else {
             UIVenta.mostrarAlert('#add-venta-alert', 'Algo salió mal', 'alert-danger');
             document.querySelector('#nip-cliente').value = '';

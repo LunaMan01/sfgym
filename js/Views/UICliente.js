@@ -170,6 +170,7 @@ var UICliente = (function () {
             document.querySelector('.panel-reportes').classList.add('d-none');
 
             document.querySelector(".reporte-generado").innerHTML = req;
+            return req;
         },
 
         regresar: function () {

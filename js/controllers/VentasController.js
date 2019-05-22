@@ -6,6 +6,7 @@ var ventaController = (function () {
     var id;
 
     var productosEliminadosDeCarrito = new Array();
+    var cantidadesDeProductosEliminadosDeCarrito = new Array();
 
     function setUpEditEvent() {
         document.querySelector('#carrito').addEventListener('click', function (e) {
@@ -63,9 +64,13 @@ var ventaController = (function () {
 
             if (e.target.matches('.delete-action')) {
                 let ids = new Object();
+                let cantidad = new Object();
                 let idCar = UIVenta.getProductoEnCarritoId();
+                let cantidades = UIVenta.getCantidadesEnCarritoTd();
                 ids.id = idCar;
+                cantidad.cantidad = cantidades;
                 productosEliminadosDeCarrito.push(ids);
+                cantidadesDeProductosEliminadosDeCarrito.push(cantidad);
                 UIVenta.quitarRegistroDeCarrito();
             }
         }, false);
@@ -170,7 +175,7 @@ var ventaController = (function () {
 
 
 
-        if (new Venta().modificar(venta, productosEnCarrito, productosNuevosEnCarrito, productosEliminadosDeCarrito, id)) {
+        if (new Venta().modificar(venta, productosEnCarrito, productosNuevosEnCarrito, productosEliminadosDeCarrito, cantidadesDeProductosEliminadosDeCarrito, id)) {
             UIVenta.mostrarAlert('#add-venta-alert', 'Venta modificada exitosamente', 'alert-success');
 
 

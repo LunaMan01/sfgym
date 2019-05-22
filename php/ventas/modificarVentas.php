@@ -13,17 +13,13 @@
         $newItems = $_POST['productosNuevos'];
         $arrayNewItems = json_decode($newItems, true);
 
-
-
         modificarVenta($conn, $arraySell['nipCliente'], $arraySell['idInstructor'], $arraySell['totalVenta']);
 
         $deleteItems = $_POST['eliminados'];
         $arrayDelete = json_decode($deleteItems, true);
 
-        
         foreach($arrayDelete as $row){
             eliminarProductos($conn, $row['id'], $_POST['id-venta'], $row['cantidad']);
-            echo $row['cantidad'];
         }
 
         foreach($arrayItems as $row){
@@ -84,11 +80,11 @@
 
     function modificarProductos($conn, $idProducto, $cantidadNueva, $totalVenta){
         
-        $modificar = $conn->prepare('UPDATE VentasProductos SET
+        $modificar = $conn->prepare("UPDATE VentasProductos SET
         Id_Producto = :idProducto,
         cantidad_producto = :cantidad,
         subtotal_venta = :subtotalVenta
-        WHERE Id_Venta = '. $_POST['id-venta'].' AND Id_Producto = '. $idProducto);
+        WHERE Id_Venta = ". $_POST['id-venta']." AND Id_Producto = ". $idProducto);
 
         $modificar->bindParam(':idProducto', $idProducto);
         $modificar->bindParam(':cantidad', $cantidadNueva);
@@ -110,6 +106,7 @@
         foreach($conn->query($cantidadProductos) as $row){
             $cantidadP = $row['existencia_producto'];
         }
+        $suma = 0;
         $suma = $cantidadP + $cantidad;
         $productos = $conn->prepare("UPDATE Productos SET
             existencia_producto = :cantidad

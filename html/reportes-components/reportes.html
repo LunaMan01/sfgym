@@ -13,53 +13,19 @@
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                 <button class="dropdown-item d-none" type="button" id="">Selecciona modulo</button>
-                <button class="dropdown-item" type="button" id="">Clientes</button>
-                <button class="dropdown-item" type="button" id="">Membresías</button>
-                <button class="dropdown-item" type="button" id="">Visitas</button>
-                <button class="dropdown-item" type="button" id="">Ventas</button>
-                <button class="dropdown-item" type="button" id="">Productos</button>
-                <button class="dropdown-item" type="button" id="">Gastos</button>
-                <button class="dropdown-item" type="button" id="">Aparatos</button>
-                <button class="dropdown-item" type="button" id="">Compras</button>
+                <button class="dropdown-item" type="button" id="clientes-select">Clientes</button>
+                <button class="dropdown-item" type="button" id="membresias-select">Membresías</button>
+                <button class="dropdown-item" type="button" id="visitas-select">Visitas</button>
+                <button class="dropdown-item" type="button" id="ventas-select">Ventas</button>
+                <button class="dropdown-item" type="button" id="productos-select">Productos</button>
+                <button class="dropdown-item" type="button" id="gastos-select">Gastos</button>
+                <button class="dropdown-item" type="button" id="compras-select">Compras</button>
             </div>
         </div>
     </div>
 
-    <div class="row mr-3 p-1">
-        <div class="col-lg-4 cards-inicio">
-            <div class="container">
-                <div class="row">
-                    <div class="col-2">
-                        <i class="material-icons iconMessege">group</i>
-                    </div>
-                    <div class="col-8 pt-2 text-center">
-                        <p><b>Nombre Modulo</b></p>
-                    </div>
-                    <div class="col-2">
-                        <i class="material-icons iconWarning">maximize</i>
-                    </div>
-                </div>
-                <hr>
-                <div class="row">
-                    <div class="col-auto">
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="checkbox-n1">
-                            <label class="custom-control-label" for="checkbox-n1">XXXXXXXXXXXXXX</label>
-                        </div>
+    <div class="row" id="reportes-container">
 
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="checkbox-n2">
-                            <label class="custom-control-label" for="checkbox-n2">XXXXXXXXXXXXXX</label>
-                        </div>
-
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="checkbox-n3">
-                            <label class="custom-control-label" for="checkbox-n3">XXXXXXXXXXXXXX</label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
     <button id="generar-reporte-general" class="btn btn-outline-success btn-sm my-2 my-sm-0 mr-3 rounded-pill"
         type="submit">Generar</button>

@@ -37,6 +37,41 @@ class Venta {
         
     }
 
+    eliminar(id) {
+        var req = new XMLHttpRequest();
+        req.open("POST", 'php/ventas/eliminarVenta.php', false);
+        req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        req.send('id-venta=' + id);
+        console.log(localStorage.getItem('id'));
+        if (req.responseText != 1) {
+            console.log('Error');
+            console.log(req.responseText);
+
+            return false;
+        }
+        console.log(req.responseText);
+        return true;
+
+    }
+
+    //Cambiar nombre a select
+    consultar(datoABuscar, selectActual) {
+        var req = new XMLHttpRequest();
+        req.open("POST", 'php/ventas/consultaDinamica.php', false);
+        req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+        req.send('dato=' + datoABuscar+"&select-visitas="+selectActual);
+        return req.responseText;
+    }
+
+
+    getVentasTodas () {
+        var req = new XMLHttpRequest();
+        req.open("POST", 'php/ventas/consultarVentas.php', false);
+        
+        req.send(null);
+        return req.responseText;
+    }
+
     getVentasMes () {
         var req = new XMLHttpRequest();
         req.open("POST", 'php/ventas/ventasMes.php', false);

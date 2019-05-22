@@ -106,6 +106,7 @@ var UIVenta = (function () {
 
 
         verVenta : function (venta){
+            console.log('idc-'+venta.idCliente);
             document.querySelector('#nip-cliente').innerHTML = venta.idCliente;
             document.querySelector('#nip-instructor').innerHTML = venta.idInstructor;
             document.querySelector('#total-venta').innerHTML = venta.totalVenta;
@@ -136,7 +137,7 @@ var UIVenta = (function () {
         },
 
 
-        getSubtotalTdDetalle : function () {
+        getSubtotalTd : function () {
             var i = event.target;
             var td = i.parentNode;
             tr = td.parentNode;
@@ -144,6 +145,10 @@ var UIVenta = (function () {
             var th = elements[5];
             console.log(th);
             return th;
+        },
+
+        getDatosABuscar: function () {
+            return document.querySelector('#buscar-venta-input').value;
         },
 
         getSubtotalTdDetalle : function () {
@@ -180,6 +185,10 @@ var UIVenta = (function () {
             });
 
             document.querySelector('#total-venta').value = total;
+        },
+
+        quitarRegistro : function () {
+            tr.remove();
         },
 
         limpiarCarrito : function () {
@@ -225,6 +234,7 @@ var UIVenta = (function () {
             document.querySelector('#total-venta').value = total;
         },
 
+        
 
         esconderModal: function (modal) {
             $(modal).modal('hide');

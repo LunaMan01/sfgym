@@ -947,4 +947,49 @@ aria-hidden="true">
     </div>
 </div>
 </div>
-`
+` + ` 
+
+<div class="modal fade" id="eliminar-venta-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">Eliminar venta</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      Seguro que desea eliminar esta venta
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary rounded-pill " data-dismiss="modal">Cancelar</button>
+      <button type="button" class="btn btn-outline-success rounded-pill" id="confirmar-eliminacion" data-dismiss="modal">Confirmar</button>
+    </div>
+  </div>
+</div>
+</div>
+`;
+
+let modalsVentas = `
+<div class="modal fade" id="eliminar-compra-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">Eliminar venta</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      Seguro que desea eliminar esta venta
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary rounded-pill " data-dismiss="modal">Cancelar</button>
+      <button type="button" class="btn btn-outline-success rounded-pill" id="confirmar-eliminacion" data-dismiss="modal">Confirmar</button>
+    </div>
+  </div>
+</div>
+</div>
+`;

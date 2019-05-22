@@ -174,6 +174,18 @@ var UIVenta = (function () {
             return id;
         },
 
+        getCantidadesEnCarritoTd : function (){
+            var i = event.target;
+            var td = i.parentNode;
+            tr = td.parentNode;
+            var elements = tr.childNodes;
+            var th = elements[1];
+            console.log(th);
+            var cantidad = th.getAttribute('data-cantidad');
+            
+            return cantidad;
+        },
+
         quitarRegistroDeCarrito: function () {
             tr.remove();
             let subtotales = document.querySelectorAll('.subtotales');

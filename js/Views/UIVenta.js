@@ -161,6 +161,16 @@ var UIVenta = (function () {
             return th;
         },
 
+        getTh : function () {
+            var i = event.target;
+            var td = i.parentNode;
+            tr = td.parentNode;
+            var elements = tr.childNodes;
+            var th = elements[1];
+            console.log(th);
+            return th;
+        },
+
         getProductoEnCarritoId : function (){
             var i = event.target;
             var td = i.parentNode;
@@ -234,7 +244,7 @@ var UIVenta = (function () {
 
             cantidadTd.innerHTML = cantidad;
             subtotalTd.innerHTML = subtotal;
-
+            console.log(cantidadTd);
             let subtotales = document.querySelectorAll('.subtotales');
 
             let total = 0;

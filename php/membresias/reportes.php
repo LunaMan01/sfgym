@@ -106,7 +106,7 @@
                     </div>
 
                     <div class="table-responsive">
-                        <table class="table table-hover" id="clientes-masVisitas-table">
+                        <table class="table table-hover">
                             <thead>   
                                 <tr>
                                     <th scope="col">Id</th>
@@ -115,7 +115,7 @@
                                     <th scope="col">Fecha Fin</th>
                                 </tr>
                             </thead>  
-                            <tbody id="cuerpo-tabla-clientes-inactivos">   
+                            <tbody>   
         ';
 
         $datos->execute();
@@ -159,7 +159,7 @@
 
     $html.= '</div>';
 
-    $html.= '<button id="descargar-pdf" class="btn hidable btn-outline-success btn-sm my-2 my-sm-0 mr-3 ml-5 mt-5 rounded-pill"
+    $html.= '<button id="descargar-pdf-membresia" class="btn hidable btn-outline-success btn-sm my-2 my-sm-0 mr-3 ml-5 mt-5 rounded-pill"
     type="button">Descargar como PDF</button>';
     echo $html;
 ?>

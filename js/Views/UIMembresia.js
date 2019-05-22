@@ -108,6 +108,7 @@ var UIMembresia = (function () {
             document.querySelector('.panel-reportes').classList.add('d-none');
             
             document.querySelector("#reporte-generado-membresias").innerHTML = req;
+            return req;
         },
     }
 })();

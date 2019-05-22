@@ -4,6 +4,7 @@ var ventaController = (function () {
     var precioProducto;
     var subtotalTd;
     var id;
+    var th;
 
     var productosEliminadosDeCarrito = new Array();
     var cantidadesDeProductosEliminadosDeCarrito = new Array();
@@ -13,9 +14,13 @@ var ventaController = (function () {
 
             if (e.target.matches('.detalle')) {
                 console.log('hara');
+                th = UIVenta.getTh();
+                console.log('th', th);
                 cantidadTd = UIVenta.getCantidadTdDetalle(e);
                 subtotalTd = UIVenta.getSubtotalTdDetalle(e);
                 precioProducto = cantidadTd.getAttribute('data-precio');
+
+                
                 return;
             }
             if (e.target.matches('.edit-action')) {
@@ -57,6 +62,9 @@ var ventaController = (function () {
         UIVenta.modificarProductoEnCarrito(cantidadTd, subtotalTd, nuevaCantidad, precioProducto);
 
         UIVenta.esconderModal('#modificar-cantidad-producto-modal');
+
+        th.setAttribute('data-cantidad', nuevaCantidad);
+        th.setAttribute('data-subtotal', subtotalTd.innerHTML);
     }
 
     function setUpDeleteEvent() {
@@ -149,8 +157,10 @@ var ventaController = (function () {
         let productosEnCarrito = new Array();
         carrito.forEach(element => {
             let producto = new Object();
+
+            
             producto.id = element.getAttribute('id');
-            console.log(producto.id);
+            
             producto.cantidad = element.getAttribute('data-cantidad');
             producto.subtotal = element.getAttribute('data-subtotal');
             productosEnCarrito.push(producto);

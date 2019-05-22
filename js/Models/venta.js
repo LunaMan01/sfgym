@@ -17,7 +17,7 @@ class Venta {
         return true;
     }
 
-    modificar(venta, productos, productosNuevos,  productosEliminadosDeCarrito, cantidades, idVenta) {
+    modificar(venta, productos, productosNuevos,  productosEliminadosDeCarrito, idVenta) {
         var req = new XMLHttpRequest();
         console.log('productos viejos = '+JSON.stringify(productos));
 
@@ -27,7 +27,7 @@ class Venta {
 
         req.open("POST", 'php/ventas/modificarVentas.php', false);
         req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        req.send("venta="+encodeURIComponent(JSON.stringify(venta))+"&productos="+encodeURIComponent(JSON.stringify(productos))+"&id-venta="+idVenta+"&productosNuevos="+encodeURIComponent(JSON.stringify(productosNuevos))+"&eliminados="+JSON.stringify(productosEliminadosDeCarrito)+"&cantidades="+encodeURIComponent(JSON.stringify(cantidades)));
+        req.send("venta="+encodeURIComponent(JSON.stringify(venta))+"&productos="+encodeURIComponent(JSON.stringify(productos))+"&id-venta="+idVenta+"&productosNuevos="+encodeURIComponent(JSON.stringify(productosNuevos))+"&eliminados="+JSON.stringify(productosEliminadosDeCarrito));
         if (req.responseText != 1) {
             console.log('Error');
             console.log(req.responseText);

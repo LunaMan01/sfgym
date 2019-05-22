@@ -23,6 +23,10 @@ class Venta {
 
         console.log('carr nuevo '+JSON.stringify(productosNuevos));
 
+        console.log('eliminados '+JSON.stringify(productosEliminadosDeCarrito));
+
+        console.log('id-venta'+idVenta);
+
         
 
         req.open("POST", 'php/ventas/modificarVentas.php', false);

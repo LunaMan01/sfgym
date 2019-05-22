@@ -128,6 +128,16 @@ var UIController = (function () {
         }
     }
 
+    function addScriptsReportes() {
+        if (document.getElementById('reportes-script') == null) {
+            let script = document.createElement('script');
+            script.setAttribute('src', 'js/app/reportes.js');
+            script.setAttribute('id', 'reportes-script');
+            document.head.appendChild(script);
+        }
+    }
+
+
     function setUpInicio() {
         var req = new XMLHttpRequest();
         req.open("POST", 'php/inicio.php', false);
@@ -270,10 +280,13 @@ var UIController = (function () {
         },
 
         abrirReportes: function () {
+            addScriptsReportes();
             limpiarDivAdicional();
             document.querySelector(CSSClasses.active).classList.remove('active');
             document.querySelector(Li.reportes).className = 'active';
             load('html/reportes-components/reportes.html', content);
+
+            
 
         },
 

@@ -17,6 +17,20 @@ var ReportesController = (function () {
         });
     }
 
+    function generarReporteCliente() {
+        
+
+        let cliente = new Cliente();
+        let data = UICliente.getDatosParaReporte();
+
+        let res = cliente.reporte(data);
+        UICliente.mostrarReporte(res);
+
+        document.querySelector('#descargar-pdf').addEventListener('click', descargarPDF);
+    
+    }
+
+
     let btn = document.querySelector('#dropdown-reportes');
     let containerReportes = document.querySelector('#reportes-container');
     document.querySelector('#clientes-select').addEventListener('click', function() {
@@ -73,8 +87,12 @@ var ReportesController = (function () {
 
 
 
+    document.querySelector('#generar-reporte-general').addEventListener('click', function() {
+        generarReporteCliente();
+    });
+
+
+
+
     
-
-
-
-})();
+})(UICliente);

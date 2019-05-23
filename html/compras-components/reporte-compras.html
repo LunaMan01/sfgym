@@ -1,81 +1,44 @@
-<div class="r-compras">
-    <div class="container panel-reportes">
-        <div class="container">
+<div class="container panel-reportes">
+    <div class="container">
 
-            <div class="row">
-                <div class="col-auto">
-                    <i class="material-icons iconMessege">shopping_cart</i>
-                </div>
-                <div class="col-auto mt-2">
-                    <p><b>Crear reporte</b></p>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-auto">
-                    <i>Seleccione el rango de fechas para generación de reporte</i>
-                </div>
-            </div>
-
-            <form onsubmit="return false" id="reporte-compras-form">
-                <div class="row">
-                    <div class="mt-3 ml-5">
-                        <div class="form-group">
-                            <label><b>Fecha:</b></label>
-                            <input type="text" class="form-control rounded-pill" id="fecha-rango-reporte"
-                                name="fecha-rango-reporte">
-                        </div>
-                    </div>
-                </div>
-                <button id="generar-reporte-compras"
-                    class="btn btn-outline-success btn-sm my-2 my-sm-0 mr-3 rounded-pill hidable" type="submit">Generar</button>
-            </form>
-
-        </div>
-
-
-
-
-    </div>
-
-    <div class="container reporte-generado d-none mb-5">
-
-        <!-- <div class="container" id="crear-reporte-card">
         <div class="row">
-            <div class="col-auto mt-3">
-                <p><b>Reporte de clientes</b></p>
+            <div class="col-auto">
+                <i class="material-icons iconMessege">shopping_cart</i>
+            </div>
+            <div class="col-auto mt-2">
+                <p><b>Crear reporte</b></p>
             </div>
         </div>
 
         <div class="row">
-            <div class="col-12">
-                <div class="tablaPrincipal">
-                    <div class="row mensajeAlert">
-                        <div class="col-lg-1">
-                            <i class="material-icons iconMessege">group</i>
-                        </div>
-                        <div class="col-lg-11">
-                            <p>Lista de clientes inactivos</p>
-                        </div>
-                    </div>
+            <div class="col-auto">
+                <i>Seleccione el rango de fechas para generación de reporte</i>
+            </div>
+        </div>
 
-                    <div class="table-responsive">
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Id</th>
-                                    <th scope="col">Nombre Cliente</th>
-                                    <th scope="col">Teléfono</th>
-                                </tr>
-                            </thead>
-                            <tbody id="cuerpo-tabla-clientes-inactivos">
-
-                            </tbody>
-
-                        </table>
+        <form onsubmit="return false" id="reporte-compras-form">
+            <div class="row">
+                <div class="mt-3 ml-5">
+                    <div class="form-group">
+                        <label><b>Fecha:</b></label>
+                        <input type="text" class="form-control f-compra rounded-pill" id="fecha-rango-reporte"
+                            name="fecha-rango-reporte">
                     </div>
                 </div>
             </div>
-        </div> -->
+            <button id="generar-reporte-compras"
+                class="btn btn-outline-success btn-sm my-2 my-sm-0 mr-3 rounded-pill hidable"
+                type="submit">Generar</button>
+        </form>
+
     </div>
+
+
+
+
+</div>
+
+<div class="container reporte-generado d-none mb-5">
+
+  
 </div>

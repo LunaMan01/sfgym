@@ -142,13 +142,13 @@ var UIController = (function () {
         var req = new XMLHttpRequest();
         req.open("POST", 'php/inicio.php', false);
         req.send(null);
-        
-        
+
+
         let res = req.responseText;
         let responses = res.split("||");
-       
+
         var inicio = JSON.parse(responses[0]);
-    
+
         document.querySelector('#clientes-activos-label').innerHTML = inicio.activo;
         document.querySelector('#visitas-label').innerHTML = inicio.visitas;
         document.querySelector('#count-membresias').innerHTML = inicio.membresias;
@@ -281,12 +281,14 @@ var UIController = (function () {
 
         abrirReportes: function () {
             addScriptsReportes();
+            
             limpiarDivAdicional();
             document.querySelector(CSSClasses.active).classList.remove('active');
             document.querySelector(Li.reportes).className = 'active';
             load('html/reportes-components/reportes.html', content);
+            if (typeof  ReportesController !== 'undefined')
+                ReportesController.init();
 
-            
 
         },
 

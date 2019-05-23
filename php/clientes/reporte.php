@@ -167,7 +167,7 @@
                     </div>
 
                     <div class="table-responsive">
-                        <table class="table table-hover" id="clientes-masVisitas-table">
+                        <table class="table table-hover">
                             <thead>   
                                 <tr>
                                     <th scope="col">Id</th>
@@ -175,7 +175,7 @@
                                     <th scope="col">No. visitas</th>
                                 </tr>
                             </thead>  
-                            <tbody id="cuerpo-tabla-clientes-inactivos">   
+                            <tbody>   
         ';
 
         $datos->execute();

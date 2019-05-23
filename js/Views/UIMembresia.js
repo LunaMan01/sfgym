@@ -100,6 +100,7 @@ var UIMembresia = (function () {
             var form = document.querySelector('#reporte-membresias-form');
             var data = new FormData(form);
             
+            console.log('form'+data);
             return data;
         },
 

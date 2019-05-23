@@ -11,7 +11,7 @@
             </div>
         </div>
     ';
-    
+
     if(isset($_POST['membresias'])) {
         $opciones = $_POST['membresias'];
         if(in_array('1', $_POST['membresias'])){
@@ -25,6 +25,7 @@
     }
 
     function getMembresiasNuevas($conn) {
+       
         global $fechaActual;
         $fechaNueva = menosSieteDias();
 
@@ -42,7 +43,7 @@
                             <i class="material-icons iconMessege">group</i>
                         </div>
                         <div class="col-lg-11">
-                            <p>Top 5 Clientes con membresías nuevas: <span>'.$fechaNueva.' a '.$fechaActual.'<span></p>
+                            <p>Clientes con nuevas membresías: <span>'.$fechaNueva.' a '.$fechaActual.'<span></p>
                         </div>
                     </div>
 
@@ -58,10 +59,11 @@
                             </thead>  
                             <tbody id="cuerpo-tabla-membresias-nuevas">   
         ';
-
+        
         $datos->execute();
         
         while($r = $datos->fetch()){
+            
                 $rowConTabla.= '<tr>
                         <th scope="row" id="'.$r['Id_Cliente'].'">'.$r['Id_Cliente'].'</th>'.
                         '<td>'.$r['nombre_cliente'].'</td>'.

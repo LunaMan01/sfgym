@@ -19,7 +19,9 @@ var ReportesController = (function () {
 
     function generarReporteCliente(containerReportes) {
         let cliente = new Cliente();
-        let data = UICliente.getDatosParaReporte();
+        var form = document.querySelector('#reporte-clientes-form');
+        console.log(document.querySelector('#reporte-clientes-form'));
+        var data = new FormData(form);
         let res = cliente.reporte(data);
         containerReportes.innerHTML += res;
         ocultarBotones();
@@ -28,8 +30,12 @@ var ReportesController = (function () {
 
     function generarReportesMembresias(containerReportes) {
         let membresia = new Membresia();
-        let data = UIMembresia.getDatosParaReporte();
+        var form = document.querySelector('#reportes-container-membresias #reporte-membresias-form');
+        console.log(document.querySelector('#reporte-membresias-form'));
+        var data = new FormData(form);
 
+
+        console.log(document.querySelector('#reporte-membresias-form'));
         let res = membresia.reporte(data);
 
         containerReportes.innerHTML += res;
@@ -67,7 +73,7 @@ var ReportesController = (function () {
         // document.querySelector('#descargar-pdf').addEventListener('click', 
     }
 
-    function generarReportesCompras (containerReportes) {
+    function generarReportesCompras(containerReportes) {
         let compra = new Compra();
         let data = UICompra.getDatosParaReporte();
 
@@ -78,84 +84,163 @@ var ReportesController = (function () {
         // document.querySelector('#descargar-pdf').addEventListener('click', 
     }
 
-    let containerReportes = document.querySelector('#reportes-container');
-    document.querySelector('#clientes-select').addEventListener('click', function () {
-        this.classList.add('d-none');
-        containerReportes.innerHTML += getReporteHTML('html/clientes-components/reporte-clientes.html');
-        containerReportes.classList.add('clientes');
-        document.querySelector('.rc').classList.add('col-4')
-        ocultarBotones();
-    });
+    function setUpDropDownButtons() {
 
-    document.querySelector('#membresias-select').addEventListener('click', function () {
-        this.classList.add('d-none');
-        containerReportes.innerHTML += getReporteHTML('html/membresias-components/reporte-membresias.html');
-        containerReportes.classList.add('membresias');
-        document.querySelector('.rm').classList.add('col-4')
-        ocultarBotones();
-    });
+        let containerReportes = document.querySelector('#container-reportes');
 
-    document.querySelector('#visitas-select').addEventListener('click', function () {
-        this.classList.add('d-none');
-        containerReportes.innerHTML += getReporteHTML('html/visitas-components/reporte-visitas.html');
-        containerReportes.classList.add('visitas');
-        document.querySelector('.r-visitas').classList.add('col-4')
-        ocultarBotones();
-    });
+        document.querySelector('#clientes-select').addEventListener('click', function () {
+            this.classList.add('d-none');
+            document.querySelector('#reportes-container-clientes').classList.replace('d-none', 'd-inline-flex');
+            document.querySelector('#reportes-container-clientes').innerHTML += getReporteHTML('html/clientes-components/reporte-clientes.html');
+            containerReportes.classList.add('clientes');
 
-    document.querySelector('#ventas-select').addEventListener('click', function () {
-        this.classList.add('d-none');
-        containerReportes.innerHTML += 'reporte ventas';
-        // document.querySelector('.r-ventas').classList.add('col-4')
-        ocultarBotones();
-    });
+            ocultarBotones();
 
+            new Lightpick({
+                field: document.querySelector('.f-cliente'),
+                singleDate: false
+            });
 
-    document.querySelector('#productos-select').addEventListener('click', function () {
-        this.classList.add('d-none');
-        containerReportes.innerHTML += getReporteHTML('html/productos-components/reporte-productos.html');
-        containerReportes.classList.add('productos');
-        document.querySelector('.r-productos').classList.add('col-4')
-        ocultarBotones();
-    });
+            new Cleave('.f-cliente', {
+                date: true,
+                delimiter: '/',
+                datePattern: ['d', 'm', 'Y']
+            });
+        });
+
+        document.querySelector('#membresias-select').addEventListener('click', function () {
+            this.classList.add('d-none');
+            document.querySelector('#reportes-container-membresias').classList.replace('d-none', 'd-inline-flex');
+            document.querySelector('#reportes-container-membresias').innerHTML += getReporteHTML('html/membresias-components/reporte-membresias.html');
+            containerReportes.classList.add('membresias');
+
+            ocultarBotones();
 
 
-    document.querySelector('#gastos-select').addEventListener('click', function () {
-        this.classList.add('d-none');
-        containerReportes.innerHTML += getReporteHTML('html/gastos-components/reporte-gastos.html');
-        containerReportes.classList.add('gastos');
-        document.querySelector('.r-gastos').classList.add('col-4')
-        ocultarBotones();
-    });
+        });
+
+        document.querySelector('#visitas-select').addEventListener('click', function () {
+            this.classList.add('d-none');
+            document.querySelector('#reportes-container-visitas').classList.replace('d-none', 'd-inline-flex');
+            document.querySelector('#reportes-container-visitas').innerHTML += getReporteHTML('html/visitas-components/reporte-visitas.html');
+            containerReportes.classList.add('visitas');
+
+            ocultarBotones();
+            new Lightpick({
+                field: document.querySelector('.f-visita'),
+                singleDate: false
+            });
+            new Cleave('.f-visita', {
+                date: true,
+                delimiter: '/',
+                datePattern: ['d', 'm', 'Y']
+            });
+        });
+
+        document.querySelector('#ventas-select').addEventListener('click', function () {
+            this.classList.add('d-none');
+            document.querySelector('#reportes-container-ventas').classList.replace('d-none', 'd-inline-flex');
+            document.querySelector('#reportes-container-ventas').innerHTML += getReporteHTML('html/ventas-components/reporte-ventas.html');
+            containerReportes.classList.add('ventas');
+
+            ocultarBotones();
+            new Lightpick({
+                field: document.querySelector('.f-venta'),
+                singleDate: false
+            });
+            new Cleave('.f-venta', {
+                date: true,
+                delimiter: '/',
+                datePattern: ['d', 'm', 'Y']
+            });
+
+        });
 
 
-    document.querySelector('#compras-select').addEventListener('click', function () {
-        this.classList.add('d-none');
-        containerReportes.innerHTML += getReporteHTML('html/compras-components/reporte-compras.html');
-        containerReportes.classList.add('compras');
-        document.querySelector('.r-compras').classList.add('col-4')
-        ocultarBotones();
-    });
+        document.querySelector('#productos-select').addEventListener('click', function () {
+            this.classList.add('d-none');
+            document.querySelector('#reportes-container-productos').classList.replace('d-none', 'd-inline-flex');
+            document.querySelector('#reportes-container-productos').innerHTML += getReporteHTML('html/productos-components/reporte-productos.html');
+            containerReportes.classList.add('productos');
+
+            ocultarBotones();
+            new Lightpick({ field: document.querySelector('.f-producto') });
+
+            new Cleave('.f-producto', {
+                date: true,
+                delimiter: '/',
+                datePattern: ['d', 'm', 'Y']
+            });
+        });
+
+
+        document.querySelector('#gastos-select').addEventListener('click', function () {
+            this.classList.add('d-none');
+            document.querySelector('#reportes-container-gastos').classList.replace('d-none', 'd-inline-flex');
+            document.querySelector('#reportes-container-gastos').innerHTML += getReporteHTML('html/gastos-components/reporte-gastos.html');
+            containerReportes.classList.add('gastos');
+
+            ocultarBotones();
+            new Lightpick({
+                field: document.querySelector('.f-gasto'),
+                singleDate: false
+            });
+            new Cleave('.f-gasto', {
+                date: true,
+                delimiter: '/',
+                datePattern: ['d', 'm', 'Y']
+            });
+        });
+
+
+        document.querySelector('#compras-select').addEventListener('click', function () {
+            this.classList.add('d-none');
+            document.querySelector('#reportes-container-compras').classList.replace('d-none', 'd-inline-flex');
+            document.querySelector('#reportes-container-compras').innerHTML += getReporteHTML('html/compras-components/reporte-compras.html');
+            containerReportes.classList.add('compras');
+            ocultarBotones();
+            new Lightpick({
+                field: document.querySelector('.f-compra'),
+                singleDate: false
+            });
+            new Cleave('.f-compra', {
+                date: true,
+                delimiter: '/',
+                datePattern: ['d', 'm', 'Y']
+            });
+        });
 
 
 
-    document.querySelector('#generar-reporte-general').addEventListener('click', function () {
-        if (containerReportes.classList.contains('clientes'))
-            generarReporteCliente(containerReportes);
-        if (containerReportes.classList.contains('membresias'))
-            generarReportesMembresias(containerReportes);
-        if (containerReportes.classList.contains('visitas'))
-            generarReportesVisitas(containerReportes);
-        if (containerReportes.classList.contains('productos'))
-            generarReportesProductos(containerReportes);
-        if (containerReportes.classList.contains('gasto'))
-            generarReportesGastos(containerReportes);
-        if (containerReportes.classList.contains('compras'))
-            generarReportesCompras(containerReportes);
-    });
+        document.querySelector('#generar-reporte-general').addEventListener('click', function () {
+            if (containerReportes.classList.contains('clientes'))
+                generarReporteCliente(containerReportes);
+            if (containerReportes.classList.contains('membresias'))
+                generarReportesMembresias(containerReportes);
+            if (containerReportes.classList.contains('visitas'))
+                generarReportesVisitas(containerReportes);
+            if (containerReportes.classList.contains('productos'))
+                generarReportesProductos(containerReportes);
+            if (containerReportes.classList.contains('gasto'))
+                generarReportesGastos(containerReportes);
+            if (containerReportes.classList.contains('compras'))
+                generarReportesCompras(containerReportes);
+        });
+
+    }
 
 
 
 
+    return {
+        init: function () {
+            setUpDropDownButtons();
+        }
+    }
 
-})(UICliente);
+
+
+
+})(UICliente, UIMembresia);
+
+ReportesController.init();

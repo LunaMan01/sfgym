@@ -1,42 +1,42 @@
-<div class="r-visitas">
-    <div class="container panel-reportes">
+<div class="container panel-reportes">
 
-        <div class="container">
+    <div class="container">
 
-            <div class="row">
-                <div class="col-auto">
-                    <i class="material-icons iconMessege">done_all</i>
-                </div>
-                <div class="col-auto pt-2">
-                    <p><b>Crear reporte</b></p>
-                </div>
+        <div class="row">
+            <div class="col-auto">
+                <i class="material-icons iconMessege">done_all</i>
             </div>
-
-            <div class="row">
-                <div class="col-auto">
-                    <p><i>Seleccione el rango
-                            de fechas para la generación del reporte</i></p>
-                </div>
+            <div class="col-auto pt-2">
+                <p><b>Crear reporte</b></p>
             </div>
+        </div>
 
-            <form onsubmit="return false" id="reporte-visitas-form">
-                <div class="row">
-                    <div class="ml-5">
-                        <div class="form-group">
-                            <label><b>Fecha:</b></label>
-                            <input type="text" class="form-control rounded-pill" id="fecha-rango-reporte" name="fecha">
-                        </div>
+        <div class="row">
+            <div class="col-auto">
+                <p><i>Seleccione el rango
+                        de fechas para la generación del reporte</i></p>
+            </div>
+        </div>
+
+        <form onsubmit="return false" id="reporte-visitas-form">
+            <div class="row">
+                <div class="ml-5">
+                    <div class="form-group">
+                        <label><b>Fecha:</b></label>
+                        <input type="text" class="form-control f-visita rounded-pill" id="fecha-rango-reporte" name="fecha">
                     </div>
                 </div>
-                <button id="generar-reporte-visitas"
-                    class="btn btn-outline-success btn-sm my-2 my-sm-0 mr-3 rounded-pill hidable" type="submit">Generar</button>
-            </form>
-        </div>
+            </div>
+            <button id="generar-reporte-visitas"
+                class="btn btn-outline-success btn-sm my-2 my-sm-0 mr-3 rounded-pill hidable"
+                type="submit">Generar</button>
+        </form>
     </div>
+</div>
 
-    <div class="container reporte-generado d-none mb-5">
+<div class="container reporte-generado d-none mb-5">
 
-        <!-- <div class="container" id="crear-reporte-card">
+    <!-- <div class="container" id="crear-reporte-card">
         <div class="row">
             <div class="col-auto mt-3">
                 <p><b>Reporte de clientes</b></p>
@@ -73,5 +73,4 @@
                 </div>
             </div>
         </div> -->
-    </div>
 </div>

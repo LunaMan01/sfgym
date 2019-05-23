@@ -236,7 +236,7 @@ function getReporteHTML(url) {
     req = new XMLHttpRequest();
     req.open("GET", url, false);
     req.send(null);
-    console.log(req.responseText);
+    
     return req.responseText;
 }
 

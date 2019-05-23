@@ -102,7 +102,7 @@ create table Aparatos(
 create table Instructores(
 	Id_Instructor int not null auto_increment,
 	nombre_instructor varchar(20),
-	contraseña varchar(20),
+	password1 varchar(20),
 
 	primary key(Id_Instructor)
 );

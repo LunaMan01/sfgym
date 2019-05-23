@@ -7,11 +7,11 @@
     $mes = date('m');
     $año = date('Y');
     
-    $semana=date("W",mktime(0,0,0,$mes,$day,$año));
-    $diaSemana=date("w",mktime(0,0,0,$mes,$day,$año));
+    $semana = date("W",mktime(0,0,0,$mes,$day,$año));
+    $diaSemana = date("w",mktime(0,0,0,$mes,$day,$año));
     
-    if($diaSemana==0)
-        $diaSemana=7;
+    if($diaSemana == 0)
+        $diaSemana = 7;
 
     $primerDia=date("d/m/Y",mktime(0,0,0,$mes,$day-$diaSemana+1,$año));
     $ultimoDia=date("d/m/Y",mktime(0,0,0,$mes,$day+(5-$diaSemana),$año));

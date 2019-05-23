@@ -65,7 +65,7 @@ class Venta {
         var req = new XMLHttpRequest();
         req.open("POST", 'php/ventas/consultaDinamica.php', false);
         req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-        req.send('dato=' + datoABuscar+"&select-visitas="+selectActual);
+        req.send('dato=' + datoABuscar+"&select-ventas="+selectActual);
         return req.responseText;
     }
 

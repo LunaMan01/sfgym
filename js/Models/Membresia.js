@@ -61,6 +61,7 @@ class Membresia {
         req.open("POST", 'php/membresias/reportes.php', false);
         
         req.send(data);
+        console.log('reporte membresia dice: '+req.responseText);
         return req.responseText;
     }
 

@@ -1,96 +1,87 @@
-<div class="rc">
-    <div class="container panel-reportes">
 
-        <div class="container" id="crear-reporte-card">
-            <div class="row">
-                <div class="col-auto">
-                    <i class="material-icons iconMessege">group</i>
-                </div>
-                <div class="col-auto mt-3">
-                    <p><b>Crear reporte</b></p>
-                </div>
+<div class="container panel-reportes">
+
+    <div class="container" id="crear-reporte-card">
+        <div class="row">
+            <div class="col-auto">
+                <i class="material-icons iconMessege">group</i>
             </div>
-
-            <div class="row">
-                <div class="col-auto">
-                    <p><i>Seleccionar los datos que desea ver en el reporte</i></p>
-                </div>
+            <div class="col-auto mt-3">
+                <p><b>Crear reporte</b></p>
             </div>
-
-            <form onsubmit="return false" id="reporte-clientes-form">
-                <div class="row">
-                    <div class="container">
-                        <div class="row mb-2">
-                            <div class="col-auto">
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="clientes-inactivos"
-                                        name="clientes[]" value="1">
-                                    <label class="custom-control-label" for="clientes-inactivos">Clientes
-                                        inactivos</label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- <div class="row mb-2">
-                        <div class="col-auto">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="clientes-agregados"
-                                    name="clientes[]">
-                                <label class="custom-control-label" for="clientes-agregados">Clientes
-                                    añadidos</label>
-                            </div>
-                        </div>
-                    </div> -->
-
-                        <div class="row mb-2">
-                            <div class="col-auto">
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="clientes-mas-visitas"
-                                        name="clientes[]" value="2">
-                                    <label class="custom-control-label" for="clientes-mas-visitas">Clientes con mas
-                                        visitas</label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row mb-2">
-                            <div class="col-auto">
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="clientes-menos-visitas"
-                                        name="clientes[]" value="3">
-                                    <label class="custom-control-label" for="clientes-menos-visitas">Clientes con menos
-                                        visitas</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="mt-5 ml-5">
-                        <div class="form-group">
-                            <label><b>Fecha:</b></label>
-                            <input type="text" class="form-control rounded-pill" id="rango-fecha" name="rango-fecha">
-                        </div>
-                    </div>
-                </div>
-                <button id="generar-reporte-cliente"
-                    class="btn btn-outline-success btn-sm my-2 my-sm-0 mr-3 rounded-pill hidable" type="submit">Generar</button>
-
-
-            </form>
         </div>
 
+        <div class="row">
+            <div class="col-auto">
+                <p><i>Seleccionar los datos que desea ver en el reporte</i></p>
+            </div>
+        </div>
+
+        <form onsubmit="return false" id="reporte-clientes-form">
+            <div class="row xxxx">
+                <div class="container">
+                    <div class="row mb-2">
+                        <div class="col-auto">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="clientes-inactivos"
+                                    name="clientes[]" value="1">
+                                <label class="custom-control-label" for="clientes-inactivos">Clientes
+                                    inactivos</label>
+                            </div>
+                        </div>
+                    </div>
 
 
-    </div>
 
-    <div class="container reporte-generado d-none mb-5">
+                    <div class="row mb-2">
+                        <div class="col-auto">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="clientes-mas-visitas"
+                                    name="clientes[]" value="2">
+                                <label class="custom-control-label" for="clientes-mas-visitas">Clientes con mas
+                                    visitas</label>
+                            </div>
+                        </div>
+                    </div>
 
-     
+                    <div class="row mb-2">
+                        <div class="col-auto">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="clientes-menos-visitas"
+                                    name="clientes[]" value="3">
+                                <label class="custom-control-label" for="clientes-menos-visitas">Clientes con menos
+                                    visitas</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="mt-5 ml-5">
+                    <div class="form-group">
+                        <label><b>Fecha:</b></label>
+                        <input type="text" class="form-control f-cliente rounded-pill" id="rango-fecha" name="rango-fecha">
+                    </div>
+                </div>
+            </div>
+            <button id="generar-reporte-cliente"
+                class="btn btn-outline-success btn-sm my-2 my-sm-0 mr-3 rounded-pill hidable"
+                type="submit">Generar</button>
+
+
+        </form>
     </div>
 
 
 
 </div>
+
+<div class="container reporte-generado d-none mb-5">
+
+
 </div>
+
+
+
+<!-- </div> -->

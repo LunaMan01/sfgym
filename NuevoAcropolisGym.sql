@@ -102,6 +102,7 @@ create table Aparatos(
 create table Instructores(
 	Id_Instructor int not null auto_increment,
 	nombre_instructor varchar(20),
+	contraseña varchar(20),
 
 	primary key(Id_Instructor)
 );
@@ -150,9 +151,9 @@ insert into Generos (sexo) values ('Masculino');
 insert into Generos (sexo) values ('Femenino');
 insert into Generos (sexo) values ('Otro');
 
-insert into Instructores (nombre_instructor) values ('Luna');
-insert into Instructores (nombre_instructor) values ('Carlos');
-insert into Instructores (nombre_instructor) values ('Alberto');
+insert into Instructores (nombre_instructor, constraseña) values ('Luna', '123');
+insert into Instructores (nombre_instructor, constraseña) values ('Carlos', '123');
+insert into Instructores (nombre_instructor, constraseña) values ('Alberto', '123');
 
 insert into TipoCompras (tipo_compra) values ('Producto');
 insert into TipoCompras (tipo_compra) values ('Aparato');

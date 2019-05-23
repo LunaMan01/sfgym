@@ -48,7 +48,7 @@ class Cliente {
         }
         console.log(req.responseText);
         return true;
-        return true;
+        
     }
 
     consultar(datoABuscar, selectActual) {

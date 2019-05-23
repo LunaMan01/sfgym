@@ -3,7 +3,7 @@
 
     try{
         $consultar = 'SELECT Id_Producto, descripcion_producto, fecha_caducidad, existencia_producto, precio_producto 
-        FROM Productos';
+        FROM Productos WHERE existencia_producto > 0';
   
         $productos =  array();
         $i = 0;

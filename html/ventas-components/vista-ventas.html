@@ -1,0 +1,108 @@
+<div class="d-none" id="add-venta-alert">
+
+    </div>
+    <div class="container panel-reportes">
+        <div class="container">
+            <form onsubmit="return false" id="add-venta-form">
+                <div class="row">
+                    <div class="container">
+    
+                        <!-- Letrero  " N U E V A   V E N T A"-->
+                        <div class="row">
+                            <div class="col-auto"><i class="material-icons iconMessege">attach_money</i></div>
+                            <div class="col-auto mt-2">
+                                <p><b>Venta</b></p>
+                            </div>
+                        </div>
+    
+                        <!--FORMULARIO-->
+                        <div class="row">
+                            <div class="container">
+    
+                                <div class="form-group row ">
+                                    <label class="col-lg-2 col-form-label text-right">NIP Cliente: </label>
+                                    <div class="col-lg-4">
+                                        <p id="nip-cliente">x</p>
+                                    </div>
+                                </div>
+    
+                                <div class="form-group row ">
+                                    <label class="col-lg-2 col-form-label text-right">NIP Instructor: </label>
+                                    <div class="col-lg-4">
+                                        <p id="nip-instructor">x</p>
+                                    </div>
+                                </div>
+
+    
+                            </div>
+                        </div>
+    
+                    </div>
+                </div>
+    
+                <div class="row">
+                    <div class="container">
+                        <div class="col-12">
+                            <div class="container">
+                                <div class="tablaPrincipal">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-auto">
+                                                <i class="material-icons iconMessege">attach_money</i>
+                                            </div>
+                                            <div class="col-auto mt-3">
+                                                <p><b>Lista de productos vendidos</b></p>
+                                            </div>
+                                        </div>
+    
+                                        <div class="row">
+                                            <div class="table-responsive">
+                                                <table class="table table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">#</th>
+                                                            <th scope="col">Producto</th>
+                                                            <th scope="col">SubTotal</th>
+                                                            <th scope="col">Cantidad</th>
+                                                            <th scope="col">Acciones</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="carrito">
+    
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="row mt-3 mb-3">
+                    <div class="col-lg-5 offset-lg-7">
+                        <div class="row">
+                            <div class="col-auto">
+                                <p>Total:</p>
+                            </div>
+                            <div class="col-auto">
+                                <input type="text" class="form-control rounded-pill" id="total-venta" name="total-de-venta"
+                                    disabled>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="row">
+                    <div class="col-lg-4 text-right offset-lg-8">
+                        <button type="submit" id="guardar-venta"
+                            class="btn btn-outline-success btn-sm my-2 my-sm-0 mr-3 rounded-pill">Guardar</button>
+                        <button id="cancelar-venta" class="btn btn-outline-success btn-sm my-2 my-sm-0 mr-3 rounded-pill"
+                            type="button">Cancelar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>

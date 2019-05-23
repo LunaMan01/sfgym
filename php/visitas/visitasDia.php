@@ -5,7 +5,8 @@
 
     try{
         $datos = "SELECT Id_Visita, nombre_cliente, fecha_visitas FROM Visitas, Clientes 
-        WHERE Visitas.Id_Cliente = Clientes.Id_Cliente AND fecha_visitas LIKE '".$fecha."'";
+        WHERE Visitas.Id_Cliente = Clientes.Id_Cliente AND fecha_visitas LIKE '".$fecha."' 
+        ORDER BY Id_Visita ASC";
         //$datos->execute();
     
         foreach($conn->query($datos) as $row){

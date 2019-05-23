@@ -17,6 +17,67 @@ class Venta {
         return true;
     }
 
+    modificar(venta, productos, productosNuevos,  productosEliminadosDeCarrito, idVenta) {
+        var req = new XMLHttpRequest();
+        console.log('productos viejos = '+JSON.stringify(productos));
+
+        console.log('carr nuevo '+JSON.stringify(productosNuevos));
+
+        console.log('eliminados '+JSON.stringify(productosEliminadosDeCarrito));
+
+        console.log('id-venta'+idVenta);
+
+        
+
+        req.open("POST", 'php/ventas/modificarVentas.php', false);
+        req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        req.send("venta="+encodeURIComponent(JSON.stringify(venta))+"&productos="+encodeURIComponent(JSON.stringify(productos))+"&id-venta="+idVenta+"&productosNuevos="+encodeURIComponent(JSON.stringify(productosNuevos))+"&eliminados="+JSON.stringify(productosEliminadosDeCarrito));
+        if (req.responseText != 1) {
+            console.log('Error');
+            console.log(req.responseText);
+
+            return false;
+        }
+        console.log(req.responseText);
+        return true;
+        
+    }
+
+    eliminar(id) {
+        var req = new XMLHttpRequest();
+        req.open("POST", 'php/ventas/eliminarVenta.php', false);
+        req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        req.send('id-venta=' + id);
+        console.log(localStorage.getItem('id'));
+        if (req.responseText != 1) {
+            console.log('Error');
+            console.log(req.responseText);
+
+            return false;
+        }
+        console.log(req.responseText);
+        return true;
+
+    }
+
+    //Cambiar nombre a select
+    consultar(datoABuscar, selectActual) {
+        var req = new XMLHttpRequest();
+        req.open("POST", 'php/ventas/consultaDinamica.php', false);
+        req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+        req.send('dato=' + datoABuscar+"&select-visitas="+selectActual);
+        return req.responseText;
+    }
+
+
+    getVentasTodas () {
+        var req = new XMLHttpRequest();
+        req.open("POST", 'php/ventas/consultarVentas.php', false);
+        
+        req.send(null);
+        return req.responseText;
+    }
+
     getVentasMes () {
         var req = new XMLHttpRequest();
         req.open("POST", 'php/ventas/ventasMes.php', false);

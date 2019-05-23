@@ -1,7 +1,7 @@
 <?php 
     include '../conexion.php';
 
-    $cadenaFecha = $_POST['fecha'];
+    $cadenaFecha = $_POST['fecha-rango-reporte'];
     //separar la fecha
     $array = explode("-", $cadenaFecha);
 
@@ -9,22 +9,22 @@
     <div class="container" id="crear-reporte-card">
         <div class="row">
             <div class="col-auto mt-3">
-                <p><b>Reporte de gastos</b></p>
+                <p><b>Reporte de ventas</b></p>
             </div>
         </div>
     ';
+    $html.=getVentasReporte($conn);
 
-    $html.=getGastosReporte($conn);
 
-    function getGastosReporte($conn) {
+    function getVentasReporte($conn) {
         global $array;    
 
         $fecha1 = $array[0];
         $fecha2 = $array[1];
         
-        $datos = $conn->prepare("SELECT Id_Gasto, descripcion_gasto, fecha_gasto, monto_gasto, tipo_gasto 
-        FROM Gastos INNER JOIN TipoGastos ON Gastos.Id_Tipo LIKE TipoGastos.Id_Tipo WHERE str_to_date(fecha_gasto, '%d/%m/%Y') 
-        BETWEEN str_to_date('".$fecha1."', '%d/%m/%Y') AND str_to_date('".$fecha2."' ,'%d/%m/%Y')");
+        $datos = $conn->prepare("SELECT Id_Venta, total_venta, fecha_venta FROM Ventas  
+        WHERE str_to_date(fecha_venta, '%d/%m/%Y') BETWEEN 
+        str_to_date('".$fecha1."', '%d/%m/%Y') AND str_to_date('".$fecha2."', '%d/%m/%Y')");
         
         $rowConTabla = '
         <div class="row mb-5">
@@ -35,33 +35,29 @@
                             <i class="material-icons iconMessege">group</i>
                         </div>
                         <div class="col-lg-11">
-                            <p>Gastos: <span>'.$fecha1.' a '.$fecha2.'<span></p>
+                            <p>Ventas: <span>'.$fecha1.' a '.$fecha2.'<span></p>
                         </div>
                     </div>
 
                     <div class="table-responsive">
-                        <table class="table table-hover" id="gastos-table">
+                        <table class="table table-hover" id="visitas-table">
                             <thead>   
                                 <tr>
                                     <th scope="col">Id</th>
-                                    <th scope="col">Descripción</th>
-                                    <th scope="col">Fecha Gasto</th>
-                                    <th scope="col">Monto</th>
-                                    <th scope="col">Tipo Gasto</th>
+                                    <th scope="col">Total de venta</th>
+                                    <th scope="col">Fecha Venta</th>
                                 </tr>
                             </thead>  
-                            <tbody id="cuerpo-tabla-gastos">   
+                            <tbody id="cuerpo-tabla-ventas">   
         ';
 
         $datos->execute();
         
         while($r = $datos->fetch()){
                 $rowConTabla.= '<tr>
-                        <th scope="row" id="'.$r['Id_Gasto'].'">'.$r['Id_Gasto'].'</th>'.
-                        '<td>'.$r['descripcion_gasto'].'</td>'.
-                        '<td>'.$r['fecha_gasto'].'</td>'.
-                        '<td>'.$r['monto_gasto'].'</td>'.
-                        '<td>'.$r['tipo_gasto'].'</td>
+                        <th scope="row" id="'.$r['Id_Venta'].'">'.$r['Id_Venta'].'</th>'.
+                        '<td>'.$r['total_venta'].'</td>'.
+                        '<td>'.$r['fecha_venta'].'</td>
                     </tr>';
             }
 

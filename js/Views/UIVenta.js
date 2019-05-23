@@ -55,9 +55,7 @@ var UIVenta = (function () {
             let subtotal = precio * cantidad;
             let productoTr = `
                 <tr>
-                    <td scope="row" class="carrito" id="${productoId}" 
-                    data-cantidad="${cantidad}"
-                    data-subtotal = "${subtotal}"
+                    <th scope="row" class="carrito" id="${productoId}" data-cantidad="${cantidad}" data-subtotal = "${subtotal}"
                     >${productoId}</th>
                     <td>${producto}</td>
                     <td class="subtotales">${subtotal}</td>
@@ -105,22 +103,70 @@ var UIVenta = (function () {
             document.querySelector('#carrito').innerHTML = productos;
         },
 
+
+
+        verVenta : function (venta){
+            console.log('idc-'+venta.idCliente);
+            document.querySelector('#nip-cliente').innerHTML = venta.idCliente;
+            document.querySelector('#nip-instructor').innerHTML = venta.idInstructor;
+            document.querySelector('#total-venta').innerHTML = venta.totalVenta;
+        },
+
+
+
+
+
         getCantidadTd: function (event) {
             var i = event.target;
             var td = i.parentNode;
             tr = td.parentNode;
             var elements = tr.childNodes;
-            var th = elements[6];
+            var th = elements[7];
             console.log(th);
             return th;
         },
+
+        getCantidadTdDetalle: function (event) {
+            var i = event.target;
+            var td = i.parentNode;
+            tr = td.parentNode;
+            var elements = tr.childNodes;
+            var th = elements[4];
+            console.log(th);
+            return th;
+        },
+
 
         getSubtotalTd : function () {
             var i = event.target;
             var td = i.parentNode;
             tr = td.parentNode;
             var elements = tr.childNodes;
-            var th = elements[4];
+            var th = elements[5];
+            console.log(th);
+            return th;
+        },
+
+        getDatosABuscar: function () {
+            return document.querySelector('#buscar-venta-input').value;
+        },
+
+        getSubtotalTdDetalle : function () {
+            var i = event.target;
+            var td = i.parentNode;
+            tr = td.parentNode;
+            var elements = tr.childNodes;
+            var th = elements[3];
+            console.log(th);
+            return th;
+        },
+
+        getTh : function () {
+            var i = event.target;
+            var td = i.parentNode;
+            tr = td.parentNode;
+            var elements = tr.childNodes;
+            var th = elements[1];
             console.log(th);
             return th;
         },
@@ -135,6 +181,19 @@ var UIVenta = (function () {
             var id = th.getAttribute('id');
             console.log(id);
             localStorage.setItem('id', id);
+            return id;
+        },
+
+        getCantidadesEnCarritoTd : function (){
+            var i = event.target;
+            var td = i.parentNode;
+            tr = td.parentNode;
+            var elements = tr.childNodes;
+            var th = elements[1];
+            console.log(th);
+            var cantidad = th.getAttribute('data-cantidad');
+            
+            return cantidad;
         },
 
         quitarRegistroDeCarrito: function () {
@@ -148,6 +207,10 @@ var UIVenta = (function () {
             });
 
             document.querySelector('#total-venta').value = total;
+        },
+
+        quitarRegistro : function () {
+            tr.remove();
         },
 
         limpiarCarrito : function () {
@@ -166,6 +229,11 @@ var UIVenta = (function () {
             load('html/ventas-components/reporte-ventas.html', document.querySelector('.content'));
         },
 
+        abrirVista: function () {
+            load('html/ventas-components/vista-ventas.html', document.querySelector('.content'));
+        },
+
+
         mostrarAlert: function (container, mensaje, type) {
             new Toast(container, mensaje, 2000, type).getAndShow();
 
@@ -176,7 +244,7 @@ var UIVenta = (function () {
 
             cantidadTd.innerHTML = cantidad;
             subtotalTd.innerHTML = subtotal;
-
+            console.log(cantidadTd);
             let subtotales = document.querySelectorAll('.subtotales');
 
             let total = 0;
@@ -188,6 +256,7 @@ var UIVenta = (function () {
             document.querySelector('#total-venta').value = total;
         },
 
+        
 
         esconderModal: function (modal) {
             $(modal).modal('hide');

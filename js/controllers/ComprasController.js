@@ -253,6 +253,7 @@ var compraController = (function () {
         setUpWatchEvent();
         document.querySelector('#buscar-compra-input').addEventListener('keyup', busquedaDinamica);
         document.querySelector('#reporte-compra-btn').addEventListener('click', setUpVentanaReportes);
+        document.querySelector('#reporte-compra-i').addEventListener('click', setUpVentanaReportes);
         document.querySelector('#select-compras').addEventListener('change', cambiarVista);
     }
 

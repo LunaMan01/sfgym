@@ -244,6 +244,7 @@ var productoController = (function () {
         document.querySelector('#buscar-producto-input').addEventListener('keyup', busquedaDinamica);
         new Lightpick({ field: document.getElementById('fecha-caducidad') });
         document.querySelector('#reporte-producto-btn').addEventListener('click', setUpVentanaReportes);
+        document.querySelector('#reporte-producto-i').addEventListener('click', setUpVentanaReportes);
         document.querySelector('#select-productos').addEventListener('change', cambiarVista);
 
     }

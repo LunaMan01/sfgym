@@ -201,6 +201,7 @@ var gastoController = (function () {
         setUpWatchEvent();
         document.querySelector('#buscar-gasto-input').addEventListener('keyup', busquedaDinamica);
         document.querySelector('#reporte-gasto-btn').addEventListener('click', setUpVentanaReportes);
+        document.querySelector('#reporte-gasto-i').addEventListener('click', setUpVentanaReportes);
         document.querySelector('#select-gastos').addEventListener('change', cambiarVista);
     }
 

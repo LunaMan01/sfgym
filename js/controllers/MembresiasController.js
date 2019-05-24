@@ -195,6 +195,7 @@ var membresiaController = (function () {
         new Lightpick({ field: document.getElementById('fecha-inicio-add') });
         new Lightpick({ field: document.getElementById('fecha-fin-add') });
         document.querySelector('#reporte-membresia-btn').addEventListener('click', setUpVentanaReportes);
+        document.querySelector('#reporte-membresia-i').addEventListener('click', setUpVentanaReportes);
         document.querySelector('#select-membresias').addEventListener('change', cambiarVista);
 
 

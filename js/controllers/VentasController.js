@@ -45,8 +45,18 @@ var ventaController = (function () {
                 UIVenta.setProductosEnTabla(new Venta().getDetalleVenta(id));
                 UIVenta.verVenta(venta);
 
+                let eAction = document.querySelectorAll('.edit-action');
+                let dAction = document.querySelectorAll('.delete-action');
 
+                eAction.forEach(element => {
+                    element.classList.add('d-none');
+                });
 
+                dAction.forEach(element => {
+                    element.classList.add('d-none');
+                });
+
+                document.querySelector('#cancelar-venta').addEventListener('click', regresar);
             }
 
 
@@ -135,6 +145,7 @@ var ventaController = (function () {
         setUpEditEvent();
         setUpDeleteEvent();
         document.querySelector('#modificar-cantidad-form').addEventListener('submit', modificarCantidad);
+        document.querySelector('#cancelar-venta').addEventListener('click', regresar);
     }
 
     function modificarVenta() {
@@ -227,6 +238,15 @@ var ventaController = (function () {
         setUpEditEvent();
         setUpDeleteEvent();
         document.querySelector('#modificar-cantidad-form').addEventListener('submit', modificarCantidad);
+
+        document.querySelector('#cancelar-venta').addEventListener('click', regresar);
+    }
+
+    function regresar (){
+        
+        UIVenta.regresar();
+        getTodasLasVentas();
+    
     }
 
 
@@ -357,6 +377,30 @@ var ventaController = (function () {
             
     }
 
+    function setUpVentanaReportes () {
+        UIVenta.abrirReportes();
+        new Lightpick({
+            field: document.querySelector('#fecha-rango-reporte'),
+            singleDate: false
+
+        });
+
+        document.querySelector('#reporte-ventas-form').addEventListener('submit', generarReporte);
+    }
+
+
+    function generarReporte() {
+        
+
+        let venta = new Venta();
+        let data = UIVenta.getDatosParaReporte();
+
+        let res = venta.reporte(data);
+        UICliente.mostrarReporte(res);
+
+        // document.querySelector('#descargar-pdf').addEventListener('click', descargarPDF);
+    }
+
     function setUpEvents() {
         setUpEliminarEvent();
         getTodasLasVentas();
@@ -364,8 +408,8 @@ var ventaController = (function () {
         setUpEditEventVenta();
         document.querySelector('#add-venta-btn').addEventListener('click', setUpNuevaVenta);
         document.querySelector('#add-venta-i').addEventListener('click', setUpNuevaVenta);
-        document.querySelector('#reporte-venta-btn').addEventListener('click', UIVenta.abrirReportes);
-        document.querySelector('#reporte-venta-i').addEventListener('click', UIVenta.abrirReportes);
+        document.querySelector('#reporte-venta-btn').addEventListener('click', setUpVentanaReportes);
+        document.querySelector('#reporte-venta-i').addEventListener('click', setUpVentanaReportes);
         document.querySelector('#confirmar-eliminacion').addEventListener('click', eliminarVenta);
 
         document.querySelector('#select-ventas').addEventListener('change', cambiarVista);

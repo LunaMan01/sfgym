@@ -202,7 +202,7 @@
 
     $html.= '</div>';
 
-    $html.= '<button id="descargar-pdf" class="btn hidable btn-outline-success btn-sm my-2 my-sm-0 mr-3 ml-5 mt-5 rounded-pill"
+    $html.= '<button id="descargar-pdf" class="btn hidable d-none btn-outline-success btn-sm my-2 my-sm-0 mr-3 ml-5 mt-5 rounded-pill"
     type="button">Descargar como PDF</button>';
     echo $html;
 ?>

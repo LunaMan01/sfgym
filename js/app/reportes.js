@@ -53,6 +53,16 @@ var ReportesController = (function () {
         // document.querySelector('#descargar-pdf').addEventListener('click', descargarPDF);
     }
 
+    function generarReportesVentas(containerReportes) {
+        let venta = new Venta();
+        let data = UIVenta.getDatosParaReporte();
+
+        let res = venta.reporte(data);
+        containerReportes.innerHTML += res;
+        ocultarBotones();
+        // document.querySelector('#descargar-pdf').addEventListener('click', descargarPDF);
+    }
+
     function generarReportesProductos(containerReportes) {
         let producto = new Producto();
         let data = UIProducto.getDatosParaReporte();
@@ -225,6 +235,21 @@ var ReportesController = (function () {
                 generarReportesGastos(containerReportes);
             if (containerReportes.classList.contains('compras'))
                 generarReportesCompras(containerReportes);
+            if (containerReportes.classList.contains('ventas'))
+                generarReportesVentas(containerReportes);
+
+
+            document.querySelector('#reportes-container-clientes').classList.add('d-none');;
+            document.querySelector('#reportes-container-membresias').classList.add('d-none');;
+            document.querySelector('#reportes-container-visitas').classList.add('d-none');;
+            document.querySelector('#reportes-container-ventas').classList.add('d-none');;
+            document.querySelector('#reportes-container-productos').classList.add('d-none');;
+            document.querySelector('#reportes-container-gastos').classList.add('d-none');;
+            document.querySelector('#reportes-container-compras').classList.add('d-none');;
+
+
+            document.querySelector('#h1').classList.add('d-none');
+            document.querySelector('#opciones').classList.add('d-none');
         });
 
     }

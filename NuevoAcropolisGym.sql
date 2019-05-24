@@ -1,6 +1,6 @@
-create database NuevoAcropolisGym;
+-- create database NuevoAcropolisGym;
 
-use NuevoAcropolisGym;
+-- use NuevoAcropolisGym;
 
 create table Generos(
 	Id_Genero int not null auto_increment,
@@ -151,9 +151,9 @@ insert into Generos (sexo) values ('Masculino');
 insert into Generos (sexo) values ('Femenino');
 insert into Generos (sexo) values ('Otro');
 
-insert into Instructores (nombre_instructor, constraseña) values ('Luna', '123');
-insert into Instructores (nombre_instructor, constraseña) values ('Carlos', '123');
-insert into Instructores (nombre_instructor, constraseña) values ('Alberto', '123');
+insert into Instructores (nombre_instructor, password1) values ('Luna', '123');
+insert into Instructores (nombre_instructor, password1) values ('Carlos', '123');
+insert into Instructores (nombre_instructor, password1) values ('Alberto', '123');
 
 insert into TipoCompras (tipo_compra) values ('Producto');
 insert into TipoCompras (tipo_compra) values ('Aparato');

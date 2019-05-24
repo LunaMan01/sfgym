@@ -207,6 +207,7 @@ var visitaController = (function () {
         document.querySelector('#reporte-visita-btn').addEventListener('click', setUpVentanaReportes);
         document.querySelector('#buscar-visita-input').addEventListener('keyup', busquedaDinamica);
         document.querySelector('#reporte-visita-btn').addEventListener('click', setUpVentanaReportes);
+        document.querySelector('#reporte-visita-i').addEventListener('click', setUpVentanaReportes);
         document.querySelector('#select-visitas').addEventListener('change', cambiarVista);
     }
 

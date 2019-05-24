@@ -363,7 +363,9 @@ var ventaController = (function () {
         setUpWatchEvent();
         setUpEditEventVenta();
         document.querySelector('#add-venta-btn').addEventListener('click', setUpNuevaVenta);
+        document.querySelector('#add-venta-i').addEventListener('click', setUpNuevaVenta);
         document.querySelector('#reporte-venta-btn').addEventListener('click', UIVenta.abrirReportes);
+        document.querySelector('#reporte-venta-i').addEventListener('click', UIVenta.abrirReportes);
         document.querySelector('#confirmar-eliminacion').addEventListener('click', eliminarVenta);
 
         document.querySelector('#select-ventas').addEventListener('change', cambiarVista);

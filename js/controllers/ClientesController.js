@@ -269,12 +269,14 @@ var clienteController = (function () {
         console.log('iniciando clientes');
         document.querySelector('#clientes-link').addEventListener('click', UICliente.mostrarTodosLosClientes);
         document.querySelector('#add-cliente-btn').addEventListener('click', setUpVentantaNuevoCliente);
+        document.querySelector('#add-cliente-i').addEventListener('click', setUpVentantaNuevoCliente);
         setUpDeleteEvent();
         document.querySelector('#confirmar-eliminacion').addEventListener('click', eliminarCliente);
         setUpEditEvent();
         setUpWatchEvent();
         document.querySelector('#buscar-cliente-input').addEventListener('keyup', busquedaDinamica);
         document.querySelector('#reporte-cliente-btn').addEventListener('click', setUpVentanaReportes);
+        document.querySelector('#reporte-cliente-i').addEventListener('click', setUpVentanaReportes);
         document.querySelector('#select-clientes').addEventListener('change', cambiarVista);
     }
 

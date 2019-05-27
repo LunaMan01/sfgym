@@ -1,86 +1,118 @@
-<?php
-/**
- * Respaldar base de datos de MySQL con PHP
- * Función modificada de: https://stackoverflow.com/a/21284229/5032550
- *
- * Visita: https://parzibyte.me/blog/2018/10/22/script-respaldar-base-de-datos-mysql-php/
- */
-// Ejemplo de llamada: exportarTablas("localhost", "root", "123", "foo");
-function exportarTablas($host, $usuario, $pasword, $nombreDeBaseDeDatos)
-{
-    set_time_limit(3000);
-    $tablasARespaldar = [];
-    $mysqli = new mysqli($host, $usuario, $pasword, $nombreDeBaseDeDatos);
-    $mysqli->select_db($nombreDeBaseDeDatos);
-    $mysqli->query("SET NAMES 'utf8'");
-    $tablas = $mysqli->query('SHOW TABLES');
-    while ($fila = $tablas->fetch_row()) {
-        $tablasARespaldar[] = $fila[0];
-    }
-    $contenido = "SET SQL_MODE = \"NO_AUTO_VALUE_ON_ZERO\";\r\nSET time_zone = \"+00:00\";\r\n\r\n\r\n/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;\r\n/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;\r\n/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;\r\n/*!40101 SET NAMES utf8 */;\r\n--\r\n-- Database: `" . $nombreDeBaseDeDatos . "`\r\n--\r\n\r\n\r\n";
-    foreach ($tablasARespaldar as $nombreDeLaTabla) {
-        if (empty($nombreDeLaTabla)) {
-            continue;
-        }
-        $datosQueContieneLaTabla = $mysqli->query('SELECT * FROM `' . $nombreDeLaTabla . '`');
-        $cantidadDeCampos = $datosQueContieneLaTabla->field_count;
-        $cantidadDeFilas = $mysqli->affected_rows;
-        $esquemaDeTabla = $mysqli->query('SHOW CREATE TABLE ' . $nombreDeLaTabla);
-        $filaDeTabla = $esquemaDeTabla->fetch_row();
-        $contenido .= "\n\n" . $filaDeTabla[1] . ";\n\n";
-        for ($i = 0, $contador = 0; $i < $cantidadDeCampos; $i++, $contador = 0) {
-            while ($fila = $datosQueContieneLaTabla->fetch_row()) {
-                //La primera y cada 100 veces
-                if ($contador % 100 == 0 || $contador == 0) {
-                    $contenido .= "\nINSERT INTO " . $nombreDeLaTabla . " VALUES";
-                }
-                $contenido .= "\n(";
-                for ($j = 0; $j < $cantidadDeCampos; $j++) {
-                    $fila[$j] = str_replace("\n", "\\n", addslashes($fila[$j]));
-                    if (isset($fila[$j])) {
-                        $contenido .= '"' . $fila[$j] . '"';
-                    } else {
-                        $contenido .= '""';
-                    }
-                    if ($j < ($cantidadDeCampos - 1)) {
-                        $contenido .= ',';
-                    }
-                }
-                $contenido .= ")";
-                # Cada 100...
-                if ((($contador + 1) % 100 == 0 && $contador != 0) || $contador + 1 == $cantidadDeFilas) {
-                    $contenido .= ";";
-                } else {
-                    $contenido .= ",";
-                }
-                $contador = $contador + 1;
-            }
-        }
-        $contenido .= "\n\n\n";
-    }
-    $contenido .= "\r\n\r\n/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;\r\n/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;\r\n/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;";
-    # Se guardará dependiendo del directorio, en una carpeta llamada respaldos
-    $carpeta = __DIR__ ;
-    if (!file_exists($carpeta)) {
-        mkdir($carpeta);
-    }
-    # Calcular un ID único
-    $id = uniqid();
-    # También la fecha
-    $fecha = date("Y-m-d");
-    # Crear un archivo que tendrá un nombre como respaldo_2018-10-22_asd123.sql
-    $nombreDelArchivo = sprintf('%s/respaldo_%s_%s.sql', $carpeta, $fecha, $id);
-    #Escribir todo el contenido. Si todo va bien, file_put_contents NO devuelve FALSE
 
-    $nameToDownload =  'respaldo_'.$fecha.'_'.$id.'.sql';
+
+ <?php
+ $dbhost = 'localhost';
+ $dbuser = 'root';
+ $dbpass = '';
+ $dbname = 'nuevoacropolisgym';
+ $connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+ $backupAlert = '';
+ $tables = array();
+ $result = mysqli_query($connection, "SHOW TABLES");
+ if (!$result) {
+     $backupAlert = 'Error found.<br/>ERROR : ' . mysqli_error($connection) . 'ERROR NO :' . mysqli_errno($connection);
+ } else {
+     while ($row = mysqli_fetch_row($result)) {
+         $tables[] = $row[0];
+     }
+     mysqli_free_result($result);
+
+     $return = '';
+     foreach ($tables as $table) {
+
+         $result = mysqli_query($connection, "SELECT * FROM " . $table);
+         if (!$result) {
+             $backupAlert = 'Error found.<br/>ERROR : ' . mysqli_error($connection) . 'ERROR NO :' . mysqli_errno($connection);
+         } else {
+             $num_fields = mysqli_num_fields($result);
+             if (!$num_fields) {
+                 $backupAlert = 'Error found.<br/>ERROR : ' . mysqli_error($connection) . 'ERROR NO :' . mysqli_errno($connection);
+             } else {
+                 $return .= 'DROP TABLE ' . $table . ';';
+                 $row2 = mysqli_fetch_row(mysqli_query($connection, 'SHOW CREATE TABLE ' . $table));
+                 if (!$row2) {
+                     $backupAlert = 'Error found.<br/>ERROR : ' . mysqli_error($connection) . 'ERROR NO :' . mysqli_errno($connection);
+                 } else {
+                     $return .= "\n\n" . $row2[1] . ";\n\n";
+                     for ($i = 0; $i < $num_fields; $i++) {
+                         while ($row = mysqli_fetch_row($result)) {
+                             $return .= 'INSERT INTO ' . $table . ' VALUES(';
+                             for ($j = 0; $j < $num_fields; $j++) {
+                                 $row[$j] = addslashes($row[$j]);
+                                 if (isset($row[$j])) {
+                                     $return .= '"' . $row[$j] . '"';
+                                 } else {
+                                     $return .= '""';
+                                 }
+                                 if ($j < $num_fields - 1) {
+                                     $return .= ',';
+                                 }
+                             }
+                             $return .= ");\n";
+                         }
+                     }
+                     $return .= "\n\n\n";
+                 }
+
+                 $backup_file = $dbname . date("Y-m-d-H-i-s") . '.sql';
+                 $handle = fopen("{$backup_file}", 'w+');
+                 fwrite($handle, $return);
+                 fclose($handle);
+                 $backupAlert = 'Succesfully got the backup!';
+             }
+         }
+     }
+ }
+ echo $backupAlert;
 
 
 
-    file_put_contents($nombreDelArchivo, $contenido);
-    return $nameToDownload;
-}
-$name = exportarTablas("localhost", "root", "", "nuevoacropolisgym");
-header('Content-Description: File Transfer');
-header('Content-Type: application/sql');
-header('Content-Disposition: attachment; filename="'.basename($name).'"');
-readfile("$name");
+
+ 
+//     $nameToDownload =  'respaldo_'.$fecha.'_'.$id.'.sql';
+
+
+
+//     file_put_contents($nombreDelArchivo, $contenido);
+//     return $nameToDownload;
+// }
+// $name = exportarTablas("localhost", "root", "", "nuevoacropolisgym");
+// header('Content-Description: File Transfer');
+// header('Content-Type: application/sql');
+// header('Content-Disposition: attachment; filename="'.basename($name).'"');
+// readfile("$name");
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

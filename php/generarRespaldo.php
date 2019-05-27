@@ -28,12 +28,18 @@
              if (!$num_fields) {
                  $backupAlert = 'Error found.<br/>ERROR : ' . mysqli_error($connection) . 'ERROR NO :' . mysqli_errno($connection);
              } else {
-                 $return .= 'DROP TABLE ' . $table . ';';
+                 $return .= 'DROP TABLE IF EXISTS `' . $table . '`;';
+                 $return .= '/*!40101 SET @saved_cs_client = @@character_set_client */;
+                 /*!40101 SET character_set_client = utf8 */;';
+                
+
                  $row2 = mysqli_fetch_row(mysqli_query($connection, 'SHOW CREATE TABLE ' . $table));
                  if (!$row2) {
                      $backupAlert = 'Error found.<br/>ERROR : ' . mysqli_error($connection) . 'ERROR NO :' . mysqli_errno($connection);
                  } else {
                      $return .= "\n\n" . $row2[1] . ";\n\n";
+                     $return .= 'LOCK TABLES `' .$table. "` WRITE;;
+                     /*!40000 ALTER TABLE `tipogastos` DISABLE KEYS */;";
                      for ($i = 0; $i < $num_fields; $i++) {
                          while ($row = mysqli_fetch_row($result)) {
                              $return .= 'INSERT INTO ' . $table . ' VALUES(';
@@ -52,6 +58,7 @@
                          }
                      }
                      $return .= "\n\n\n";
+                     $return .= "/*!40000 ALTER TABLE `".$table."` ENABLE KEYS */;\nUNLOCK TABLES;";
                  }
 
                  $backup_file = $dbname . date("Y-m-d-H-i-s") . '.sql';

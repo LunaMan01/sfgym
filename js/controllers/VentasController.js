@@ -398,7 +398,33 @@ var ventaController = (function () {
         let res = venta.reporte(data);
         UICliente.mostrarReporte(res);
 
-        // document.querySelector('#descargar-pdf').addEventListener('click', descargarPDF);
+        document.querySelector('#descargar-pdf').addEventListener('click', descargarPDF);
+    }
+
+    function descargarPDF() {
+        let yPos = 10;
+
+        
+
+        var doc = new jsPDF();
+
+        doc.text('Acropolis Gym', 80, yPos);
+
+        yPos += 15;
+        doc.text('Reporte de ventas', 15, yPos);
+        if (document.querySelector('#ventas-table') != null) {
+            yPos += 10;
+            doc.text('Lista de ventas', 15, yPos);
+            doc.autoTable({
+                    startY: number = yPos+8,
+                    html: '#ventas-table',
+                    headStyles: { fillColor: [84, 173, 88] },
+                    theme: 'grid'
+                });
+        }
+
+       
+        doc.save();
     }
 
     function setUpEvents() {

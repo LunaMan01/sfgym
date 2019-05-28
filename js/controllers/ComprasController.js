@@ -156,8 +156,33 @@ var compraController = (function () {
         console.log(res);
         UICompra.mostrarReporte(res);
 
-        // document.querySelector('#descargar-pdf').addEventListener('click', 
+        document.querySelector('#descargar-pdf').addEventListener('click', descargarPDF);
     }
+
+    function descargarPDF() {
+        let yPos = 10;
+
+
+        var doc = new jsPDF();
+
+        doc.text('Acropolis Gym', 80, yPos);
+
+        yPos += 15;
+        doc.text('Reporte de compras', 15, yPos);
+        if (document.querySelector('#compras-table') != null) {
+            yPos += 10;
+            doc.text('Lista de compras', 15, yPos);
+            doc.autoTable({
+                    startY: number = yPos+8,
+                    html: '#compras-table',
+                    headStyles: { fillColor: [84, 173, 88] },
+                    theme: 'grid'
+                });
+        }
+
+        doc.save();
+    }
+
 
     function setUpInputs() {
         new Lightpick({ field: document.getElementById('fecha-compra') });

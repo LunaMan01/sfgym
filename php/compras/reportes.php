@@ -45,7 +45,7 @@
                     </div>
 
                     <div class="table-responsive">
-                        <table class="table table-hover" id="clientes-masVisitas-table">
+                        <table class="table table-hover" id="compras-table">
                             <thead>   
                                 <tr>
                                     <th scope="col">Id</th>
@@ -83,6 +83,9 @@
 
             return $rowConTabla;
     }
+    $html.= '</div>';
 
+    $html.= '<button id="descargar-pdf" class="btn hidable btn-outline-success btn-sm my-2 my-sm-0 mr-3 ml-5 mt-5 rounded-pill"
+    type="button">Descargar como PDF</button>';
     echo $html;
 ?>

@@ -103,12 +103,12 @@
                             <i class="material-icons iconMessege">group</i>
                         </div>
                         <div class="col-lg-11">
-                            <p>Top 5 Clientes con membresias a vencer: <span>'.$fechaActual.' a '.$fechaNueva.'<span></p>
+                            <p>Clientes con membresias a vencer en: <span>'.$fechaActual.' a '.$fechaNueva.'<span></p>
                         </div>
                     </div>
 
                     <div class="table-responsive">
-                        <table class="table table-hover">
+                        <table class="table table-hover" id="membresias-vencer-table">
                             <thead>   
                                 <tr>
                                     <th scope="col">Id</th>

@@ -138,11 +138,7 @@ var productoController = (function () {
     function setUpVentanaReportes() {
         UIProducto.abrirReportes();
 
-        new Lightpick({
-            field: document.querySelector('#fecha-rango-reporte'),
-            singleDate: false
-
-        });
+       
 
        
         document.querySelector('#reporte-productos-proximos-a-caducar').addEventListener('change', setFechaRequired);

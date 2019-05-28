@@ -175,14 +175,7 @@ var ReportesController = (function () {
             containerReportes.classList.add('productos');
 
             ocultarBotones();
-            new Lightpick({ field: document.querySelector('.f-producto') });
-
-            new Cleave('.f-producto', {
-                date: true,
-                singleDate: false,
-                delimiter: '/',
-                datePattern: ['d', 'm', 'Y']
-            });
+            
         });
 
 

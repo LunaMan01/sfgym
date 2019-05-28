@@ -3,7 +3,7 @@
 
     $fechaActual = date('d/m/Y');
 
-    $fecha = $_POST['fecha'];
+    // $fecha = $_POST['fecha'];
 
     //$array = explode('-', $fecha);
 

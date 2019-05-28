@@ -68,6 +68,14 @@ class Venta {
         req.send('dato=' + datoABuscar+"&select-ventas="+selectActual);
         return req.responseText;
     }
+    
+    reporte(data) {
+        var req = new XMLHttpRequest();
+        req.open("POST", 'php/ventas/reportes.php', false);
+        // req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+        req.send(data);
+        return req.responseText;
+    }
 
 
     getVentasTodas () {

@@ -1,15 +1,22 @@
 var UIVenta = (function () {
 
-    function agregarProductosASelector (productosJSON) {
+    function agregarProductosASelector(productosJSON) {
         productosJSON.forEach(element => {
             let producto = `<option data-precio="${element.precioProducto}" id="${element.idProducto}">${element.descripcionProducto}</option>`
             document.querySelector('#select-productos').innerHTML += producto;
 
-            
+
         });
     }
 
     return {
+
+        regresar: function () {
+            load('html/ventas-components/ventas.html', document.querySelector('.content'));
+
+            ventaController.init();
+           
+        },
 
         abrirAddVenta: function () {
             load('html/ventas-components/agregar-venta.html', document.querySelector('.content'));
@@ -18,9 +25,9 @@ var UIVenta = (function () {
             req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
             req.send(null);
 
-          
+
             let productosJSON = req.responseText;
-          
+
 
             console.log(productosJSON);
 
@@ -30,7 +37,7 @@ var UIVenta = (function () {
 
         },
 
-        abrirEditVenta : function (){
+        abrirEditVenta: function () {
             load('html/ventas-components/editar-venta.html', document.querySelector('.content'));
             var req = new XMLHttpRequest();
             req.open("POST", 'php/productos/getProductosVentas.php', false);
@@ -40,14 +47,14 @@ var UIVenta = (function () {
             let productos = JSON.parse(productosJSON);
             agregarProductosASelector(productos);
 
-            
+
         },
 
-        mostrarCarga : function () {
+        mostrarCarga: function () {
             var spinner = '<div class="d-flex mt-3">' +
-            '<div class="spinner-grow text-success" role="status"><span class="sr-only">Loading...</span></div>' +
-            '<div class="spinner-grow text-success" role="status"><span class="sr-only">Loading...</span></div>' +
-            '<div class="spinner-grow text-success" role="status"><span class="sr-only">Loading...</span></div></div>';
+                '<div class="spinner-grow text-success" role="status"><span class="sr-only">Loading...</span></div>' +
+                '<div class="spinner-grow text-success" role="status"><span class="sr-only">Loading...</span></div>' +
+                '<div class="spinner-grow text-success" role="status"><span class="sr-only">Loading...</span></div></div>';
             document.querySelector('#cuerpo-tabla-ventas').innerHTML = spinner;
         },
 
@@ -72,14 +79,14 @@ var UIVenta = (function () {
 
             let total = 0;
             subtotales.forEach(element => {
-                
-                total += parseInt(element.innerHTML,10);
+
+                total += parseInt(element.innerHTML, 10);
             });
 
             document.querySelector('#total-venta').value = total;
             console.log(total);
-            
-            
+
+
         },
 
         getId: function (event) {
@@ -89,30 +96,45 @@ var UIVenta = (function () {
             var elements = tr.childNodes;
             var th = elements[1];
             var id = th.getAttribute('id');
-            console.log('id=='+id);
+            console.log('id==' + id);
             return id;
         },
 
-        setDatosVentaEnInputs : function (venta) {
+        setDatosVentaEnInputs: function (venta) {
             document.querySelector('#nip-cliente').value = venta.idCliente;
             document.querySelector('#nip-instructor').value = venta.idInstructor;
             document.querySelector('#total-venta').value = venta.totalVenta;
         },
 
-        setProductosEnTabla : function (productos) {
+        setProductosEnTabla: function (productos) {
             document.querySelector('#carrito').innerHTML = productos;
+        },
+
+        getDatosParaReporte: function () {
+            var form = document.querySelector('#reporte-ventas-form');
+            var data = new FormData(form);
+
+            data.append('fecha', document.querySelector('#fecha-rango-reporte').value);
+            
+            return data;
         },
 
 
 
-        verVenta : function (venta){
-            console.log('idc-'+venta.idCliente);
+        verVenta: function (venta) {
+            console.log('idc-' + venta.idCliente);
             document.querySelector('#nip-cliente').innerHTML = venta.idCliente;
             document.querySelector('#nip-instructor').innerHTML = venta.idInstructor;
             document.querySelector('#total-venta').innerHTML = venta.totalVenta;
         },
 
+        mostrarReporte: function (req) {
+            document.querySelector('.reporte-generado').classList.remove('d-none');
+            document.querySelector('.panel-reportes').classList.add('d-none');
 
+            document.querySelector(".reporte-generado").innerHTML = req;
+            return req;
+        },
 
 
 
@@ -137,7 +159,7 @@ var UIVenta = (function () {
         },
 
 
-        getSubtotalTd : function () {
+        getSubtotalTd: function () {
             var i = event.target;
             var td = i.parentNode;
             tr = td.parentNode;
@@ -151,7 +173,7 @@ var UIVenta = (function () {
             return document.querySelector('#buscar-venta-input').value;
         },
 
-        getSubtotalTdDetalle : function () {
+        getSubtotalTdDetalle: function () {
             var i = event.target;
             var td = i.parentNode;
             tr = td.parentNode;
@@ -161,7 +183,7 @@ var UIVenta = (function () {
             return th;
         },
 
-        getTh : function () {
+        getTh: function () {
             var i = event.target;
             var td = i.parentNode;
             tr = td.parentNode;
@@ -171,7 +193,7 @@ var UIVenta = (function () {
             return th;
         },
 
-        getProductoEnCarritoId : function (){
+        getProductoEnCarritoId: function () {
             var i = event.target;
             var td = i.parentNode;
             tr = td.parentNode;
@@ -184,7 +206,7 @@ var UIVenta = (function () {
             return id;
         },
 
-        getCantidadesEnCarritoTd : function (){
+        getCantidadesEnCarritoTd: function () {
             var i = event.target;
             var td = i.parentNode;
             tr = td.parentNode;
@@ -192,7 +214,7 @@ var UIVenta = (function () {
             var th = elements[1];
             console.log(th);
             var cantidad = th.getAttribute('data-cantidad');
-            
+
             return cantidad;
         },
 
@@ -202,26 +224,26 @@ var UIVenta = (function () {
 
             let total = 0;
             subtotales.forEach(element => {
-                
-                total += parseInt(element.innerHTML,10);
+
+                total += parseInt(element.innerHTML, 10);
             });
 
             document.querySelector('#total-venta').value = total;
         },
 
-        quitarRegistro : function () {
+        quitarRegistro: function () {
             tr.remove();
         },
 
-        limpiarCarrito : function () {
+        limpiarCarrito: function () {
             document.querySelector('#carrito').innerHTML = '';
         },
 
-        getCantidad : function () {
+        getCantidad: function () {
             return document.querySelector('#cantidad-productos').value;
         },
 
-        mostrarVentasEnTabla : function (ventas){
+        mostrarVentasEnTabla: function (ventas) {
             document.querySelector('#cuerpo-tabla-ventas').innerHTML = ventas;
         },
 
@@ -239,7 +261,7 @@ var UIVenta = (function () {
 
         },
 
-        modificarProductoEnCarrito : function (cantidadTd, subtotalTd, cantidad, precio) {
+        modificarProductoEnCarrito: function (cantidadTd, subtotalTd, cantidad, precio) {
             let subtotal = precio * cantidad;
 
             cantidadTd.innerHTML = cantidad;
@@ -249,14 +271,14 @@ var UIVenta = (function () {
 
             let total = 0;
             subtotales.forEach(element => {
-                
-                total += parseInt(element.innerHTML,10);
+
+                total += parseInt(element.innerHTML, 10);
             });
 
             document.querySelector('#total-venta').value = total;
         },
 
-        
+
 
         esconderModal: function (modal) {
             $(modal).modal('hide');

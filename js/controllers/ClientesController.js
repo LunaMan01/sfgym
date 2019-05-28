@@ -221,14 +221,19 @@ var clienteController = (function () {
     function descargarPDF() {
         let yPos = 10;
 
+        
+
         var doc = new jsPDF();
+
+        doc.text('Acropolis Gym', 80, yPos);
+
+        yPos += 15;
         doc.text('Reporte de clientes', 15, yPos);
         if (document.querySelector('#clientes-inactivos-table') != null) {
-            yPos += 5;
+            yPos += 10;
             doc.text('Lista de clientes inactivos', 15, yPos);
-            doc.autoTable(
-                {
-                    startY: number = 25,
+            doc.autoTable({
+                    startY: number = yPos+8,
                     html: '#clientes-inactivos-table',
                     headStyles: { fillColor: [84, 173, 88] },
                     theme: 'grid'
@@ -243,6 +248,19 @@ var clienteController = (function () {
                 {
                     startY: number = doc.autoTableEndPosY() + 50,
                     html: '#clientes-masVisitas-table',
+                    headStyles: { fillColor: [84, 173, 88] },
+                    theme: 'grid'
+                });
+        }
+
+        if (document.querySelector('#clientes-menosVisitas-table') != null) {
+            yPos += 5;
+            doc.text('Top 5 Clientes con menor número de visitas', 15, doc.autoTableEndPosY() + 40);
+            yPos += 20;
+            doc.autoTable(
+                {
+                    startY: number = doc.autoTableEndPosY() + 50,
+                    html: '#clientes-menosVisitas-table',
                     headStyles: { fillColor: [84, 173, 88] },
                     theme: 'grid'
                 });

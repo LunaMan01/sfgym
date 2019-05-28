@@ -40,7 +40,7 @@
                     </div>
 
                     <div class="table-responsive">
-                        <table class="table table-hover" id="visitas-table">
+                        <table class="table table-hover" id="ventas-table">
                             <thead>   
                                 <tr>
                                     <th scope="col">Id</th>

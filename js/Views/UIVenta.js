@@ -122,10 +122,10 @@ var UIVenta = (function () {
 
 
         verVenta: function (venta) {
-            console.log('idc-' + venta.idCliente);
+            console.log('idc-' + venta.totalVenta);
             document.querySelector('#nip-cliente').innerHTML = venta.idCliente;
             document.querySelector('#nip-instructor').innerHTML = venta.idInstructor;
-            document.querySelector('#total-venta').innerHTML = venta.totalVenta;
+            document.querySelector('#total-venta').value = venta.totalVenta;
         },
 
         mostrarReporte: function (req) {

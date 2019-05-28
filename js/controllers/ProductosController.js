@@ -123,11 +123,10 @@ var productoController = (function () {
     }
 
     function setFechaRequired() {
-        let masVendidos = document.querySelector('#reporte-productos-mas-vendidos');
-        let menosVendidos = document.querySelector('#reporte-productos-menos-vendidos');
+      
         let productosACaducar = document.querySelector('#reporte-productos-proximos-a-caducar');
 
-        if (masVendidos.checked || menosVendidos.checked || productosACaducar.checked) {
+        if (productosACaducar.checked) {
             document.querySelector('#fecha-rango-reporte').setAttribute("required", "");
             document.querySelector('#fecha-rango-reporte').required = true;
         } else {
@@ -145,8 +144,7 @@ var productoController = (function () {
 
         });
 
-        document.querySelector('#reporte-productos-mas-vendidos').addEventListener('change', setFechaRequired);
-        document.querySelector('#reporte-productos-menos-vendidos').addEventListener('change', setFechaRequired);
+       
         document.querySelector('#reporte-productos-proximos-a-caducar').addEventListener('change', setFechaRequired);
 
 
@@ -161,7 +159,58 @@ var productoController = (function () {
         let res = producto.reporte(data);
         UIProducto.mostrarReporte(res);
 
-        // document.querySelector('#descargar-pdf').addEventListener('click', 
+        document.querySelector('#descargar-pdf').addEventListener('click', descargarPDF);
+    }
+
+
+    function descargarPDF() {
+        let yPos = 10;
+
+        
+
+        var doc = new jsPDF();
+
+        doc.text('Acropolis Gym', 80, yPos);
+
+        yPos += 15;
+        doc.text('Reporte de productos', 15, yPos);
+        if (document.querySelector('#productos-existencia-table') != null) {
+            yPos += 10;
+            doc.text('Lista de productos en existencia', 15, yPos);
+            doc.autoTable({
+                    startY: number = yPos+8,
+                    html: '#productos-existencia-table',
+                    headStyles: { fillColor: [84, 173, 88] },
+                    theme: 'grid'
+                });
+        }
+
+        if (document.querySelector('#productos-menos-existencia-table') != null) {
+            yPos += 5;
+            doc.text('Productos con pocas existencias', 15, doc.autoTableEndPosY() + 40);
+            yPos += 20;
+            doc.autoTable(
+                {
+                    startY: number = doc.autoTableEndPosY() + 50,
+                    html: '#productos-menos-existencia-table',
+                    headStyles: { fillColor: [84, 173, 88] },
+                    theme: 'grid'
+                });
+        }
+
+        if (document.querySelector('#productos-caducar-table') != null) {
+            yPos += 5;
+            doc.text('Productos próximos a caducar', 15, doc.autoTableEndPosY() + 40);
+            yPos += 20;
+            doc.autoTable(
+                {
+                    startY: number = doc.autoTableEndPosY() + 50,
+                    html: '#productos-caducar-table',
+                    headStyles: { fillColor: [84, 173, 88] },
+                    theme: 'grid'
+                });
+        }
+        doc.save();
     }
 
     function setUpInputs() {

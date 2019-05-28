@@ -133,7 +133,36 @@ var visitaController = (function () {
         let res = visita.reporte(data);
         UIVisita.mostrarReporte(res);
 
-        // document.querySelector('#descargar-pdf').addEventListener('click', descargarPDF);
+        document.querySelector('#descargar-pdf').addEventListener('click', descargarPDF);
+    }
+
+    function descargarPDF() {
+        console.log('asfg');
+        let yPos = 10;
+
+        
+
+        var doc = new jsPDF();
+
+        doc.text('Acropolis Gym', 80, yPos);
+
+        yPos += 15;
+        doc.text('Reporte de visitas', 15, yPos);
+        if (document.querySelector('#visitas-table') != null) {
+            yPos += 10;
+            doc.text('Visitas registradas', 15, yPos);
+            doc.autoTable({
+                    startY: number = yPos+8,
+                    html: '#visitas-table',
+                    headStyles: { fillColor: [84, 173, 88] },
+                    theme: 'grid'
+                });
+        }
+
+     
+
+      
+        doc.save();
     }
 
     function setUpInputs() {

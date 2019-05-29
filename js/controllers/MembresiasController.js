@@ -124,7 +124,46 @@ var membresiaController = (function () {
         console.log(res);
         UIMembresia.mostrarReporte(res);
 
-        // document.querySelector('#descargar-pdf').addEventListener('click', descargarPDF);
+        document.querySelector('#descargar-pdf-membresia').addEventListener('click', descargarPDF);
+    }
+
+    function descargarPDF() {
+        let yPos = 10;
+
+        
+
+        var doc = new jsPDF();
+
+        doc.text('Acropolis Gym', 80, yPos);
+
+        yPos += 15;
+        doc.text('Reporte de membresías', 15, yPos);
+        if (document.querySelector('#membresias-nuevas-table') != null) {
+            yPos += 10;
+            doc.text('Lista de membresías nuevas', 15, yPos);
+            doc.autoTable({
+                    startY: number = yPos+8,
+                    html: '#membresias-nuevas-table',
+                    headStyles: { fillColor: [84, 173, 88] },
+                    theme: 'grid'
+                });
+        }
+
+        if (document.querySelector('#membresias-vencer-table') != null) {
+            yPos += 5;
+            doc.text('Lista de membresías a vencer', 15, doc.autoTableEndPosY() + 40);
+            yPos += 20;
+            doc.autoTable(
+                {
+                    startY: number = doc.autoTableEndPosY() + 50,
+                    html: '#membresias-vencer-table',
+                    headStyles: { fillColor: [84, 173, 88] },
+                    theme: 'grid'
+                });
+        }
+
+      
+        doc.save();
     }
 
     function setUpInputs() {
@@ -195,6 +234,7 @@ var membresiaController = (function () {
         new Lightpick({ field: document.getElementById('fecha-inicio-add') });
         new Lightpick({ field: document.getElementById('fecha-fin-add') });
         document.querySelector('#reporte-membresia-btn').addEventListener('click', setUpVentanaReportes);
+        document.querySelector('#reporte-membresia-i').addEventListener('click', setUpVentanaReportes);
         document.querySelector('#select-membresias').addEventListener('change', cambiarVista);
 
 

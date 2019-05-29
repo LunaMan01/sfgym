@@ -122,46 +122,75 @@ var productoController = (function () {
 
     }
 
-    function setFechaRequired() {
-        let masVendidos = document.querySelector('#reporte-productos-mas-vendidos');
-        let menosVendidos = document.querySelector('#reporte-productos-menos-vendidos');
-        let productosACaducar = document.querySelector('#reporte-productos-proximos-a-caducar');
-
-        if (masVendidos.checked || menosVendidos.checked || productosACaducar.checked) {
-            document.querySelector('#fecha-rango-reporte').setAttribute("required", "");
-            document.querySelector('#fecha-rango-reporte').required = true;
-        } else {
-            document.querySelector('#fecha-rango-reporte').removeAttribute("required");
-            document.querySelector('#fecha-rango-reporte').required = false;
-        }
-    }
+  
 
     function setUpVentanaReportes() {
         UIProducto.abrirReportes();
-
-        new Lightpick({
-            field: document.querySelector('#fecha-rango-reporte'),
-            singleDate: false
-
-        });
-
-        document.querySelector('#reporte-productos-mas-vendidos').addEventListener('change', setFechaRequired);
-        document.querySelector('#reporte-productos-menos-vendidos').addEventListener('change', setFechaRequired);
-        document.querySelector('#reporte-productos-proximos-a-caducar').addEventListener('change', setFechaRequired);
-
 
         document.querySelector('#reporte-productos-form').addEventListener('submit', generarReporte);
 
     }
 
     function generarReporte() {
+        console.log('dsa');
         let producto = new Producto();
         let data = UIProducto.getDatosParaReporte();
 
         let res = producto.reporte(data);
         UIProducto.mostrarReporte(res);
 
-        // document.querySelector('#descargar-pdf').addEventListener('click', 
+        document.querySelector('#descargar-pdf').addEventListener('click', descargarPDF);
+    }
+
+
+    function descargarPDF() {
+        let yPos = 10;
+
+        
+
+        var doc = new jsPDF();
+
+        doc.text('Acropolis Gym', 80, yPos);
+
+        yPos += 15;
+        doc.text('Reporte de productos', 15, yPos);
+        if (document.querySelector('#productos-existencia-table') != null) {
+            yPos += 10;
+            doc.text('Lista de productos en existencia', 15, yPos);
+            doc.autoTable({
+                    startY: number = yPos+8,
+                    html: '#productos-existencia-table',
+                    headStyles: { fillColor: [84, 173, 88] },
+                    theme: 'grid'
+                });
+        }
+
+        if (document.querySelector('#productos-menos-existencia-table') != null) {
+            yPos += 5;
+            doc.text('Productos con pocas existencias', 15, doc.autoTableEndPosY() + 40);
+            yPos += 20;
+            doc.autoTable(
+                {
+                    startY: number = doc.autoTableEndPosY() + 50,
+                    html: '#productos-menos-existencia-table',
+                    headStyles: { fillColor: [84, 173, 88] },
+                    theme: 'grid'
+                });
+        }
+
+        if (document.querySelector('#productos-caducar-table') != null) {
+            yPos += 5;
+            doc.text('Productos próximos a caducar', 15, doc.autoTableEndPosY() + 40);
+            yPos += 20;
+            doc.autoTable(
+                {
+                    startY: number = doc.autoTableEndPosY() + 50,
+                    html: '#productos-caducar-table',
+                    headStyles: { fillColor: [84, 173, 88] },
+                    theme: 'grid'
+                });
+        }
+        doc.save();
     }
 
     function setUpInputs() {
@@ -244,6 +273,7 @@ var productoController = (function () {
         document.querySelector('#buscar-producto-input').addEventListener('keyup', busquedaDinamica);
         new Lightpick({ field: document.getElementById('fecha-caducidad') });
         document.querySelector('#reporte-producto-btn').addEventListener('click', setUpVentanaReportes);
+        document.querySelector('#reporte-producto-i').addEventListener('click', setUpVentanaReportes);
         document.querySelector('#select-productos').addEventListener('change', cambiarVista);
 
     }

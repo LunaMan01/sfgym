@@ -1,6 +1,6 @@
 <?php 
     $user = $_POST['usuario'];
-    $pass = $_POST['contraseña'];
+    $pass = $_POST['contrase'];
 
     include 'conexion.php';
 
@@ -8,11 +8,11 @@
         // $datos = "SELECT nombre_instructor, password1 
         //     FROM Instructores WHERE nombre_instructor = '".$user."' AND password1 = '".$pass."'";
         $u = "";
-        $uR = "SELECT nombre_instructor FROM Instructores
-            WHERE nombre_instructor LIKE '".$user."'";
+        $uR = "SELECT Id_Instructor FROM Instructores
+            WHERE Id_Instructor LIKE '".$user."'";
 
         foreach($conn->query($uR) as $row){
-            $u = $row['nombre_instructor'];
+            $u = $row['Id_Instructor'];
         }
 
         $p = "";
@@ -24,10 +24,10 @@
         }
 
         if($user == $u && $pass == $p){
-            echo 'Chingon';
-            header("Location: ../index.html"); 
+            echo 1;
+            // header("Location: ../index.html"); 
         }else{
-            echo 'Nel';
+            echo 'Nl';
             //$conn = null;
         }
         

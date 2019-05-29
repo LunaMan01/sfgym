@@ -316,6 +316,41 @@ var controller = (function (UI) {
     var abrirClientes = UI.abrirClientes;
     var abrirMembresias = UI.abrirMembresias;
 
+    function restaurarYRespaldar() {
+        UI.abrirRespaldo();
+        document.querySelector('#generar-respaldo-form').addEventListener('submit', () => {
+            console.log('gen');
+            
+            window.open('php/generarRespaldo.php');
+        });
+
+        document.querySelector('#restaurar-form').addEventListener('submit', () => {
+            console.log('restaurando');
+            let archivo = $('#seleccion-archivo').prop('files')[0];
+
+            let form = document.querySelector('#restaurar-form');
+            let formData = new FormData(form);
+
+        
+            // formData.append(form);
+            
+            let req = new XMLHttpRequest();
+            req.open('POST', 'php/restaurar.php', false);
+            
+            // req.setRequestHeader('Content-type', 'text/plain');
+            req.send(formData);
+            console.log(req.responseText);
+
+        //     // fetch('php/restaurar.php', {
+        //     //     method: 'POST',
+        //     //     body: formData,
+        //     //   }).then(response => {
+        //     //     console.log(response)
+        //     //   })
+        });
+    }
+
+
     document.querySelector(Links.inicio).addEventListener('click', abrirInicio);
     document.querySelector(Links.clientes).addEventListener('click', abrirClientes);
     document.querySelector(Links.membresias).addEventListener('click', abrirMembresias);
@@ -326,7 +361,7 @@ var controller = (function (UI) {
     document.querySelector(Links.aparatos).addEventListener('click', UI.abrirAparatos);
     document.querySelector(Links.compras).addEventListener('click', UI.abrirCompras);
     document.querySelector(Links.reportes).addEventListener('click', UI.abrirReportes);
-    document.querySelector(Links.respaldos).addEventListener('click', UI.abrirRespaldo);
+    document.querySelector(Links.respaldos).addEventListener('click', restaurarYRespaldar);
 
 
 

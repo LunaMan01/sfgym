@@ -63,6 +63,17 @@ var ReportesController = (function () {
         // document.querySelector('#descargar-pdf').addEventListener('click', 
     }
 
+    function generarReportesVentas(containerReportes) {
+        let venta = new Venta();
+        let data = UIVenta.getDatosParaReporte();
+
+        let res = venta.reporte(data);
+
+        containerReportes.innerHTML += res;
+        ocultarBotones();
+        // document.querySelector('#descargar-pdf').addEventListener('click', 
+    }
+
     function generarReportesGastos(containerReportes) {
         let gasto = new Gasto();
         let data = UIGasto.getDatosParaReporte();
@@ -164,13 +175,7 @@ var ReportesController = (function () {
             containerReportes.classList.add('productos');
 
             ocultarBotones();
-            new Lightpick({ field: document.querySelector('.f-producto') });
-
-            new Cleave('.f-producto', {
-                date: true,
-                delimiter: '/',
-                datePattern: ['d', 'm', 'Y']
-            });
+            
         });
 
 
@@ -221,13 +226,291 @@ var ReportesController = (function () {
                 generarReportesVisitas(containerReportes);
             if (containerReportes.classList.contains('productos'))
                 generarReportesProductos(containerReportes);
-            if (containerReportes.classList.contains('gasto'))
+            if (containerReportes.classList.contains('ventas'))
+                generarReportesVentas(containerReportes);
+            if (containerReportes.classList.contains('gastos'))
                 generarReportesGastos(containerReportes);
             if (containerReportes.classList.contains('compras'))
                 generarReportesCompras(containerReportes);
+
+
+            document.querySelectorAll('.d-inline-flex').forEach(element => {
+                element.classList.replace('d-inline-flex', 'd-none');
+            });
+
+            document.querySelectorAll('.to-hide').forEach(element => {
+                element.classList.add('d-none');
+            });
+
+            document.querySelector('#generar-reporte-general').classList.add('d-none');
+            document.querySelector('#descargar-pdf-general').classList.remove('d-none');
         });
 
+        document.querySelector('#descargar-pdf-general').addEventListener('click', descargarPDF);
     }
+
+
+    var doc = new jsPDF();
+    let yPos = 10;
+
+    let nPages = 0;
+    function pdfClientes() {
+        nPages++;
+        yPos += 15;
+        doc.text('Reporte de clientes', 15, yPos);
+        if (document.querySelector('#clientes-inactivos-table') != null) {
+            yPos += 10;
+            doc.text('Lista de clientes inactivos', 15, yPos);
+            doc.autoTable({
+                startY: number = yPos + 8,
+                html: '#clientes-inactivos-table',
+                headStyles: { fillColor: [84, 173, 88] },
+                theme: 'grid'
+            });
+        }
+
+        if (document.querySelector('#clientes-masVisitas-table') != null) {
+            yPos += 5;
+            doc.text('Top 5 Clientes con mayor número de visitas', 15, doc.autoTableEndPosY() + 40);
+            yPos += 20;
+            doc.autoTable(
+                {
+                    startY: number = doc.autoTableEndPosY() + 50,
+                    html: '#clientes-masVisitas-table',
+                    headStyles: { fillColor: [84, 173, 88] },
+                    theme: 'grid'
+                });
+        }
+
+        if (document.querySelector('#clientes-menosVisitas-table') != null) {
+            yPos += 5;
+            doc.text('Top 5 Clientes con menor número de visitas', 15, doc.autoTableEndPosY() + 40);
+            yPos += 20;
+            doc.autoTable(
+                {
+                    startY: number = doc.autoTableEndPosY() + 50,
+                    html: '#clientes-menosVisitas-table',
+                    headStyles: { fillColor: [84, 173, 88] },
+                    theme: 'grid'
+                });
+        }
+
+    }
+
+    function pdfMembresias() {
+
+        if (nPages > 0)
+            doc.addPage();
+        nPages++;
+        let yPos = 10;
+
+        yPos += 15;
+        doc.text('Reporte de membresías', 15, yPos);
+        if (document.querySelector('#membresias-nuevas-table') != null) {
+            yPos += 10;
+            doc.text('Lista de membresías nuevas', 15, yPos);
+            doc.autoTable({
+                startY: number = yPos + 8,
+                html: '#membresias-nuevas-table',
+                headStyles: { fillColor: [84, 173, 88] },
+                theme: 'grid'
+            });
+        }
+
+        if (document.querySelector('#membresias-vencer-table') != null) {
+            yPos += 5;
+            doc.text('Lista de membresías a vencer', 15, doc.autoTableEndPosY() + 40);
+            yPos += 20;
+            doc.autoTable(
+                {
+                    startY: number = doc.autoTableEndPosY() + 50,
+                    html: '#membresias-vencer-table',
+                    headStyles: { fillColor: [84, 173, 88] },
+                    theme: 'grid'
+                });
+        }
+
+
+    }
+
+
+    function pdfVisitas() {
+        if (nPages > 0)
+            doc.addPage();
+        nPages++;
+
+        let yPos = 10;
+
+
+        yPos += 15;
+        doc.text('Reporte de visitas', 15, yPos);
+        if (document.querySelector('#visitas-table') != null) {
+            yPos += 10;
+            doc.text('Visitas registradas', 15, yPos);
+            doc.autoTable({
+                startY: number = yPos + 8,
+                html: '#visitas-table',
+                headStyles: { fillColor: [84, 173, 88] },
+                theme: 'grid'
+            });
+        }
+
+
+    }
+
+
+    function pdfVentas() {
+
+        if (nPages > 0)
+            doc.addPage();
+        nPages++;
+        let yPos = 10;
+
+
+
+        yPos += 15;
+        doc.text('Reporte de ventas', 15, yPos);
+        if (document.querySelector('#ventas-table') != null) {
+            yPos += 10;
+            doc.text('Lista de ventas', 15, yPos);
+            doc.autoTable({
+                startY: number = yPos + 8,
+                html: '#ventas-table',
+                headStyles: { fillColor: [84, 173, 88] },
+                theme: 'grid'
+            });
+        }
+
+
+
+    }
+
+    function pdfProductos() {
+        if (nPages > 0)
+            doc.addPage();
+        nPages++;
+
+        let yPos = 10;
+
+        yPos += 15;
+        doc.text('Reporte de productos', 15, yPos);
+        if (document.querySelector('#productos-existencia-table') != null) {
+            yPos += 10;
+            doc.text('Lista de productos en existencia', 15, yPos);
+            doc.autoTable({
+                startY: number = yPos + 8,
+                html: '#productos-existencia-table',
+                headStyles: { fillColor: [84, 173, 88] },
+                theme: 'grid'
+            });
+        }
+
+        if (document.querySelector('#productos-menos-existencia-table') != null) {
+            yPos += 5;
+            doc.text('Productos con pocas existencias', 15, doc.autoTableEndPosY() + 40);
+            yPos += 20;
+            doc.autoTable(
+                {
+                    startY: number = doc.autoTableEndPosY() + 50,
+                    html: '#productos-menos-existencia-table',
+                    headStyles: { fillColor: [84, 173, 88] },
+                    theme: 'grid'
+                });
+        }
+
+        if (document.querySelector('#productos-caducar-table') != null) {
+            yPos += 5;
+            doc.text('Productos próximos a caducar', 15, doc.autoTableEndPosY() + 40);
+            yPos += 20;
+            doc.autoTable(
+                {
+                    startY: number = doc.autoTableEndPosY() + 50,
+                    html: '#productos-caducar-table',
+                    headStyles: { fillColor: [84, 173, 88] },
+                    theme: 'grid'
+                });
+        }
+
+    }
+
+    function pdfGastos() {
+
+        if (nPages > 0)
+            doc.addPage();
+        nPages++;
+
+
+        let yPos = 10;
+
+        yPos += 15;
+        doc.text('Reporte de gastos', 15, yPos);
+        if (document.querySelector('#gastos-table') != null) {
+            yPos += 10;
+            doc.text('Lista de gastos', 15, yPos);
+            doc.autoTable({
+                startY: number = yPos + 8,
+                html: '#gastos-table',
+                headStyles: { fillColor: [84, 173, 88] },
+                theme: 'grid'
+            });
+        }
+
+
+
+    }
+
+    function pdfCompras() {
+        if (nPages > 0)
+            doc.addPage();
+        nPages++;
+
+
+        let yPos = 10;
+
+
+        yPos += 15;
+        doc.text('Reporte de compras', 15, yPos);
+        if (document.querySelector('#compras-table') != null) {
+            yPos += 10;
+            doc.text('Lista de compras', 15, yPos);
+            doc.autoTable({
+                startY: number = yPos + 8,
+                html: '#compras-table',
+                headStyles: { fillColor: [84, 173, 88] },
+                theme: 'grid'
+            });
+        }
+
+
+
+    }
+
+
+
+    function descargarPDF() {
+        let containerReportes = document.querySelector('#container-reportes');
+        doc.text('Acropolis Gym', 80, yPos);
+
+        if (containerReportes.classList.contains('clientes'))
+            pdfClientes();
+        if (containerReportes.classList.contains('membresias'))
+            pdfMembresias();
+        if (containerReportes.classList.contains('visitas'))
+            pdfVisitas();
+        if (containerReportes.classList.contains('productos'))
+            pdfProductos();
+        if (containerReportes.classList.contains('ventas'))
+            pdfVentas();
+        if (containerReportes.classList.contains('gastos'))
+            pdfGastos();
+        if (containerReportes.classList.contains('compras'))
+            pdfCompras();
+
+
+        doc.save();
+        doc = new jsPDF();
+    }
+
 
 
 

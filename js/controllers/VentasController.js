@@ -45,8 +45,18 @@ var ventaController = (function () {
                 UIVenta.setProductosEnTabla(new Venta().getDetalleVenta(id));
                 UIVenta.verVenta(venta);
 
+                let eAction = document.querySelectorAll('.edit-action');
+                let dAction = document.querySelectorAll('.delete-action');
 
+                eAction.forEach(element => {
+                    element.classList.add('d-none');
+                });
 
+                dAction.forEach(element => {
+                    element.classList.add('d-none');
+                });
+
+                document.querySelector('#cancelar-venta').addEventListener('click', regresar);
             }
 
 
@@ -135,6 +145,7 @@ var ventaController = (function () {
         setUpEditEvent();
         setUpDeleteEvent();
         document.querySelector('#modificar-cantidad-form').addEventListener('submit', modificarCantidad);
+        document.querySelector('#cancelar-venta').addEventListener('click', regresar);
     }
 
     function modificarVenta() {
@@ -227,6 +238,15 @@ var ventaController = (function () {
         setUpEditEvent();
         setUpDeleteEvent();
         document.querySelector('#modificar-cantidad-form').addEventListener('submit', modificarCantidad);
+
+        document.querySelector('#cancelar-venta').addEventListener('click', regresar);
+    }
+
+    function regresar (){
+        
+        UIVenta.regresar();
+        getTodasLasVentas();
+    
     }
 
 
@@ -357,13 +377,65 @@ var ventaController = (function () {
             
     }
 
+    function setUpVentanaReportes () {
+        UIVenta.abrirReportes();
+        new Lightpick({
+            field: document.querySelector('#fecha-rango-reporte'),
+            singleDate: false
+
+        });
+
+        document.querySelector('#reporte-ventas-form').addEventListener('submit', generarReporte);
+    }
+
+
+    function generarReporte() {
+        
+
+        let venta = new Venta();
+        let data = UIVenta.getDatosParaReporte();
+
+        let res = venta.reporte(data);
+        UICliente.mostrarReporte(res);
+
+        document.querySelector('#descargar-pdf').addEventListener('click', descargarPDF);
+    }
+
+    function descargarPDF() {
+        let yPos = 10;
+
+        
+
+        var doc = new jsPDF();
+
+        doc.text('Acropolis Gym', 80, yPos);
+
+        yPos += 15;
+        doc.text('Reporte de ventas', 15, yPos);
+        if (document.querySelector('#ventas-table') != null) {
+            yPos += 10;
+            doc.text('Lista de ventas', 15, yPos);
+            doc.autoTable({
+                    startY: number = yPos+8,
+                    html: '#ventas-table',
+                    headStyles: { fillColor: [84, 173, 88] },
+                    theme: 'grid'
+                });
+        }
+
+       
+        doc.save();
+    }
+
     function setUpEvents() {
         setUpEliminarEvent();
         getTodasLasVentas();
         setUpWatchEvent();
         setUpEditEventVenta();
         document.querySelector('#add-venta-btn').addEventListener('click', setUpNuevaVenta);
-        document.querySelector('#reporte-venta-btn').addEventListener('click', UIVenta.abrirReportes);
+        document.querySelector('#add-venta-i').addEventListener('click', setUpNuevaVenta);
+        document.querySelector('#reporte-venta-btn').addEventListener('click', setUpVentanaReportes);
+        document.querySelector('#reporte-venta-i').addEventListener('click', setUpVentanaReportes);
         document.querySelector('#confirmar-eliminacion').addEventListener('click', eliminarVenta);
 
         document.querySelector('#select-ventas').addEventListener('change', cambiarVista);

@@ -16,26 +16,26 @@
         <div class="row">
             <div class="col-md-6 offset-md-3">
                 <div class="container">
-                    <form class="form-group login-form" action="php/login.php" method="POST">
+                    <form class="form-group login-form" id="login-form" method="POST" onsubmit="return false">
                         <div class="row d-flex justify-content-center">
                             <div class="col-auto mt-2 ">
                                 <img src="img/login.png" alt="login" width="30" height="30">
                             </div>
                             <div class="col-auto ">
-                                <h5 class="text-login" >Login</h5>
+                                <h5 class="text-login">Login</h5>
                             </div>
                         </div>
                         <hr>
                         <div class="row p-2">
                             <div class="col align-self-center">
                                 <input type="text" class="form-control mt-2" placeholder="&#x0263A; Usuario"
-                                    name="usuario">
+                                    name="usuario" id="user">
                             </div>
                         </div>
                         <div class="row p-2">
                             <div class="col align-self-center">
                                 <input type="password" class="form-control mt-2" placeholder="&#128272; Contraseña"
-                                    name="contraseña">
+                                    name="contraseña" id="pass">
                             </div>
                         </div>
                         <hr>
@@ -59,6 +59,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+    <script src="js/app/entrar.js"></script>
 </body>
 
 </html>

@@ -131,8 +131,33 @@ var gastoController = (function () {
         let res = gasto.reporte(data);
         UIGasto.mostrarReporte(res);
 
-        // document.querySelector('#descargar-pdf').addEventListener('click', 
+        document.querySelector('#descargar-pdf').addEventListener('click', descargarPDF);
     }
+
+    function descargarPDF() {
+        let yPos = 10;
+
+
+        var doc = new jsPDF();
+
+        doc.text('Acropolis Gym', 80, yPos);
+
+        yPos += 15;
+        doc.text('Reporte de gastos', 15, yPos);
+        if (document.querySelector('#gastos-table') != null) {
+            yPos += 10;
+            doc.text('Lista de gastos', 15, yPos);
+            doc.autoTable({
+                    startY: number = yPos+8,
+                    html: '#gastos-table',
+                    headStyles: { fillColor: [84, 173, 88] },
+                    theme: 'grid'
+                });
+        }
+
+        doc.save();
+    }
+
 
     function setUpInputs() {
         new Cleave('.numeric-add', {
@@ -201,6 +226,7 @@ var gastoController = (function () {
         setUpWatchEvent();
         document.querySelector('#buscar-gasto-input').addEventListener('keyup', busquedaDinamica);
         document.querySelector('#reporte-gasto-btn').addEventListener('click', setUpVentanaReportes);
+        document.querySelector('#reporte-gasto-i').addEventListener('click', setUpVentanaReportes);
         document.querySelector('#select-gastos').addEventListener('change', cambiarVista);
     }
 

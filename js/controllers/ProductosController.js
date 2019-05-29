@@ -122,33 +122,17 @@ var productoController = (function () {
 
     }
 
-    function setFechaRequired() {
-      
-        let productosACaducar = document.querySelector('#reporte-productos-proximos-a-caducar');
-
-        if (productosACaducar.checked) {
-            document.querySelector('#fecha-rango-reporte').setAttribute("required", "");
-            document.querySelector('#fecha-rango-reporte').required = true;
-        } else {
-            document.querySelector('#fecha-rango-reporte').removeAttribute("required");
-            document.querySelector('#fecha-rango-reporte').required = false;
-        }
-    }
+  
 
     function setUpVentanaReportes() {
         UIProducto.abrirReportes();
-
-       
-
-       
-        document.querySelector('#reporte-productos-proximos-a-caducar').addEventListener('change', setFechaRequired);
-
 
         document.querySelector('#reporte-productos-form').addEventListener('submit', generarReporte);
 
     }
 
     function generarReporte() {
+        console.log('dsa');
         let producto = new Producto();
         let data = UIProducto.getDatosParaReporte();
 

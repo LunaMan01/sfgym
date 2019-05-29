@@ -1,3 +1,4 @@
+// Contiene las llamadas AJAX del modulo clientes
 class Cliente {
     constructor(id) {
 
@@ -86,7 +87,6 @@ class Cliente {
     reporte(data) {
         var req = new XMLHttpRequest();
         req.open("POST", 'php/clientes/reporte.php', false);
-        // req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
         req.send(data);
         return req.responseText;
     }

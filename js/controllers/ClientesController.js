@@ -1,3 +1,4 @@
+// Manipula las vistas y las llamadas ajax del modulo clientes
 var clienteController = (function () {
 
 

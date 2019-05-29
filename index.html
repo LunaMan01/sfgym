@@ -1,3 +1,4 @@
+<!-- Este codigo contiene toda la estructura de la aplicación. Será el primer codigo a mostrarse al cliente -->
 <!DOCTYPE html>
 <html lang="es">
 
@@ -6,25 +7,25 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+	<!-- Llamada a script de loggeo -->
 	<script src="js/app/login.js"></script>
 
+	<!-- llamada a la libreria Boostrap -->
 	<link rel="stylesheet" type="text/css" href="css/bootstrap/css/bootstrap.css">
-	<!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">-->
-
-
 	<link rel="stylesheet" href="css/light-bootstrap-dashboard.css">
 	<link rel="stylesheet" href="css/lightpick.css">
 	<link rel="stylesheet" href="css/bootstrap/bootstrap-grid.css">
 	<link rel="stylesheet" href="css/bootstrap/bootstrap-reboot.css">
 	<link rel="stylesheet" href="css/bootstrap/bootstrap-grid.css">
 	<link rel="stylesheet" href="css/bootstrap/bootstrap.css">
+
+	<!-- Llamadas a los estilos propios -->
 	<link rel="stylesheet" type="text/css" href="css/estilos.css">
 	<link rel="stylesheet" href="css/estilos.css">
 	<link rel="stylesheet" href="css/b.css">
 	
 
-	<!-- <script src="js/app/jspdf.js"></script> -->
+	<!-- llamadas a librerias -->
 	<script src="js/app/jspdf.min.js"></script>
 	<script src="https://unpkg.com/jspdf-autotable@3.1.1/dist/jspdf.plugin.autotable.js"></script>
 	<script src="js/app/cleave.js"></script>
@@ -33,11 +34,12 @@
 </head>
 
 <body>
-	<!-- Modal para membresias-->
+	
+	<!-- Aqui se cargaran todos los Modales necesarios para cada modulo -->
 	<div class="modal-container">
 
 	</div>
-	<!-- ------------------------- -->
+	
 	<div class="wrapper">
 		<div class="sidebar" data-color="sidebarcolor" id="sidebarmenu">
 			<div class="sidebar-wrapper">
@@ -46,7 +48,7 @@
 						Acropólis Gym
 					</a>
 				</div>
-
+				<!-- Opciones del menu -->
 				<ul class="nav flex-column">
 
 					<li class="active nav-item" id="li-inicio">
@@ -122,10 +124,6 @@
 		</div>
 
 		<div class="main-panel">
-
-
-
-
 			<nav class="navbar navbar-expand-lg navbar-light border-bottom p-0 justify-content-between">
 				<div class="container-fluid">
 					<div class="navbar-header">
@@ -142,20 +140,16 @@
 
 			</nav>
 
-
-
 			<div class="content" id="prints">
-				<!--Contenido Principal-->
+				<!--Aqui se cargara el contenido Principal-->
 				<div id="elementos-adicionales" class="d-flex justify-content-between">
 				</div>
 			</div>
 
-
 		</div>
 	</div>
 
-
-
+	<!-- Llamadas a scripts de la libreria bootstrap -->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 		crossorigin="anonymous"></script>
@@ -167,21 +161,13 @@
 		crossorigin="anonymous"></script>
 
 
-	<!-- <script src="js/app/jquery-3.4.1.slim.min.js"></script> -->
-	<!-- <script src="js/app/popper.min.js"></script>
-		<script src="js/app/bootstrap.min.js"></script> -->
+	<!-- Llamada a script de diferentes librerias -->
 	<script src="js/app/light-bootstrap-dashboard.js" type="text/javascript"></script>
 	<script src="js/app/moment.min.js"></script>
 	<script src="js/app/lightpick.js"></script>
-	<script src="js/app/validaciones.js"></script>
-	<!-- <script>
-		var picker = new Lightpick({
-			field: document.getElementById('fecha-inicio'),
-			onSelect: function (date) {
-				console.log(date.format('DD MM YYYY'));
-			}
-		});
-	</script> -->
+
+	<!-- Llamadas a scripts porpios -->
+	<script src="js/app/validaciones.js"></script>	
 	<script src="js/app/components.js"></script>
 	<script src="js/app/modals.js"></script>
 	<script src="js/Models/Cliente.js"></script>
@@ -201,9 +187,6 @@
 	<script src="js/Models/Compra.js"></script>
 	<script src="js/Views/UICompra.js"></script>
 	<script src="js/app/app.js" type="module"></script>
-
-
-
 </body>
 
 </html>

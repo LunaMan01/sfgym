@@ -24,7 +24,8 @@
         
         $datos = $conn->prepare("SELECT Id_Venta, total_venta, fecha_venta FROM Ventas  
         WHERE str_to_date(fecha_venta, '%d/%m/%Y') BETWEEN 
-        str_to_date('".$fecha1."', '%d/%m/%Y') AND str_to_date('".$fecha2."', '%d/%m/%Y')");
+        str_to_date('".$fecha1."', '%d/%m/%Y') AND str_to_date('".$fecha2."', '%d/%m/%Y')
+        AND cancelada = 0");
         
         $rowConTabla = '
         <div class="row mb-5">

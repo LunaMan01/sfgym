@@ -17,7 +17,8 @@
             ON Ventas.Id_Cliente = Clientes.Id_Cliente 
             AND str_to_date(fecha_venta, '%d/%m/%Y') 
             BETWEEN str_to_date('".$firstDay."/".$mes."/".$año."', '%d/%m/%Y') AND str_to_date('".$lastDay."/".$mes."/".$año."', '%d/%m/%Y')
-            WHERE Id_Venta LIKE ? OR nombre_cliente LIKE ? OR fecha_venta LIKE ? OR total_venta LIKE ?");
+            WHERE Id_Venta LIKE ? OR nombre_cliente LIKE ? OR fecha_venta LIKE ? OR total_venta LIKE ?
+            AND cancelada = 0");
     
             $datos->execute(array($dato."%", $dato."%", $dato."%", $dato."%"));
 
@@ -55,7 +56,8 @@
             ON Ventas.Id_Cliente = Clientes.Id_Cliente 
             AND str_to_date(fecha_venta, '%d/%m/%Y') 
             BETWEEN str_to_date('".$primerDia."', '%d/%m/%Y') AND str_to_date('".$ultimoDia."', '%d/%m/%Y')
-            WHERE Id_Venta LIKE ? OR nombre_cliente LIKE ? OR fecha_venta LIKE ? OR total_venta LIKE ?");
+            WHERE Id_Venta LIKE ? OR nombre_cliente LIKE ? OR fecha_venta LIKE ? OR total_venta LIKE ?
+            AND cancelada = 0");
     
             $datos->execute(array($dato."%", $dato."%", $dato."%", $dato."%"));
 
@@ -81,7 +83,8 @@
             FROM Ventas INNER JOIN Clientes
             ON Ventas.Id_Cliente = Clientes.Id_Cliente 
             AND fecha_venta LIKE '".$fecha."' 
-            WHERE Id_Venta LIKE ? OR nombre_cliente LIKE ? OR fecha_venta LIKE ? OR total_venta LIKE ?");
+            WHERE Id_Venta LIKE ? OR nombre_cliente LIKE ? OR fecha_venta LIKE ? OR total_venta LIKE ?
+            AND cancelada = 0");
     
             $datos->execute(array($dato."%", $dato."%", $dato."%", $dato."%"));
 
@@ -106,7 +109,8 @@
             $datos = $conn->prepare("SELECT Id_Venta, nombre_cliente, fecha_venta, total_venta 
             FROM Ventas INNER JOIN Clientes
             ON Ventas.Id_Cliente = Clientes.Id_Cliente 
-            WHERE Id_Venta LIKE ? OR nombre_cliente LIKE ? OR fecha_venta LIKE ? OR total_venta LIKE ?");
+            WHERE Id_Venta LIKE ? OR nombre_cliente LIKE ? OR fecha_venta LIKE ? OR total_venta LIKE ?
+            AND cancelada = 0");
     
             $datos->execute(array($dato."%", $dato."%", $dato."%", $dato."%"));
 

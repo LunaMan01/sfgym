@@ -7,7 +7,8 @@
         $datos = "SELECT Id_Venta, nombre_cliente, fecha_venta, Ventas.total_venta 
         FROM Ventas INNER JOIN Clientes
         ON Ventas.Id_Cliente = Clientes.Id_Cliente 
-        AND fecha_venta LIKE '".$fecha."'";
+        AND fecha_venta LIKE '".$fecha."'
+        AND cancelada = 0";
         //$datos->execute();
     
         foreach($conn->query($datos) as $row){

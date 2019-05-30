@@ -26,12 +26,13 @@
     function agregarVentas($conn, $cliente, $instructor, $total){
         global $fecha;
         $venta = $conn->prepare("INSERT INTO Ventas (Id_Cliente, Id_Instructor, fecha_venta, total_venta)
-            VALUES (:idCliente, :idInstructor, :fecha, :total)");
+            VALUES (:idCliente, :idInstructor, :fecha, :total, :cancelada)");
 
         $venta->bindParam(':idCliente', $cliente);
         $venta->bindParam(':idInstructor', $instructor);
         $venta->bindParam(':fecha', $fecha);
         $venta->bindParam(':total', $total);
+        $venta->bindParam(':cancelada', 0);
 
         $venta->execute();
     }

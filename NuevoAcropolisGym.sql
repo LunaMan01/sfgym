@@ -63,6 +63,7 @@ create table Ventas(
 	Id_Venta int not null auto_increment,
 	total_venta double,	
 	fecha_venta varchar(10),
+	cancelada int,
 
 	Id_Cliente int not null,
 	Id_Instructor int not null,
@@ -162,7 +163,7 @@ insert into TipoGastos (tipo_gasto) values ('Gasto Fijo');
 insert into TipoGastos (tipo_gasto) values ('Gasto Mantenimiento');
 insert into TipoGastos (tipo_gasto) values ('Inversion');
 
-create trigger actualizarProductosB before update on ventasproductos for each 
-row update productos, ventasproductos set existencia_producto = existencia_producto+old.cantidad_producto 
-where id_venta = new.id_venta and productos.id_producto = ventasproductos.id_producto;
+create trigger actualizarProductosB before update on VentasProductos for each 
+row update Productos, VentasProductos set existencia_producto = existencia_producto+old.cantidad_producto 
+where Id_Venta = new.Id_Venta and Productos.Id_Producto = VentasProductos.Id_Producto;
 

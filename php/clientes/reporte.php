@@ -88,9 +88,8 @@
         $fecha1 = $array[0];
         $fecha2 = $array[1];
 
-        $activo = 1;
-        $datos = $conn->prepare('SELECT Visitas.Id_Cliente AS Id_Cliente ,nombre_cliente, COUNT(*) AS nVisitas 
-        FROM Clientes INNER JOIN Visitas ON activo = '.$activo." AND Clientes.Id_Cliente = Visitas.Id_Cliente 
+        $datos = $conn->prepare("SELECT Visitas.Id_Cliente AS Id_Cliente ,nombre_cliente, COUNT(*) AS nVisitas 
+        FROM Clientes INNER JOIN Visitas ON activo = 1 AND Clientes.Id_Cliente = Visitas.Id_Cliente 
         AND str_to_date(visitas.fecha_visitas, '%d/%m/%Y') BETWEEN str_to_date('".$fecha1."','%d/%m/%Y') 
         AND str_to_date('".$fecha2."','%d/%m/%Y') GROUP BY (nombre_cliente) ORDER BY nVisitas DESC LIMIT 5");
         
@@ -147,9 +146,8 @@
         $fecha1 = $array[0];
         $fecha2 = $array[1];
 
-        $activo = 1;
-        $datos = $conn->prepare('SELECT Visitas.Id_Cliente AS Id_Cliente ,nombre_cliente, COUNT(*) AS nVisitas 
-        FROM Clientes INNER JOIN Visitas ON activo = '.$activo." AND Clientes.Id_Cliente = Visitas.Id_Cliente 
+        $datos = $conn->prepare("SELECT Visitas.Id_Cliente AS Id_Cliente ,nombre_cliente, COUNT(*) AS nVisitas 
+        FROM Clientes INNER JOIN Visitas ON activo = 1 AND Clientes.Id_Cliente = Visitas.Id_Cliente 
         AND str_to_date(visitas.fecha_visitas, '%d/%m/%Y') BETWEEN str_to_date('".$fecha1."','%d/%m/%Y') 
         AND str_to_date('".$fecha2."','%d/%m/%Y') GROUP BY (nombre_cliente) ORDER BY nVisitas ASC LIMIT 5");
         

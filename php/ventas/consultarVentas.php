@@ -8,7 +8,8 @@
 
         $consultar = "SELECT Id_Venta, nombre_cliente, fecha_venta, Ventas.total_venta 
         FROM Ventas INNER JOIN Clientes
-        ON Ventas.Id_Cliente = Clientes.Id_Cliente";
+        ON Ventas.Id_Cliente = Clientes.Id_Cliente
+        WHERE cancelada = 0";
 
         foreach($conn->query($consultar) as $row){
             echo '<tr>

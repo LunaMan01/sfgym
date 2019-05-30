@@ -14,7 +14,8 @@
         FROM Ventas INNER JOIN Clientes
         ON Ventas.Id_Cliente = Clientes.Id_Cliente 
         AND str_to_date(fecha_venta, '%d/%m/%Y') 
-        BETWEEN str_to_date('".$firstDay."/".$mes."/".$año."', '%d/%m/%Y') AND str_to_date('".$lastDay."/".$mes."/".$año."', '%d/%m/%Y')";
+        BETWEEN str_to_date('".$firstDay."/".$mes."/".$año."', '%d/%m/%Y') AND str_to_date('".$lastDay."/".$mes."/".$año."', '%d/%m/%Y')
+        AND cancelada = 0";
         //$datos->execute();
     
         foreach($conn->query($datos) as $row){

@@ -4,7 +4,20 @@
     $dato = $_POST['dato'];
     
     try{
+        if($_POST['select-ventas'] == 8){
+
+        }
+
+        if($_POST['select-ventas'] == 7){
+            
+        }
+
+        if($_POST['select-ventas'] == 6){
+            
+        }
+
         if($_POST['select-ventas'] == 5){
+            //VENTAS CANCELADAS
             $fecha = '31/05/2019';
             $datos = $conn->prepare("SELECT Id_Venta, nombre_cliente, fecha_venta, Ventas.total_venta 
             FROM Ventas INNER JOIN Clientes

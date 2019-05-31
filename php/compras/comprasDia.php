@@ -8,8 +8,7 @@
         FROM Compras INNER JOIN Instructores INNER JOIN TipoCompras 
         ON Compras.Id_Instructor = Instructores.Id_Instructor 
         AND Compras.Id_TipoCompra = TipoCompras.Id_TipoCompra
-        AND fecha_compra LIKE '".$fecha."'
-        AND cancelada = 0";
+        AND fecha_compra LIKE '".$fecha."'";
 
         foreach($conn->query($consulta) as $row){
             echo '<tr>

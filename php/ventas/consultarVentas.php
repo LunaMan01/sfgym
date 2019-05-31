@@ -16,8 +16,8 @@
                 <th scope="row" id="'.$row['Id_Venta'].'">'.$row['Id_Venta'].'</th>'.
                     '<td>'.$row['nombre_cliente'].'</td>'.
                     '<td>'.$row['fecha_venta'].'</td>'.
-                    '<td>'.$row['total_venta'].'</td>'.
-                '<td>
+                    '<td class="text-right">'.$row['total_venta'].'</td>'.
+                '<td class="text-right">
                     <i class="material-icons actions watch-action mr-2"> remove_red_eye</i>
                    
                     <i class="material-icons actions delete-venta mr-2" data-toggle="modal" href="#eliminar-venta-modal"> delete</i> </td>

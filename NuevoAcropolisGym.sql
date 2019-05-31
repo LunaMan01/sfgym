@@ -1,6 +1,6 @@
--- create database NuevoAcropolisGym;
+create database AcropolisGym;
 
--- use NuevoAcropolisGym;
+use AcropolisGym;
 
 create table Generos(
 	Id_Genero int not null auto_increment,
@@ -59,6 +59,13 @@ create table Visitas(
 	foreign key(Id_Cliente) references Clientes (Id_Cliente) on delete cascade on update cascade
 );
 
+create table TipoVenta(
+	Id_TipoVenta int not null auto_increment,
+	tipo_venta varchar(30),
+
+	primary key(Id_TipoVenta)
+);
+
 create table Ventas(
 	Id_Venta int not null auto_increment,
 	total_venta double,	
@@ -91,6 +98,24 @@ create table VentasProductos(
 
 	foreign key(Id_Venta) references Ventas (Id_Venta) on delete cascade on update cascade,
 	foreign key(Id_Producto) references Productos (Id_Producto) on delete cascade on update cascade
+);
+
+create table VentasMembresias(
+	Id_Venta int not null,
+	Id_Membresia int not null,
+	total double,
+
+	foreign key (Id_Venta) references Ventas (Id_Venta) on delete cascade on update cascade,
+	foreign key (Id_Membresia) references Membresias (Id_Membresia) on delete cascade on update cascade
+);
+
+create table VentasVisitas(
+	Id_Venta int not null,
+	Id_Visita int not null,
+	total double,
+
+	foreign key (Id_Venta) references Ventas (Id_Venta) on delete cascade on update cascade,
+	foreign key (Id_Visita) references Visitas (Id_Visita) on delete cascade on update cascade
 );
 
 create table Aparatos(
@@ -156,12 +181,18 @@ insert into Instructores (nombre_instructor, password1) values ('Luna', '123');
 insert into Instructores (nombre_instructor, password1) values ('Carlos', '123');
 insert into Instructores (nombre_instructor, password1) values ('Alberto', '123');
 
-insert into TipoCompras (tipo_compra) values ('Producto');
+insert into TipoCompras (tipo_compra) values ('Producto Nuevo');
 insert into TipoCompras (tipo_compra) values ('Aparato');
+insert into TipoCompras (tipo_compra) values ('Otro');
+insert into TipoCompras (tipo_compra) values ('Producto Existente');
 
 insert into TipoGastos (tipo_gasto) values ('Gasto Fijo');
 insert into TipoGastos (tipo_gasto) values ('Gasto Mantenimiento');
 insert into TipoGastos (tipo_gasto) values ('Inversion');
+
+insert into TipoVenta (tipo_venta) values ('Producto');
+insert into TipoVenta (tipo_venta) values ('Membresia');
+insert into TipoVenta (tipo_venta) values ('Visita');
 
 CREATE trigger addProductos BEFORE UPDATE ON Ventas for each
 ROW UPDATE Productos, VentasProductos, Ventas SET existencia_producto = existencia_producto+cantidad_producto

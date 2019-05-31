@@ -2,8 +2,8 @@
     include '../conexion.php';
 
     try{
-        $consultar = 'SELECT Id_Producto, descripcion_producto, fecha_caducidad, existencia_producto, precio_producto 
-        FROM Productos';
+        $consultar = "SELECT Id_Producto, descripcion_producto, fecha_caducidad, existencia_producto, precio_producto 
+        FROM Productos WHERE descripcion_producto NOT LiKE 'Membresia'";
 
         foreach($conn->query($consultar) as $row){
             echo '<tr>

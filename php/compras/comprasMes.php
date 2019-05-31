@@ -14,8 +14,7 @@
         AND Compras.Id_TipoCompra = TipoCompras.Id_TipoCompra
         AND str_to_date(fecha_compra, '%d/%m/%Y') 
         BETWEEN str_to_date('".$firstDay."/".$mes."/".$año."', '%d/%m/%Y') 
-        AND str_to_date('".$lastDay."/".$mes."/".$año."', '%d/%m/%Y')
-        AND cancelada = 0";
+        AND str_to_date('".$lastDay."/".$mes."/".$año."', '%d/%m/%Y')";
 
         foreach($conn->query($consulta) as $row){
             echo '<tr>

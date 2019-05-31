@@ -1,6 +1,8 @@
 <?php 
     include '../conexion.php';
 
+    $fechaActual = date('d/m/Y');
+
     try{
         if($_POST['compras'] == 1){
             agregarProducto($conn);
@@ -46,6 +48,8 @@
     }
 
     function agregarCompra($conn){
+        global $fechaActual;
+
         $agregar = $conn->prepare('INSERT INTO Compras (Id_Instructor, Id_TipoCompra, descripcion_compra, monto_compra, fecha_compra) VALUES 
             (:instructor, :tipo, :descripcion, :monto, :fecha)');
 
@@ -53,7 +57,7 @@
         $agregar->bindParam(':tipo', $_POST['compras']);
         $agregar->bindParam(':descripcion', $_POST['descripcion-compra']);
         $agregar->bindParam(':monto', $_POST['monto-compra']);
-        $agregar->bindParam(':fecha', $_POST['fecha-compra']);
+        $agregar->bindParam(':fecha', $fechaActual);
         try{
         $agregar->execute();
         

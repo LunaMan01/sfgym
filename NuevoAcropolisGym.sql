@@ -74,9 +74,11 @@ create table Ventas(
 
 	Id_Cliente int not null,
 	Id_Instructor int not null,
+	Id_TipoVenta int not null,
 
 	primary key(Id_Venta),
-	foreign key(Id_Cliente) references Clientes (Id_Cliente) on delete cascade on update cascade
+	foreign key(Id_Cliente) references Clientes (Id_Cliente) on delete cascade on update cascade,
+	foreign key(Id_TipoVenta) references TipoVenta (Id_TipoVenta) on delete cascade on update cascade
 );
 
 create table Productos(

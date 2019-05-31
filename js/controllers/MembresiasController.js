@@ -121,7 +121,11 @@ var membresiaController = (function () {
         let data = UIMembresia.getDatosParaReporte();
 
         let res = membresia.reporte(data);
-        console.log(res);
+        
+        if(res == 5) {
+            UICliente.mostrarAlert('#alert-membresias', 'Selecciona al menos una opción', 'alert-danger');
+            return;
+        }
         UIMembresia.mostrarReporte(res);
 
         document.querySelector('#descargar-pdf-membresia').addEventListener('click', descargarPDF);

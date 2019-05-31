@@ -759,14 +759,25 @@ aria-hidden="true">
             </button>
         </div>
         <div class="modal-body">
-            <form id="add-compra-form" onsubmit="return false">
+            <form id="add-compra-form" onsubmit="return false" novalidate>
               
                 <div class="form-group">
-                <label>Id instructor:</label>
-                <input type="text" class="form-control id-add" id="id-instructor" name="id-instructor"
-                    required>
+                    <label>Id instructor:</label>
+                    <input type="text" class="form-control id-add" id="id-instructor" name="id-instructor"
+                        required>
                 </div>
+
                 <div class="form-group">
+                    <label>Categoría:</label>
+                    <select class="form-control" id="categorias-compra" name="compras[]">
+                        <option value="1" id="categoria-producto">Producto nuevo</option>
+                        <option value="1" id="categoria-producto-existente">Producto existente</option>
+                        <option value="2" id="categoria-aparato">Aparato</option>
+                        <option value="3" id="categoria-otro">Otro</option>
+                    </select>
+                </div>
+
+                <div class="form-group descripcion">
                     <label>Descripción:</label>
                     <input type="text" class="form-control" id="descripcion-compra" name="descripcion-compra"
                         placeholder="Descripción de compra" required>
@@ -778,14 +789,15 @@ aria-hidden="true">
                         placeholder="Monto de compra" required>
                 </div>
 
-              
-                <div class="form-group">
-                    <label>Categoría:</label>
-                    <select class="form-control" id="categorias-compra" name="compras[]">
-                        <option value="1" id="categoria-producto">Producto</option>
-                        <option value="2" id="categoria-aparato">Aparato</option>
-                        <option value="3" id="categoria-otro">Otro</option>
+                <div class="form-group compras-productos-existentes d-none">
+                    <label>Productos:</label>
+                    <select class="form-control compras-productos-existentes" id="select-productos-existentes">
                     </select>
+                </div>
+
+                <div class="form-group compras-productos-existentes d-none">
+                    <label>Cantidad:</label>
+                    <input type="text" class="form-control" id="cantidad-producto-compra-existente"  name="df" required>
                 </div>
 
                 <div class="form-group compras-productos">

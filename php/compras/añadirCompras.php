@@ -18,8 +18,25 @@
             agregarCompra($conn);
             echo 1;
         }
+
+        if($_POST['compras'] == 4){
+            actualizarProducto($conn);
+            echo 1;
+        }
     }catch(PDOException $e){
         echo 'Error: '. $e->getMessage();
+    }
+
+    function actualizarProducto($conn){
+        agregarCompra($conn);
+
+        $compra = $conn->prepare('UPDATE Productos set existencia_producto = :existencia WHERE Id_Producto = :idP');
+
+        $compra->bindParam(':existencia', $_POST['cantidad']);
+        $compra->bindParam(':idP', $_POST['id']);
+       
+
+        $compra->execute();
     }
 
     function agregarProducto($conn){

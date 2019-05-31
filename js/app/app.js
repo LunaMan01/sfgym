@@ -327,7 +327,10 @@ var controller = (function (UI) {
         });
 
         document.querySelector('#restaurar-form').addEventListener('submit', () => {
-            console.log('restaurando');
+            document.querySelector('#generar-restauracion'). innerHTML = `
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Restaurando...
+        `;
             let archivo = $('#seleccion-archivo').prop('files')[0];
 
             let form = document.querySelector('#restaurar-form');
@@ -343,12 +346,12 @@ var controller = (function (UI) {
             req.send(formData);
             console.log(req.responseText);
 
-        //     // fetch('php/restaurar.php', {
-        //     //     method: 'POST',
-        //     //     body: formData,
-        //     //   }).then(response => {
-        //     //     console.log(response)
-        //     //   })
+            if(req.responseText == 1) {
+                new Toast('#alert-respaldos', 'Base de datos restaurada correctamente', 2000, 'alert-success').getAndShow();
+            } else {
+                new Toast('#alert-respaldos', 'Algo salio mal', 2000, 'alert-danger').getAndShow();
+            }
+            document.querySelector('#generar-restauracion'). innerHTML = 'Restaurar';
         });
     }
 

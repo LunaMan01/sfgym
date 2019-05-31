@@ -134,4 +134,15 @@ class Venta {
         return req.responseText;
     }
 
+    getVentasCanceladas(id) {
+        let data = new FormData();
+        data.append('id-venta', id)
+        console.log('id a enviar'+id);
+        var req = new XMLHttpRequest();
+        req.open("POST", 'php/ventas/ventasCanceladas.php', false);
+        
+        req.send(data);
+        return req.responseText;
+    }
+
 }

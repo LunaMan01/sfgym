@@ -1,6 +1,11 @@
 <?php 
     include '../conexion.php';
 
+    if(!isset($_POST['membresias'])) {
+        echo 5;
+        return;
+    }
+
     $fechaActual = date('d/m/Y');
 
     $html = ' 

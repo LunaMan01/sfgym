@@ -18,6 +18,24 @@ class Compra {
         return true;
     }
 
+    addExistente(data,opcion, id, cantidad, descripcion) {
+        var req = new XMLHttpRequest();
+        req.open("POST", 'php/compras/añadirCompras.php', false);
+        data.append('compras', opcion);
+        data.append('id', id);
+        data.append('cantidad', cantidad);
+        data.append('descripcion-compra', descripcion);
+        req.send(data);
+        if (req.responseText != 1) {
+            console.log('Error');
+            console.log(req.responseText);
+
+            return false;
+        }
+        console.log(req.responseText);
+        return true;
+    }
+
     eliminar() {
         var req = new XMLHttpRequest();
         req.open("POST", 'php/compras/eliminarCompras.php', false);

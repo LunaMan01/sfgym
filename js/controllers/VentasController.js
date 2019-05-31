@@ -88,7 +88,7 @@ var ventaController = (function () {
                 ids.id = idCar;
                 ids.cantidad = cantidades;
                 productosEliminadosDeCarrito.push(ids);
-
+                document.getElementById(idCar).removeAttribute('hidden');
                 UIVenta.quitarRegistroDeCarrito();
             }
         }, false);
@@ -223,18 +223,30 @@ var ventaController = (function () {
             let producto = document.getElementById('select-productos').value;
             let precio = selector.options[selector.selectedIndex].getAttribute('data-precio');
             let id = selector.options[selector.selectedIndex].getAttribute('id');
+            let existencia = selector.options[selector.selectedIndex].getAttribute('data-existencia');
+
             let cantidad = UIVenta.getCantidad();
+
+            console.log('existencia' + existencia);
+            console.log("cantidad" + cantidad);
+
             if (cantidad == 0) {
                 UIVenta.mostrarAlert('#add-venta-alert', 'Añade una cantidad', 'alert-danger');
                 return;
             }
 
-            
+            if (parseInt(cantidad, 10) > parseInt(existencia, 10)) {
+                UIVenta.mostrarAlert('#add-venta-alert', 'Inventario insuficiente para cubrir esa cantidad', 'alert-danger');
+                return;
+            }
+
+
+
 
             UIVenta.agregarProductoACarrito(producto, cantidad, precio, id);
 
             document.getElementById(id).setAttribute('hidden', "true");
-           document.getElementById('select-productos').value = "...";
+            document.getElementById('select-productos').value = "...";
         });
 
 
@@ -342,6 +354,11 @@ var ventaController = (function () {
         UIVenta.mostrarVentasEnTabla(new Venta().getVentasSemana());
     }
 
+    function getVentasCanceladas() {
+        UIVenta.mostrarCarga();
+        UIVenta.mostrarVentasEnTabla(new Venta().getVentasCanceladas());
+    }
+
 
     function busquedaDinamica() {
         let opcionSelect;
@@ -349,6 +366,7 @@ var ventaController = (function () {
         let ventasDia = document.querySelector('#ventas-dia');
         let ventasMes = document.querySelector('#ventas-mensuales');
         let ventasSemana = document.querySelector('#ventas-semanales');
+        let ventasCanceladas = document.querySelector('#ventas-canceladas');
 
         if (ventasDia.selected)
             opcionSelect = 1;
@@ -358,6 +376,9 @@ var ventaController = (function () {
             opcionSelect = 3;
         else if (todasLasVentas.selected)
             opcionSelect = 4;
+        else if (ventasCanceladas.selected)
+            opcionSelect = 5;
+
 
         let dato = UIVenta.getDatosABuscar();
         let venta = new Venta();
@@ -369,6 +390,7 @@ var ventaController = (function () {
         let ventasDia = document.querySelector('#ventas-dia');
         let ventasMes = document.querySelector('#ventas-mensuales');
         let ventasSemana = document.querySelector('#ventas-semanales');
+        let ventasCanceladas = document.querySelector('#ventas-canceladas');
 
         if (ventasDia.selected)
             getVentasDia();
@@ -378,6 +400,8 @@ var ventaController = (function () {
             getVentasSemana();
         else if (todasLasVentas.selected)
             getTodasLasVentas();
+        else if (ventasCanceladas.selected)
+            getVentasCanceladas();
 
 
     }

@@ -167,3 +167,7 @@ create trigger actualizarProductosB before update on VentasProductos for each
 row update Productos, VentasProductos set existencia_producto = existencia_producto+old.cantidad_producto 
 where Id_Venta = new.Id_Venta and Productos.Id_Producto = VentasProductos.Id_Producto;
 
+create trigger addProductos before update on Ventas for each
+row update Productos, VentasProductos set existencia_producto = existencia_producto+cantidad_producto
+where Ventas.Id_Venta = VentasProductos.Id_Venta and Productos.Id_Producto = VentasProductos.Id_Producto;
+

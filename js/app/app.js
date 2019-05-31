@@ -218,8 +218,9 @@ var UIController = (function () {
             document.querySelector(Li.productos).className = 'active';
             load('html/productos-components/productos.html', content);
             addBotones('Añadir producto', 'Generar reporte', 'add-producto-btn', 'reporte-producto-btn', 'buscar-producto-input');
-            document.querySelector('#add-producto-btn').setAttribute('data-target', '#add-producto-modal');
-            document.querySelector('#add-producto-btn').setAttribute('data-toggle', 'modal');
+            // document.querySelector('#add-producto-btn').setAttribute('data-target', '#add-producto-modal');
+            // document.querySelector('#add-producto-btn').setAttribute('data-toggle', 'modal');
+            document.querySelector('#add-producto-btn').classList.add('d-none');
             if (typeof productoController !== 'undefined')
                 productoController.init();
         },
@@ -260,6 +261,7 @@ var UIController = (function () {
             addBotones('Añadir aparato', '', 'add-aparato-btn', 'reporte-aparato-btn', 'buscar-aparato-input');
             document.querySelector('#add-aparato-btn').setAttribute('data-target', '#add-aparato-modal');
             document.querySelector('#add-aparato-btn').setAttribute('data-toggle', 'modal');
+            document.querySelector('#add-aparato-btn').classList.add('d-none');
             document.getElementById('reporte-aparato-btn').classList.add('d-none');
             if (typeof aparatoController !== 'undefined')
                 aparatoController.init();

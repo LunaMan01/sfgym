@@ -366,6 +366,7 @@ var ventaController = (function () {
         let ventasDia = document.querySelector('#ventas-dia');
         let ventasMes = document.querySelector('#ventas-mensuales');
         let ventasSemana = document.querySelector('#ventas-semanales');
+        let ventasCanceladas = document.querySelector('#ventas-canceladas');
 
         if (ventasDia.selected)
             opcionSelect = 1;
@@ -375,6 +376,9 @@ var ventaController = (function () {
             opcionSelect = 3;
         else if (todasLasVentas.selected)
             opcionSelect = 4;
+        else if (ventasCanceladas.selected)
+            opcionSelect = 5;
+
 
         let dato = UIVenta.getDatosABuscar();
         let venta = new Venta();

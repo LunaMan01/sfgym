@@ -5,6 +5,7 @@
     
     try{
         if($_POST['select-ventas'] == 5){
+            $fecha = '31/05/2019';
             $datos = $conn->prepare("SELECT Id_Venta, nombre_cliente, fecha_venta, Ventas.total_venta 
             FROM Ventas INNER JOIN Clientes
             ON Ventas.Id_Cliente = Clientes.Id_Cliente 

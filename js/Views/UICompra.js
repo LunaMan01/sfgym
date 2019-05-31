@@ -10,6 +10,30 @@ var UICompra = (function () {
             document.querySelector('#cuerpo-tabla-compras').innerHTML = spinner;
         },
 
+
+        agregarProductosASelectorExistentes : function () {
+        
+            var req = new XMLHttpRequest();
+            req.open("POST", 'php/productos/productosExistentes.php', false);
+            req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            req.send(null);
+
+
+            let productosJSON = req.responseText;
+
+
+            console.log(productosJSON);
+
+            let productos = JSON.parse(productosJSON);
+
+            productos.forEach(element => {
+                let producto = `<option data-precio="${element.precioProducto}" id="${element.idProducto}" data-existencia="${element.existencia}">${element.descripcionProducto}</option>`
+                document.querySelector('#select-productos-existentes').innerHTML += producto;
+    
+    
+            });
+        },
+
         getDatosParaNuevaCompra: function () {
             let form = document.querySelector('#add-compra-form');
             let data = new FormData(form);
@@ -47,6 +71,20 @@ var UICompra = (function () {
             document.querySelectorAll('.compras-productos').forEach(element => {
                 element.classList.remove('d-none');
             })
+        },
+
+        ocultarInputsProductoExistentes: function() {
+            document.querySelectorAll('.compras-productos-existentes').forEach(element => {
+                element.classList.add('d-none');
+            });
+            document.querySelector('.descripcion').classList.remove('d-none');
+        },
+
+        mostrarInputsProductoExistentes: function() {
+            document.querySelectorAll('.compras-productos-existentes').forEach(element => {
+                element.classList.remove('d-none');
+            });
+            document.querySelector('.descripcion').classList.add('d-none');
         },
       
       

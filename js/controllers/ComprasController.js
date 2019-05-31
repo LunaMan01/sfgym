@@ -13,18 +13,36 @@ var compraController = (function () {
     }
 
     function addNuevaCompra() {
+        console.log('dsdsa');
         let data = UICompra.getDatosParaNuevaCompra();
         let compra = new Compra();
 
         let opcionSelect;
 
-     
+
         if (document.querySelector('#categoria-producto').selected)
             opcionSelect = 1;
         else if (document.querySelector('#categoria-aparato').selected)
             opcionSelect = 2;
         else if (document.querySelector('#categoria-otro').selected)
             opcionSelect = 3;
+        else if (document.querySelector('#categoria-producto-existente').selected) {
+            opcionSelect = 4;
+            let selector = document.querySelector("#select-productos-existentes");
+            let id = selector.options[selector.selectedIndex].getAttribute('id');
+            let existencia = selector.options[selector.selectedIndex].getAttribute('data-existencia');
+            let nuevaCantidad = document.querySelector("#cantidad-producto-compra-existente").value;
+            let nuevaExistencia = parseInt(existencia,10) + parseInt(nuevaCantidad,10);
+            let desc = selector.options[selector.selectedIndex].innerHTML;
+
+            if (compra.addExistente(data, opcionSelect, id, nuevaExistencia, desc)) {
+                UICompra.mostrarAlert('Compra añadida correctamente', 'alert-success');
+                actualizarTabla();
+                document.querySelector('#add-compra-form').reset();
+                UICompra.esconderModal('#add-compra-modal');
+                return;
+            }
+        }
 
 
 
@@ -198,11 +216,11 @@ var compraController = (function () {
             yPos += 12;
             doc.text('Lista de compras', 15, yPos);
             doc.autoTable({
-                    startY: number = yPos+8,
-                    html: '#compras-table',
-                    headStyles: { fillColor: [84, 173, 88] },
-                    theme: 'grid'
-                });
+                startY: number = yPos + 8,
+                html: '#compras-table',
+                headStyles: { fillColor: [84, 173, 88] },
+                theme: 'grid'
+            });
         }
 
         doc.save();
@@ -249,12 +267,12 @@ var compraController = (function () {
         // });
 
         new Cleave('#cantidad-producto-compra', {
-            
+
             numericOnly: true
         });
 
         new Cleave('#precio-venta-producto-compras', {
-            
+
             numericOnly: true
         });
         new Cleave('#fecha-caducidad-productos-compras', {
@@ -304,14 +322,21 @@ var compraController = (function () {
             mostrarComprasSemana();
     }
 
-    function selectTipoDeCompra () {
+    function selectTipoDeCompra() {
         console.log('cambiando');
         let productoC = document.querySelector('#categoria-producto');
+        let productoExistenteC = document.querySelector('#categoria-producto-existente');
         let aparatoC = document.querySelector('#categoria-aparato');
         let otroC = document.querySelector('#categoria-otro');
 
-        if(productoC.selected)
+        if (productoC.selected) {
             UICompra.mostrarInputsProducto();
+            UICompra.ocultarInputsProductoExistentes();
+        }
+        else if (productoExistenteC.selected) {
+            UICompra.mostrarInputsProductoExistentes();
+            UICompra.ocultarInputsProducto();
+        }
         else {
             UICompra.ocultarInputsProducto();
         }
@@ -322,7 +347,7 @@ var compraController = (function () {
     function setUpEvents() {
         mostrarTodas();
         setUpInputs();
-
+        UICompra.agregarProductosASelectorExistentes();
         document.querySelector('#add-compra-form').addEventListener('submit', addNuevaCompra);
         setUpDeleteEvent();
         document.querySelector('#confirmar-eliminacion').addEventListener('click', eliminarCompra);

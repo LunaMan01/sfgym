@@ -70,7 +70,7 @@ var UICompra = (function () {
             
 
             document.querySelector('#modificar-compra-form #monto-compra').value = compra.montoCompra;
-            document.querySelector('#modificar-compra-form #fecha-compra-update').value = compra.fechaCompra;
+            // document.querySelector('#modificar-compra-form #fecha-compra-update').value = compra.fechaCompra;
 
 
         },

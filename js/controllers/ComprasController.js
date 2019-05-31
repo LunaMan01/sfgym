@@ -210,9 +210,9 @@ var compraController = (function () {
 
 
     function setUpInputs() {
-        new Lightpick({ field: document.getElementById('fecha-compra') });
+        // new Lightpick({ field: document.getElementById('fecha-compra') });
 
-        new Lightpick({ field: document.getElementById('fecha-compra-update') });
+        // new Lightpick({ field: document.getElementById('fecha-compra-update') });
 
         new Cleave('.id-add', {
             numericOnly: true,
@@ -242,19 +242,19 @@ var compraController = (function () {
             blocks: [11]
         });
 
-        new Cleave('.date-update', {
-            date: true,
-            delimiter: '/',
-            datePattern: ['d', 'm', 'Y']
-        });
+        // new Cleave('.date-update', {
+        //     date: true,
+        //     delimiter: '/',
+        //     datePattern: ['d', 'm', 'Y']
+        // });
 
         new Cleave('#cantidad-producto-compra', {
-            date: true,
+            
             numericOnly: true
         });
 
         new Cleave('#precio-venta-producto-compras', {
-            date: true,
+            
             numericOnly: true
         });
         new Cleave('#fecha-caducidad-productos-compras', {

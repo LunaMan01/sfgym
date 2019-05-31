@@ -358,7 +358,7 @@ aria-labelledby="modal-modificar-producto" aria-hidden="true">
                 <div class="form-group">
                     <label>Nombre:</label>
                     <input type="text" class="form-control" id="nombre-producto" name="nombre-producto"
-                        placeholder="Nombre del producto" required>
+                        placeholder="Nombre del producto" readonly>
                 </div>
 
                 <div class="form-group">
@@ -370,7 +370,7 @@ aria-labelledby="modal-modificar-producto" aria-hidden="true">
                 <div class="form-group">
                     <label>Existencia:</label>
                     <input type="text" class="form-control numeric-update" id="existencia-producto" name="existencia"
-                        placeholder="Cantidad de productos" required>
+                        placeholder="Cantidad de productos" required readonly>
                 </div>
 
                 <div class="form-group">
@@ -790,18 +790,18 @@ aria-hidden="true">
 
                 <div class="form-group compras-productos">
                     <label>Cantidad:</label>
-                    <input type="text" class="form-control" id="cantidad-producto-compra"  name="existencia">
+                    <input type="text" class="form-control" id="cantidad-producto-compra"  name="existencia" required>
                 </div>
 
                 <div class="form-group compras-productos">
                     <label>Precio venta producto:</label>
-                    <input type="text" class="form-control" id="precio-venta-producto-compras"  name="precio-producto">
+                    <input type="text" class="form-control" id="precio-venta-producto-compras"  name="precio-producto" required>
                 </div>
 
                 <div class="form-group compras-productos">
                     <label>Fecha caducidad:</label>
                     <input type="text" class="form-control date-add" id="fecha-caducidad-productos-compras"  name="fecha-caducidad" placeholder="dd/mm/yyyy" 
-                    pattern=".{10,}">
+                    pattern=".{10,}" required>
                 </div>
 
 
@@ -835,7 +835,7 @@ aria-hidden="true">
                 </div>
                 <div class="form-group">
                     <label>Id instructor:</label>
-                    <input type="text" class="form-control id-update" id="id-instructor" name="id-instructor" required>
+                    <input type="text" class="form-control id-update" id="id-instructor" name="id-instructor" readonly>
                 </div>
                 <div class="form-group">
                     <label>Descripción:</label>
@@ -847,11 +847,6 @@ aria-hidden="true">
                     <label>Monto:</label>
                     <input type="text" class="form-control numeric-m-update" id="monto-compra" name="monto-compra"
                         placeholder="Monto de compra">
-                </div>
-
-                <div class="form-group">
-                    <label>Fecha:</label>
-                    <input type="text" class="form-control date-update" id="fecha-compra-update"  name="fecha-compra" placeholder="dd/mm/yyyy" pattern=".{10,}">
                 </div>
 
                 <div class="modal-footer">
@@ -869,13 +864,13 @@ aria-hidden="true">
 <div class="modal-dialog" role="document">
   <div class="modal-content">
     <div class="modal-header">
-      <h5 class="modal-title" id="exampleModalLabel">Eliminar compra</h5>
+      <h5 class="modal-title" id="exampleModalLabel">Cancelar compra</h5>
       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     <div class="modal-body">
-      Seguro que desea eliminar esta compra
+      Seguro que desea cancelar esta compra
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-secondary rounded-pill " data-dismiss="modal">Cancelar</button>

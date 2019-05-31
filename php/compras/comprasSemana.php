@@ -20,8 +20,7 @@
         ON Compras.Id_Instructor = Instructores.Id_Instructor
         AND Compras.Id_TipoCompra = TipoCompras.Id_TipoCompra
         AND str_to_date(fecha_compra, '%d/%m/%Y') 
-        BETWEEN str_to_date('".$primerDia."', '%d/%m/%Y') AND str_to_date('".$ultimoDia."', '%d/%m/%Y')
-        AND cancelada = 0";
+        BETWEEN str_to_date('".$primerDia."', '%d/%m/%Y') AND str_to_date('".$ultimoDia."', '%d/%m/%Y')";
 
         foreach($conn->query($consulta) as $row){
             echo '<tr>

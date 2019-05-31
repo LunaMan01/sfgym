@@ -102,7 +102,7 @@ var ReportesController = (function () {
         document.querySelector('#clientes-select').addEventListener('click', function () {
             this.classList.add('d-none');
             document.querySelector('#reportes-container-clientes').classList.replace('d-none', 'd-inline-flex');
-            document.querySelector('#reportes-container-clientes').innerHTML += getReporteHTML('html/clientes-components/reporte-clientes.html');
+            document.querySelector('#reportes-container-clientes').innerHTML = getReporteHTML('html/clientes-components/reporte-clientes.html');
             containerReportes.classList.add('clientes');
 
             ocultarBotones();
@@ -117,15 +117,27 @@ var ReportesController = (function () {
                 delimiter: '/',
                 datePattern: ['d', 'm', 'Y']
             });
+
+            document.querySelector('.remove-reporte-cliente').addEventListener('click', () => {
+                document.querySelector('#clientes-select').classList.remove('d-none');
+                document.querySelector('#reportes-container-clientes').classList.replace('d-inline-flex','d-none');
+                containerReportes.classList.remove('clientes');
+            });
         });
 
         document.querySelector('#membresias-select').addEventListener('click', function () {
             this.classList.add('d-none');
             document.querySelector('#reportes-container-membresias').classList.replace('d-none', 'd-inline-flex');
-            document.querySelector('#reportes-container-membresias').innerHTML += getReporteHTML('html/membresias-components/reporte-membresias.html');
+            document.querySelector('#reportes-container-membresias').innerHTML = getReporteHTML('html/membresias-components/reporte-membresias.html');
             containerReportes.classList.add('membresias');
 
             ocultarBotones();
+
+            document.querySelector('.remove-reporte-membresia').addEventListener('click', () => {
+                document.querySelector('#membresias-select').classList.remove('d-none');
+                document.querySelector('#reportes-container-membresias').classList.replace('d-inline-flex','d-none');
+                containerReportes.classList.remove('membresias');
+            });
 
 
         });
@@ -133,7 +145,7 @@ var ReportesController = (function () {
         document.querySelector('#visitas-select').addEventListener('click', function () {
             this.classList.add('d-none');
             document.querySelector('#reportes-container-visitas').classList.replace('d-none', 'd-inline-flex');
-            document.querySelector('#reportes-container-visitas').innerHTML += getReporteHTML('html/visitas-components/reporte-visitas.html');
+            document.querySelector('#reportes-container-visitas').innerHTML = getReporteHTML('html/visitas-components/reporte-visitas.html');
             containerReportes.classList.add('visitas');
 
             ocultarBotones();
@@ -146,12 +158,18 @@ var ReportesController = (function () {
                 delimiter: '/',
                 datePattern: ['d', 'm', 'Y']
             });
+
+            document.querySelector('.remove-reporte-visita').addEventListener('click', () => {
+                document.querySelector('#visitas-select').classList.remove('d-none');
+                document.querySelector('#reportes-container-visitas').classList.replace('d-inline-flex','d-none');
+                containerReportes.classList.remove('visitas');
+            });
         });
 
         document.querySelector('#ventas-select').addEventListener('click', function () {
             this.classList.add('d-none');
             document.querySelector('#reportes-container-ventas').classList.replace('d-none', 'd-inline-flex');
-            document.querySelector('#reportes-container-ventas').innerHTML += getReporteHTML('html/ventas-components/reporte-ventas.html');
+            document.querySelector('#reportes-container-ventas').innerHTML = getReporteHTML('html/ventas-components/reporte-ventas.html');
             containerReportes.classList.add('ventas');
 
             ocultarBotones();
@@ -164,7 +182,11 @@ var ReportesController = (function () {
                 delimiter: '/',
                 datePattern: ['d', 'm', 'Y']
             });
-
+            document.querySelector('.remove-reporte-venta').addEventListener('click', () => {
+                document.querySelector('#ventas-select').classList.remove('d-none');
+                document.querySelector('#reportes-container-ventas').classList.replace('d-inline-flex','d-none');
+                containerReportes.classList.remove('ventas');
+            });
         });
 
 
@@ -176,13 +198,19 @@ var ReportesController = (function () {
 
             ocultarBotones();
 
+            document.querySelector('.remove-reporte-producto').addEventListener('click', () => {
+                document.querySelector('#productos-select').classList.remove('d-none');
+                document.querySelector('#reportes-container-productos').classList.replace('d-inline-flex','d-none');
+                containerReportes.classList.remove('productos');
+            });
+
         });
 
 
         document.querySelector('#gastos-select').addEventListener('click', function () {
             this.classList.add('d-none');
             document.querySelector('#reportes-container-gastos').classList.replace('d-none', 'd-inline-flex');
-            document.querySelector('#reportes-container-gastos').innerHTML += getReporteHTML('html/gastos-components/reporte-gastos.html');
+            document.querySelector('#reportes-container-gastos').innerHTML = getReporteHTML('html/gastos-components/reporte-gastos.html');
             containerReportes.classList.add('gastos');
 
             ocultarBotones();
@@ -195,13 +223,19 @@ var ReportesController = (function () {
                 delimiter: '/',
                 datePattern: ['d', 'm', 'Y']
             });
+
+            document.querySelector('.remove-reporte-gasto').addEventListener('click', () => {
+                document.querySelector('#gastos-select').classList.remove('d-none');
+                document.querySelector('#reportes-container-gastos').classList.replace('d-inline-flex','d-none');
+                containerReportes.classList.remove('gastos');
+            });
         });
 
 
         document.querySelector('#compras-select').addEventListener('click', function () {
             this.classList.add('d-none');
             document.querySelector('#reportes-container-compras').classList.replace('d-none', 'd-inline-flex');
-            document.querySelector('#reportes-container-compras').innerHTML += getReporteHTML('html/compras-components/reporte-compras.html');
+            document.querySelector('#reportes-container-compras').innerHTML = getReporteHTML('html/compras-components/reporte-compras.html');
             containerReportes.classList.add('compras');
             ocultarBotones();
             new Lightpick({
@@ -212,6 +246,12 @@ var ReportesController = (function () {
                 date: true,
                 delimiter: '/',
                 datePattern: ['d', 'm', 'Y']
+            });
+
+            document.querySelector('.remove-reporte-compra').addEventListener('click', () => {
+                document.querySelector('#compras-select').classList.remove('d-none');
+                document.querySelector('#reportes-container-compras').classList.replace('d-inline-flex','d-none');
+                containerReportes.classList.remove('compras');
             });
         });
 
@@ -247,6 +287,10 @@ var ReportesController = (function () {
         });
 
         document.querySelector('#descargar-pdf-general').addEventListener('click', descargarPDF);
+    }
+
+    function removeCards () {
+       
     }
 
 
@@ -751,6 +795,7 @@ var ReportesController = (function () {
     return {
         init: function () {
             setUpDropDownButtons();
+            removeCards();
         }
     }
 

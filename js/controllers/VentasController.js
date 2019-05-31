@@ -234,7 +234,7 @@ var ventaController = (function () {
             UIVenta.agregarProductoACarrito(producto, cantidad, precio, id);
 
             document.getElementById(id).setAttribute('hidden', "true");
-           document.getElementById('select-productos').value = "";
+           document.getElementById('select-productos').value = "...";
         });
 
 

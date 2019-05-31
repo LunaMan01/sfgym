@@ -2,7 +2,7 @@
 $dbhost = 'localhost';
 $dbuser = 'root';
 $dbpass = '';
-$dbname = 'nuevoacropolisgym';
+$dbname = 'acropolisgym';
 $connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
 $backupAlert = '';
 $tables = array();

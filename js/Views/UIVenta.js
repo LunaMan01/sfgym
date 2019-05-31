@@ -2,7 +2,7 @@ var UIVenta = (function () {
 
     function agregarProductosASelector(productosJSON) {
         productosJSON.forEach(element => {
-            let producto = `<option data-precio="${element.precioProducto}" id="${element.idProducto}">${element.descripcionProducto}</option>`
+            let producto = `<option data-precio="${element.precioProducto}" id="${element.idProducto}" data-existencia="${element.existencia}">${element.descripcionProducto}</option>`
             document.querySelector('#select-productos').innerHTML += producto;
 
 

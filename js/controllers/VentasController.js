@@ -88,7 +88,7 @@ var ventaController = (function () {
                 ids.id = idCar;
                 ids.cantidad = cantidades;
                 productosEliminadosDeCarrito.push(ids);
-
+                document.getElementById(idCar).removeAttribute('hidden');
                 UIVenta.quitarRegistroDeCarrito();
             }
         }, false);
@@ -223,18 +223,30 @@ var ventaController = (function () {
             let producto = document.getElementById('select-productos').value;
             let precio = selector.options[selector.selectedIndex].getAttribute('data-precio');
             let id = selector.options[selector.selectedIndex].getAttribute('id');
+            let existencia = selector.options[selector.selectedIndex].getAttribute('data-existencia');
+            
             let cantidad = UIVenta.getCantidad();
+
+            console.log('existencia'+existencia);
+            console.log("cantidad"+cantidad);
+
             if (cantidad == 0) {
                 UIVenta.mostrarAlert('#add-venta-alert', 'Añade una cantidad', 'alert-danger');
                 return;
             }
-
             
+            if (parseInt(cantidad,10) > parseInt(existencia,10)) {
+                UIVenta.mostrarAlert('#add-venta-alert', 'Inventario insuficiente para cubrir esa cantidad', 'alert-danger');
+                return;
+            }
+
+
+
 
             UIVenta.agregarProductoACarrito(producto, cantidad, precio, id);
 
             document.getElementById(id).setAttribute('hidden', "true");
-           document.getElementById('select-productos').value = "...";
+            document.getElementById('select-productos').value = "...";
         });
 
 

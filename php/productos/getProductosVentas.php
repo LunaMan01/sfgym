@@ -12,6 +12,7 @@
             $producto->idProducto = $row['Id_Producto'];
             $producto->descripcionProducto = $row['descripcion_producto'];
             $producto->precioProducto = $row['precio_producto'];
+            $producto->existencia = $row['existencia_producto'];
             $productos[$i] = $producto;
             $i++;
         }

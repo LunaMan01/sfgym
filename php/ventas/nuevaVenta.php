@@ -14,10 +14,23 @@
 
         $lastId = $conn->lastInsertId();
 
-        foreach($arrayItems as $row){
-            detalleVenta($conn, $lastId, $row['id'], $row['cantidad'], $row['subtotal']);
+        if($_POST['select-tipo-venta'] == 1){
+            foreach($arrayItems as $row){
+                ventasProductos($conn, $lastId, $row['id'], $row['cantidad'], $row['subtotal']);
+            }
         }
 
+        if($_POST['select-tipo-venta'] == 2){
+            foreach($arrayItems as $row){
+                ventasMembresias($conn, $lastId, $row['membresia'], $row['total']);
+            }
+        }
+
+        if($_POST['select-tipo-venta'] == 3){
+            foreach($arrayItems as $row){
+                ventasVisitas($conn, $lastId, $row['visita'], $row['total']);
+            }
+        }
         echo 1;
     }catch(PDOException $e){
         echo 'Error: '. $e->getMessage();
@@ -37,9 +50,9 @@
         $venta->execute();
     }
 
-    function detalleVenta($conn, $venta, $producto, $cantidad, $total){
+    function ventasProductos($conn, $venta, $producto, $cantidad, $total){
         $detalle = $conn->prepare("INSERT INTO VentasProductos (Id_Venta, Id_Producto, cantidad_producto, subtotal_venta)
-        VALUES (:idVenta, :idProducto, :cantidad, :subtotal)");
+            VALUES (:idVenta, :idProducto, :cantidad, :subtotal)");
 
         $detalle->bindParam(':idVenta', $venta);
         $detalle->bindParam(':idProducto', $producto);
@@ -47,21 +60,27 @@
         $detalle->bindParam(':subtotal', $total);
 
         $detalle->execute();
-
-        $cantidadP = 0;
-        $cantidadProductos = "SELECT existencia_producto from Productos
-            WHERE Id_Producto = ". $producto;
-
-        foreach($conn->query($cantidadProductos) as $row){
-            $cantidadP = $row['existencia_producto'];
-        }
-        $resta = $cantidadP - $cantidad;
-        $productos = $conn->prepare("UPDATE Productos SET
-            existencia_producto = :cantidad
-            WHERE Id_Producto = ". $producto);
-        $productos->bindParam(':cantidad', $resta);
-
-        $productos->execute();
     }
+
+    function ventasMembresias($conn, $idVenta, $idMembresia, $total){
+        $membresia = $conn->prepare("INSERT INTO VentasMembresias(Id_Venta, Id_Membresia, total) 
+            VALUES(:venta, :membresia, :total)");
+
+        $membresia->bindParam(':venta', $idVenta);
+        $membresia->bindParam(':membresia', $idMembresia);
+        $membresia->bindParam(':total', $total);
+
+        $membresia->execute();
+    }
+
+    function ventasVistas($conn, $idVenta, $idVisita, $total){
+        $visitas = $conn->prepare("INSERT INTO VentasVisitas(Id_Venta, Id_Visita, total) 
+            VALUES(:venta, :visita, :total)");
+
+        $visitas->bindParam(':venta', $idVenta);
+        $visitas->bindParam(':visita', $idVisita);
+        $visitas->bindParam(':total', $total);
+    }
+
     $conn == null;
 ?>

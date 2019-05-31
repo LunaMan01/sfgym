@@ -20,11 +20,13 @@ var ReportesController = (function () {
     function generarReporteCliente(containerReportes) {
         let cliente = new Cliente();
         var form = document.querySelector('#reporte-clientes-form');
-        console.log(document.querySelector('#reporte-clientes-form'));
+        
         var data = new FormData(form);
         let res = cliente.reporte(data);
-        containerReportes.innerHTML += res;
-        ocultarBotones();
+        
+            containerReportes.innerHTML += res;
+            ocultarBotones();
+        
     }
 
 
@@ -37,9 +39,10 @@ var ReportesController = (function () {
 
         console.log(document.querySelector('#reporte-membresias-form'));
         let res = membresia.reporte(data);
-
-        containerReportes.innerHTML += res;
-        ocultarBotones();
+        
+            containerReportes.innerHTML += res;
+            ocultarBotones();
+        
         // document.querySelector('#descargar-pdf').addEventListener('click', descargarPDF);
     }
 
@@ -58,8 +61,10 @@ var ReportesController = (function () {
         let data = UIProducto.getDatosParaReporte();
 
         let res = producto.reporte(data);
-        containerReportes.innerHTML += res;
-        ocultarBotones();
+        
+            containerReportes.innerHTML += res;
+            ocultarBotones();
+        
         // document.querySelector('#descargar-pdf').addEventListener('click', 
     }
 
@@ -120,7 +125,7 @@ var ReportesController = (function () {
 
             document.querySelector('.remove-reporte-cliente').addEventListener('click', () => {
                 document.querySelector('#clientes-select').classList.remove('d-none');
-                document.querySelector('#reportes-container-clientes').classList.replace('d-inline-flex','d-none');
+                document.querySelector('#reportes-container-clientes').classList.replace('d-inline-flex', 'd-none');
                 containerReportes.classList.remove('clientes');
             });
         });
@@ -135,7 +140,7 @@ var ReportesController = (function () {
 
             document.querySelector('.remove-reporte-membresia').addEventListener('click', () => {
                 document.querySelector('#membresias-select').classList.remove('d-none');
-                document.querySelector('#reportes-container-membresias').classList.replace('d-inline-flex','d-none');
+                document.querySelector('#reportes-container-membresias').classList.replace('d-inline-flex', 'd-none');
                 containerReportes.classList.remove('membresias');
             });
 
@@ -161,7 +166,7 @@ var ReportesController = (function () {
 
             document.querySelector('.remove-reporte-visita').addEventListener('click', () => {
                 document.querySelector('#visitas-select').classList.remove('d-none');
-                document.querySelector('#reportes-container-visitas').classList.replace('d-inline-flex','d-none');
+                document.querySelector('#reportes-container-visitas').classList.replace('d-inline-flex', 'd-none');
                 containerReportes.classList.remove('visitas');
             });
         });
@@ -184,7 +189,7 @@ var ReportesController = (function () {
             });
             document.querySelector('.remove-reporte-venta').addEventListener('click', () => {
                 document.querySelector('#ventas-select').classList.remove('d-none');
-                document.querySelector('#reportes-container-ventas').classList.replace('d-inline-flex','d-none');
+                document.querySelector('#reportes-container-ventas').classList.replace('d-inline-flex', 'd-none');
                 containerReportes.classList.remove('ventas');
             });
         });
@@ -200,7 +205,7 @@ var ReportesController = (function () {
 
             document.querySelector('.remove-reporte-producto').addEventListener('click', () => {
                 document.querySelector('#productos-select').classList.remove('d-none');
-                document.querySelector('#reportes-container-productos').classList.replace('d-inline-flex','d-none');
+                document.querySelector('#reportes-container-productos').classList.replace('d-inline-flex', 'd-none');
                 containerReportes.classList.remove('productos');
             });
 
@@ -226,7 +231,7 @@ var ReportesController = (function () {
 
             document.querySelector('.remove-reporte-gasto').addEventListener('click', () => {
                 document.querySelector('#gastos-select').classList.remove('d-none');
-                document.querySelector('#reportes-container-gastos').classList.replace('d-inline-flex','d-none');
+                document.querySelector('#reportes-container-gastos').classList.replace('d-inline-flex', 'd-none');
                 containerReportes.classList.remove('gastos');
             });
         });
@@ -250,7 +255,7 @@ var ReportesController = (function () {
 
             document.querySelector('.remove-reporte-compra').addEventListener('click', () => {
                 document.querySelector('#compras-select').classList.remove('d-none');
-                document.querySelector('#reportes-container-compras').classList.replace('d-inline-flex','d-none');
+                document.querySelector('#reportes-container-compras').classList.replace('d-inline-flex', 'd-none');
                 containerReportes.classList.remove('compras');
             });
         });
@@ -260,12 +265,19 @@ var ReportesController = (function () {
         document.querySelector('#generar-reporte-general').addEventListener('click', function () {
             if (containerReportes.classList.contains('clientes'))
                 generarReporteCliente(containerReportes);
+                 
             if (containerReportes.classList.contains('membresias'))
                 generarReportesMembresias(containerReportes);
-            if (containerReportes.classList.contains('visitas'))
-                generarReportesVisitas(containerReportes);
+                   
+
+
             if (containerReportes.classList.contains('productos'))
                 generarReportesProductos(containerReportes);
+                   
+
+            if (containerReportes.classList.contains('visitas'))
+                generarReportesVisitas(containerReportes);
+
             if (containerReportes.classList.contains('ventas'))
                 generarReportesVentas(containerReportes);
             if (containerReportes.classList.contains('gastos'))
@@ -289,8 +301,8 @@ var ReportesController = (function () {
         document.querySelector('#descargar-pdf-general').addEventListener('click', descargarPDF);
     }
 
-    function removeCards () {
-       
+    function removeCards() {
+
     }
 
 

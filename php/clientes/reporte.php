@@ -1,6 +1,11 @@
 <?php 
     include '../conexion.php';
 
+    if(!isset($_POST['clientes'])) {
+        echo 5;
+        return;
+    }
+
     $cadenaFecha = $_POST['rango-fecha'];
 
     //separar la fecha

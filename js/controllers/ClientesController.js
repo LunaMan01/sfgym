@@ -214,6 +214,11 @@ var clienteController = (function () {
         let data = UICliente.getDatosParaReporte();
 
         let res = cliente.reporte(data);
+        
+        if(res == 5) {
+            UICliente.mostrarAlert('#alert-clientes', 'Selecciona al menos una opción', 'alert-danger');
+            return;
+        }
         UICliente.mostrarReporte(res);
 
         document.querySelector('#descargar-pdf').addEventListener('click', descargarPDF);

@@ -19,7 +19,7 @@
                  '<td>'.$row['total_venta'].'</td>'.
             '<td>
                 <i class="material-icons actions watch-action mr-2" > remove_red_eye</i>
-                <i class="material-icons actions edit-venta mr-2" > create</i>
+                
                 <i class="material-icons actions delete-venta mr-2" data-toggle="modal" href="#eliminar-venta-modal"> delete</i> </td>
             </tr>';
         }

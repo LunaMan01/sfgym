@@ -840,7 +840,7 @@ aria-hidden="true">
                 <div class="form-group">
                     <label>Descripción:</label>
                     <input type="text" class="form-control" id="descripcion-producto" name="descripcion-compra"
-                        placeholder="Descripción de compra" required>
+                        placeholder="Descripción de compra" readonly>
                 </div>
 
                 <div class="form-group">
@@ -964,13 +964,13 @@ aria-hidden="true">
 <div class="modal-dialog" role="document">
   <div class="modal-content">
     <div class="modal-header">
-      <h5 class="modal-title" id="exampleModalLabel">Eliminar venta</h5>
+      <h5 class="modal-title" id="exampleModalLabel">Cancelar venta</h5>
       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     <div class="modal-body">
-      Seguro que desea eliminar esta venta
+      Seguro que desea cancelar esta venta
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-secondary rounded-pill " data-dismiss="modal">Cancelar</button>
@@ -987,13 +987,13 @@ let modalsVentas = `
 <div class="modal-dialog" role="document">
   <div class="modal-content">
     <div class="modal-header">
-      <h5 class="modal-title" id="exampleModalLabel">Eliminar venta</h5>
+      <h5 class="modal-title" id="exampleModalLabel">Cancelar venta</h5>
       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     <div class="modal-body">
-      Seguro que desea eliminar esta venta
+      Seguro que desea cancelar esta venta
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-secondary rounded-pill " data-dismiss="modal">Cancelar</button>

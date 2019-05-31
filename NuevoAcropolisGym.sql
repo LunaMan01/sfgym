@@ -163,11 +163,7 @@ insert into TipoGastos (tipo_gasto) values ('Gasto Fijo');
 insert into TipoGastos (tipo_gasto) values ('Gasto Mantenimiento');
 insert into TipoGastos (tipo_gasto) values ('Inversion');
 
-create trigger actualizarProductosB before update on VentasProductos for each 
-row update Productos, VentasProductos set existencia_producto = existencia_producto+old.cantidad_producto 
-where Id_Venta = new.Id_Venta and Productos.Id_Producto = VentasProductos.Id_Producto;
-
-create trigger addProductos before update on Ventas for each
-row update Productos, VentasProductos set existencia_producto = existencia_producto+cantidad_producto
-where Ventas.Id_Venta = VentasProductos.Id_Venta and Productos.Id_Producto = VentasProductos.Id_Producto;
+CREATE trigger addProductos BEFORE UPDATE ON Ventas for each
+ROW UPDATE Productos, VentasProductos, Ventas SET existencia_producto = existencia_producto+cantidad_producto
+WHERE Ventas.Id_Venta = VentasProductos.Id_Venta AND Productos.Id_Producto = VentasProductos.Id_Producto;
 

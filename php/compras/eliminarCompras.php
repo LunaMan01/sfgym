@@ -2,7 +2,7 @@
     include '../conexion.php';
 
     try{
-        $eliminar = $conn->prepare('DELETE FROM Compras WHERE Id_Compra = '. $_POST['id-compra']);
+        $eliminar = $conn->prepare('UPDATE Compras SET cancelada = 1 WHERE Id_Compra = '. $_POST['id-compra']);
 
         $eliminar->execute();
         echo 1;

@@ -123,6 +123,7 @@ create table Compras(
 	descripcion_compra varchar(50),
 	monto_compra int,
 	fecha_compra varchar(10),
+	cancelada int,
 
 	primary key(Id_Compra),
 	foreign key(Id_Instructor) references Instructores(Id_Instructor) on delete cascade on update cascade,

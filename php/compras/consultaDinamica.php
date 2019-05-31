@@ -11,7 +11,8 @@
                 ON Compras.Id_Instructor = Instructores.Id_Instructor
                 AND Compras.Id_TipoCompra = TipoCompras.Id_TipoCompra
                 WHERE Id_Compra LIKE ? OR descripcion_compra LIKE ? 
-                OR monto_compra LIKE ? OR fecha_compra LIKE ? OR tipo_compra LIKE ?");
+                OR monto_compra LIKE ? OR fecha_compra LIKE ? OR tipo_compra LIKE ?
+                AND cancelada = 0");
 
             $consulta->execute(array($dato."%", $dato."%", $dato."%", $dato."%", $dato."%"));
 
@@ -47,7 +48,8 @@
                 BETWEEN str_to_date('".$firstDay."/".$mes."/".$año."', '%d/%m/%Y') 
                 AND str_to_date('".$lastDay."/".$mes."/".$año."', '%d/%m/%Y')
                 WHERE Id_Compra LIKE ? OR descripcion_compra LIKE ? 
-                OR monto_compra LIKE ? OR fecha_compra LIKE ? OR tipo_compra LIKE ?");
+                OR monto_compra LIKE ? OR fecha_compra LIKE ? OR tipo_compra LIKE ?
+                AND cancelada = 0");
 
             $consulta->execute(array($dato."%", $dato."%", $dato."%", $dato."%", $dato."%"));
 
@@ -89,7 +91,8 @@
                 AND str_to_date(fecha_compra, '%d/%m/%Y') 
                 BETWEEN str_to_date('".$primerDia."', '%d/%m/%Y') AND str_to_date('".$ultimoDia."', '%d/%m/%Y')
                 WHERE Id_Compra LIKE ? OR descripcion_compra LIKE ? 
-                OR monto_compra LIKE ? OR fecha_compra LIKE ? OR tipo_compra LIKE ?");
+                OR monto_compra LIKE ? OR fecha_compra LIKE ? OR tipo_compra LIKE ?
+                AND cancelada = 0");
 
             $consulta->execute(array($dato."%", $dato."%", $dato."%", $dato."%", $dato."%"));
 
@@ -118,7 +121,8 @@
                 ON Compras.Id_Instructor = Instructores.Id_Instructor
                 AND Compras.Id_TipoCompra = TipoCompras.Id_TipoCompra
                 AND fecha_compra LIKE '".$fecha."' WHERE Id_Compra LIKE ? OR descripcion_compra LIKE ? 
-                OR monto_compra LIKE ? OR fecha_compra LIKE ? OR tipo_compra LIKE ?");
+                OR monto_compra LIKE ? OR fecha_compra LIKE ? OR tipo_compra LIKE ?
+                AND cancelada = 0");
 
             $consulta->execute(array($dato."%", $dato."%", $dato."%", $dato."%", $dato."%"));
 

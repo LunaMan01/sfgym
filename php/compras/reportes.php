@@ -29,7 +29,8 @@
         ON Compras.Id_Instructor = Instructores.Id_Instructor
         AND Compras.Id_TipoCompra = TipoCompras.Id_TipoCompra
         AND str_to_date(fecha_compra, '%d/%m/%Y') BETWEEN str_to_date('".$fecha1."','%d/%m/%Y') 
-        AND str_to_date('".$fecha2."','%d/%m/%Y')");
+        AND str_to_date('".$fecha2."','%d/%m/%Y')
+        AND cancelada = 0");
         
         $rowConTabla = '
         <div class="row mb-5">

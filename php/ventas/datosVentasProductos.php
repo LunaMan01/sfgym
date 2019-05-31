@@ -1,21 +1,21 @@
 <?php 
     include '../conexion.php';
+    
+    $tipo =$_POST['tipo-venta'];
 
-    try{
-       
-        getDatos($conn);
-
+    try{    
+        getDatosProductos($conn);
         
     }catch(PDOException $e){
         echo 'Error: '. $e->getMessage();
     }
 
-    function getDatos($conn){
+    function getDatosProductos($conn){
         $datos = $conn->prepare("SELECT Productos.Id_Producto, descripcion_producto, subtotal_venta, cantidad_producto, precio_producto
-        FROM VentasProductos, Productos WHERE Id_Venta = ". $_POST['id-venta']." AND Productos.Id_Producto = VentasProductos.Id_Producto");
+        FROM VentasProductos, Productos WHERE Id_Venta = ". $_POST['id-venta']." AND 
+        Productos.Id_Producto = VentasProductos.Id_Producto
+        AND cancelada = 0");
         
-        
-
         $datos->execute();
         
         while($r = $datos->fetch()){
@@ -30,9 +30,7 @@
                             <i class="material-icons actions detalle edit-action mr-2" data-toggle="modal" href="#modificar-cantidad-producto-modal"> create</i>
                             <i class="material-icons actions delete-action mr-2" data-toggle="modal" href="#eliminar-producto-modal"> delete</i> </td>
                     </tr>';
-            }
-
-            
+            }    
     }
     $conn = null;
 ?>

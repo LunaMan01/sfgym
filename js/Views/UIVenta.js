@@ -65,8 +65,8 @@ var UIVenta = (function () {
                     <th scope="row" class="carrito" id="${productoId}" data-cantidad="${cantidad}" data-subtotal = "${subtotal}"
                     >${productoId}</th>
                     <td>${producto}</td>
-                    <td class="subtotales">${subtotal}</td>
                     <td data-precio = "${precio}">${cantidad}</td>
+                    <td class="subtotales">${subtotal}</td>
                     <td>
                 <i class="material-icons actions edit-action mr-2" data-toggle="modal" href="#modificar-cantidad-producto-modal"> create</i>
                 <i class="material-icons actions delete-action mr-2" data-toggle="modal" href="#eliminar-membresia-modal"> delete</i> </td>

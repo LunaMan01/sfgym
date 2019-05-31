@@ -143,7 +143,7 @@ var UIVenta = (function () {
             var td = i.parentNode;
             tr = td.parentNode;
             var elements = tr.childNodes;
-            var th = elements[7];
+            var th = elements[5];
             console.log(th);
             return th;
         },
@@ -153,7 +153,7 @@ var UIVenta = (function () {
             var td = i.parentNode;
             tr = td.parentNode;
             var elements = tr.childNodes;
-            var th = elements[4];
+            var th = elements[3];
             console.log(th);
             return th;
         },
@@ -164,7 +164,7 @@ var UIVenta = (function () {
             var td = i.parentNode;
             tr = td.parentNode;
             var elements = tr.childNodes;
-            var th = elements[5];
+            var th = elements[7];
             console.log(th);
             return th;
         },
@@ -178,7 +178,7 @@ var UIVenta = (function () {
             var td = i.parentNode;
             tr = td.parentNode;
             var elements = tr.childNodes;
-            var th = elements[3];
+            var th = elements[4];
             console.log(th);
             return th;
         },

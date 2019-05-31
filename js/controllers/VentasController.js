@@ -229,7 +229,11 @@ var ventaController = (function () {
                 return;
             }
 
+            
+
             UIVenta.agregarProductoACarrito(producto, cantidad, precio, id);
+
+            document.getElementById('10').setAttribute('hidden','true');
         });
 
 

@@ -19,10 +19,6 @@ var compraController = (function () {
         let opcionSelect;
 
      
-        
-
-
-
         if (document.querySelector('#categoria-producto').selected)
             opcionSelect = 1;
         else if (document.querySelector('#categoria-aparato').selected)
@@ -233,11 +229,11 @@ var compraController = (function () {
             blocks: [11]
         });
 
-        new Cleave('.date-add', {
-            date: true,
-            delimiter: '/',
-            datePattern: ['d', 'm', 'Y']
-        });
+        // new Cleave('.date-add', {
+        //     date: true,
+        //     delimiter: '/',
+        //     datePattern: ['d', 'm', 'Y']
+        // });
 
 
 
@@ -247,6 +243,21 @@ var compraController = (function () {
         });
 
         new Cleave('.date-update', {
+            date: true,
+            delimiter: '/',
+            datePattern: ['d', 'm', 'Y']
+        });
+
+        new Cleave('#cantidad-producto-compra', {
+            date: true,
+            numericOnly: true
+        });
+
+        new Cleave('#precio-venta-producto-compras', {
+            date: true,
+            numericOnly: true
+        });
+        new Cleave('#fecha-caducidad-productos-compras', {
             date: true,
             delimiter: '/',
             datePattern: ['d', 'm', 'Y']
@@ -293,6 +304,19 @@ var compraController = (function () {
             mostrarComprasSemana();
     }
 
+    function selectTipoDeCompra () {
+        console.log('cambiando');
+        let productoC = document.querySelector('#categoria-producto');
+        let aparatoC = document.querySelector('#categoria-aparato');
+        let otroC = document.querySelector('#categoria-otro');
+
+        if(productoC.selected)
+            UICompra.mostrarInputsProducto();
+        else {
+            UICompra.ocultarInputsProducto();
+        }
+    }
+
 
 
     function setUpEvents() {
@@ -309,6 +333,7 @@ var compraController = (function () {
         document.querySelector('#reporte-compra-btn').addEventListener('click', setUpVentanaReportes);
         document.querySelector('#reporte-compra-i').addEventListener('click', setUpVentanaReportes);
         document.querySelector('#select-compras').addEventListener('change', cambiarVista);
+        document.querySelector('#categorias-compra').addEventListener('change', selectTipoDeCompra);
     }
 
     return {

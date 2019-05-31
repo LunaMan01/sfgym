@@ -37,6 +37,18 @@ var UICompra = (function () {
 
         },
 
+        ocultarInputsProducto: function() {
+            document.querySelectorAll('.compras-productos').forEach(element => {
+                element.classList.add('d-none');
+            })
+        },
+
+        mostrarInputsProducto: function() {
+            document.querySelectorAll('.compras-productos').forEach(element => {
+                element.classList.remove('d-none');
+            })
+        },
+      
       
 
         getCompra: function () {

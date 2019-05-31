@@ -778,19 +778,34 @@ aria-hidden="true">
                         placeholder="Monto de compra" required>
                 </div>
 
-                <div class="form-group">
-                    <label>Fecha:</label>
-                    <input type="text" class="form-control date-add" id="fecha-compra"  name="fecha-compra" placeholder="dd/mm/yyyy" 
-                    pattern=".{10,}">
-                </div>
+              
                 <div class="form-group">
                     <label>Categoría:</label>
-                    <select class="form-control" id="categorias-gastos" name="compras[]">
+                    <select class="form-control" id="categorias-compra" name="compras[]">
                         <option value="1" id="categoria-producto">Producto</option>
                         <option value="2" id="categoria-aparato">Aparato</option>
                         <option value="3" id="categoria-otro">Otro</option>
                     </select>
                 </div>
+
+                <div class="form-group compras-productos">
+                    <label>Cantidad:</label>
+                    <input type="text" class="form-control" id="cantidad-producto-compra"  name="existencia">
+                </div>
+
+                <div class="form-group compras-productos">
+                    <label>Precio venta producto:</label>
+                    <input type="text" class="form-control" id="precio-venta-producto-compras"  name="precio-producto">
+                </div>
+
+                <div class="form-group compras-productos">
+                    <label>Fecha caducidad:</label>
+                    <input type="text" class="form-control date-add" id="fecha-caducidad-productos-compras"  name="fecha-caducidad" placeholder="dd/mm/yyyy" 
+                    pattern=".{10,}">
+                </div>
+
+
+
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                     <button type="submit" class="btn btn-success">Guardar</button>

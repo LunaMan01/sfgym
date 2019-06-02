@@ -4,7 +4,7 @@
     try{
         $datos = "SELECT Id_Venta, nombre_cliente, fecha_venta, total_venta
             FROM Clientes INNER JOIN Ventas ON Clientes.Id_Cliente = Ventas.Id_Cliente
-            WHERE Id_TipoVenta = ". $_POST['tipo-venta'] ."AND cancelada = 0";
+            WHERE Id_TipoVenta = ". $_POST['tipo-venta'] ." AND cancelada = 0";
 
         foreach($conn->query($datos) as $row){
             echo '<tr>

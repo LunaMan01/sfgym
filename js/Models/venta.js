@@ -146,4 +146,16 @@ class Venta {
         return req.responseText;
     }
 
+    getVentasPorTipo(type) {
+        let data = new FormData();
+        console.log(type);
+        data.append('tipo-venta', type)
+        
+        var req = new XMLHttpRequest();
+        req.open("POST", 'php/ventas/ventasTipo.php', false);
+        
+        req.send(data);
+        return req.responseText;
+    }
+
 }

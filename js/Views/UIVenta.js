@@ -140,9 +140,22 @@ var UIVenta = (function () {
         },
 
         verVentaMembresias : function (venta) {
-            document.querySelector('#nip-cliente').innerHTML = venta.idCliente;
-            document.querySelector('#nip-instructor').innerHTML = venta.idInstructor;
+            document.querySelector('#id-cliente').innerHTML = venta.idCliente;
+            // document.querySelector('#ni-instructor').innerHTML = venta.idInstructor;
+            document.querySelector('#cliente-name').innerHTML = venta.nombreCliente;
             document.querySelector('#total-venta').value = venta.totalVenta;
+            document.querySelector('#id-membresias').innerHTML = venta.idMembresia;
+            document.querySelector('#fecha-inicio').innerHTML = venta.fechaInicio;
+            document.querySelector('#fecha-fin').innerHTML = venta.fechaFin;
+        },
+
+        verVentaVisitas : function (venta) {
+            document.querySelector('#id-cliente').innerHTML = venta.idCliente;
+            // document.querySelector('#ni-instructor').innerHTML = venta.idInstructor;
+            document.querySelector('#cliente-name').innerHTML = venta.nombreCliente;
+            document.querySelector('#total-venta').value = venta.totalVenta;
+            document.querySelector('#fecha-visita').innerHTML = venta.fechaVisita;
+            
         },
 
         mostrarReporte: function (req) {
@@ -314,6 +327,10 @@ var UIVenta = (function () {
 
         abrirVistaMembresias : function () {
             load('html/ventas-components/vista-ventas-membresias.html', document.querySelector('.content'));
+        },
+
+        abrirVistaVisitas : function () {
+            load('html/ventas-components/vista-ventas-visitas.html', document.querySelector('.content'));
         },
 
 

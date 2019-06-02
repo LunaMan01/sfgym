@@ -61,10 +61,16 @@ var ventaController = (function () {
 
                     document.querySelector('#cancelar-venta').addEventListener('click', regresar);
                 } 
-                if(tipoVenta == '2')
+                else if(tipoVenta == '2') {
                     UIVenta.abrirVistaMembresias();
                     let venta = new Venta().getVenta(id, tipoVenta);
-
+                    UIVenta.verVentaMembresias(venta);
+                } else if (tipoVenta == '3') {
+                    UIVenta.abrirVistaVisitas();
+                    let venta = new Venta().getVenta(id, tipoVenta);
+                    UIVenta.verVentaVisitas(venta);
+                }
+                    
                
             }
 

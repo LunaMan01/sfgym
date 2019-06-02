@@ -139,6 +139,12 @@ var UIVenta = (function () {
             document.querySelector('#total-venta').value = venta.totalVenta;
         },
 
+        verVentaMembresias : function (venta) {
+            document.querySelector('#nip-cliente').innerHTML = venta.idCliente;
+            document.querySelector('#nip-instructor').innerHTML = venta.idInstructor;
+            document.querySelector('#total-venta').value = venta.totalVenta;
+        },
+
         mostrarReporte: function (req) {
             document.querySelector('.reporte-generado').classList.remove('d-none');
             document.querySelector('.panel-reportes').classList.add('d-none');

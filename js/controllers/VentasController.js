@@ -44,7 +44,7 @@ var ventaController = (function () {
                 let tipoVenta = UIVenta.getTipoVenta(e);
                 if (tipoVenta == '1') {
                     UIVenta.abrirVista();
-                    let venta = new Venta().getVenta(id);
+                    let venta = new Venta().getVenta(id, tipoVenta);
                     UIVenta.setProductosEnTabla(new Venta().getDetalleVenta(id));
                     UIVenta.verVenta(venta);
 
@@ -63,6 +63,7 @@ var ventaController = (function () {
                 } 
                 if(tipoVenta == '2')
                     UIVenta.abrirVistaMembresias();
+                    let venta = new Venta().getVenta(id, tipoVenta);
 
                
             }

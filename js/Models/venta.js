@@ -112,15 +112,17 @@ class Venta {
     }
 
 
-    getVenta (id) {
+    getVenta (id, tipo) {
         let data = new FormData();
-        data.append('id-venta', id)
+        data.append('id-venta', id);
+        data.append('tipo-venta', tipo)
         var req = new XMLHttpRequest();
         req.open("POST", 'php/ventas/datosVentas.php', false);
         console.log('id='+id);
         req.send(data);
         console.log(req.responseText);
         let venta = JSON.parse(req.responseText);
+        console.log('venta'+venta);
         return venta;
     }
 

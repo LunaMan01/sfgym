@@ -235,13 +235,18 @@ var ventaController = (function () {
         document.querySelector('.modal-container').innerHTML = nuevaVentaModals;
         UIVenta.abrirAddVenta();
         document.querySelector('#select-tipo-venta').addEventListener('change', tipoVenta);
+
+        document.querySelector('#subtotal-membresia').addEventListener('keyup', () => {
+            console.log('f');
+            document.querySelector('#total-venta').value = document.querySelector('#subtotal-membresia').value;
+        });
+
+
         document.querySelector('#agregar-producto-seleccionado').addEventListener('click', () => {
 
             var selector = document.getElementById("select-productos");
 
-
-
-
+           
 
             let producto = document.getElementById('select-productos').value;
             let precio = selector.options[selector.selectedIndex].getAttribute('data-precio');
@@ -263,6 +268,7 @@ var ventaController = (function () {
                 return;
             }
 
+         
 
 
 
@@ -321,7 +327,7 @@ var ventaController = (function () {
         let membresiasType = document.querySelector('#ventas-membresias');
         let visitasType = document.querySelector('#ventas-visitas');
 
-        let fechaFinMembresia = document.querySelector('#fecha-fin');
+        let fechaFinMembresia = document.querySelector('#fecha-fin').value;
 
        console.log('fecha-fin'+fechaFinMembresia);
 

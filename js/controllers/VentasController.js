@@ -321,11 +321,16 @@ var ventaController = (function () {
         let membresiasType = document.querySelector('#ventas-membresias');
         let visitasType = document.querySelector('#ventas-visitas');
 
+        let fechaFinMembresia = document.querySelector('#fecha-fin');
+
+       console.log('fecha-fin'+fechaFinMembresia);
+
         if(productosType.selected) {
            type = 1;
         }
         else if(membresiasType.selected) {
             type = 2;
+   
         } else if(visitasType.selected) {
             type = 3;
         }
@@ -341,7 +346,8 @@ var ventaController = (function () {
         let venta = {
             "nipCliente": nipCliente,
             "idInstructor": idInstructor,
-            "totalVenta": totalVenta
+            "totalVenta": totalVenta,
+            "fecha-fin": fechaFinMembresia
         }
 
 
@@ -358,7 +364,7 @@ var ventaController = (function () {
             productosEnCarrito.push(producto);
         });
 
-        if (productosEnCarrito.length == 0) {
+        if (productosType.selected && productosEnCarrito.length == 0) {
             UIVenta.mostrarAlert('#add-venta-alert', 'Añade al menos un producto a la venta', 'alert-danger');
             return;
         }

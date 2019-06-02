@@ -10,26 +10,27 @@
         $items = $_POST['productos'];
         $arrayItems = json_decode($items, true);
 
-        agregarVentas($conn, $arraySell['nipCliente'], $arraySell['idInstructor'], $arraySell['totalVenta']);
+        $cliente = $arraySell['nipCliente'];
+        $instructor = $arraySell['idInstructor'];
+        $totalVenta = $arraySell['totalVenta'];
+        $fechaFin = $arraySell['fecha-fin'];
 
-        $lastId = $conn->lastInsertId();
+        agregarVentas($conn, $cliente, $instructor, $totalVenta);
+
+        $lastIdVenta = $conn->lastInsertId();
 
         if($_POST['select-tipo-venta'] == 1){
             foreach($arrayItems as $row){
-                ventasProductos($conn, $lastId, $row['id'], $row['cantidad'], $row['subtotal']);
+                ventasProductos($conn, $lastIdVenta, $row['id'], $row['cantidad'], $row['subtotal']);
             }
         }
 
         if($_POST['select-tipo-venta'] == 2){
-            foreach($arrayItems as $row){
-                ventasMembresias($conn, $lastId, $row['membresia'], $row['total']);
-            }
+            ventasMembresias($conn, $cliente, $fechaFin, $lastIdVenta, $totalVenta);
         }
 
         if($_POST['select-tipo-venta'] == 3){
-            foreach($arrayItems as $row){
-                ventasVisitas($conn, $lastId, $row['visita'], $row['total']);
-            }
+            ventasVisitas($conn, $cliente, $lastIdVenta, $totalVenta);
         }
         echo 1;
     }catch(PDOException $e){
@@ -63,24 +64,50 @@
         $detalle->execute();
     }
 
-    function ventasMembresias($conn, $idVenta, $idMembresia, $total){
-        $membresia = $conn->prepare("INSERT INTO VentasMembresias(Id_Venta, Id_Membresia, total) 
-            VALUES(:venta, :membresia, :total)");
+    function ventasMembresias($conn, $idCliente, $fechaFin, $idVenta, $total){
+        global $fecha;
+        
+        $membresia = $conn->prepare('INSERT INTO Membresias (Id_Cliente, fecha_inicio, fecha_fin) 
+            VALUES(:ID, :inicio, :fin)');
 
-        $membresia->bindParam(':venta', $idVenta);
-        $membresia->bindParam(':membresia', $idMembresia);
-        $membresia->bindParam(':total', $total);
+        $membresia->bindParam(':ID', $idCliente);
+        $membresia->bindParam(':inicio', $fecha);
+        $membresia->bindParam(':fin', $fechaFin);
 
         $membresia->execute();
+
+        $lastIdMembresia = $conn->lastInsertId();
+
+        $añadir = $conn->prepare("INSERT INTO VentasMembresias(Id_Venta, Id_Membresia, total) 
+            VALUES(:venta, :membresia, :total)");
+
+        $añadir->bindParam(':venta', $idVenta);
+        $añadir->bindParam(':membresia', $lastIdMembresia);
+        $añadir->bindParam(':total', $total);
+
+        $añadir->execute();
     }
 
-    function ventasVistas($conn, $idVenta, $idVisita, $total){
+    function ventasVisitas($conn, $idCliente, $idVenta, $total){
+        global $fecha;
+
+        $añadir = $conn->prepare('INSERT INTO Visitas (fecha_visitas, Id_Cliente) 
+            VALUES (:fecha, :ID)');
+
+        $añadir->bindParam(':fecha', $fecha);
+        $añadir->bindParam(':ID', $idCliente);
+        $añadir->execute();
+
+        $lastIdVisita = $conn->lastInsertId();
+
         $visitas = $conn->prepare("INSERT INTO VentasVisitas(Id_Venta, Id_Visita, total) 
             VALUES(:venta, :visita, :total)");
 
         $visitas->bindParam(':venta', $idVenta);
-        $visitas->bindParam(':visita', $idVisita);
+        $visitas->bindParam(':visita', $lastIdVisita);
         $visitas->bindParam(':total', $total);
+
+        $visitas->execute();
     }
 
     $conn == null;

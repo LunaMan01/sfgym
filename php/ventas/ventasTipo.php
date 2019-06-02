@@ -2,14 +2,14 @@
     include '../conexion.php';
 
     try{
-        $datos = "SELECT Id_Venta, nombre_cliente, fecha_venta, tipo_venta, total_venta
+        $datos = "SELECT Id_Venta, nombre_cliente, fecha_venta, TipoVenta.tipo_venta, total_venta, TipoVenta.Id_TipoVenta
             FROM Clientes INNER JOIN Ventas INNER JOIN TipoVenta
             ON Clientes.Id_Cliente = Ventas.Id_Cliente AND Ventas.Id_TipoVenta = TipoVenta.Id_TipoVenta
-            WHERE Id_TipoVenta = ". $_POST['tipo-venta'] ." AND cancelada = 0";
+            WHERE Ventas.Id_TipoVenta = ". $_POST['tipo-venta'] ." AND cancelada = 0";
 
         foreach($conn->query($datos) as $row){
             echo '<tr>
-                    <th scope="row" id="'.$row['Id_Venta'].'">'.$row['Id_Venta'].'</th>'.
+                    <th scope="row" data-tipo="'.$row['Id_TipoVenta'].'" id="'.$row['Id_Venta'].'">'.$row['Id_Venta'].'</th>'.
                     '<td>'.$row['nombre_cliente'].'</td>'.
                     '<td>'.$row['fecha_venta'].'</td>'.
                     '<td>'.$results['tipo_venta'].'</td>'.

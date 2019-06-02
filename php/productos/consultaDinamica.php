@@ -17,9 +17,9 @@
                     <th scope="row" id="'.$results['Id_Producto'].'">'.$results['Id_Producto'].'</th>'.
                     '<td>'.$results['descripcion_producto'].'</td>'.
                     '<td>'.$results['fecha_caducidad'].'</td>'.
-                    '<td>'.$results['existencia_producto'].'</td>'.
-                    '<td>'.$results['precio_producto'].'</td>'.
-                '<td>
+                    '<td class="text-right">'.$results['existencia_producto'].'</td>'.
+                    '<td class="text-right">'.$results['precio_producto'].'</td>'.
+                '<td class="text-right">
                     <i class="material-icons actions mr-2" watch-action data-toggle="modal" href="#ver-producto-modal"> remove_red_eye</i>
                     <i class="material-icons actions edit-action mr-2" data-toggle="modal" href="#modificar-producto-modal"> create</i>
                     

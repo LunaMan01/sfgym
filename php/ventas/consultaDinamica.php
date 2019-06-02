@@ -114,8 +114,8 @@
                         <th scope="row" id="'.$results['Id_Venta'].'">'.$results['Id_Venta'].'</th>'.
                         '<td>'.$results['nombre_cliente'].'</td>'.
                         '<td>'.$results['fecha_venta'].'</td>'.
-                        '<td>'.$results['total_venta'].'</td>'.
-                    '<td>
+                        '<td class="text-right">'.$results['total_venta'].'</td>'.
+                    '<td class="text-right">
                         <i class="material-icons actions watch-action mr-2" data-toggle="modal" href="#ver-visita-modal"> remove_red_eye</i>
                         <i class="material-icons actions edit-action mr-2" data-toggle="modal" href="#modificar-visita-modal"> create</i>
                         <i class="material-icons actions delete-action mr-2" data-toggle="modal" href="#eliminar-visita-modal"> delete</i> </td>

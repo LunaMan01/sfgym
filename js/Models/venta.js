@@ -1,12 +1,12 @@
 class Venta {
 
 
-    add(venta, productos) {
+    add(venta, productos, type) {
         var req = new XMLHttpRequest();
         
         req.open("POST", 'php/ventas/nuevaVenta.php', false);
         req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        req.send("venta="+encodeURIComponent(JSON.stringify(venta))+"&productos="+encodeURIComponent(JSON.stringify(productos)));
+        req.send("venta="+encodeURIComponent(JSON.stringify(venta))+"&productos="+encodeURIComponent(JSON.stringify(productos))+"&select-tipo-venta="+type);
         if (req.responseText != 1) {
             console.log('Error');
             console.log(req.responseText);
@@ -32,6 +32,7 @@ class Venta {
         req.open("POST", 'php/ventas/modificarVentas.php', false);
         req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         req.send("venta="+encodeURIComponent(JSON.stringify(venta))+"&productos="+encodeURIComponent(JSON.stringify(productos))+"&id-venta="+idVenta+"&productosNuevos="+encodeURIComponent(JSON.stringify(productosNuevos))+"&eliminados="+JSON.stringify(productosEliminadosDeCarrito));
+
         if (req.responseText != 1) {
             console.log('Error');
             console.log(req.responseText);

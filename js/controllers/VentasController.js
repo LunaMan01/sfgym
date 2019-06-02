@@ -207,11 +207,34 @@ var ventaController = (function () {
         }
     }
 
+    function tipoVenta () {
+        let productosType = document.querySelector('#ventas-productos');
+        let membresiasType = document.querySelector('#ventas-membresias');
+        let visitasType = document.querySelector('#ventas-visitas');
+
+        if(productosType.selected) {
+            UIVenta.mostrarInputsProductos();
+            UIVenta.ocultarInputsMembresias();
+            UIVenta.ocultarInputsVisitas();
+        }
+        else if(membresiasType.selected) {
+            UIVenta.ocultarInputsProductos();
+            UIVenta.ocultarInputsVisitas();
+            UIVenta.mostrarInputsMembresias();
+        } else if(visitasType.selected) {
+            UIVenta.ocultarInputsProductos();
+            UIVenta.ocultarInputsMembresias();
+            UIVenta.mostrarInputsVisitas();
+        }
+        
+    }
 
     function setUpNuevaVenta() {
 
+        
         document.querySelector('.modal-container').innerHTML = nuevaVentaModals;
         UIVenta.abrirAddVenta();
+        document.querySelector('#select-tipo-venta').addEventListener('change', tipoVenta);
         document.querySelector('#agregar-producto-seleccionado').addEventListener('click', () => {
 
             var selector = document.getElementById("select-productos");
@@ -293,6 +316,23 @@ var ventaController = (function () {
 
 
     function guardarVenta() {
+        let type = 0;
+        let productosType = document.querySelector('#ventas-productos');
+        let membresiasType = document.querySelector('#ventas-membresias');
+        let visitasType = document.querySelector('#ventas-visitas');
+
+        if(productosType.selected) {
+           type = 1;
+        }
+        else if(membresiasType.selected) {
+            type = 2;
+        } else if(visitasType.selected) {
+            type = 3;
+        }
+        
+
+
+
         let nipCliente = document.querySelector('#nip-cliente').value;
         console.log(nipCliente);
         let idInstructor = document.querySelector('#nip-instructor').value;
@@ -323,7 +363,7 @@ var ventaController = (function () {
             return;
         }
 
-        if (new Venta().add(venta, productosEnCarrito)) {
+        if (new Venta().add(venta, productosEnCarrito, type)) {
             UIVenta.mostrarAlert('#add-venta-alert', 'Venta realizada exitosamente', 'alert-success');
             document.querySelector('#add-venta-form').reset();
             UIVenta.limpiarCarrito();

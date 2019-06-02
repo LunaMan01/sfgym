@@ -30,7 +30,7 @@
                   <th scope="row" data-tipo="'.$row['Id_TipoVenta'].'" id="'.$row['Id_Venta'].'">'.$row['Id_Venta'].'</th>'.
                  '<td>'.$row['nombre_cliente'].'</td>'.
                  '<td>'.$row['fecha_venta'].'</td>'.
-                 '<td>'.$results['tipo_venta'].'</td>'.
+                 '<td>'.$row['tipo_venta'].'</td>'.
                  '<td class="text-right">'.$row['total_venta'].'</td>'.
             '<td class="text-right">
                 <i class="material-icons actions watch-action mr-2"> remove_red_eye</i>

@@ -45,7 +45,7 @@
     }
 
     function datosMembresias($conn){
-        $consulta = "SELECT Id_Venta, Id_Membresia, nombre_cliente, fecha_inicio, fecha_fin, total_venta, Id_Membresia
+        $consulta = "SELECT Id_Venta, Clientes.Id_Cliente, Id_Membresia, nombre_cliente, fecha_inicio, fecha_fin, total_venta, Id_Membresia
             FROM Clientes INNER JOIN Ventas INNER JOIN Membresias
             ON Ventas.Id_Cliente = Clientes.Id_Cliente AND Clientes.Id_Cliente = Membresias.Id_Cliente
             WHERE Ventas.Id_Venta = ". $_POST['id-venta'];
@@ -57,7 +57,7 @@
             $membresia->idCliente = $row['Id_Cliente'];
             $membresia->nombreCliente = $row['nombre_cliente'];
             $membresia->fechaInicio = $row['fecha_inicio'];
-            $membresia->totalFin = $row['total_fin'];
+            $membresia->fechaFin = $row['fecha_fin'];
             $membresia->idMembresia = $row['Id_Membresia'];
             $membresia->totalVenta = $row['total_venta'];
         }
@@ -67,7 +67,7 @@
     }
 
     function datosVisitas($conn){
-        $consulta = "SELECT Id_Venta, nombre_cliente, fecha_visitas, total_venta, Id_Visita
+        $consulta = "SELECT Id_Venta, Clientes.Id_Cliente, nombre_cliente, fecha_visitas, total_venta, Id_Visita
             FROM Clientes INNER JOIN Ventas INNER JOIN Visitas
             ON Clientes.Id_Cliente = Ventas.Id_Cliente AND Clientes.Id_Cliente = Visitas.Id_Cliente
             WHERE Ventas.Id_Venta = ". $_POST['id-venta'];

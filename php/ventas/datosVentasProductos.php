@@ -1,7 +1,7 @@
 <?php 
     include '../conexion.php';
     
-    $tipo =$_POST['tipo-venta'];
+    // $tipo =$_POST['tipo-venta'];
 
     try{    
         getDatosProductos($conn);
@@ -13,8 +13,7 @@
     function getDatosProductos($conn){
         $datos = $conn->prepare("SELECT Productos.Id_Producto, descripcion_producto, subtotal_venta, cantidad_producto, precio_producto
         FROM VentasProductos, Productos WHERE Id_Venta = ". $_POST['id-venta']." AND 
-        Productos.Id_Producto = VentasProductos.Id_Producto
-        AND cancelada = 0");
+        Productos.Id_Producto = VentasProductos.Id_Producto");
         
         $datos->execute();
         

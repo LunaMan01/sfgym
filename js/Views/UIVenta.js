@@ -136,7 +136,47 @@ var UIVenta = (function () {
             return req;
         },
 
+        mostrarInputsProductos : function (){
+            console.log('d');
+            document.querySelectorAll('.type-producto').forEach(element => {
+                element.classList.remove('d-none');
+            })
+        },
 
+        ocultarInputsProductos : function (){
+            console.log('d');
+            document.querySelectorAll('.type-producto').forEach(element => {
+                element.classList.add('d-none');
+            })
+        },
+
+        mostrarInputsMembresias : function (){
+            console.log('d');
+            document.querySelectorAll('.type-membresia').forEach(element => {
+                element.classList.remove('d-none');
+            })
+        },
+
+        ocultarInputsMembresias : function (){
+            
+            document.querySelectorAll('.type-membresia').forEach(element => {
+                element.classList.add('d-none');
+            })
+        },
+
+        mostrarInputsVisitas : function (){
+            console.log('d');
+            document.querySelectorAll('.type-visita').forEach(element => {
+                element.classList.remove('d-none');
+            })
+        },
+
+        ocultarInputsVisitas : function (){
+            console.log('d');
+            document.querySelectorAll('.type-visita').forEach(element => {
+                element.classList.add('d-none');
+            })
+        },
 
         getCantidadTd: function (event) {
             var i = event.target;

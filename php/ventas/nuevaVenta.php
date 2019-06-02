@@ -38,14 +38,15 @@
 
     function agregarVentas($conn, $cliente, $instructor, $total){
         global $fecha;
-        $venta = $conn->prepare("INSERT INTO Ventas (Id_Cliente, Id_Instructor, fecha_venta, total_venta, cancelada)
-            VALUES (:idCliente, :idInstructor, :fecha, :total, :cancelada)");
+        $venta = $conn->prepare("INSERT INTO Ventas (Id_Cliente, Id_Instructor, fecha_venta, total_venta, cancelada,Id_TipoVenta)
+            VALUES (:idCliente, :idInstructor, :fecha, :total, :cancelada, :tipo)");
         $can = 0;
         $venta->bindParam(':idCliente', $cliente);
         $venta->bindParam(':idInstructor', $instructor);
         $venta->bindParam(':fecha', $fecha);
         $venta->bindParam(':total', $total);
         $venta->bindParam(':cancelada', $can);
+        $venta->bindParam(':tipo', $_POST['select-tipo-venta']);
 
         $venta->execute();
     }

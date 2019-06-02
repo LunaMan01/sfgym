@@ -3,7 +3,7 @@
 </div>
 <div class="container panel-reportes">
     <div class="container">
-        <form onsubmit="return false" id="add-venta-form">
+        <form onsubmit="return false" id="add-venta-form" novalidate>
             <div class="row">
                 <div class="container">
 
@@ -38,7 +38,8 @@
                             <div class="form-group row">
                                 <label class="col-lg-2 col-form-label text-right">Tipo Venta:</label>
                                 <div class="col-lg-4">
-                                    <select class="form-control rounded-pill" name="select-tipo-venta[]" id="select-tipo-venta">
+                                    <select class="form-control rounded-pill" name="select-tipo-venta[]"
+                                        id="select-tipo-venta">
                                         <option value="1" id="ventas-productos">Producto</option>
                                         <option value="2" id="ventas-membresias">Membresia</option>
                                         <option value="3" id="ventas-visitas">Visita</option>
@@ -46,7 +47,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row ">
+                            <div class="form-group row type-producto">
                                 <label class="col-lg-2 col-form-label text-right">Producto: </label>
                                 <div class="col-lg-4">
                                     <select class="form-control rounded-pill" id="select-productos"
@@ -57,15 +58,46 @@
 
                             </div>
 
-                            <div class="form-group row ">
+                            <div class="form-group row type-producto">
                                 <label class="col-lg-2 col-form-label text-right">Cantidad: </label>
                                 <div class="col-lg-4">
                                     <input type="text" class="form-control rounded-pill" id="cantidad-productos"
                                         name="cantidad-productos">
                                 </div>
-                                <div class="col-lg-2">
+                                <div class="col-lg-2 type-producto">
                                     <button class="btn btn-outline-success rounded-pill" type="button"
                                         id="agregar-producto-seleccionado">Agregar</button>
+                                </div>
+                            </div>
+
+                            <!-- INPUTS PARA MEMBRESIA -->
+                            <div class="form-group row type-membresia d-none">
+                                <label for="id-cliente" class="col-lg-2 col-form-label text-right">Id cliente:</label>
+                                <div class="col-lg-4">
+                                    <input class="form-control rounded-pill" id="id-cliente" name="id-cliente" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group row type-membresia d-none">
+                                <label for="fecha-fin" class="col-lg-2 col-form-label text-right">Fecha fin:</label>
+                                <div class="col-lg-4">
+                                    <input class="form-control rounded-pill" id="fecha-fin" name="fin" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group row type-membresia d-none">
+                                <label for="subtotal-membresia" class="col-lg-2 col-form-label text-right">
+                                    Subtotal:</label>
+                                <div class="col-lg-4">
+                                    <input class="form-control rounded-pill" id="subtotal-membresia" name="sub" required>
+                                </div>
+                            </div>
+
+                            <!-- INPUTS PARA VISITAS -->
+                            <div class="form-group row type-visita d-none">
+                                <label for="id-cliente" class="col-lg-2 col-form-label text-right">Id cliente:</label>
+                                <div class="col-lg-4">
+                                    <input class="form-control rounded-pill" id="id-cliente-visita" name="id-cliente" required>
                                 </div>
                             </div>
 
@@ -75,7 +107,7 @@
                 </div>
             </div>
 
-            <div class="row">
+            <div class="row type-producto">
                 <div class="container">
                     <div class="col-12">
                         <div class="container">
@@ -123,8 +155,8 @@
                             <p>Total:</p>
                         </div>
                         <div class="col-auto">
-                            <input type="text" class="form-control rounded-pill text-right" id="total-venta" name="total-de-venta"
-                                disabled>
+                            <input type="text" class="form-control rounded-pill text-right" id="total-venta"
+                                name="total-de-venta" disabled>
                         </div>
                     </div>
                 </div>

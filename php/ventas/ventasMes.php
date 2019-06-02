@@ -10,9 +10,9 @@
     $lastDay = ultimoDia($mes,$año);
 
     try{
-        $datos = "SELECT Id_Venta, nombre_cliente, fecha_venta, Ventas.total_venta 
-        FROM Ventas INNER JOIN Clientes
-        ON Ventas.Id_Cliente = Clientes.Id_Cliente 
+        $datos = "SELECT Id_Venta, nombre_cliente, fecha_venta, tipo_venta, Ventas.total_venta 
+        FROM Ventas INNER JOIN Clientes INNER JOIN TipoVenta
+        ON Ventas.Id_Cliente = Clientes.Id_Cliente AND Ventas.Id_TipoVenta = TipoVenta.Id_TipoVenta
         AND str_to_date(fecha_venta, '%d/%m/%Y') 
         BETWEEN str_to_date('".$firstDay."/".$mes."/".$año."', '%d/%m/%Y') AND str_to_date('".$lastDay."/".$mes."/".$año."', '%d/%m/%Y')
         AND cancelada = 0";
@@ -20,9 +20,10 @@
     
         foreach($conn->query($datos) as $row){
             echo '<tr>
-                  <th scope="row" id="'.$row['Id_Venta'].'">'.$row['Id_Venta'].'</th>'.
+                  <th scope="row" data-tipo="'.$row['Id_TipoVenta'].'" id="'.$row['Id_Venta'].'">'.$row['Id_Venta'].'</th>'.
                  '<td>'.$row['nombre_cliente'].'</td>'.
                  '<td>'.$row['fecha_venta'].'</td>'.
+                 '<td>'.$results['tipo_venta'].'</td>'.
                  '<td class="text-right">'.$row['total_venta'].'</td>'.
             '<td class="text-right">
                 <i class="material-icons actions watch-action mr-2"> remove_red_eye</i>

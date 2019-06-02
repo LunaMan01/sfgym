@@ -10,7 +10,7 @@
     $lastDay = ultimoDia($mes,$año);
 
     try{
-        $datos = "SELECT Id_Venta, nombre_cliente, fecha_venta, tipo_venta, Ventas.total_venta 
+        $datos = "SELECT Id_Venta, nombre_cliente, fecha_venta, TipoVenta.tipo_venta, Ventas.total_venta, TipoVenta.Id_TipoVenta
         FROM Ventas INNER JOIN Clientes INNER JOIN TipoVenta
         ON Ventas.Id_Cliente = Clientes.Id_Cliente AND Ventas.Id_TipoVenta = TipoVenta.Id_TipoVenta
         AND str_to_date(fecha_venta, '%d/%m/%Y') 

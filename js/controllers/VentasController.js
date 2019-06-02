@@ -225,6 +225,7 @@ var ventaController = (function () {
             UIVenta.ocultarInputsProductos();
             UIVenta.ocultarInputsMembresias();
             UIVenta.mostrarInputsVisitas();
+            document.querySelector('#total-venta').value = '25';
         }
         
     }

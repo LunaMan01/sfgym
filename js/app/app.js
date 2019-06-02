@@ -192,6 +192,7 @@ var UIController = (function () {
             addBotones('Añadir membresía', 'Generar reporte', 'add-membresia-btn', 'reporte-membresia-btn', 'buscar-membresia-input');
             document.querySelector('#add-membresia-btn').setAttribute('data-target', '#add-membresia-modal');
             document.querySelector('#add-membresia-btn').setAttribute('data-toggle', 'modal');
+            document.querySelector('#add-membresia-btn').classList.add('d-none');
             if (typeof membresiaController !== 'undefined')
                 membresiaController.init();
         },

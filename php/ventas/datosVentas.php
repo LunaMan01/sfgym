@@ -21,7 +21,7 @@
     }
 
     function datosProductos($conn){
-        $consulta = "SELECT Ventas.Id_Venta, nombre_cliente, fecha_venta, Ventas.total_venta, Ventas.Id_Cliente, Id_Instructor, tipo_venta
+        $consulta = "SELECT Ventas.Id_Venta, nombre_cliente, fecha_venta, Ventas.total_venta, Ventas.Id_Cliente, Instructores.Id_Instructor, tipo_venta
             FROM Clientes INNER JOIN Ventas INNER JOIN VentasProductos INNER JOIN TipoVenta INNER JOIN Instructores
             ON Ventas.Id_Venta = VentasProductos.Id_Venta 
             AND Clientes.Id_Cliente = Ventas.Id_Cliente 
@@ -45,7 +45,7 @@
     }
 
     function datosMembresias($conn){
-        $consulta = "SELECT Id_Venta, Clientes.Id_Cliente, Id_Membresia, nombre_cliente, fecha_inicio, fecha_fin, total_venta, Id_Membresia, Id_Instructor
+        $consulta = "SELECT Id_Venta, Clientes.Id_Cliente, Id_Membresia, nombre_cliente, fecha_inicio, fecha_fin, total_venta, Id_Membresia, Instructores.Id_Instructor
             FROM Clientes INNER JOIN Ventas INNER JOIN Membresias INNER JOIN Instructores
             ON Ventas.Id_Cliente = Clientes.Id_Cliente 
             AND Clientes.Id_Cliente = Membresias.Id_Cliente
@@ -70,7 +70,7 @@
     }
 
     function datosVisitas($conn){
-        $consulta = "SELECT Id_Venta, Clientes.Id_Cliente, nombre_cliente, fecha_visitas, total_venta, Id_Visita, Id_Instructor
+        $consulta = "SELECT Id_Venta, Clientes.Id_Cliente, nombre_cliente, fecha_visitas, total_venta, Id_Visita, Instructores.Id_Instructor
             FROM Clientes INNER JOIN Ventas INNER JOIN Visitas INNER JOIN Instructores
             ON Clientes.Id_Cliente = Ventas.Id_Cliente 
             AND Clientes.Id_Cliente = Visitas.Id_Cliente

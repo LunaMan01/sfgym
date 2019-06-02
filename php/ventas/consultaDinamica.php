@@ -15,7 +15,7 @@
 
             while($results = $datos->fetch()){
                 echo '<tr>
-                        <th scope="row" data-tipo="'.$row['Id_TipoVenta'].'" id="'.$results['Id_Venta'].'">'.$results['Id_Venta'].'</th>'.
+                        <th scope="row" data-tipo="'.$results['Id_TipoVenta'].'" id="'.$results['Id_Venta'].'">'.$results['Id_Venta'].'</th>'.
                         '<td>'.$results['nombre_cliente'].'</td>'.
                         '<td>'.$results['fecha_venta'].'</td>'.
                         '<td>'.$results['tipo_venta'].'</td>'.
@@ -41,7 +41,7 @@
 
             while($results = $datos->fetch()){
                 echo '<tr>
-                        <th scope="row" data-tipo="'.$row['Id_TipoVenta'].'" id="'.$results['Id_Venta'].'">'.$results['Id_Venta'].'</th>'.
+                        <th scope="row" data-tipo="'.$results['Id_TipoVenta'].'" id="'.$results['Id_Venta'].'">'.$results['Id_Venta'].'</th>'.
                         '<td>'.$results['nombre_cliente'].'</td>'.
                         '<td>'.$results['fecha_venta'].'</td>'.
                         '<td>'.$results['tipo_venta'].'</td>'.
@@ -74,7 +74,7 @@
 
             while($results = $datos->fetch()){
                 echo '<tr>
-                        <th scope="row" data-tipo="'.$row['Id_TipoVenta'].'" id="'.$results['Id_Venta'].'">'.$results['Id_Venta'].'</th>'.
+                        <th scope="row" data-tipo="'.$results['Id_TipoVenta'].'" id="'.$results['Id_Venta'].'">'.$results['Id_Venta'].'</th>'.
                         '<td>'.$results['nombre_cliente'].'</td>'.
                         '<td>'.$results['fecha_venta'].'</td>'.
                         '<td>'.$results['tipo_venta'].'</td>'.
@@ -114,7 +114,7 @@
 
             while($results = $datos->fetch()){
                 echo '<tr>
-                        <th scope="row" data-tipo="'.$row['Id_TipoVenta'].'" id="'.$results['Id_Venta'].'">'.$results['Id_Venta'].'</th>'.
+                        <th scope="row" data-tipo="'.$results['Id_TipoVenta'].'" id="'.$results['Id_Venta'].'">'.$results['Id_Venta'].'</th>'.
                         '<td>'.$results['nombre_cliente'].'</td>'.
                         '<td>'.$results['fecha_venta'].'</td>'.
                         '<td>'.$results['tipo_venta'].'</td>'.
@@ -142,7 +142,7 @@
 
             while($results = $datos->fetch()){
                 echo '<tr>
-                      <th scope="row" data-tipo="'.$row['Id_TipoVenta'].'" id="'.$results['Id_Venta'].'">'.$results['Id_Venta'].'</th>'.
+                      <th scope="row" data-tipo="'.$results['Id_TipoVenta'].'" id="'.$results['Id_Venta'].'">'.$results['Id_Venta'].'</th>'.
                      '<td>'.$results['nombre_cliente'].'</td>'.
                      '<td>'.$results['fecha_venta'].'</td>'.
                      '<td>'.$results['tipo_venta'].'</td>'.
@@ -169,7 +169,7 @@
 
             while($results = $datos->fetch()){
                 echo '<tr>
-                      <th scope="row" data-tipo="'.$row['Id_TipoVenta'].'" id="'.$results['Id_Venta'].'">'.$results['Id_Venta'].'</th>'.
+                      <th scope="row" data-tipo="'.$results['Id_TipoVenta'].'" id="'.$results['Id_Venta'].'">'.$results['Id_Venta'].'</th>'.
                      '<td>'.$results['nombre_cliente'].'</td>'.
                      '<td>'.$results['fecha_venta'].'</td>'.
                      '<td>'.$results['tipo_venta'].'</td>'.

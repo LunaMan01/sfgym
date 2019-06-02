@@ -4,16 +4,26 @@
     $dato = $_POST['dato'];
     
     try{
-        if($_POST['select-ventas'] == 8){
+        if($_POST['select-ventas'] == 8 or $_POST['select-ventas'] == 7 or $_POST['select-ventas'] == 6){
+            $datos = $conn->prepare("SELECT Id_Venta, nombre_cliente, fecha_venta, total_venta
+            FROM Clientes INNER JOIN Ventas ON Clientes.Id_Cliente = Ventas.Id_Cliente
+            WHERE Id_TipoVenta = ". $_POST['tipo-venta'] ."AND cancelada = 0
+            WHERE Id_Venta LIKE ? OR nombre_cliente LIKE ? OR fecha_venta LIKE ? OR total_venta LIKE ?");
+    
+            $datos->execute(array($dato."%", $dato."%", $dato."%", $dato."%"));
 
-        }
-
-        if($_POST['select-ventas'] == 7){
-            
-        }
-
-        if($_POST['select-ventas'] == 6){
-            
+            while($results = $datos->fetch()){
+                echo '<tr>
+                        <th scope="row" id="'.$results['Id_Venta'].'">'.$results['Id_Venta'].'</th>'.
+                        '<td>'.$results['nombre_cliente'].'</td>'.
+                        '<td>'.$results['fecha_venta'].'</td>'.
+                        '<td>'.$results['total_venta'].'</td>'.
+                    '<td>
+                        <i class="material-icons actions watch-action mr-2" data-toggle="modal" href="#ver-visita-modal"> remove_red_eye</i>
+                        
+                        <i class="material-icons actions delete-action mr-2" data-toggle="modal" href="#eliminar-visita-modal"> delete</i> </td>
+                </tr>';
+            }
         }
 
         if($_POST['select-ventas'] == 5){
@@ -24,8 +34,7 @@
             ON Ventas.Id_Cliente = Clientes.Id_Cliente 
             AND fecha_venta LIKE '".$fecha."'
             AND cancelada = 1
-            WHERE Id_Venta LIKE ? OR nombre_cliente LIKE ? OR fecha_venta LIKE ? OR total_venta LIKE ?
-            AND cancelada = 0");
+            WHERE Id_Venta LIKE ? OR nombre_cliente LIKE ? OR fecha_venta LIKE ? OR total_venta LIKE ?");
     
             $datos->execute(array($dato."%", $dato."%", $dato."%", $dato."%"));
 

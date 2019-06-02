@@ -39,24 +39,32 @@ var ventaController = (function () {
         document.querySelector('#cuerpo-tabla-ventas').addEventListener('click', function (e) {
 
             if (e.target.matches('.watch-action')) {
-                UIVenta.abrirVista();
+
                 id = UIVenta.getId(e);
-                let venta = new Venta().getVenta(id);
-                UIVenta.setProductosEnTabla(new Venta().getDetalleVenta(id));
-                UIVenta.verVenta(venta);
+                let tipoVenta = UIVenta.getTipoVenta(e);
+                if (tipoVenta == '1') {
+                    UIVenta.abrirVista();
+                    let venta = new Venta().getVenta(id);
+                    UIVenta.setProductosEnTabla(new Venta().getDetalleVenta(id));
+                    UIVenta.verVenta(venta);
 
-                let eAction = document.querySelectorAll('.edit-action');
-                let dAction = document.querySelectorAll('.delete-action');
+                    let eAction = document.querySelectorAll('.edit-action');
+                    let dAction = document.querySelectorAll('.delete-action');
 
-                eAction.forEach(element => {
-                    element.classList.add('d-none');
-                });
+                    eAction.forEach(element => {
+                        element.classList.add('d-none');
+                    });
 
-                dAction.forEach(element => {
-                    element.classList.add('d-none');
-                });
+                    dAction.forEach(element => {
+                        element.classList.add('d-none');
+                    });
 
-                document.querySelector('#cancelar-venta').addEventListener('click', regresar);
+                    document.querySelector('#cancelar-venta').addEventListener('click', regresar);
+                } 
+                if(tipoVenta == '2')
+                    UIVenta.abrirVistaMembresias();
+
+               
             }
 
 

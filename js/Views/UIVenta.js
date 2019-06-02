@@ -100,6 +100,17 @@ var UIVenta = (function () {
             return id;
         },
 
+        getTipoVenta : function (event) {
+            var i = event.target;
+            var td = i.parentNode;
+            tr = td.parentNode;
+            var elements = tr.childNodes;
+            var th = elements[1];
+            var tipo = th.getAttribute('data-tipo');
+            console.log('id==' + tipo);
+            return tipo;
+        },
+         
         setDatosVentaEnInputs: function (venta) {
             document.querySelector('#nip-cliente').value = venta.idCliente;
             document.querySelector('#nip-instructor').value = venta.idInstructor;
@@ -293,6 +304,10 @@ var UIVenta = (function () {
 
         abrirVista: function () {
             load('html/ventas-components/vista-ventas.html', document.querySelector('.content'));
+        },
+
+        abrirVistaMembresias : function () {
+            load('html/ventas-components/vista-ventas-membresias.html', document.querySelector('.content'));
         },
 
 

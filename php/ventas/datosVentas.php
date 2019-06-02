@@ -45,9 +45,11 @@
     }
 
     function datosMembresias($conn){
-        $consulta = "SELECT Id_Venta, Clientes.Id_Cliente, Id_Membresia, nombre_cliente, fecha_inicio, fecha_fin, total_venta, Id_Membresia
-            FROM Clientes INNER JOIN Ventas INNER JOIN Membresias
-            ON Ventas.Id_Cliente = Clientes.Id_Cliente AND Clientes.Id_Cliente = Membresias.Id_Cliente
+        $consulta = "SELECT Id_Venta, Clientes.Id_Cliente, Id_Membresia, nombre_cliente, fecha_inicio, fecha_fin, total_venta, Id_Membresia, Id_Instructor
+            FROM Clientes INNER JOIN Ventas INNER JOIN Membresias INNER JOIN Instructores
+            ON Ventas.Id_Cliente = Clientes.Id_Cliente 
+            AND Clientes.Id_Cliente = Membresias.Id_Cliente
+            AND Ventas.Id_Instructor = Instructores.Id_Instructor
             WHERE Ventas.Id_Venta = ". $_POST['id-venta'];
 
         $membresia = new \stdClass();
@@ -60,6 +62,7 @@
             $membresia->fechaFin = $row['fecha_fin'];
             $membresia->idMembresia = $row['Id_Membresia'];
             $membresia->totalVenta = $row['total_venta'];
+            $membresia->idInstructor = $row['Id_Instructor'];
         }
         
         $membresiaJSON = json_encode($membresia);
@@ -67,9 +70,11 @@
     }
 
     function datosVisitas($conn){
-        $consulta = "SELECT Id_Venta, Clientes.Id_Cliente, nombre_cliente, fecha_visitas, total_venta, Id_Visita
-            FROM Clientes INNER JOIN Ventas INNER JOIN Visitas
-            ON Clientes.Id_Cliente = Ventas.Id_Cliente AND Clientes.Id_Cliente = Visitas.Id_Cliente
+        $consulta = "SELECT Id_Venta, Clientes.Id_Cliente, nombre_cliente, fecha_visitas, total_venta, Id_Visita, Id_Instructor
+            FROM Clientes INNER JOIN Ventas INNER JOIN Visitas INNER JOIN Instructores
+            ON Clientes.Id_Cliente = Ventas.Id_Cliente 
+            AND Clientes.Id_Cliente = Visitas.Id_Cliente
+            AND Ventas.Id_Instructor = Instructores.Id_Instructor
             WHERE Ventas.Id_Venta = ". $_POST['id-venta'];
 
         $visita = new \stdClass();
@@ -81,6 +86,7 @@
             $visita->fechaVisita = $row['fecha_visitas'];
             $visita->idVisita = $row['Id_Visita'];
             $visita->totalVenta = $row['total_venta'];
+            $visita->idInstructor = $row['Id_Instructor'];
         }
         
         $visitaJSON = json_encode($visita);

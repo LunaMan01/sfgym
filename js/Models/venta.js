@@ -81,7 +81,7 @@ class Venta {
 
     getVentasTodas () {
         var req = new XMLHttpRequest();
-        req.open("POST", 'php/ventas/consultarVentas.php', false);
+        req.open("POST", 'php/ventas/consultarTodas.php', false);
         
         req.send(null);
         return req.responseText;

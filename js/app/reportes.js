@@ -260,11 +260,37 @@ var ReportesController = (function () {
             });
         });
 
+        function checkBoxesVacios (cb1, cb2, cb3) {
 
+            if(!cb1.checked && !cb2.checked && !cb3.checked) {
+                console.log('true');
+                return true;
+            } else {
+                console.log('false');
+                return false;
+            }
+        }
+
+        function checkBoxesMembresiasVacios (cb1, cb2) {
+
+        }
+
+
+        descargable = true;
 
         document.querySelector('#generar-reporte-general').addEventListener('click', function () {
-            if (containerReportes.classList.contains('clientes'))
-                generarReporteCliente(containerReportes);
+            
+            if (containerReportes.classList.contains('clientes')) {
+                if(checkBoxesVacios(document.querySelector('#clientes-inactivos'), document.querySelector('#clientes-mas-visitas'), document.querySelector('#clientes-menos-visitas'))) {
+                    console.log('vali');
+                    return;
+                } else {
+                    console.log('genero');
+                    generarReporteCliente(containerReportes);
+                    
+                   
+                }
+            }
                  
             if (containerReportes.classList.contains('membresias'))
                 generarReportesMembresias(containerReportes);
@@ -298,7 +324,8 @@ var ReportesController = (function () {
             document.querySelector('#descargar-pdf-general').classList.remove('d-none');
         });
 
-        document.querySelector('#descargar-pdf-general').addEventListener('click', descargarPDF);
+       
+            document.querySelector('#descargar-pdf-general').addEventListener('click', descargarPDF);
     }
 
     function removeCards() {

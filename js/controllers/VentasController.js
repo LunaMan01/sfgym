@@ -252,6 +252,31 @@ var ventaController = (function () {
         UIVenta.abrirAddVenta();
         document.querySelector('#select-tipo-venta').addEventListener('change', tipoVenta);
 
+        new Cleave('#cantidad-productos', {
+            numericOnly: true,
+            blocks: [4]
+        });
+        new Cleave('#nip-cliente', {
+            numericOnly: true,
+            blocks: [11]
+        });
+        new Cleave('#nip-instructor', {
+            numericOnly: true,
+            blocks: [11]
+        });
+
+        new Cleave('#subtotal-membresia', {
+            numericOnly: true,
+            blocks: [11]
+        });
+
+        new Cleave('#fecha-fin', {
+            date: true,
+            delimiter: '/',
+            datePattern: ['d', 'm', 'Y']
+        });
+        new Lightpick({ field: document.getElementById('fecha-fin') });
+
         document.querySelector('#subtotal-membresia').addEventListener('keyup', () => {
             console.log('f');
             document.querySelector('#total-venta').value = document.querySelector('#subtotal-membresia').value;
@@ -284,8 +309,7 @@ var ventaController = (function () {
                 return;
             }
 
-
-
+            
 
 
             UIVenta.agregarProductoACarrito(producto, cantidad, precio, id);

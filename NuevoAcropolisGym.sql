@@ -1,6 +1,6 @@
-create database AcropolisGym;
+--create database AcropolisGym;
 
-use AcropolisGym;
+--use AcropolisGym;
 
 create table Generos(
 	Id_Genero int not null auto_increment,
@@ -33,8 +33,8 @@ create table Direcciones(
 	Id_Cliente int not null,
 	colonia varchar(30),
 	calle varchar(30),
-	numero_exterior int,
-	numero_interior int,
+	numero_exterior varchar(10),
+	numero_interior varchar(10),
 
 	foreign key (Id_Cliente) references Clientes (Id_Cliente) on delete cascade on update cascade 
 );

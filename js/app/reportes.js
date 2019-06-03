@@ -11,6 +11,7 @@ var UIReportes = (function () {
 
 var ReportesController = (function () {
 
+    let reportesHTML = '';
     function ocultarBotones() {
         document.querySelectorAll('.hidable').forEach(element => {
             element.classList.add('d-none');
@@ -20,13 +21,14 @@ var ReportesController = (function () {
     function generarReporteCliente(containerReportes) {
         let cliente = new Cliente();
         var form = document.querySelector('#reporte-clientes-form');
-        
+
         var data = new FormData(form);
         let res = cliente.reporte(data);
-        
-            containerReportes.innerHTML += res;
-            ocultarBotones();
-        
+
+        // containerReportes.innerHTML += res;
+        reportesHTML += res;
+        ocultarBotones();
+
     }
 
 
@@ -39,10 +41,10 @@ var ReportesController = (function () {
 
         console.log(document.querySelector('#reporte-membresias-form'));
         let res = membresia.reporte(data);
-        
-            containerReportes.innerHTML += res;
-            ocultarBotones();
-        
+
+        containerReportes.innerHTML += res;
+        ocultarBotones();
+
         // document.querySelector('#descargar-pdf').addEventListener('click', descargarPDF);
     }
 
@@ -61,10 +63,11 @@ var ReportesController = (function () {
         let data = UIProducto.getDatosParaReporte();
 
         let res = producto.reporte(data);
-        
-            containerReportes.innerHTML += res;
-            ocultarBotones();
-        
+
+        // containerReportes.innerHTML += res;
+        reportesHTML += res;
+        ocultarBotones();
+
         // document.querySelector('#descargar-pdf').addEventListener('click', 
     }
 
@@ -260,9 +263,9 @@ var ReportesController = (function () {
             });
         });
 
-        function checkBoxesVacios (cb1, cb2, cb3) {
+        function checkBoxesVacios(cb1, cb2, cb3) {
 
-            if(!cb1.checked && !cb2.checked && !cb3.checked) {
+            if (!cb1.checked && !cb2.checked && !cb3.checked) {
                 console.log('true');
                 return true;
             } else {
@@ -271,7 +274,7 @@ var ReportesController = (function () {
             }
         }
 
-        function checkBoxesMembresiasVacios (cb1, cb2) {
+        function checkBoxesMembresiasVacios(cb1, cb2) {
 
         }
 
@@ -279,27 +282,32 @@ var ReportesController = (function () {
         descargable = true;
 
         document.querySelector('#generar-reporte-general').addEventListener('click', function () {
-            
+
             if (containerReportes.classList.contains('clientes')) {
-                if(checkBoxesVacios(document.querySelector('#clientes-inactivos'), document.querySelector('#clientes-mas-visitas'), document.querySelector('#clientes-menos-visitas'))) {
-                    console.log('vali');
+                if (checkBoxesVacios(document.querySelector('#clientes-inactivos'), document.querySelector('#clientes-mas-visitas'), document.querySelector('#clientes-menos-visitas'))) {
+                    new Toast('#alert-reportes', 'Selecciona al menos una opción para reportes de clientes', 2000, 'alert-danger').getAndShow();
                     return;
                 } else {
-                    console.log('genero');
+
                     generarReporteCliente(containerReportes);
-                    
-                   
+
+
                 }
             }
-                 
+
             if (containerReportes.classList.contains('membresias'))
                 generarReportesMembresias(containerReportes);
-                   
 
 
-            if (containerReportes.classList.contains('productos'))
-                generarReportesProductos(containerReportes);
-                   
+
+            if (containerReportes.classList.contains('productos')){
+                if (checkBoxesVacios(document.querySelector('#reporte-productos-en-existencia'), document.querySelector('#reporte-productos-con-pocas-existencias'), document.querySelector('#reporte-productos-proximos-a-caducar'))) {
+                    new Toast('#alert-reportes', 'Selecciona al menos una opción para reportes de productos', 2000, 'alert-danger').getAndShow();
+                    return;
+                } else {
+                    generarReportesProductos(containerReportes);
+                }
+            }
 
             if (containerReportes.classList.contains('visitas'))
                 generarReportesVisitas(containerReportes);
@@ -324,8 +332,8 @@ var ReportesController = (function () {
             document.querySelector('#descargar-pdf-general').classList.remove('d-none');
         });
 
-       
-            document.querySelector('#descargar-pdf-general').addEventListener('click', descargarPDF);
+
+        document.querySelector('#descargar-pdf-general').addEventListener('click', descargarPDF);
     }
 
     function removeCards() {

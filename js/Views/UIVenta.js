@@ -141,7 +141,7 @@ var UIVenta = (function () {
 
         verVentaMembresias : function (venta) {
             document.querySelector('#id-cliente').innerHTML = venta.idCliente;
-            // document.querySelector('#ni-instructor').innerHTML = venta.idInstructor;
+            document.querySelector('#id-instructor').innerHTML = venta.idInstructor;
             document.querySelector('#cliente-name').innerHTML = venta.nombreCliente;
             document.querySelector('#total-venta').value = venta.totalVenta;
             document.querySelector('#id-membresias').innerHTML = venta.idMembresia;
@@ -151,7 +151,7 @@ var UIVenta = (function () {
 
         verVentaVisitas : function (venta) {
             document.querySelector('#id-cliente').innerHTML = venta.idCliente;
-            // document.querySelector('#ni-instructor').innerHTML = venta.idInstructor;
+            document.querySelector('#id-instructor').innerHTML = venta.idInstructor;
             document.querySelector('#cliente-name').innerHTML = venta.nombreCliente;
             document.querySelector('#total-venta').value = venta.totalVenta;
             document.querySelector('#fecha-visita').innerHTML = venta.fechaVisita;

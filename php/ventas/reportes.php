@@ -14,16 +14,30 @@
         </div>
     ';
     
-    if($_POST['select-tipo-venta'] == 1){
-        $html.=getVentasReporte($conn);
-    }
+    // if($_POST['select-tipo-venta'] == 1){
+    //     $html.=getVentasReporte($conn);
+    // }
 
-    if($_POST['select-tipo-venta'] == 2){
-        $html.=getMembresiasReporte($conn);
-    }
+    // if($_POST['select-tipo-venta'] == 2){
+    //     $html.=getMembresiasReporte($conn);
+    // }
 
-    if($_POST['select-tipo-venta'] == 3){
-        $html.=getVisitasReporte($conn);
+    // if($_POST['select-tipo-venta'] == 3){
+    //     $html.=getVisitasReporte($conn);
+    // }
+
+    if(isset($_POST['select-tipo-venta'])) {
+        if(in_array('1', $_POST['select-tipo-venta'])){
+            $html.=getVentasReporte($conn);
+        }
+        
+        if(in_array('2', $_POST['select-tipo-venta'])){
+            $html.=getMembresiasReporte($conn);
+        }
+        
+        if(in_array('3', $_POST['select-tipo-venta'])){
+            $html.=getVisitasReporte($conn);
+        }
     }
 
 

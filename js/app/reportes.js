@@ -11,7 +11,8 @@ var UIReportes = (function () {
 
 var ReportesController = (function () {
 
-    let reportesHTML = '';
+    let reporteHTML = '';
+
     function ocultarBotones() {
         document.querySelectorAll('.hidable').forEach(element => {
             element.classList.add('d-none');
@@ -26,7 +27,7 @@ var ReportesController = (function () {
         let res = cliente.reporte(data);
 
         // containerReportes.innerHTML += res;
-        reportesHTML += res;
+        reporteHTML += res;
         ocultarBotones();
 
     }
@@ -42,7 +43,9 @@ var ReportesController = (function () {
         console.log(document.querySelector('#reporte-membresias-form'));
         let res = membresia.reporte(data);
 
-        containerReportes.innerHTML += res;
+
+        // containerReportes.innerHTML += res;
+        reporteHTML += res;
         ocultarBotones();
 
         // document.querySelector('#descargar-pdf').addEventListener('click', descargarPDF);
@@ -53,7 +56,8 @@ var ReportesController = (function () {
         let data = UIVisita.getDatosParaReporte();
 
         let res = visita.reporte(data);
-        containerReportes.innerHTML += res;
+        // containerReportes.innerHTML += res;
+        reporteHTML += res;
         ocultarBotones();
         // document.querySelector('#descargar-pdf').addEventListener('click', descargarPDF);
     }
@@ -65,7 +69,7 @@ var ReportesController = (function () {
         let res = producto.reporte(data);
 
         // containerReportes.innerHTML += res;
-        reportesHTML += res;
+        reporteHTML += res;
         ocultarBotones();
 
         // document.querySelector('#descargar-pdf').addEventListener('click', 
@@ -77,7 +81,8 @@ var ReportesController = (function () {
 
         let res = venta.reporte(data);
 
-        containerReportes.innerHTML += res;
+        // containerReportes.innerHTML += res;
+        reporteHTML += res;
         ocultarBotones();
         // document.querySelector('#descargar-pdf').addEventListener('click', 
     }
@@ -87,7 +92,8 @@ var ReportesController = (function () {
         let data = UIGasto.getDatosParaReporte();
 
         let res = gasto.reporte(data);
-        containerReportes.innerHTML += res;
+        // containerReportes.innerHTML += res;
+        reporteHTML += res;
         ocultarBotones();
         // document.querySelector('#descargar-pdf').addEventListener('click', 
     }
@@ -98,20 +104,51 @@ var ReportesController = (function () {
 
         let res = compra.reporte(data);
         console.log(res);
-        containerReportes.innerHTML += res;
+        // containerReportes.innerHTML += res;
+        reporteHTML += res;
         ocultarBotones();
         // document.querySelector('#descargar-pdf').addEventListener('click', 
     }
 
     function setUpDropDownButtons() {
 
+        function setRequiredAttr() {
+            if (document.querySelector('#clientes-mas-visitas').checked ||
+                document.querySelector('#clientes-menos-visitas').checked) {
+                console.log('click');
+                document.querySelector('#rango-fecha').setAttribute("required", "");
+                document.querySelector('#rango-fecha').required = true;
+            }
+            if (document.querySelector('#clientes-inactivos').checked
+                && (document.querySelector('#clientes-mas-visitas').checked == false &&
+                    document.querySelector('#clientes-menos-visitas').checked == false)
+            ) {
+                console.log('quitar attr');
+                document.querySelector('#rango-fecha').removeAttribute("required");
+                document.querySelector('#rango-fecha').required = false;
+            }
+        }
+
+
+
+
+
         let containerReportes = document.querySelector('#container-reportes');
 
         document.querySelector('#clientes-select').addEventListener('click', function () {
+
+
+
             this.classList.add('d-none');
             document.querySelector('#reportes-container-clientes').classList.replace('d-none', 'd-inline-flex');
             document.querySelector('#reportes-container-clientes').innerHTML = getReporteHTML('html/clientes-components/reporte-clientes.html');
             containerReportes.classList.add('clientes');
+
+
+
+
+            document.querySelector('#clientes-mas-visitas').addEventListener('click', setRequiredAttr);
+            document.querySelector('#clientes-menos-visitas').addEventListener('click', setRequiredAttr);
 
             ocultarBotones();
 
@@ -263,61 +300,107 @@ var ReportesController = (function () {
             });
         });
 
+
         function checkBoxesVacios(cb1, cb2, cb3) {
-
-            if (!cb1.checked && !cb2.checked && !cb3.checked) {
-                console.log('true');
+            if (!cb1.checked && !cb2.checked && !cb3.checked)
                 return true;
-            } else {
-                console.log('false');
+            else
                 return false;
-            }
         }
 
-        function checkBoxesMembresiasVacios(cb1, cb2) {
-
+        function checkBoxesVacios(cb1, cb2) {
+            if (!cb1.checked && !cb2.checked)
+                return true;
+            else
+                return false;
         }
 
-
-        descargable = true;
+        function verReporte() {
+            containerReportes.innerHTML += reporteHTML;
+            ocultarBotones();
+        }
 
         document.querySelector('#generar-reporte-general').addEventListener('click', function () {
-
             if (containerReportes.classList.contains('clientes')) {
-                if (checkBoxesVacios(document.querySelector('#clientes-inactivos'), document.querySelector('#clientes-mas-visitas'), document.querySelector('#clientes-menos-visitas'))) {
-                    new Toast('#alert-reportes', 'Selecciona al menos una opción para reportes de clientes', 2000, 'alert-danger').getAndShow();
-                    return;
+                if (checkBoxesVacios(document.querySelector('#clientes-inactivos'), document.querySelector('#clientes-mas-visitas'), document.querySelector('#clientes-menos-visitas')) == false) {
+                    if (document.querySelector('#clientes-mas-visitas').checked && isEmpty(document.querySelector('.f-cliente').value)) {
+                        new Toast('#alert-reportes', 'Ingresa un rango de fecha válido', 2000, 'alert-danger').getAndShow();
+                        reporteHTML = '';
+                        return;
+                    }
+                    else if (document.querySelector('#clientes-menos-visitas').checked && isEmpty(document.querySelector('.f-cliente').value)) {
+                        new Toast('#alert-reportes', 'Ingresa un rango de fecha válido', 2000, 'alert-danger').getAndShow();
+                        reporteHTML = '';
+                        return;
+                    } else {
+
+                        generarReporteCliente(containerReportes);
+                    }
+
                 } else {
-
-                    generarReporteCliente(containerReportes);
-
-
+                    new Toast('#alert-reportes', 'Selecciona al menos una opción para reporte de clientes', 2000, 'alert-danger').getAndShow();
+                    reporteHTML = '';
+                    return;
                 }
             }
 
-            if (containerReportes.classList.contains('membresias'))
-                generarReportesMembresias(containerReportes);
 
 
-
-            if (containerReportes.classList.contains('productos')){
-                if (checkBoxesVacios(document.querySelector('#reporte-productos-en-existencia'), document.querySelector('#reporte-productos-con-pocas-existencias'), document.querySelector('#reporte-productos-proximos-a-caducar'))) {
-                    new Toast('#alert-reportes', 'Selecciona al menos una opción para reportes de productos', 2000, 'alert-danger').getAndShow();
-                    return;
+            if (containerReportes.classList.contains('membresias')) {
+                if (checkBoxesVacios(document.querySelector('#reporte-membresias-nuevas'), document.querySelector('#reporte-membresias-a-vencer')) == false) {
+                    generarReportesMembresias(containerReportes);
                 } else {
+                    new Toast('#alert-reportes', 'Selecciona al menos una opción para reporte de membresías', 2000, 'alert-danger').getAndShow();
+                    reporteHTML = '';
+                    return;
+                }
+            }
+
+
+
+            if (containerReportes.classList.contains('productos')) {
+                if (checkBoxesVacios(document.querySelector('#reporte-productos-en-existencia'), document.querySelector('#reporte-productos-con-pocas-existencias'), document.querySelector('#reporte-productos-proximos-a-caducar')) == false) {
+
                     generarReportesProductos(containerReportes);
+                } else {
+                    new Toast('#alert-reportes', 'Selecciona al menos una opción para reporte de productos', 2000, 'alert-danger').getAndShow();
+                    reporteHTML = '';
+                    return;
                 }
             }
 
-            if (containerReportes.classList.contains('visitas'))
-                generarReportesVisitas(containerReportes);
+
+            if (containerReportes.classList.contains('visitas')) {
+                if (!isEmpty(document.querySelector('.f-visita').value)) {
+                    generarReportesVisitas(containerReportes);
+                } else {
+                    new Toast('#alert-reportes', 'Ingresa un rango de fechas para reporte visitas', 2000, 'alert-danger').getAndShow();
+                    reporteHTML = '';
+                    return;
+                }
+            }
 
             if (containerReportes.classList.contains('ventas'))
                 generarReportesVentas(containerReportes);
-            if (containerReportes.classList.contains('gastos'))
-                generarReportesGastos(containerReportes);
-            if (containerReportes.classList.contains('compras'))
-                generarReportesCompras(containerReportes);
+
+            if (containerReportes.classList.contains('gastos')) {
+                if (!isEmpty(document.querySelector('.f-gasto').value)) {
+                    generarReportesGastos(containerReportes);
+                } else {
+                    new Toast('#alert-reportes', 'Ingresa un rango de fechas para reporte de gastos', 2000, 'alert-danger').getAndShow();
+                    reporteHTML = '';
+                    return;
+                }
+            }
+            if (containerReportes.classList.contains('compras')) {
+                if (!isEmpty(document.querySelector('.f-compra').value)) {
+                    generarReportesCompras(containerReportes);
+                } else {
+                    new Toast('#alert-reportes', 'Ingresa un rango de fechas para reporte de compras', 2000, 'alert-danger').getAndShow();
+                    reporteHTML = '';
+                    return;
+                }
+            }
 
 
             document.querySelectorAll('.d-inline-flex').forEach(element => {
@@ -328,10 +411,10 @@ var ReportesController = (function () {
                 element.classList.add('d-none');
             });
 
+            verReporte();
             document.querySelector('#generar-reporte-general').classList.add('d-none');
             document.querySelector('#descargar-pdf-general').classList.remove('d-none');
         });
-
 
         document.querySelector('#descargar-pdf-general').addEventListener('click', descargarPDF);
     }

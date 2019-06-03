@@ -112,15 +112,17 @@ class Venta {
     }
 
 
-    getVenta (id) {
+    getVenta (id, tipo) {
         let data = new FormData();
-        data.append('id-venta', id)
+        data.append('id-venta', id);
+        data.append('tipo-venta', tipo)
         var req = new XMLHttpRequest();
         req.open("POST", 'php/ventas/datosVentas.php', false);
         console.log('id='+id);
         req.send(data);
         console.log(req.responseText);
         let venta = JSON.parse(req.responseText);
+        console.log('venta'+venta);
         return venta;
     }
 
@@ -141,6 +143,18 @@ class Venta {
         console.log('id a enviar'+id);
         var req = new XMLHttpRequest();
         req.open("POST", 'php/ventas/ventasCanceladas.php', false);
+        
+        req.send(data);
+        return req.responseText;
+    }
+
+    getVentasPorTipo(type) {
+        let data = new FormData();
+        console.log(type);
+        data.append('tipo-venta', type)
+        
+        var req = new XMLHttpRequest();
+        req.open("POST", 'php/ventas/ventasTipo.php', false);
         
         req.send(data);
         return req.responseText;

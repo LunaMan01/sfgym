@@ -39,24 +39,39 @@ var ventaController = (function () {
         document.querySelector('#cuerpo-tabla-ventas').addEventListener('click', function (e) {
 
             if (e.target.matches('.watch-action')) {
-                UIVenta.abrirVista();
+
                 id = UIVenta.getId(e);
-                let venta = new Venta().getVenta(id);
-                UIVenta.setProductosEnTabla(new Venta().getDetalleVenta(id));
-                UIVenta.verVenta(venta);
+                let tipoVenta = UIVenta.getTipoVenta(e);
+                if (tipoVenta == '1') {
+                    UIVenta.abrirVista();
+                    let venta = new Venta().getVenta(id, tipoVenta);
+                    UIVenta.setProductosEnTabla(new Venta().getDetalleVenta(id));
+                    UIVenta.verVenta(venta);
 
-                let eAction = document.querySelectorAll('.edit-action');
-                let dAction = document.querySelectorAll('.delete-action');
+                    let eAction = document.querySelectorAll('.edit-action');
+                    let dAction = document.querySelectorAll('.delete-action');
 
-                eAction.forEach(element => {
-                    element.classList.add('d-none');
-                });
+                    eAction.forEach(element => {
+                        element.classList.add('d-none');
+                    });
 
-                dAction.forEach(element => {
-                    element.classList.add('d-none');
-                });
+                    dAction.forEach(element => {
+                        element.classList.add('d-none');
+                    });
 
-                document.querySelector('#cancelar-venta').addEventListener('click', regresar);
+                    document.querySelector('#cancelar-venta').addEventListener('click', regresar);
+                } 
+                else if(tipoVenta == '2') {
+                    UIVenta.abrirVistaMembresias();
+                    let venta = new Venta().getVenta(id, tipoVenta);
+                    UIVenta.verVentaMembresias(venta);
+                } else if (tipoVenta == '3') {
+                    UIVenta.abrirVistaVisitas();
+                    let venta = new Venta().getVenta(id, tipoVenta);
+                    UIVenta.verVentaVisitas(venta);
+                }
+                    
+               
             }
 
 
@@ -207,32 +222,32 @@ var ventaController = (function () {
         }
     }
 
-    function tipoVenta () {
+    function tipoVenta() {
         let productosType = document.querySelector('#ventas-productos');
         let membresiasType = document.querySelector('#ventas-membresias');
         let visitasType = document.querySelector('#ventas-visitas');
 
-        if(productosType.selected) {
+        if (productosType.selected) {
             UIVenta.mostrarInputsProductos();
             UIVenta.ocultarInputsMembresias();
             UIVenta.ocultarInputsVisitas();
         }
-        else if(membresiasType.selected) {
+        else if (membresiasType.selected) {
             UIVenta.ocultarInputsProductos();
             UIVenta.ocultarInputsVisitas();
             UIVenta.mostrarInputsMembresias();
-        } else if(visitasType.selected) {
+        } else if (visitasType.selected) {
             UIVenta.ocultarInputsProductos();
             UIVenta.ocultarInputsMembresias();
             UIVenta.mostrarInputsVisitas();
             document.querySelector('#total-venta').value = '25';
         }
-        
+
     }
 
     function setUpNuevaVenta() {
 
-        
+
         document.querySelector('.modal-container').innerHTML = nuevaVentaModals;
         UIVenta.abrirAddVenta();
         document.querySelector('#select-tipo-venta').addEventListener('change', tipoVenta);
@@ -247,7 +262,7 @@ var ventaController = (function () {
 
             var selector = document.getElementById("select-productos");
 
-           
+
 
             let producto = document.getElementById('select-productos').value;
             let precio = selector.options[selector.selectedIndex].getAttribute('data-precio');
@@ -269,7 +284,7 @@ var ventaController = (function () {
                 return;
             }
 
-         
+
 
 
 
@@ -330,18 +345,18 @@ var ventaController = (function () {
 
         let fechaFinMembresia = document.querySelector('#fecha-fin').value;
 
-       console.log('fecha-fin'+fechaFinMembresia);
+        console.log('fecha-fin' + fechaFinMembresia);
 
-        if(productosType.selected) {
-           type = 1;
+        if (productosType.selected) {
+            type = 1;
         }
-        else if(membresiasType.selected) {
+        else if (membresiasType.selected) {
             type = 2;
-   
-        } else if(visitasType.selected) {
+
+        } else if (visitasType.selected) {
             type = 3;
         }
-        
+
 
 
 
@@ -412,6 +427,10 @@ var ventaController = (function () {
         UIVenta.mostrarVentasEnTabla(new Venta().getVentasCanceladas());
     }
 
+    function getVentasPorTipo(tipo) {
+        UIVenta.mostrarCarga();
+        UIVenta.mostrarVentasEnTabla(new Venta().getVentasPorTipo(tipo));
+    }
 
     function busquedaDinamica() {
         let opcionSelect;
@@ -420,6 +439,10 @@ var ventaController = (function () {
         let ventasMes = document.querySelector('#ventas-mensuales');
         let ventasSemana = document.querySelector('#ventas-semanales');
         let ventasCanceladas = document.querySelector('#ventas-canceladas');
+        let ventasMembresias = document.querySelector('#ventas-membresias');
+        let ventasVisitas = document.querySelector('#ventas-visitas');
+        let ventasProductos = document.querySelector('#ventas-productos');
+
 
         if (ventasDia.selected)
             opcionSelect = 1;
@@ -431,6 +454,7 @@ var ventaController = (function () {
             opcionSelect = 4;
         else if (ventasCanceladas.selected)
             opcionSelect = 5;
+        // else if (ventasMembresias.selected)
 
 
         let dato = UIVenta.getDatosABuscar();
@@ -444,6 +468,10 @@ var ventaController = (function () {
         let ventasMes = document.querySelector('#ventas-mensuales');
         let ventasSemana = document.querySelector('#ventas-semanales');
         let ventasCanceladas = document.querySelector('#ventas-canceladas');
+        let ventasMembresias = document.querySelector('#ventas-membresias');
+        let ventasVisitas = document.querySelector('#ventas-visitas');
+        let ventasProductos = document.querySelector('#ventas-productos');
+
 
         if (ventasDia.selected)
             getVentasDia();
@@ -455,6 +483,13 @@ var ventaController = (function () {
             getTodasLasVentas();
         else if (ventasCanceladas.selected)
             getVentasCanceladas();
+        else if (ventasProductos.selected)
+            getVentasPorTipo(1);
+        else if (ventasMembresias.selected)
+            getVentasPorTipo(2);
+        else if (ventasVisitas.selected)
+            getVentasPorTipo(3);
+
 
 
     }

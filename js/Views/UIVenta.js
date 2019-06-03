@@ -100,6 +100,17 @@ var UIVenta = (function () {
             return id;
         },
 
+        getTipoVenta : function (event) {
+            var i = event.target;
+            var td = i.parentNode;
+            tr = td.parentNode;
+            var elements = tr.childNodes;
+            var th = elements[1];
+            var tipo = th.getAttribute('data-tipo');
+            console.log('id==' + tipo);
+            return tipo;
+        },
+         
         setDatosVentaEnInputs: function (venta) {
             document.querySelector('#nip-cliente').value = venta.idCliente;
             document.querySelector('#nip-instructor').value = venta.idInstructor;
@@ -126,6 +137,25 @@ var UIVenta = (function () {
             document.querySelector('#nip-cliente').innerHTML = venta.idCliente;
             document.querySelector('#nip-instructor').innerHTML = venta.idInstructor;
             document.querySelector('#total-venta').value = venta.totalVenta;
+        },
+
+        verVentaMembresias : function (venta) {
+            document.querySelector('#id-cliente').innerHTML = venta.idCliente;
+            document.querySelector('#id-instructor').innerHTML = venta.idInstructor;
+            document.querySelector('#cliente-name').innerHTML = venta.nombreCliente;
+            document.querySelector('#total-venta').value = venta.totalVenta;
+            document.querySelector('#id-membresias').innerHTML = venta.idMembresia;
+            document.querySelector('#fecha-inicio').innerHTML = venta.fechaInicio;
+            document.querySelector('#fecha-fin').innerHTML = venta.fechaFin;
+        },
+
+        verVentaVisitas : function (venta) {
+            document.querySelector('#id-cliente').innerHTML = venta.idCliente;
+            document.querySelector('#id-instructor').innerHTML = venta.idInstructor;
+            document.querySelector('#cliente-name').innerHTML = venta.nombreCliente;
+            document.querySelector('#total-venta').value = venta.totalVenta;
+            document.querySelector('#fecha-visita').innerHTML = venta.fechaVisita;
+            
         },
 
         mostrarReporte: function (req) {
@@ -293,6 +323,14 @@ var UIVenta = (function () {
 
         abrirVista: function () {
             load('html/ventas-components/vista-ventas.html', document.querySelector('.content'));
+        },
+
+        abrirVistaMembresias : function () {
+            load('html/ventas-components/vista-ventas-membresias.html', document.querySelector('.content'));
+        },
+
+        abrirVistaVisitas : function () {
+            load('html/ventas-components/vista-ventas-visitas.html', document.querySelector('.content'));
         },
 
 

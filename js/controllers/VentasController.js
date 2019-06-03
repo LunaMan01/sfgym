@@ -510,9 +510,17 @@ var ventaController = (function () {
 
 
         let venta = new Venta();
+        if(isEmpty(document.querySelector('#fecha-rango-reporte').value)) {
+            UIVenta.mostrarAlert('#alert-ventas', 'Ingrese una fecha válida', 'alert-danger');
+            return;
+        }
         let data = UIVenta.getDatosParaReporte();
 
         let res = venta.reporte(data);
+        if(res == 5) {
+            UICliente.mostrarAlert('#alert-ventas', 'Selecciona al menos una opción', 'alert-danger');
+            return;
+        }
         UICliente.mostrarReporte(res);
 
         document.querySelector('#descargar-pdf').addEventListener('click', descargarPDF);
@@ -557,14 +565,39 @@ var ventaController = (function () {
         yPos = yPos + 22;
         doc.text('Reporte de ventas', xPos, yPos);
         if (document.querySelector('#ventas-table') != null) {
-            yPos += 10;
-            doc.text('Lista de ventas', 15, yPos);
+            yPos += 12;
+            doc.text('Lista de ventas productos', 15, yPos);
             doc.autoTable({
-                startY: number = yPos + 5,
+                startY: number = yPos + 8,
                 html: '#ventas-table',
                 headStyles: { fillColor: [84, 173, 88] },
                 theme: 'grid'
             });
+            yPos = doc.autoTableEndPosY();
+        }
+
+        if (document.querySelector('#ventas-table-membresias') != null) {
+            yPos += 12;
+            doc.text('Lista de ventas membresías', 15, yPos);
+            doc.autoTable({
+                startY: number = yPos + 5,
+                html: '#ventas-table-membresias',
+                headStyles: { fillColor: [84, 173, 88] },
+                theme: 'grid'
+            });
+            yPos = doc.autoTableEndPosY();
+        }
+
+        if (document.querySelector('#ventas-table-visitas') != null) {
+            yPos += 12;
+            doc.text('Lista de ventas visitas', 15, yPos);
+            doc.autoTable({
+                startY: number = yPos + 5,
+                html: '#ventas-table-visitas',
+                headStyles: { fillColor: [84, 173, 88] },
+                theme: 'grid'
+            });
+            yPos = doc.autoTableEndPosY();
         }
 
 

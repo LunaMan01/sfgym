@@ -9,3 +9,14 @@ function fechaValida(fecha) {
     console.log('bien');
     return true;
 }
+
+let teclaAnterior = '';
+function teclear(event) {
+    
+    teclaAnterior = teclaAnterior + " " + event.keyCode;
+    var arregloTA = teclaAnterior.split(" ");
+    if (event.keyCode == 32 && arregloTA[arregloTA.length - 2] == 32) {
+      event.preventDefault();
+    }
+    
+  }

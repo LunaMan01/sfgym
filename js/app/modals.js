@@ -188,11 +188,7 @@ aria-labelledby="modal-añadir-visita" aria-hidden="true">
                     <label>Id Cliente:</label>
                     <input type="text" class="form-control numeric-id-add" id="id-cliente" placeholder="Id Cliente" name="id-cliente" required>
                 </div>
-                <div class="form-group">
-                    <label>Fecha:</label>
-                    <input type="text" class="form-control date-add" id="fecha-visita" 
-                        placeholder="dd/mm/yyyy" name="fecha"   pattern=".{10,}" required>
-                </div>
+                
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                     <button type="submit" class="btn btn-success">Guardar</button>

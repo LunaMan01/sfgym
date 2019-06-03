@@ -380,8 +380,25 @@ var ReportesController = (function () {
                 }
             }
 
-            if (containerReportes.classList.contains('ventas'))
-                generarReportesVentas(containerReportes);
+            if (containerReportes.classList.contains('ventas')) {
+                if (checkBoxesVacios(document.querySelector('#productos-ventas'), document.querySelector('#membresias-ventas'), document.querySelector('#visitas-ventas')) == false) {
+                    if (isEmpty(document.querySelector('.f-venta').value)) {
+                        new Toast('#alert-reportes', 'Selecciona al menos una fecha valida para reporte de ventas', 2000, 'alert-danger').getAndShow();
+                        reporteHTML = '';
+                        return;
+
+                    } else {
+
+                        generarReportesVentas(containerReportes);
+                    }
+
+                } else {
+                    new Toast('#alert-reportes', 'Selecciona al menos una opción para reporte de ventas', 2000, 'alert-danger').getAndShow();
+                    reporteHTML = '';
+                    return;
+                }
+            }
+
 
             if (containerReportes.classList.contains('gastos')) {
                 if (!isEmpty(document.querySelector('.f-gasto').value)) {

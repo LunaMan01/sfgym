@@ -1,20 +1,21 @@
 <?php 
     include '../conexion.php';
-    //$conex = $conn;
-    $array = array();
+    
     try {
         
-        $preparar = 'SELECT * FROM Compras WHERE Id_Compra = '.$_POST['id-compra'];
+        $preparar = 'SELECT Id_Compra, nombre_instructor, fecha_compra, total_compra, tipo_compra 
+            FROM Compras INNER JOIN Instructores INNER JOIN TipoCompras
+            ON Compras.Id_Instructor = Instructores.Id_Instructor
+            AND Compras.Id_TipoCompra = TipoCompras.Id_TipoCompra
+            WHERE Id_Compra = '.$_POST['id-compra'];
         $compra = new \stdClass();
-
 
         foreach ($conn->query($preparar) as $row) {
             $compra->idCompra = $row['Id_Compra'];
-            $compra->idInstructor = $row['Id_Instructor'];
-            $compra->descripcionCompra = $row['descripcion_compra'];
-            $compra->montoCompra = $row['monto_compra'];
+            $compra->idInstructor = $row['nombre_instructor'];
             $compra->fechaCompra = $row['fecha_compra'];
-            $compra->tipoCompra = $row['Id_TipoCompra'];
+            $compra->montoCompra = $row['total_compra'];
+            $compra->tipoCompra = $row['tipo_compra'];
         }
         
         $compraJSON = json_encode($compra);

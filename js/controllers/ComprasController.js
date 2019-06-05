@@ -59,6 +59,15 @@ var compraController = (function () {
         let subtotal = document.querySelector('#subtotal-compra').value;
         let id = '0';
 
+        if(isEmpty(desc)) {
+            UICompra.mostrarAlert('Agrega la descripción del producto comprado', 'alert-danger');
+            return;
+        }
+        if(isEmpty(subtotal)) {
+            UICompra.mostrarAlert('Agrega el subtotal de la compra realizada', 'alert-danger');
+            return;
+        }
+
         UICompra.agregarProductoACarrito(desc, cantidad, precioVenta, fechaCaducidad, subtotal, tipo, count, id);
 
     }
@@ -73,6 +82,15 @@ var compraController = (function () {
         let subtotal = document.querySelector('#subtotal-compra').value;
         let id = selector.options[selector.selectedIndex].getAttribute('id');
 
+        if(isEmpty(cantidad)) {
+            UICompra.mostrarAlert('Agrega la cantidad de productos comprados', 'alert-danger');
+            return;
+        }
+        if(isEmpty(subtotal)) {
+            UICompra.mostrarAlert('Agrega el subtotal de la compra realizada', 'alert-danger');
+            return;
+        }
+
         UICompra.agregarProductoACarrito(desc, cantidad, precioVenta, fechaCaducidad, subtotal, tipo, count, id);
     }
 
@@ -82,6 +100,14 @@ var compraController = (function () {
         let desc = document.querySelector('#descripcion-aparato').value;
         let subtotal = document.querySelector('#subtotal-compra').value;
 
+        if(isEmpty(desc)) {
+            UICompra.mostrarAlert('Agrega la descripción del aparato', 'alert-danger');
+            return;
+        }
+        if(isEmpty(subtotal)) {
+            UICompra.mostrarAlert('Agrega subtotal de la compra del aparato', 'alert-danger');
+            return;
+        }
 
         UICompra.agregarAparatoACarrito(desc, subtotal, countAparatos);
     }
@@ -120,7 +146,35 @@ var compraController = (function () {
     }
 
 
+    function setUpDeleteEvent() {
+        document.querySelector('#carrito').addEventListener('click', function (e) {
 
+            if (e.target.matches('.delete-action')) {
+                let ids = new Object();
+
+                let idCar = UIVenta.getProductoEnCarritoId();
+                // let cantidades = UIVenta.getCantidadesEnCarritoTd();
+                
+                UICompra.quitarRegistroDeCarrito();
+            }
+        }, false);
+
+    }
+
+    function setUpDeleteEventAparato() {
+        document.querySelector('#carritoAparatos').addEventListener('click', function (e) {
+
+            if (e.target.matches('.delete-action')) {
+                let ids = new Object();
+
+                let idCar = UIVenta.getProductoEnCarritoId();
+                // let cantidades = UIVenta.getCantidadesEnCarritoTd();
+                
+                UICompra.quitarRegistroDeCarrito();
+            }
+        }, false);
+
+    }
 
 
     function agregarACarrito() {
@@ -156,6 +210,8 @@ var compraController = (function () {
         document.querySelector('#guardar-compra').addEventListener('click', guardarCompra);
         document.querySelector('#modificar-cantidad-form').addEventListener('submit', modificarCantidad);
         setUpEditEvent();
+        setUpDeleteEvent();
+        setUpDeleteEventAparato();
     }
 
     function guardarCompra() {
@@ -166,6 +222,11 @@ var compraController = (function () {
 
         if (document.querySelector('#compra-productos').selected) {
             type = 1;
+
+            if(isEmpty(document.querySelector('#nip-instructor').value)) {
+                UICompra.mostrarAlert('Ingresa Id instructor', 'alert-danger');
+                return;
+            }
             // JSON COMPRA
             let compra = {
                 idInstructor: document.querySelector('#nip-instructor').value,
@@ -228,15 +289,15 @@ var compraController = (function () {
     //----------------------------------------------------------------
 
 
-    function setUpDeleteEvent() {
-        document.querySelector('#cuerpo-tabla-compras').addEventListener('click', function (e) {
+    // function setUpDeleteEvent() {
+    //     document.querySelector('#cuerpo-tabla-compras').addEventListener('click', function (e) {
 
-            if (e.target.matches('.delete-action')) {
-                UICompra.getId(e);
-            }
-        }, false);
+    //         if (e.target.matches('.delete-action')) {
+    //             UICompra.getId(e);
+    //         }
+    //     }, false);
 
-    }
+    // }
 
     function eliminarCompra() {
 
@@ -590,7 +651,7 @@ var compraController = (function () {
         // setUpInputs();
         // UICompra.agregarProductosASelectorExistentes();
         // document.querySelector('#add-compra-form').addEventListener('submit', addNuevaCompra);
-        setUpDeleteEvent();
+        // setUpDeleteEvent();
         document.querySelector('#confirmar-eliminacion').addEventListener('click', eliminarCompra);
         // setUpEditEvent();
         // document.querySelector('#modificar-compra-form').addEventListener('submit', modificarCompra);

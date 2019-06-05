@@ -57,9 +57,23 @@ var compraController = (function () {
         let precioVenta = document.querySelector('#precio-venta-producto-compras').value;
         let fechaCaducidad = document.querySelector('#fecha-caducidad-productos-compras').value;
         let subtotal = document.querySelector('#subtotal-compra').value;
+        let id = '0';
 
-        UICompra.agregarProductoACarrito(desc, cantidad, precioVenta, fechaCaducidad, subtotal, tipo, count);
+        UICompra.agregarProductoACarrito(desc, cantidad, precioVenta, fechaCaducidad, subtotal, tipo, count, id);
 
+    }
+
+    function addProductoExistente (tipo) {
+        let selector = document.querySelector('#select-productos-existentes');
+        count++;
+        let desc = selector.options[selector.selectedIndex].innerHTML;
+        let cantidad = document.querySelector('#cantidad-nueva').value;
+        let precioVenta = '';
+        let fechaCaducidad = '';
+        let subtotal = document.querySelector('#subtotal-compra').value;
+        let id = selector.options[selector.selectedIndex].getAttribute('id');
+
+        UICompra.agregarProductoACarrito(desc, cantidad, precioVenta, fechaCaducidad, subtotal, tipo, count, id);
     }
 
     function agregarACarrito () {
@@ -73,6 +87,7 @@ var compraController = (function () {
         } 
         if(productoExistente.selected) {
            tipoProducto = 2;
+           addProductoExistente(tipoProducto);
         }
 
 
@@ -119,6 +134,7 @@ var compraController = (function () {
             productoNuevo.precioVenta = element.getAttribute('data-precioventa');
             productoNuevo.subtotal = element.getAttribute('data-subtotal');
             productoNuevo.categoria = element.getAttribute('data-tipo');
+            productoNuevo.id = element.getAttribute('id');
             productosNuevosEnCarrito.push(productoNuevo);
         });
 

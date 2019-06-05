@@ -8,7 +8,7 @@
     $lastDay = ultimoDia($mes,$año);
 
     try{
-        $consulta = "SELECT Id_Compra, fecha_compra, total_compra, tipo_compra
+        $consulta = "SELECT Id_Compra, fecha_compra, total_compra, tipo_compra, TipoCompras.Id_TipoCompra
         FROM Compras INNER JOIN TipoCompras
         ON Compras.Id_TipoCompra = TipoCompras.Id_TipoCompra
         AND str_to_date(fecha_compra, '%d/%m/%Y') 
@@ -17,7 +17,7 @@
 
         foreach($conn->query($consulta) as $row){
             echo '<tr>
-                <th scope="row" id="'.$row['Id_Compra'].'">'.$row['Id_Compra'].'</th>'.
+                <th scope="row" data-tipo="'.$row['Id_TipoCompra'].'" id="'.$row['Id_Compra'].'">'.$row['Id_Compra'].'</th>'.
                 '<td>'.$row['fecha_compra'].'</td>'.
                 '<td>'.$row['total_compra'].'</td>'.
                 '<td>'.$row['tipo_compra'].'</td>'.

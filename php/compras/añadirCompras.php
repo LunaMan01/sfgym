@@ -12,9 +12,10 @@
             $arrayItems1 = json_decode($items1, true);
         }
 
-        $items3 = $_POST['aparatos'];
-        $arrayItems3 = json_decode($items3, true);
-
+        if(isset($_POST['aparatos'])){
+            $items3 = $_POST['aparatos'];
+            $arrayItems3 = json_decode($items3, true);
+        }
         $idIntructor = $arrayBuy['idInstructor'];
         $tipoCompra = $arrayBuy['tipoCompra'];
         $totalCompra = $arrayBuy['totalCompra'];

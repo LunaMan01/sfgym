@@ -17,18 +17,6 @@
             </div>
         </div>
     ';
-    
-    // if($_POST['select-tipo-venta'] == 1){
-    //     $html.=getVentasReporte($conn);
-    // }
-
-    // if($_POST['select-tipo-venta'] == 2){
-    //     $html.=getMembresiasReporte($conn);
-    // }
-
-    // if($_POST['select-tipo-venta'] == 3){
-    //     $html.=getVisitasReporte($conn);
-    // }
 
     if(isset($_POST['select-tipo-venta'])) {
         if(in_array('1', $_POST['select-tipo-venta'])){
@@ -96,8 +84,8 @@
                         '<td>'.$r['nombre_cliente'].'</td>'.
                         '<td>'.$r['fecha_venta'].'</td>'.
                         '<td>'.$r['descripcion_producto'].'</td>'.
-                        '<td>'.$r['cantidad_producto'].'</td>'.
-                        '<td>'.$r['subtotal_venta'].'</td>
+                        '<td class="text-right">'.$r['cantidad_producto'].'</td>'.
+                        '<td class="text-right">'.$r['subtotal_venta'].'</td>
                     </tr>';
             }
 
@@ -164,7 +152,7 @@
                         '<td>'.$r['fecha_venta'].'</td>'.
                         '<td>'.$r['fecha_inicio'].'</td>'.
                         '<td>'.$r['fecha_fin'].'</td>'.
-                        '<td>'.$r['total_venta'].'</td>
+                        '<td class="text-right">'.$r['total_venta'].'</td>
                     </tr>';
             }
 
@@ -229,7 +217,7 @@
                         '<td>'.$r['nombre_cliente'].'</td>'.
                         '<td>'.$r['fecha_venta'].'</td>'.
                         '<td>'.$r['fecha_visitas'].'</td>'.
-                        '<td>'.$r['total_venta'].'</td>
+                        '<td class="text-right">'.$r['total_venta'].'</td>
                     </tr>';
             }
 

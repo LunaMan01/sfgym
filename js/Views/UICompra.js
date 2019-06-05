@@ -112,6 +112,9 @@ var UICompra = (function () {
             document.querySelector('#total-compra').value = total;
         },
 
+        abrirVistaCompraProductos : function () {
+            load('html/compras-components/vista-compra-productos.html', document.querySelector('.content'));
+        },
 
 
         agregarAparatoACarrito : function (desc, subtotal, count) {
@@ -164,6 +167,17 @@ var UICompra = (function () {
             localStorage.setItem('id', id);
         },
 
+        getId: function (event) {
+            var i = event.target;
+            var td = i.parentNode;
+            tr = td.parentNode;
+            var elements = tr.childNodes;
+            var th = elements[1];
+            console.log(th);
+            var tipo = th.getAttribute('data-tipo');
+            return tipo;
+        },
+
         quitarRegistro: function () {
             tr.remove();
         },
@@ -209,21 +223,10 @@ var UICompra = (function () {
         },
 
         verCompra: function (compra) {
-            document.querySelector('#ver-compra-form #id-compra').innerHTML = compra.idCompra;
-            document.querySelector('#ver-compra-form #id-instructor').innerHTML = compra.idInstructor;
-            document.querySelector('#ver-compra-form #descripcion-producto').innerHTML = compra.descripcionCompra;
-            if(compra.tipoCompra == 1) {
-                document.querySelector('#ver-compra-form #tipo-compra').innerHTML = 'Productos';
-            }
-            else if(compra.tipoCompra == 2) {
-                document.querySelector('#ver-compra-form #tipo-compra').innerHTML = 'Aparatos';
-            }
-            else if(compra.tipoCompra == 3) {
-                document.querySelector('#ver-compra-form #tipo-compra').innerHTML = 'Otros';
-            }
-            
-            document.querySelector('#ver-compra-form #monto-compra').innerHTML = compra.montoCompra;
-            document.querySelector('#ver-compra-form #fecha-compra').innerHTML = compra.fechaCompra;
+            document.querySelector('#id-compra').innerHTML = compra.idCompra;
+            document.querySelector('#nip-instructor').innerHTML = compra.idInstructor;
+            document.querySelector('#fecha-compra').innerHTML = compra.fechaCompra;
+           
 
 
         },
@@ -243,6 +246,10 @@ var UICompra = (function () {
 
         abrirReportes: function () {
             load('html/compras-components/reporte-compras.html', document.querySelector('.content'));
+        },
+
+        abrirVistaCompraAparatos: function () {
+            load('html/compras-components/vista-compras-aparatos.html', document.querySelector('.content'));
         },
 
         getDatosParaReporte: function () {

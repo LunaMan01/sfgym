@@ -66,8 +66,8 @@ var compraController = (function () {
     function addProductoExistente (tipo) {
         let selector = document.querySelector('#select-productos-existentes');
         count++;
-        let desc = document.querySelector('#descripcion-compra').value;
-        let cantidad = document.querySelector('#cantidad-productos').value;
+        let desc = selector.options[selector.selectedIndex].innerHTML;
+        let cantidad = document.querySelector('#cantidad-nueva').value;
         let precioVenta = '';
         let fechaCaducidad = '';
         let subtotal = document.querySelector('#subtotal-compra').value;
@@ -134,6 +134,7 @@ var compraController = (function () {
             productoNuevo.precioVenta = element.getAttribute('data-precioventa');
             productoNuevo.subtotal = element.getAttribute('data-subtotal');
             productoNuevo.categoria = element.getAttribute('data-tipo');
+            productoNuevo.id = element.getAttribute('id');
             productosNuevosEnCarrito.push(productoNuevo);
         });
 

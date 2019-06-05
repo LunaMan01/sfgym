@@ -167,7 +167,7 @@ var UICompra = (function () {
             localStorage.setItem('id', id);
         },
 
-        getId: function (event) {
+        getTipo: function (event) {
             var i = event.target;
             var td = i.parentNode;
             tr = td.parentNode;
@@ -249,7 +249,7 @@ var UICompra = (function () {
         },
 
         abrirVistaCompraAparatos: function () {
-            load('html/compras-components/vista-compras-aparatos.html', document.querySelector('.content'));
+            load('html/compras-components/vista-compra-aparatos.html', document.querySelector('.content'));
         },
 
         getDatosParaReporte: function () {

@@ -2,7 +2,7 @@
     include '../conexion.php';
 
     try{
-        $consulta = 'SELECT Id_Compra, fecha_compra, total_compr-a, tipo_compra, TipoCompras.Id_TipoCompra
+        $consulta = 'SELECT Id_Compra, fecha_compra, total_compra, tipo_compra, TipoCompras.Id_TipoCompra
         FROM Compras INNER JOIN TipoCompras
         ON Compras.Id_TipoCompra = TipoCompras.Id_TipoCompra';
 

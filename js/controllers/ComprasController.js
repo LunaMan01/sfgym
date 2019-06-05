@@ -113,7 +113,7 @@ var compraController = (function () {
 
         productosNuevos.forEach(element => {
             let productoNuevo = new Object();
-            productoNuevo.descripcion = element.getAttribute('data-cantidad');
+            productoNuevo.descripcion = element.getAttribute('data-desc');
             productoNuevo.caducidad = element.getAttribute('data-fechacaducidad');
             productoNuevo.existencia = element.getAttribute('data-cantidad');
             productoNuevo.precioVenta = element.getAttribute('data-precioventa');

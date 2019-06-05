@@ -215,7 +215,9 @@ var UICompra = (function () {
         },
 
        
-      
+       regresar : function() {
+        load('html/compras-components/compras.html', document.querySelector('.content'));
+       },
       
 
         getCompra: function () {

@@ -213,6 +213,7 @@ var compraController = (function () {
         setUpDeleteEvent();
         setUpDeleteEventAparato();
         setUpInputs();
+        document.querySelector('#cancelar-compra').addEventListener('click', UICompra.regresar);
 
     }
 

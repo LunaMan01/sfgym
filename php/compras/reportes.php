@@ -15,7 +15,7 @@
         </div>
     ';
 
-    $html .= getCompras($conn);
+    // $html .= getCompras($conn);
 
     $html .= getProductos($conn);
 
@@ -177,7 +177,7 @@
                     </div>
 
                     <div class="table-responsive">
-                        <table class="table table-hover" id="compras-table">
+                        <table class="table table-hover" id="compras-table-aparatos">
                             <thead>   
                                 <tr>
                                     <th scope="col">Id Compra</th>

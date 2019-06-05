@@ -380,6 +380,17 @@ var compraController = (function () {
                 headStyles: { fillColor: [84, 173, 88] },
                 theme: 'grid'
             });
+            yPos = doc.autoTableEndPosY();
+        }
+        if (document.querySelector('#compras-table-aparatos') != null) {
+            yPos += 12;
+            doc.text('Lista de compras', 15, yPos);
+            doc.autoTable({
+                startY: number = yPos + 8,
+                html: '#compras-table',
+                headStyles: { fillColor: [84, 173, 88] },
+                theme: 'grid'
+            });
         }
 
         doc.save();
@@ -540,7 +551,7 @@ var compraController = (function () {
         // UICompra.agregarProductosASelectorExistentes();
         // document.querySelector('#add-compra-form').addEventListener('submit', addNuevaCompra);
         setUpDeleteEvent();
-        // document.querySelector('#confirmar-eliminacion').addEventListener('click', eliminarCompra);
+        document.querySelector('#confirmar-eliminacion').addEventListener('click', eliminarCompra);
         // setUpEditEvent();
         // document.querySelector('#modificar-compra-form').addEventListener('submit', modificarCompra);
         setUpWatchEvent();

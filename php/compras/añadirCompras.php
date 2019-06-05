@@ -18,12 +18,11 @@
 
         $idIntructor = $arrayBuy['idInstructor'];
         $tipoCompra = $arrayBuy['tipoCompra'];
-        $categoria = $arrayBuy['categoria'];
         $cantidad = $arrayBuy['cantidad'];
         $aparato = $arrayBuy['aparato'];
         $totalCompra = $arrayBuy['totalCompra'];
 
-        agregarCompra($conn, $idIntructor, $tipoCompra, $categoria, $descripcion, $totalCompra);
+        agregarCompra($conn, $idIntructor, $tipoCompra, $descripcion, $totalCompra);
 
         $lastIdCompra = $conn->lastInsertId();
 
@@ -61,15 +60,14 @@
         echo 'Error: '. $e->getMessage();
     }
 
-    function agregarCompra($conn, $idIntructor, $tipoCompra, $categoria, $descripcion, $totalCompra){
+    function agregarCompra($conn, $idIntructor, $tipoCompra, $descripcion, $totalCompra){
         global $fechaActual;
         try{
-        $agregar = $conn->prepare('INSERT INTO Compras (Id_Instructor, Id_TipoCompra, Id_Categoria, descripcion_compra, total_compra, fecha_compra, cancelada) VALUES 
-            (:instructor, :tipo, :categoria, :descripcion, :total, :fecha, 0)');
+        $agregar = $conn->prepare('INSERT INTO Compras (Id_Instructor, Id_TipoCompra, descripcion_compra, total_compra, fecha_compra, cancelada) VALUES 
+            (:instructor, :tipo, :descripcion, :total, :fecha, 0)');
 
         $agregar->bindParam(':instructor', $idIntructor);
         $agregar->bindParam(':tipo', $tipoCompra);
-        $agregar->bindParam(':categoria', $categoria);
         $agregar->bindParam(':descripcion', $descripcion);
         $agregar->bindParam(':total', $totalCompra);
         $agregar->bindParam(':fecha', $fechaActual);

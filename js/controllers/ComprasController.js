@@ -251,15 +251,38 @@ var compraController = (function () {
                     UICompra.abrirVistaCompraProductos();
                     let compra = UICompra.getCompra();
                     UICompra.verCompra(compra);
+                    verComprasProductos();
+
+
+
                 } else {
                     UICompra.abrirVistaCompraAparatos();
                     let compra = UICompra.getCompra();
                     UICompra.verCompra(compra);
+                    verComprasAparatos();
                 }
 
 
             }
         }, false);
+    }
+
+    function verComprasProductos () {
+        var req = new XMLHttpRequest();
+        req.open("POST", 'php/compras/get-datos-productos.php', false);
+        req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+        // req.send('dato=' + datoABuscar + "&select-compras=" + selectActual);
+        req.send(null);
+        document.querySelector('#carrito').innerHTML =  req.responseText;
+    }
+
+    function verComprasAparatos () {
+        var req = new XMLHttpRequest();
+        req.open("POST", 'php/compras/get-datos-aparatos.php', false);
+        req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+        // req.send('dato=' + datoABuscar + "&select-compras=" + selectActual);
+        req.send(null);
+        document.querySelector('#carritoAparatos').innerHTML =  req.responseText;
     }
 
     function busquedaDinamica() {

@@ -7,14 +7,13 @@
         $buy = $_POST['compra'];
         $arrayBuy = json_decode($buy, true);
 
-        $items1 = $_POST['productos-nuevos'];
-        $arrayItems1 = json_decode($items1, true);
+        if(isset($_POST['productos-nuevos'])){
+            $items1 = $_POST['productos-nuevos'];
+            $arrayItems1 = json_decode($items1, true);
+        }
 
-        // $items2 = $_POST['productos-existentes'];
-        // $arrayItems2 = json_decode($items2, true);
-
-        // $items3 = $_POST['aparatos'];
-        // $arrayItems3 = json_decode($items3, true);
+        $items3 = $_POST['aparatos'];
+        $arrayItems3 = json_decode($items3, true);
 
         $idIntructor = $arrayBuy['idInstructor'];
         $tipoCompra = $arrayBuy['tipoCompra'];
@@ -122,7 +121,7 @@
         $productos->execute();
     }
 
-    function comprasAparatos($conn, $lastIdCompra, $descripcion){
+    function comprasAparatos($conn, $lastIdCompra, $descripcion, $subtotal){
         $aparato = $conn->prepare('INSERT INTO Aparatos (nombre_aparato) 
             VALUES (:aparato)');
 
@@ -132,12 +131,14 @@
 
         $lastIdAparato = $conn->lastInsertId();
 
-        $compra = $conn->prepare('INSERT INTO ComprasAparatos (Id_Compra, Id_Aparato, total)
+        $compras = $conn->prepare('INSERT INTO ComprasAparatos (Id_Compra, Id_Aparato, total)
             VALUES (:compra, :aparato, :total)');
 
         $compras->bindParam(':compra', $lastIdCompra);
         $compras->bindParam(':aparato', $lastIdAparato);
-        $compras->bindParam(':total', $descripcion);
+        $compras->bindParam(':total', $subtotal);
+
+        $compras->execute();
     }
     $conn = null;
 ?>

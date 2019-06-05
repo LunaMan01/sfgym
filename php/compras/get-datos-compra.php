@@ -7,6 +7,7 @@
             FROM Compras INNER JOIN Instructores INNER JOIN TipoCompras
             ON Compras.Id_Instructor = Instructores.Id_Instructor
             AND Compras.Id_TipoCompra = TipoCompras.Id_TipoCompra
+            AND cancelada = 0
             WHERE Id_Compra = '.$_POST['id-compra'];
         $compra = new \stdClass();
 

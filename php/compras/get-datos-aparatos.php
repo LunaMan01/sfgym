@@ -6,6 +6,7 @@
             FROM ComprasAparatos INNER JOIN Aparatos INNER JOIN Compras
             ON Aparatos.Id_Aparato = ComprasAparatos.Id_Aparato
             AND ComprasAparatos.Id_Compra = Compras.Id_Compra
+            AND cancelada = 0
             WHERE Compras.Id_Compra = '. $_POST['id-compra'];
 
         foreach($conn->query($consulta) as $row){

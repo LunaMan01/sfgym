@@ -4,7 +4,8 @@
     try{
         $consulta = 'SELECT Id_Compra, fecha_compra, total_compra, tipo_compra, TipoCompras.Id_TipoCompra
         FROM Compras INNER JOIN TipoCompras
-        ON Compras.Id_TipoCompra = TipoCompras.Id_TipoCompra';
+        ON Compras.Id_TipoCompra = TipoCompras.Id_TipoCompra
+        WHERE cancelada = 0';
 
         foreach($conn->query($consulta) as $row){
             echo '<tr>

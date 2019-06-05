@@ -199,7 +199,7 @@ var gastoController = (function () {
             datePattern: ['d', 'm', 'Y']
         });
 
-        new Lightpick({ field: document.getElementById('fecha-gasto') });
+        new Lightpick({ field: document.getElementById('fecha-gasto'),maxDate: moment() });
         new Lightpick({ field: document.getElementById('fecha-gasto-update') });
 
 

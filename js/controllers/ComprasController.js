@@ -531,7 +531,7 @@ var compraController = (function () {
             blocks: [11]
         });
 
-        new Cleave('#cantidad-producto-compra', {
+        new Cleave('#cantidad-productos', {
             numericOnly: true,
             blocks: [11]
         });
@@ -541,23 +541,6 @@ var compraController = (function () {
             blocks: [11]
         });
 
-        new Cleave('#fecha-caducidad-productos-compras', {
-            date: true,
-            delimiter: '/',
-            datePattern: ['d', 'm', 'Y']
-        });
-
-
-        new Cleave('#cantidad-producto-compra-existente', {
-            date: true,
-            delimiter: '/',
-            datePattern: ['d', 'm', 'Y']
-        });
-
-        new Cleave('.numeric-m-add', {
-            numericOnly: true,
-            blocks: [11]
-        });
 
         // new Cleave('.date-add', {
         //     date: true,
@@ -566,23 +549,13 @@ var compraController = (function () {
         // });
 
 
-        new Lightpick({ field: document.getElementById('fecha-caducidad-productos-compras') });
-        new Cleave('.numeric-m-update', {
-            numericOnly: true,
-            blocks: [11]
-        });
+        new Lightpick({ field: document.getElementById('fecha-caducidad-productos-compras'), maxDate: moment() });
 
         // new Cleave('.date-update', {
         //     date: true,
         //     delimiter: '/',
         //     datePattern: ['d', 'm', 'Y']
         // });
-
-        new Cleave('#cantidad-producto-compra', {
-
-            numericOnly: true
-        });
-
         new Cleave('#precio-venta-producto-compras', {
 
             numericOnly: true

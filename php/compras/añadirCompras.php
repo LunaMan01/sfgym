@@ -13,6 +13,9 @@
         $items2 = $_POST['productos-existentes'];
         $arrayItems2 = json_decode($items2, true);
 
+        $items3 = $_POST['aparatos'];
+        $arrayItems3 = json_decode($items3, true);
+
         $idIntructor = $arrayBuy['idInstructor'];
         $tipoCompra = $arrayBuy['tipoCompra'];
         $categoria = $arrayBuy['categoria'];
@@ -48,7 +51,7 @@
 
         //APARATOS
         if($_POST['select-tipo-compra'] == 2){
-            foreach($arrayItems as $row){
+            foreach($arrayItems3 as $row){
                 comprasAparatos($conn, $lastIdCompra, $row['descripcion'], $row['subtotal']);
             }
             echo 1;

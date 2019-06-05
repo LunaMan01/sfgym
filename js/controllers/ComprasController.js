@@ -87,6 +87,42 @@ var compraController = (function () {
 
         document.querySelector('#agregar-producto-seleccionado').addEventListener('click', agregarACarrito);
 
+        document.querySelector('#guardar-compra').addEventListener('click', guardarCompra);
+
+    }
+
+    function guardarCompra () {
+        let type = 0;
+
+        if(document.querySelector('#compra-productos').selected)
+            type = 1;
+
+        // JSON COMPRA
+        let compra = {
+            idInstructor : document.querySelector('#nip-instructor').value,
+            tipoCompra : type,
+            totalCompra : document.querySelector('#total-compra').value
+        }
+        // ----------
+
+        let productosNuevos = document.querySelectorAll('.p-nuevo');
+        let productosNuevosEnCarrito = new Array();
+
+        productosNuevos.forEach(element => {
+            let productoNuevo = new Object();
+            productoNuevo.descripcion = element.getAttribute('data-cantidad');
+            productoNuevo.caducidad = element.getAttribute('data-fechacaducidad');
+            productoNuevo.existencia = element.getAttribute('data-cantidad');
+            productoNuevo.precioVenta = element.getAttribute('data-precioventa');
+            productoNuevo.subtotal = element.getAttribute('data-subtotal');
+            productosNuevosEnCarrito.push(productoNuevo);
+        });
+
+        if(new Compra().add(compra, productosNuevosEnCarrito)) {
+            console.log('correcto');
+        }
+
+    
     }
 
 

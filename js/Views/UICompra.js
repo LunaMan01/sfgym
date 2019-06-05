@@ -89,7 +89,7 @@ var UICompra = (function () {
         agregarProductoACarrito : function (producto, cantidad, precioVenta,caducidad, subtotal, count) {
             let productoTr = `
                 <tr>
-                    <th scope="row" class="carrito"  data-precioventa="${precioVenta}" data-cantidad="${cantidad}" data-fechacaducidad="${caducidad}" data-subtotal = "${subtotal}">${count}</th>
+                    <th scope="row" class="p-nuevo"  data-precioventa="${precioVenta}" data-cantidad="${cantidad}" data-fechacaducidad="${caducidad}" data-subtotal = "${subtotal}">${count}</th>
                     <td>${producto}</td>
                     <td class="text-right">${cantidad}</td>
                     <td class="subtotales text-right">${subtotal}</td>
@@ -109,7 +109,7 @@ var UICompra = (function () {
                 total += parseInt(element.innerHTML, 10);
             });
 
-            document.querySelector('#total-venta').value = total;
+            document.querySelector('#total-compra').value = total;
         },
 
 

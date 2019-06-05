@@ -192,6 +192,7 @@ var UIController = (function () {
             addBotones('Añadir membresía', 'Generar reporte', 'add-membresia-btn', 'reporte-membresia-btn', 'buscar-membresia-input');
             document.querySelector('#add-membresia-btn').setAttribute('data-target', '#add-membresia-modal');
             document.querySelector('#add-membresia-btn').setAttribute('data-toggle', 'modal');
+            document.querySelector('#add-membresia-btn').classList.add('d-none');
             if (typeof membresiaController !== 'undefined')
                 membresiaController.init();
         },
@@ -218,8 +219,9 @@ var UIController = (function () {
             document.querySelector(Li.productos).className = 'active';
             load('html/productos-components/productos.html', content);
             addBotones('Añadir producto', 'Generar reporte', 'add-producto-btn', 'reporte-producto-btn', 'buscar-producto-input');
-            document.querySelector('#add-producto-btn').setAttribute('data-target', '#add-producto-modal');
-            document.querySelector('#add-producto-btn').setAttribute('data-toggle', 'modal');
+            // document.querySelector('#add-producto-btn').setAttribute('data-target', '#add-producto-modal');
+            // document.querySelector('#add-producto-btn').setAttribute('data-toggle', 'modal');
+            document.querySelector('#add-producto-btn').classList.add('d-none');
             if (typeof productoController !== 'undefined')
                 productoController.init();
         },
@@ -260,6 +262,7 @@ var UIController = (function () {
             addBotones('Añadir aparato', '', 'add-aparato-btn', 'reporte-aparato-btn', 'buscar-aparato-input');
             document.querySelector('#add-aparato-btn').setAttribute('data-target', '#add-aparato-modal');
             document.querySelector('#add-aparato-btn').setAttribute('data-toggle', 'modal');
+            document.querySelector('#add-aparato-btn').classList.add('d-none');
             document.getElementById('reporte-aparato-btn').classList.add('d-none');
             if (typeof aparatoController !== 'undefined')
                 aparatoController.init();
@@ -273,8 +276,8 @@ var UIController = (function () {
             document.querySelector(Li.compras).className = 'active';
             load('html/compras-components/compras.html', content);
             addBotones('Añadir compra', 'Generar reporte', 'add-compra-btn', 'reporte-compra-btn', 'buscar-compra-input');
-            document.querySelector('#add-compra-btn').setAttribute('data-target', '#add-compra-modal');
-            document.querySelector('#add-compra-btn').setAttribute('data-toggle', 'modal');
+            // document.querySelector('#add-compra-btn').setAttribute('data-target', '#add-compra-modal');
+            // document.querySelector('#add-compra-btn').setAttribute('data-toggle', 'modal');
             if (typeof compraController !== 'undefined')
                 compraController.init();
         },
@@ -325,7 +328,10 @@ var controller = (function (UI) {
         });
 
         document.querySelector('#restaurar-form').addEventListener('submit', () => {
-            console.log('restaurando');
+            document.querySelector('#generar-restauracion'). innerHTML = `
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Restaurando...
+        `;
             let archivo = $('#seleccion-archivo').prop('files')[0];
 
             let form = document.querySelector('#restaurar-form');
@@ -341,12 +347,12 @@ var controller = (function (UI) {
             req.send(formData);
             console.log(req.responseText);
 
-        //     // fetch('php/restaurar.php', {
-        //     //     method: 'POST',
-        //     //     body: formData,
-        //     //   }).then(response => {
-        //     //     console.log(response)
-        //     //   })
+            if(req.responseText == 1) {
+                new Toast('#alert-respaldos', 'Base de datos restaurada correctamente', 2000, 'alert-success').getAndShow();
+            } else {
+                new Toast('#alert-respaldos', 'Algo salio mal', 2000, 'alert-danger').getAndShow();
+            }
+            document.querySelector('#generar-restauracion'). innerHTML = 'Restaurar';
         });
     }
 

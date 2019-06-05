@@ -1,6 +1,11 @@
 <?php 
     include '../conexion.php';
 
+    if(!isset($_POST['productos'])) {
+        echo 5;
+        return 5;
+    }
+
     $fechaActual = date('d/m/Y');
 
     // $fecha = $_POST['fecha'];

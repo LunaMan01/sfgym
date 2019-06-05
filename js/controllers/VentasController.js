@@ -39,24 +39,39 @@ var ventaController = (function () {
         document.querySelector('#cuerpo-tabla-ventas').addEventListener('click', function (e) {
 
             if (e.target.matches('.watch-action')) {
-                UIVenta.abrirVista();
+
                 id = UIVenta.getId(e);
-                let venta = new Venta().getVenta(id);
-                UIVenta.setProductosEnTabla(new Venta().getDetalleVenta(id));
-                UIVenta.verVenta(venta);
+                let tipoVenta = UIVenta.getTipoVenta(e);
+                if (tipoVenta == '1') {
+                    UIVenta.abrirVista();
+                    let venta = new Venta().getVenta(id, tipoVenta);
+                    UIVenta.setProductosEnTabla(new Venta().getDetalleVenta(id));
+                    UIVenta.verVenta(venta);
 
-                let eAction = document.querySelectorAll('.edit-action');
-                let dAction = document.querySelectorAll('.delete-action');
+                    let eAction = document.querySelectorAll('.edit-action');
+                    let dAction = document.querySelectorAll('.delete-action');
 
-                eAction.forEach(element => {
-                    element.classList.add('d-none');
-                });
+                    eAction.forEach(element => {
+                        element.classList.add('d-none');
+                    });
 
-                dAction.forEach(element => {
-                    element.classList.add('d-none');
-                });
+                    dAction.forEach(element => {
+                        element.classList.add('d-none');
+                    });
 
-                document.querySelector('#cancelar-venta').addEventListener('click', regresar);
+                    document.querySelector('#cancelar-venta').addEventListener('click', regresar);
+                } 
+                else if(tipoVenta == '2') {
+                    UIVenta.abrirVistaMembresias();
+                    let venta = new Venta().getVenta(id, tipoVenta);
+                    UIVenta.verVentaMembresias(venta);
+                } else if (tipoVenta == '3') {
+                    UIVenta.abrirVistaVisitas();
+                    let venta = new Venta().getVenta(id, tipoVenta);
+                    UIVenta.verVentaVisitas(venta);
+                }
+                    
+               
             }
 
 
@@ -88,7 +103,7 @@ var ventaController = (function () {
                 ids.id = idCar;
                 ids.cantidad = cantidades;
                 productosEliminadosDeCarrito.push(ids);
-
+                document.getElementById(idCar).removeAttribute('hidden');
                 UIVenta.quitarRegistroDeCarrito();
             }
         }, false);
@@ -207,29 +222,100 @@ var ventaController = (function () {
         }
     }
 
+    function tipoVenta() {
+        let productosType = document.querySelector('#ventas-productos');
+        let membresiasType = document.querySelector('#ventas-membresias');
+        let visitasType = document.querySelector('#ventas-visitas');
+
+        if (productosType.selected) {
+            UIVenta.mostrarInputsProductos();
+            UIVenta.ocultarInputsMembresias();
+            UIVenta.ocultarInputsVisitas();
+        }
+        else if (membresiasType.selected) {
+            UIVenta.ocultarInputsProductos();
+            UIVenta.ocultarInputsVisitas();
+            UIVenta.mostrarInputsMembresias();
+        } else if (visitasType.selected) {
+            UIVenta.ocultarInputsProductos();
+            UIVenta.ocultarInputsMembresias();
+            UIVenta.mostrarInputsVisitas();
+            document.querySelector('#total-venta').value = '25';
+        }
+
+    }
 
     function setUpNuevaVenta() {
 
+
         document.querySelector('.modal-container').innerHTML = nuevaVentaModals;
         UIVenta.abrirAddVenta();
+        document.querySelector('#select-tipo-venta').addEventListener('change', tipoVenta);
+
+        new Cleave('#cantidad-productos', {
+            numericOnly: true,
+            blocks: [4]
+        });
+        new Cleave('#nip-cliente', {
+            numericOnly: true,
+            blocks: [11]
+        });
+        new Cleave('#nip-instructor', {
+            numericOnly: true,
+            blocks: [11]
+        });
+
+        new Cleave('#subtotal-membresia', {
+            numericOnly: true,
+            blocks: [11]
+        });
+
+        new Cleave('#fecha-fin', {
+            date: true,
+            delimiter: '/',
+            datePattern: ['d', 'm', 'Y']
+        });
+        new Lightpick({ field: document.getElementById('fecha-fin') });
+
+        document.querySelector('#subtotal-membresia').addEventListener('keyup', () => {
+            console.log('f');
+            document.querySelector('#total-venta').value = document.querySelector('#subtotal-membresia').value;
+        });
+
+
         document.querySelector('#agregar-producto-seleccionado').addEventListener('click', () => {
 
             var selector = document.getElementById("select-productos");
 
 
 
-
-
             let producto = document.getElementById('select-productos').value;
             let precio = selector.options[selector.selectedIndex].getAttribute('data-precio');
             let id = selector.options[selector.selectedIndex].getAttribute('id');
+            let existencia = selector.options[selector.selectedIndex].getAttribute('data-existencia');
+
             let cantidad = UIVenta.getCantidad();
+
+            console.log('existencia' + existencia);
+            console.log("cantidad" + cantidad);
+
             if (cantidad == 0) {
                 UIVenta.mostrarAlert('#add-venta-alert', 'Añade una cantidad', 'alert-danger');
                 return;
             }
 
+            if (parseInt(cantidad, 10) > parseInt(existencia, 10)) {
+                UIVenta.mostrarAlert('#add-venta-alert', 'Inventario insuficiente para cubrir esa cantidad', 'alert-danger');
+                return;
+            }
+
+            
+
+
             UIVenta.agregarProductoACarrito(producto, cantidad, precio, id);
+
+            document.getElementById(id).setAttribute('hidden', "true");
+            document.getElementById('select-productos').value = "...";
         });
 
 
@@ -276,6 +362,28 @@ var ventaController = (function () {
 
 
     function guardarVenta() {
+        let type = 0;
+        let productosType = document.querySelector('#ventas-productos');
+        let membresiasType = document.querySelector('#ventas-membresias');
+        let visitasType = document.querySelector('#ventas-visitas');
+
+        let fechaFinMembresia = document.querySelector('#fecha-fin').value;
+
+        console.log('fecha-fin' + fechaFinMembresia);
+
+        if (productosType.selected) {
+            type = 1;
+        }
+        else if (membresiasType.selected) {
+            type = 2;
+
+        } else if (visitasType.selected) {
+            type = 3;
+        }
+
+
+
+
         let nipCliente = document.querySelector('#nip-cliente').value;
         console.log(nipCliente);
         let idInstructor = document.querySelector('#nip-instructor').value;
@@ -284,7 +392,8 @@ var ventaController = (function () {
         let venta = {
             "nipCliente": nipCliente,
             "idInstructor": idInstructor,
-            "totalVenta": totalVenta
+            "totalVenta": totalVenta,
+            "fecha-fin": fechaFinMembresia
         }
 
 
@@ -301,12 +410,12 @@ var ventaController = (function () {
             productosEnCarrito.push(producto);
         });
 
-        if (productosEnCarrito.length == 0) {
+        if (productosType.selected && productosEnCarrito.length == 0) {
             UIVenta.mostrarAlert('#add-venta-alert', 'Añade al menos un producto a la venta', 'alert-danger');
             return;
         }
 
-        if (new Venta().add(venta, productosEnCarrito)) {
+        if (new Venta().add(venta, productosEnCarrito, type)) {
             UIVenta.mostrarAlert('#add-venta-alert', 'Venta realizada exitosamente', 'alert-success');
             document.querySelector('#add-venta-form').reset();
             UIVenta.limpiarCarrito();
@@ -337,6 +446,15 @@ var ventaController = (function () {
         UIVenta.mostrarVentasEnTabla(new Venta().getVentasSemana());
     }
 
+    function getVentasCanceladas() {
+        UIVenta.mostrarCarga();
+        UIVenta.mostrarVentasEnTabla(new Venta().getVentasCanceladas());
+    }
+
+    function getVentasPorTipo(tipo) {
+        UIVenta.mostrarCarga();
+        UIVenta.mostrarVentasEnTabla(new Venta().getVentasPorTipo(tipo));
+    }
 
     function busquedaDinamica() {
         let opcionSelect;
@@ -344,6 +462,11 @@ var ventaController = (function () {
         let ventasDia = document.querySelector('#ventas-dia');
         let ventasMes = document.querySelector('#ventas-mensuales');
         let ventasSemana = document.querySelector('#ventas-semanales');
+        let ventasCanceladas = document.querySelector('#ventas-canceladas');
+        let ventasMembresias = document.querySelector('#ventas-membresias');
+        let ventasVisitas = document.querySelector('#ventas-visitas');
+        let ventasProductos = document.querySelector('#ventas-productos');
+
 
         if (ventasDia.selected)
             opcionSelect = 1;
@@ -353,6 +476,10 @@ var ventaController = (function () {
             opcionSelect = 3;
         else if (todasLasVentas.selected)
             opcionSelect = 4;
+        else if (ventasCanceladas.selected)
+            opcionSelect = 5;
+        // else if (ventasMembresias.selected)
+
 
         let dato = UIVenta.getDatosABuscar();
         let venta = new Venta();
@@ -364,6 +491,11 @@ var ventaController = (function () {
         let ventasDia = document.querySelector('#ventas-dia');
         let ventasMes = document.querySelector('#ventas-mensuales');
         let ventasSemana = document.querySelector('#ventas-semanales');
+        let ventasCanceladas = document.querySelector('#ventas-canceladas');
+        let ventasMembresias = document.querySelector('#ventas-membresias');
+        let ventasVisitas = document.querySelector('#ventas-visitas');
+        let ventasProductos = document.querySelector('#ventas-productos');
+
 
         if (ventasDia.selected)
             getVentasDia();
@@ -373,6 +505,15 @@ var ventaController = (function () {
             getVentasSemana();
         else if (todasLasVentas.selected)
             getTodasLasVentas();
+        else if (ventasCanceladas.selected)
+            getVentasCanceladas();
+        else if (ventasProductos.selected)
+            getVentasPorTipo(1);
+        else if (ventasMembresias.selected)
+            getVentasPorTipo(2);
+        else if (ventasVisitas.selected)
+            getVentasPorTipo(3);
+
 
 
     }
@@ -393,9 +534,17 @@ var ventaController = (function () {
 
 
         let venta = new Venta();
+        if(isEmpty(document.querySelector('#fecha-rango-reporte').value)) {
+            UIVenta.mostrarAlert('#alert-ventas', 'Ingrese una fecha válida', 'alert-danger');
+            return;
+        }
         let data = UIVenta.getDatosParaReporte();
 
         let res = venta.reporte(data);
+        if(res == 5) {
+            UICliente.mostrarAlert('#alert-ventas', 'Selecciona al menos una opción', 'alert-danger');
+            return;
+        }
         UICliente.mostrarReporte(res);
 
         document.querySelector('#descargar-pdf').addEventListener('click', descargarPDF);
@@ -440,14 +589,39 @@ var ventaController = (function () {
         yPos = yPos + 22;
         doc.text('Reporte de ventas', xPos, yPos);
         if (document.querySelector('#ventas-table') != null) {
-            yPos += 10;
-            doc.text('Lista de ventas', 15, yPos);
+            yPos += 12;
+            doc.text('Lista de ventas productos', 15, yPos);
             doc.autoTable({
-                startY: number = yPos + 5,
+                startY: number = yPos + 8,
                 html: '#ventas-table',
                 headStyles: { fillColor: [84, 173, 88] },
                 theme: 'grid'
             });
+            yPos = doc.autoTableEndPosY();
+        }
+
+        if (document.querySelector('#ventas-table-membresias') != null) {
+            yPos += 12;
+            doc.text('Lista de ventas membresías', 15, yPos);
+            doc.autoTable({
+                startY: number = yPos + 5,
+                html: '#ventas-table-membresias',
+                headStyles: { fillColor: [84, 173, 88] },
+                theme: 'grid'
+            });
+            yPos = doc.autoTableEndPosY();
+        }
+
+        if (document.querySelector('#ventas-table-visitas') != null) {
+            yPos += 12;
+            doc.text('Lista de ventas visitas', 15, yPos);
+            doc.autoTable({
+                startY: number = yPos + 5,
+                html: '#ventas-table-visitas',
+                headStyles: { fillColor: [84, 173, 88] },
+                theme: 'grid'
+            });
+            yPos = doc.autoTableEndPosY();
         }
 
 

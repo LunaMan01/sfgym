@@ -2,7 +2,7 @@ var UIVenta = (function () {
 
     function agregarProductosASelector(productosJSON) {
         productosJSON.forEach(element => {
-            let producto = `<option data-precio="${element.precioProducto}" id="${element.idProducto}">${element.descripcionProducto}</option>`
+            let producto = `<option data-precio="${element.precioProducto}" id="${element.idProducto}" data-existencia="${element.existencia}">${element.descripcionProducto}</option>`
             document.querySelector('#select-productos').innerHTML += producto;
 
 
@@ -65,9 +65,9 @@ var UIVenta = (function () {
                     <th scope="row" class="carrito" id="${productoId}" data-cantidad="${cantidad}" data-subtotal = "${subtotal}"
                     >${productoId}</th>
                     <td>${producto}</td>
-                    <td class="subtotales">${subtotal}</td>
-                    <td data-precio = "${precio}">${cantidad}</td>
-                    <td>
+                    <td class="text-right" data-precio = "${precio}">${cantidad}</td>
+                    <td class="subtotales text-right">${subtotal}</td>
+                    <td class="text-right">
                 <i class="material-icons actions edit-action mr-2" data-toggle="modal" href="#modificar-cantidad-producto-modal"> create</i>
                 <i class="material-icons actions delete-action mr-2" data-toggle="modal" href="#eliminar-membresia-modal"> delete</i> </td>
                 </tr>
@@ -100,6 +100,17 @@ var UIVenta = (function () {
             return id;
         },
 
+        getTipoVenta : function (event) {
+            var i = event.target;
+            var td = i.parentNode;
+            tr = td.parentNode;
+            var elements = tr.childNodes;
+            var th = elements[1];
+            var tipo = th.getAttribute('data-tipo');
+            console.log('id==' + tipo);
+            return tipo;
+        },
+         
         setDatosVentaEnInputs: function (venta) {
             document.querySelector('#nip-cliente').value = venta.idCliente;
             document.querySelector('#nip-instructor').value = venta.idInstructor;
@@ -128,6 +139,25 @@ var UIVenta = (function () {
             document.querySelector('#total-venta').value = venta.totalVenta;
         },
 
+        verVentaMembresias : function (venta) {
+            document.querySelector('#id-cliente').innerHTML = venta.idCliente;
+            document.querySelector('#id-instructor').innerHTML = venta.idInstructor;
+            document.querySelector('#cliente-name').innerHTML = venta.nombreCliente;
+            document.querySelector('#total-venta').value = venta.totalVenta;
+            document.querySelector('#id-membresias').innerHTML = venta.idMembresia;
+            document.querySelector('#fecha-inicio').innerHTML = venta.fechaInicio;
+            document.querySelector('#fecha-fin').innerHTML = venta.fechaFin;
+        },
+
+        verVentaVisitas : function (venta) {
+            document.querySelector('#id-cliente').innerHTML = venta.idCliente;
+            document.querySelector('#id-instructor').innerHTML = venta.idInstructor;
+            document.querySelector('#cliente-name').innerHTML = venta.nombreCliente;
+            document.querySelector('#total-venta').value = venta.totalVenta;
+            document.querySelector('#fecha-visita').innerHTML = venta.fechaVisita;
+            
+        },
+
         mostrarReporte: function (req) {
             document.querySelector('.reporte-generado').classList.remove('d-none');
             document.querySelector('.panel-reportes').classList.add('d-none');
@@ -136,14 +166,54 @@ var UIVenta = (function () {
             return req;
         },
 
+        mostrarInputsProductos : function (){
+            console.log('d');
+            document.querySelectorAll('.type-producto').forEach(element => {
+                element.classList.remove('d-none');
+            })
+        },
 
+        ocultarInputsProductos : function (){
+            console.log('d');
+            document.querySelectorAll('.type-producto').forEach(element => {
+                element.classList.add('d-none');
+            })
+        },
+
+        mostrarInputsMembresias : function (){
+            console.log('d');
+            document.querySelectorAll('.type-membresia').forEach(element => {
+                element.classList.remove('d-none');
+            })
+        },
+
+        ocultarInputsMembresias : function (){
+            
+            document.querySelectorAll('.type-membresia').forEach(element => {
+                element.classList.add('d-none');
+            })
+        },
+
+        mostrarInputsVisitas : function (){
+            console.log('d');
+            document.querySelectorAll('.type-visita').forEach(element => {
+                element.classList.remove('d-none');
+            })
+        },
+
+        ocultarInputsVisitas : function (){
+            console.log('d');
+            document.querySelectorAll('.type-visita').forEach(element => {
+                element.classList.add('d-none');
+            })
+        },
 
         getCantidadTd: function (event) {
             var i = event.target;
             var td = i.parentNode;
             tr = td.parentNode;
             var elements = tr.childNodes;
-            var th = elements[7];
+            var th = elements[5];
             console.log(th);
             return th;
         },
@@ -153,7 +223,7 @@ var UIVenta = (function () {
             var td = i.parentNode;
             tr = td.parentNode;
             var elements = tr.childNodes;
-            var th = elements[4];
+            var th = elements[3];
             console.log(th);
             return th;
         },
@@ -164,7 +234,7 @@ var UIVenta = (function () {
             var td = i.parentNode;
             tr = td.parentNode;
             var elements = tr.childNodes;
-            var th = elements[5];
+            var th = elements[7];
             console.log(th);
             return th;
         },
@@ -178,7 +248,7 @@ var UIVenta = (function () {
             var td = i.parentNode;
             tr = td.parentNode;
             var elements = tr.childNodes;
-            var th = elements[3];
+            var th = elements[4];
             console.log(th);
             return th;
         },
@@ -253,6 +323,14 @@ var UIVenta = (function () {
 
         abrirVista: function () {
             load('html/ventas-components/vista-ventas.html', document.querySelector('.content'));
+        },
+
+        abrirVistaMembresias : function () {
+            load('html/ventas-components/vista-ventas-membresias.html', document.querySelector('.content'));
+        },
+
+        abrirVistaVisitas : function () {
+            load('html/ventas-components/vista-ventas-visitas.html', document.querySelector('.content'));
         },
 
 

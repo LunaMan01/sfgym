@@ -5,36 +5,18 @@
     include 'conexion.php';
 
     try{
-        // $datos = "SELECT nombre_instructor, password1 
-        //     FROM Instructores WHERE nombre_instructor = '".$user."' AND password1 = '".$pass."'";
-        $u = "";
-        $uR = "SELECT Id_Instructor FROM Instructores
-            WHERE Id_Instructor LIKE '".$user."'";
+        $consulta = "SELECT nombre_instructor, password1 
+            FROM Instructores WHERE Id_Instructor = '".$user."' AND password1 = '".$pass."' LIMIT 1";  
 
-        foreach($conn->query($uR) as $row){
-            $u = $row['Id_Instructor'];
-        }
-
-        $p = "";
-        $pR = "SELECT password1 FROM Instructores
-            WHERE password1 LIKE '".$pass."'";
-
-        foreach($conn->query($pR) as $row){
-            $p = $row['password1'];
-        }
-
-        if($user == $u && $pass == $p){
+        foreach($conn->query($consulta) as $row){
             echo 1;
-            // header("Location: ../index.html"); 
-        }else{
-            echo 'Nl';
-            //$conn = null;
+            exit;
         }
-        
-        /*foreach($conn->query($datos) as $row){
-            echo $row['nombre_instructor'].'\n';
-            echo $row['password1'].'\n';
-        }*/
+
+        if($conn->query($consulta)){  
+            echo 0;
+        } 
+
     }catch(PDOException $e){
         echo 'Error: '. $e->getMessage();
     }

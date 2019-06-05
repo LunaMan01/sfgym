@@ -1,6 +1,6 @@
--- create database NuevoAcropolisGym;
+create database AcropolisGym;
 
--- use NuevoAcropolisGym;
+use AcropolisGym;
 
 create table Generos(
 	Id_Genero int not null auto_increment,
@@ -14,7 +14,7 @@ create table Clientes(
 	nombre_cliente varchar(20),
 	apellido_paterno varchar(15),
 	apellido_materno varchar(15),
-	edad int,
+	edad varchar(11),
 	activo int,
 	Id_Genero int,
 
@@ -33,8 +33,8 @@ create table Direcciones(
 	Id_Cliente int not null,
 	colonia varchar(30),
 	calle varchar(30),
-	numero_exterior int,
-	numero_interior int,
+	numero_exterior varchar(10),
+	numero_interior varchar(10),
 
 	foreign key (Id_Cliente) references Clientes (Id_Cliente) on delete cascade on update cascade 
 );
@@ -59,6 +59,13 @@ create table Visitas(
 	foreign key(Id_Cliente) references Clientes (Id_Cliente) on delete cascade on update cascade
 );
 
+create table TipoVenta(
+	Id_TipoVenta int not null auto_increment,
+	tipo_venta varchar(30),
+
+	primary key(Id_TipoVenta)
+);
+
 create table Ventas(
 	Id_Venta int not null auto_increment,
 	total_venta double,	
@@ -67,9 +74,11 @@ create table Ventas(
 
 	Id_Cliente int not null,
 	Id_Instructor int not null,
+	Id_TipoVenta int not null,
 
 	primary key(Id_Venta),
-	foreign key(Id_Cliente) references Clientes (Id_Cliente) on delete cascade on update cascade
+	foreign key(Id_Cliente) references Clientes (Id_Cliente) on delete cascade on update cascade,
+	foreign key(Id_TipoVenta) references TipoVenta (Id_TipoVenta) on delete cascade on update cascade
 );
 
 create table Productos(
@@ -91,6 +100,24 @@ create table VentasProductos(
 
 	foreign key(Id_Venta) references Ventas (Id_Venta) on delete cascade on update cascade,
 	foreign key(Id_Producto) references Productos (Id_Producto) on delete cascade on update cascade
+);
+
+create table VentasMembresias(
+	Id_Venta int not null,
+	Id_Membresia int not null,
+	total double,
+
+	foreign key (Id_Venta) references Ventas (Id_Venta) on delete cascade on update cascade,
+	foreign key (Id_Membresia) references Membresias (Id_Membresia) on delete cascade on update cascade
+);
+
+create table VentasVisitas(
+	Id_Venta int not null,
+	Id_Visita int not null,
+	total double,
+
+	foreign key (Id_Venta) references Ventas (Id_Venta) on delete cascade on update cascade,
+	foreign key (Id_Visita) references Visitas (Id_Visita) on delete cascade on update cascade
 );
 
 create table Aparatos(
@@ -120,13 +147,31 @@ create table Compras(
 	Id_Instructor int not null,
 	Id_TipoCompra int not null,
 
-	descripcion_compra varchar(50),
-	monto_compra int,
+	total_compra double,
 	fecha_compra varchar(10),
+	cancelada int,
 
 	primary key(Id_Compra),
 	foreign key(Id_Instructor) references Instructores(Id_Instructor) on delete cascade on update cascade,
 	foreign key(Id_TipoCompra) references TipoCompras(Id_TipoCompra) on delete cascade on update cascade
+);
+
+create table ComprasProductos(
+	Id_Compra int not null,
+	Id_Producto int not null,
+	total double,
+
+	foreign key (Id_Compra) references Compras (Id_Compra) on update cascade on delete cascade,
+	foreign key (Id_Producto) references Productos (Id_Producto) on update cascade on delete cascade
+);
+
+create table ComprasAparatos(
+	Id_Compra int not null,
+	Id_Aparato int not null,
+	total double,
+
+	foreign key (Id_Compra) references Compras (Id_Compra) on update cascade on delete cascade,
+	foreign key (Id_Aparato) references Aparatos (Id_Aparato) on update cascade on delete cascade
 );
 
 create table TipoGastos(
@@ -156,14 +201,18 @@ insert into Instructores (nombre_instructor, password1) values ('Luna', '123');
 insert into Instructores (nombre_instructor, password1) values ('Carlos', '123');
 insert into Instructores (nombre_instructor, password1) values ('Alberto', '123');
 
-insert into TipoCompras (tipo_compra) values ('Producto');
-insert into TipoCompras (tipo_compra) values ('Aparato');
+insert into TipoCompras (tipo_compra) values ('Productos');
+insert into TipoCompras (tipo_compra) values ('Aparatos');
 
 insert into TipoGastos (tipo_gasto) values ('Gasto Fijo');
 insert into TipoGastos (tipo_gasto) values ('Gasto Mantenimiento');
 insert into TipoGastos (tipo_gasto) values ('Inversion');
 
-create trigger actualizarProductosB before update on VentasProductos for each 
-row update Productos, VentasProductos set existencia_producto = existencia_producto+old.cantidad_producto 
-where Id_Venta = new.Id_Venta and Productos.Id_Producto = VentasProductos.Id_Producto;
+insert into TipoVenta (tipo_venta) values ('Producto');
+insert into TipoVenta (tipo_venta) values ('Membresia');
+insert into TipoVenta (tipo_venta) values ('Visita');
+
+CREATE trigger addProductos BEFORE UPDATE ON Ventas for each
+ROW UPDATE Productos, VentasProductos, Ventas SET existencia_producto = existencia_producto+cantidad_producto
+WHERE Ventas.Id_Venta = VentasProductos.Id_Venta AND Productos.Id_Producto = VentasProductos.Id_Producto;
 

@@ -12,39 +12,181 @@ var compraController = (function () {
             mostrarComprasDia();
     }
 
-    function addNuevaCompra() {
-        let data = UICompra.getDatosParaNuevaCompra();
-        let compra = new Compra();
+    // -------------------------------------------------------------------------------
+    function productosNuevosExistentesSelect() {
+        let productoNuevo = document.querySelector('#categoria-producto');
+        let productoExistente = document.querySelector('#categoria-producto-existente');
 
-        let opcionSelect;
+        if (productoNuevo.selected) {
+            UICompra.ocultarInputsProductosExistentes();
+            UICompra.mostrarInputsProductosNuevos();
 
-     
-        
+        } if (productoExistente.selected) {
 
-
-
-        if (document.querySelector('#categoria-producto').selected)
-            opcionSelect = 1;
-        else if (document.querySelector('#categoria-aparato').selected)
-            opcionSelect = 2;
-        else if (document.querySelector('#categoria-otro').selected)
-            opcionSelect = 3;
-
-
-
-        if (compra.add(data, opcionSelect)) {
-            UICompra.mostrarAlert('Compra añadida correctamente', 'alert-success');
-            actualizarTabla();
-            document.querySelector('#add-compra-form').reset();
-            UICompra.esconderModal('#add-compra-modal');
-
-        } else {
-            UICompra.mostrarAlert('Algo salió mal', 'alert-danger');
-            document.querySelector('#add-compra-form').reset();
-            actualizarTabla();
-            UICompra.esconderModal('#add-compra-modal');
+            UICompra.esconderInputsProductosNuevos();
+            UICompra.mostrarInputsProductosExistentes();
         }
     }
+
+    function productosAparatosSelect() {
+        let productos = document.querySelector('#compra-productos');
+        let aparatos = document.querySelector('#compra-aparatos');
+
+        if (productos.selected) {
+            UICompra.ocultarInputsAparatos();
+            UICompra.mostrarInputsProductosNuevos();
+            UICompra.mostrarTipoProducto();
+            UICompra.mostrarCarritoProductos();
+
+        } if (aparatos.selected) {
+            UICompra.ocultarTipoProducto();
+            UICompra.esconderInputsProductosNuevos();
+            UICompra.ocultarInputsProductosExistentes();
+            UICompra.mostrarInputsAparatos();
+        }
+    }
+
+
+
+    let count = 0;
+
+    function addProductoNuevoACarrito(tipo) {
+        count++;
+        let desc = document.querySelector('#descripcion-compra').value;
+        let cantidad = document.querySelector('#cantidad-productos').value;
+        let precioVenta = document.querySelector('#precio-venta-producto-compras').value;
+        let fechaCaducidad = document.querySelector('#fecha-caducidad-productos-compras').value;
+        let subtotal = document.querySelector('#subtotal-compra').value;
+        let id = '0';
+
+        UICompra.agregarProductoACarrito(desc, cantidad, precioVenta, fechaCaducidad, subtotal, tipo, count, id);
+
+    }
+
+    function addProductoExistente(tipo) {
+        let selector = document.querySelector('#select-productos-existentes');
+        count++;
+        let desc = selector.options[selector.selectedIndex].innerHTML;
+        let cantidad = document.querySelector('#cantidad-nueva').value;
+        let precioVenta = '';
+        let fechaCaducidad = '';
+        let subtotal = document.querySelector('#subtotal-compra').value;
+        let id = selector.options[selector.selectedIndex].getAttribute('id');
+
+        UICompra.agregarProductoACarrito(desc, cantidad, precioVenta, fechaCaducidad, subtotal, tipo, count, id);
+    }
+
+    countAparatos = 0;
+    function addAparato() {
+        countAparatos++;
+        let desc = document.querySelector('#descripcion-aparato').value;
+        let subtotal = document.querySelector('#subtotal-compra').value;
+
+
+        UICompra.agregarAparatoACarrito(desc, subtotal, countAparatos);
+    }
+
+
+    function agregarACarrito() {
+        let tipoProducto = 0;
+        let productoNuevo = document.querySelector('#categoria-producto');
+        let productoExistente = document.querySelector('#categoria-producto-existente');
+
+        if (document.querySelector('#compra-productos').selected) {
+            if (productoNuevo.selected) {
+                tipoProducto = 1;
+                addProductoNuevoACarrito(tipoProducto);
+            }
+            if (productoExistente.selected) {
+                tipoProducto = 2;
+                addProductoExistente(tipoProducto);
+            }
+        } else {
+            addAparato();
+        }
+
+
+
+    }
+
+    function setUpNuevaCompra() {
+        UICompra.abrirAddCompra();
+        UICompra.agregarProductosASelectorExistentes();
+        document.querySelector('#nuevo-existente-producto-select').addEventListener('change', productosNuevosExistentesSelect);
+        document.querySelector('#select-tipo-compra').addEventListener('change', productosAparatosSelect);
+
+        document.querySelector('#agregar-producto-seleccionado').addEventListener('click', agregarACarrito);
+
+        document.querySelector('#guardar-compra').addEventListener('click', guardarCompra);
+
+    }
+
+    function guardarCompra() {
+        let type = 0;
+
+
+
+
+        if (document.querySelector('#compra-productos').selected) {
+            type = 1;
+            // JSON COMPRA
+            let compra = {
+                idInstructor: document.querySelector('#nip-instructor').value,
+                tipoCompra: type,
+                totalCompra: document.querySelector('#total-compra').value
+            }
+            // ----------
+
+            let productosNuevos = document.querySelectorAll('.p-nuevo');
+            let productosNuevosEnCarrito = new Array();
+
+            productosNuevos.forEach(element => {
+                let productoNuevo = new Object();
+                productoNuevo.descripcion = element.getAttribute('data-desc');
+                productoNuevo.caducidad = element.getAttribute('data-fechacaducidad');
+                productoNuevo.existencia = element.getAttribute('data-cantidad');
+                productoNuevo.precioVenta = element.getAttribute('data-precioventa');
+                productoNuevo.subtotal = element.getAttribute('data-subtotal');
+                productoNuevo.categoria = element.getAttribute('data-tipo');
+                productoNuevo.id = element.getAttribute('id');
+                productosNuevosEnCarrito.push(productoNuevo);
+            });
+
+            if (new Compra().add(compra, productosNuevosEnCarrito)) {
+                console.log('correcto');
+            }
+        }
+        else {
+            type = 2;
+
+            let compra = {
+                idInstructor: document.querySelector('#nip-instructor').value,
+                tipoCompra: type,
+                totalCompra: document.querySelector('#total-compra').value
+            }
+
+            let aparatos = document.querySelectorAll('.p-nuevo');
+            let aparatosNuevosEnCarrito = new Array();
+            aparatos.forEach(element => {
+                let aparato = new Object();
+                aparato.descripcion = element.getAttribute('data-desc');
+                aparato.subtotal = element.getAttribute('data-subtotal');
+                aparatosNuevosEnCarrito.push(aparato);
+
+                if (new Compra().add(compra, aparatosNuevosEnCarrito)) {
+                    console.log('correcto');
+                }
+
+            });
+        }
+
+
+
+    }
+
+
+    //----------------------------------------------------------------
+
 
     function setUpDeleteEvent() {
         document.querySelector('#cuerpo-tabla-compras').addEventListener('click', function (e) {
@@ -105,11 +247,42 @@ var compraController = (function () {
 
             if (e.target.matches('.watch-action')) {
                 UICompra.getId(e);
-                let compra = UICompra.getCompra();
-                UICompra.verCompra(compra);
+                if (UICompra.getTipo(e) == 1) {
+                    UICompra.abrirVistaCompraProductos();
+                    let compra = UICompra.getCompra();
+                    UICompra.verCompra(compra);
+                    verComprasProductos();
+
+
+
+                } else {
+                    UICompra.abrirVistaCompraAparatos();
+                    let compra = UICompra.getCompra();
+                    UICompra.verCompra(compra);
+                    verComprasAparatos();
+                }
+
 
             }
         }, false);
+    }
+
+    function verComprasProductos () {
+        var req = new XMLHttpRequest();
+        req.open("POST", 'php/compras/get-datos-productos.php', false);
+        req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+        // req.send('dato=' + datoABuscar + "&select-compras=" + selectActual);
+        req.send(null);
+        document.querySelector('#carrito').innerHTML =  req.responseText;
+    }
+
+    function verComprasAparatos () {
+        var req = new XMLHttpRequest();
+        req.open("POST", 'php/compras/get-datos-aparatos.php', false);
+        req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+        // req.send('dato=' + datoABuscar + "&select-compras=" + selectActual);
+        req.send(null);
+        document.querySelector('#carritoAparatos').innerHTML =  req.responseText;
     }
 
     function busquedaDinamica() {
@@ -202,11 +375,22 @@ var compraController = (function () {
             yPos += 12;
             doc.text('Lista de compras', 15, yPos);
             doc.autoTable({
-                    startY: number = yPos+8,
-                    html: '#compras-table',
-                    headStyles: { fillColor: [84, 173, 88] },
-                    theme: 'grid'
-                });
+                startY: number = yPos + 8,
+                html: '#compras-table',
+                headStyles: { fillColor: [84, 173, 88] },
+                theme: 'grid'
+            });
+            yPos = doc.autoTableEndPosY();
+        }
+        if (document.querySelector('#compras-table-aparatos') != null) {
+            yPos += 12;
+            doc.text('Lista de compras', 15, yPos);
+            doc.autoTable({
+                startY: number = yPos + 8,
+                html: '#compras-table',
+                headStyles: { fillColor: [84, 173, 88] },
+                theme: 'grid'
+            });
         }
 
         doc.save();
@@ -214,9 +398,9 @@ var compraController = (function () {
 
 
     function setUpInputs() {
-        new Lightpick({ field: document.getElementById('fecha-compra') });
+        // new Lightpick({ field: document.getElementById('fecha-compra') });
 
-        new Lightpick({ field: document.getElementById('fecha-compra-update') });
+        // new Lightpick({ field: document.getElementById('fecha-compra-update') });
 
         new Cleave('.id-add', {
             numericOnly: true,
@@ -228,25 +412,63 @@ var compraController = (function () {
             blocks: [11]
         });
 
-        new Cleave('.numeric-m-add', {
+        new Cleave('#cantidad-producto-compra', {
             numericOnly: true,
             blocks: [11]
         });
 
-        new Cleave('.date-add', {
+        new Cleave('#precio-venta-producto-compras', {
+            numericOnly: true,
+            blocks: [11]
+        });
+
+        new Cleave('#fecha-caducidad-productos-compras', {
             date: true,
             delimiter: '/',
             datePattern: ['d', 'm', 'Y']
         });
 
 
+        new Cleave('#cantidad-producto-compra-existente', {
+            date: true,
+            delimiter: '/',
+            datePattern: ['d', 'm', 'Y']
+        });
 
+        new Cleave('.numeric-m-add', {
+            numericOnly: true,
+            blocks: [11]
+        });
+
+        // new Cleave('.date-add', {
+        //     date: true,
+        //     delimiter: '/',
+        //     datePattern: ['d', 'm', 'Y']
+        // });
+
+
+        new Lightpick({ field: document.getElementById('fecha-caducidad-productos-compras') });
         new Cleave('.numeric-m-update', {
             numericOnly: true,
             blocks: [11]
         });
 
-        new Cleave('.date-update', {
+        // new Cleave('.date-update', {
+        //     date: true,
+        //     delimiter: '/',
+        //     datePattern: ['d', 'm', 'Y']
+        // });
+
+        new Cleave('#cantidad-producto-compra', {
+
+            numericOnly: true
+        });
+
+        new Cleave('#precio-venta-producto-compras', {
+
+            numericOnly: true
+        });
+        new Cleave('#fecha-caducidad-productos-compras', {
             date: true,
             delimiter: '/',
             datePattern: ['d', 'm', 'Y']
@@ -293,22 +515,51 @@ var compraController = (function () {
             mostrarComprasSemana();
     }
 
+    function selectTipoDeCompra() {
+        console.log('cambiando');
+        let productoC = document.querySelector('#categoria-producto');
+        let productoExistenteC = document.querySelector('#categoria-producto-existente');
+        let aparatoC = document.querySelector('#categoria-aparato');
+        let otroC = document.querySelector('#categoria-otro');
+
+        if (productoC.selected) {
+            UICompra.mostrarInputsProducto();
+            UICompra.ocultarInputsProductoExistentes();
+        }
+        else if (productoExistenteC.selected) {
+            UICompra.mostrarInputsProductoExistentes();
+            UICompra.ocultarInputsProducto();
+        }
+        else if (aparatoC.selected) {
+            UICompra.ocultarInputsProducto();
+            UICompra.ocultarInputsProductoExistentes();
+        }
+        else if (otroC.selected) {
+            UICompra.ocultarInputsProductoExistentes();
+            UICompra.ocultarInputsProducto();
+        }
+
+
+    }
+
 
 
     function setUpEvents() {
         mostrarTodas();
-        setUpInputs();
-
-        document.querySelector('#add-compra-form').addEventListener('submit', addNuevaCompra);
+        document.querySelector('#add-compra-btn').addEventListener('click', setUpNuevaCompra);
+        // setUpInputs();
+        // UICompra.agregarProductosASelectorExistentes();
+        // document.querySelector('#add-compra-form').addEventListener('submit', addNuevaCompra);
         setUpDeleteEvent();
         document.querySelector('#confirmar-eliminacion').addEventListener('click', eliminarCompra);
-        setUpEditEvent();
-        document.querySelector('#modificar-compra-form').addEventListener('submit', modificarCompra);
+        // setUpEditEvent();
+        // document.querySelector('#modificar-compra-form').addEventListener('submit', modificarCompra);
         setUpWatchEvent();
         document.querySelector('#buscar-compra-input').addEventListener('keyup', busquedaDinamica);
         document.querySelector('#reporte-compra-btn').addEventListener('click', setUpVentanaReportes);
         document.querySelector('#reporte-compra-i').addEventListener('click', setUpVentanaReportes);
         document.querySelector('#select-compras').addEventListener('change', cambiarVista);
+        // document.querySelector('#categorias-compra').addEventListener('change', selectTipoDeCompra);
     }
 
     return {

@@ -9,7 +9,7 @@ let modalCliente = `
       </button>
     </div>
     <div class="modal-body">
-      Seguro que desea eliminar esta membresía
+      Este cliente pasará a un estado inactivo
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-secondary rounded-pill" data-dismiss="modal">Cancelar</button>
@@ -188,11 +188,7 @@ aria-labelledby="modal-añadir-visita" aria-hidden="true">
                     <label>Id Cliente:</label>
                     <input type="text" class="form-control numeric-id-add" id="id-cliente" placeholder="Id Cliente" name="id-cliente" required>
                 </div>
-                <div class="form-group">
-                    <label>Fecha:</label>
-                    <input type="text" class="form-control date-add" id="fecha-visita" 
-                        placeholder="dd/mm/yyyy" name="fecha"   pattern=".{10,}" required>
-                </div>
+                
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                     <button type="submit" class="btn btn-success">Guardar</button>
@@ -358,7 +354,7 @@ aria-labelledby="modal-modificar-producto" aria-hidden="true">
                 <div class="form-group">
                     <label>Nombre:</label>
                     <input type="text" class="form-control" id="nombre-producto" name="nombre-producto"
-                        placeholder="Nombre del producto" required>
+                        placeholder="Nombre del producto" readonly>
                 </div>
 
                 <div class="form-group">
@@ -370,7 +366,7 @@ aria-labelledby="modal-modificar-producto" aria-hidden="true">
                 <div class="form-group">
                     <label>Existencia:</label>
                     <input type="text" class="form-control numeric-update" id="existencia-producto" name="existencia"
-                        placeholder="Cantidad de productos" required>
+                        placeholder="Cantidad de productos" required readonly>
                 </div>
 
                 <div class="form-group">
@@ -747,120 +743,19 @@ aria-hidden="true">
 </div>
 `;
 
-let modalsCompras = ` 
-<div class="modal fade" id="add-compra-modal" tabindex="-1" role="dialog" aria-labelledby="add-compra-modal"
-aria-hidden="true">
-<div class="modal-dialog" role="document">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title">Añadir compra</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            <form id="add-compra-form" onsubmit="return false">
-              
-                <div class="form-group">
-                <label>Id instructor:</label>
-                <input type="text" class="form-control id-add" id="id-instructor" name="id-instructor"
-                    required>
-                </div>
-                <div class="form-group">
-                    <label>Descripción:</label>
-                    <input type="text" class="form-control" id="descripcion-compra" name="descripcion-compra"
-                        placeholder="Descripción de compra" required>
-                </div>
-
-                <div class="form-group">
-                    <label>Monto:</label>
-                    <input type="text" class="form-control numeric-m-add" id="monto-compra" name="monto-compra"
-                        placeholder="Monto de compra" required>
-                </div>
-
-                <div class="form-group">
-                    <label>Fecha:</label>
-                    <input type="text" class="form-control date-add" id="fecha-compra"  name="fecha-compra" placeholder="dd/mm/yyyy" 
-                    pattern=".{10,}">
-                </div>
-                <div class="form-group">
-                    <label>Categoría:</label>
-                    <select class="form-control" id="categorias-gastos" name="compras[]">
-                        <option value="1" id="categoria-producto">Producto</option>
-                        <option value="2" id="categoria-aparato">Aparato</option>
-                        <option value="3" id="categoria-otro">Otro</option>
-                    </select>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-success">Guardar</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-</div>
-` + `
-
-<div class="modal fade" id="modificar-compra-modal" tabindex="-1" role="dialog" aria-labelledby="add-compra-modal"
-aria-hidden="true">
-<div class="modal-dialog" role="document">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title">Modificar compra</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            <form id="modificar-compra-form" onsubmit="return false">
-                <div class="form-group">
-                    <label>Id compra:</label>
-                    <input type="text" class="form-control" id="id-compra" name="id-compra" readonly>
-                </div>
-                <div class="form-group">
-                    <label>Id instructor:</label>
-                    <input type="text" class="form-control id-update" id="id-instructor" name="id-instructor" required>
-                </div>
-                <div class="form-group">
-                    <label>Descripción:</label>
-                    <input type="text" class="form-control" id="descripcion-producto" name="descripcion-compra"
-                        placeholder="Descripción de compra" required>
-                </div>
-
-                <div class="form-group">
-                    <label>Monto:</label>
-                    <input type="text" class="form-control numeric-m-update" id="monto-compra" name="monto-compra"
-                        placeholder="Monto de compra">
-                </div>
-
-                <div class="form-group">
-                    <label>Fecha:</label>
-                    <input type="text" class="form-control date-update" id="fecha-compra-update"  name="fecha-compra" placeholder="dd/mm/yyyy" pattern=".{10,}">
-                </div>
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-success">Guargar</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-</div>
-` + ` 
+let modalsCompras =  ` 
 <div class="modal fade" id="eliminar-compra-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
 <div class="modal-dialog" role="document">
   <div class="modal-content">
     <div class="modal-header">
-      <h5 class="modal-title" id="exampleModalLabel">Eliminar compra</h5>
+      <h5 class="modal-title" id="exampleModalLabel">Cancelar compra</h5>
       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     <div class="modal-body">
-      Seguro que desea eliminar esta compra
+      Seguro que desea cancelar esta compra
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-secondary rounded-pill " data-dismiss="modal">Cancelar</button>
@@ -869,57 +764,7 @@ aria-hidden="true">
   </div>
 </div>
 </div>
-` + `
-<div class="modal fade" id="ver-compra-modal" tabindex="-1" role="dialog" aria-labelledby="add-compra-modal"
-aria-hidden="true">
-<div class="modal-dialog" role="document">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title">Compra</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            <form id="ver-compra-form" onsubmit="return false">
-                <div class="form-group">
-                    <label>Id compra:</label>
-                    <p id="id-compra"></p>
-                </div>
-                <div class="form-group">
-                    <label>Id instructor:</label>
-                    <p id="id-instructor"></p>
-                </div>
-                <div class="form-group">
-                    <label>Descripción:</label>
-                    <p id="descripcion-producto"></p>
-                </div>
-                
-                <div class="form-group">
-                    <label>Monto:</label>
-                    <p id="monto-compra"></p>
-                </div>
-
-                <div class="form-group">
-                    <label>Fecha:</label>
-                    <p id="fecha-compra"></p>
-                </div>
-
-                <div class="form-group">
-                    <label for="categoria-compra">Categoria</label>
-                    <p id="tipo-compra"></p>
-                </div>
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-success" data-dismiss="modal">Ok</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-</div>
-
-`;
+` ;
 
 let nuevaVentaModals = `
 <div class="modal fade" id="modificar-cantidad-producto-modal" tabindex="-1" role="dialog" aria-labelledby="add-compra-modal"
@@ -954,13 +799,13 @@ aria-hidden="true">
 <div class="modal-dialog" role="document">
   <div class="modal-content">
     <div class="modal-header">
-      <h5 class="modal-title" id="exampleModalLabel">Eliminar venta</h5>
+      <h5 class="modal-title" id="exampleModalLabel">Cancelar venta</h5>
       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     <div class="modal-body">
-      Seguro que desea eliminar esta venta
+      Seguro que desea cancelar esta venta
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-secondary rounded-pill " data-dismiss="modal">Cancelar</button>
@@ -977,13 +822,13 @@ let modalsVentas = `
 <div class="modal-dialog" role="document">
   <div class="modal-content">
     <div class="modal-header">
-      <h5 class="modal-title" id="exampleModalLabel">Eliminar venta</h5>
+      <h5 class="modal-title" id="exampleModalLabel">Cancelar venta</h5>
       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     <div class="modal-body">
-      Seguro que desea eliminar esta venta
+      Seguro que desea cancelar esta venta
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-secondary rounded-pill " data-dismiss="modal">Cancelar</button>

@@ -3,10 +3,43 @@ class Compra {
 
     }
 
-    add(data, opcion) {
+    add(compra, productosNuevos) {
         var req = new XMLHttpRequest();
         req.open("POST", 'php/compras/añadirCompras.php', false);
-        data.append('compras', opcion)
+        req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        req.send('compra='+encodeURIComponent(JSON.stringify(compra))+"&productos-nuevos="+encodeURIComponent(JSON.stringify(productosNuevos)));
+        // if (req.responseText != 1) {
+        //     console.log('Error');
+            console.log(req.responseText);
+
+        //     return true;
+        // }
+        console.log(req.responseText);
+        return true;
+    }
+
+    add(compra, aparatos) {
+        var req = new XMLHttpRequest();
+        req.open("POST", 'php/compras/añadirCompras.php', false);
+        req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        req.send('compra='+encodeURIComponent(JSON.stringify(compra))+"&aparatos="+encodeURIComponent(JSON.stringify(aparatos)));
+        // if (req.responseText != 1) {
+        //     console.log('Error');
+            console.log(req.responseText);
+
+        //     return true;
+        // }
+        console.log(req.responseText);
+        return true;
+    }
+
+    addExistente(data,opcion, id, cantidad, descripcion) {
+        var req = new XMLHttpRequest();
+        req.open("POST", 'php/compras/añadirCompras.php', false);
+        data.append('compras', opcion);
+        data.append('id', id);
+        data.append('cantidad', cantidad);
+        data.append('descripcion-compra', descripcion);
         req.send(data);
         if (req.responseText != 1) {
             console.log('Error');

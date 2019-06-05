@@ -137,6 +137,10 @@ var productoController = (function () {
         let data = UIProducto.getDatosParaReporte();
 
         let res = producto.reporte(data);
+        if(res == 5) {
+            UICliente.mostrarAlert('#alert-productos', 'Selecciona al menos una opción', 'alert-danger');
+            return;
+        }
         UIProducto.mostrarReporte(res);
 
         document.querySelector('#descargar-pdf').addEventListener('click', descargarPDF);

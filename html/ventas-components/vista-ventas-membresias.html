@@ -1,0 +1,96 @@
+<div class="d-none" id="add-venta-alert">
+
+</div>
+<div class="container panel-reportes">
+    <div class="container">
+        <form onsubmit="return false" id="add-venta-form">
+            <div class="row">
+                <div class="container">
+
+                    <!-- Letrero  " N U E V A   V E N T A"-->
+                    <div class="row">
+                        <div class="col-auto"><i class="material-icons iconMessege">attach_money</i></div>
+                        <div class="col-auto mt-2">
+                            <p><b>Venta</b></p>
+                        </div>
+                    </div>
+
+                    <!--FORMULARIO-->
+                    <div class="row">
+                        <div class="container">
+
+                            <div class="form-group row ">
+                                <label class="col-lg-2 col-form-label text-right">NIP Cliente: </label>
+                                <div class="col-lg-4">
+                                    <p id="id-cliente">x</p>
+                                </div>
+                            </div>
+
+                            <div class="form-group row ">
+                                <label class="col-lg-2 col-form-label text-right">NIP Instructor: </label>
+                                <div class="col-lg-4">
+                                    <p id="id-instructor">x</p>
+                                </div>
+                            </div>
+
+                            <div class="form-group row ">
+                                <label class="col-lg-2 col-form-label text-right">Cliente: </label>
+                                <div class="col-lg-4">
+                                    <p id="cliente-name">x</p>
+                                </div>
+                            </div>
+
+                            <div class="form-group row ">
+                                <label class="col-lg-2 col-form-label text-right">Id membresia: </label>
+                                <div class="col-lg-4">
+                                    <p id="id-membresias">x</p>
+                                </div>
+                            </div>
+
+                            <div class="form-group row ">
+                                <label class="col-lg-2 col-form-label text-right">Fecha inicio: </label>
+                                <div class="col-lg-4">
+                                    <p id="fecha-inicio">x</p>
+                                </div>
+                            </div>
+
+                            <div class="form-group row ">
+                                <label class="col-lg-2 col-form-label text-right">Fecha fin: </label>
+                                <div class="col-lg-4">
+                                    <p id="fecha-fin">x</p>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+           
+
+            <div class="row mt-3 mb-3">
+                <div class="col-lg-5 offset-lg-7">
+                    <div class="row">
+                        <div class="col-auto">
+                            <p>Total:</p>
+                        </div>
+                        <div class="col-auto">
+                            <input type="text" class="form-control rounded-pill text-right" id="total-venta" name="total-de-venta"
+                                disabled>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4 text-right offset-lg-8">
+                   
+                    <button id="cancelar-venta" class="btn btn-outline-success btn-sm my-2 my-sm-0 mr-3 rounded-pill"
+                        type="button">Ok</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -8,9 +8,9 @@
             if($tipo == 'application/octet-stream'){
                 
                     move_uploaded_file($_FILES['file']['tmp_name'],  $_FILES['file']['name']);
-                    restoreDatabaseTables('localhost', 'root', '', 'nuevoacropolisgym', $_FILES['file']['name']);
+                    restoreDatabaseTables('localhost', 'root', '', 'acropolisgym', $_FILES['file']['name']);
                     unlink($_FILES['file']['name']);
-                    echo 'exito';
+                    echo 1;
             }else {
                 echo 'fallo';
                 echo $tipo;

@@ -1,6 +1,6 @@
---create database AcropolisGym;
+create database AcropolisGym;
 
---use AcropolisGym;
+use AcropolisGym;
 
 create table Generos(
 	Id_Genero int not null auto_increment,
@@ -142,18 +142,46 @@ create table TipoCompras(
 	primary key(Id_TipoCompra)
 );
 
+create table CategoriasCompras(
+	Id_Categoria int not null auto_increment,
+	categoria varchar(15),
+
+	primary key (Id_Categoria)
+);
+
 create table Compras(
 	Id_Compra int not null auto_increment,
 	Id_Instructor int not null,
 	Id_TipoCompra int not null,
+	Id_Categoria int not null,
 
 	descripcion_compra varchar(50),
-	monto_compra int,
+	total_compra double,
 	fecha_compra varchar(10),
+	cancelada int,
 
 	primary key(Id_Compra),
 	foreign key(Id_Instructor) references Instructores(Id_Instructor) on delete cascade on update cascade,
-	foreign key(Id_TipoCompra) references TipoCompras(Id_TipoCompra) on delete cascade on update cascade
+	foreign key(Id_TipoCompra) references TipoCompras(Id_TipoCompra) on delete cascade on update cascade,
+	foreign key(Id_Categoria) references CategoriasCompras(Id_Categoria) on delete cascade on update cascade
+);
+
+create table ComprasProductos(
+	Id_Compra int not null,
+	Id_Producto int not null,
+	total double,
+
+	foreign key (Id_Compra) references Compras (Id_Compra) on update cascade on delete cascade,
+	foreign key (Id_Producto) references Productos (Id_Producto) on update cascade on delete cascade
+);
+
+create table ComprasAparatos(
+	Id_Compra int not null,
+	Id_Aparato int not null,
+	total double,
+
+	foreign key (Id_Compra) references Compras (Id_Compra) on update cascade on delete cascade,
+	foreign key (Id_Aparato) references Aparatos (Id_Aparato) on update cascade on delete cascade
 );
 
 create table TipoGastos(
@@ -183,10 +211,11 @@ insert into Instructores (nombre_instructor, password1) values ('Luna', '123');
 insert into Instructores (nombre_instructor, password1) values ('Carlos', '123');
 insert into Instructores (nombre_instructor, password1) values ('Alberto', '123');
 
-insert into TipoCompras (tipo_compra) values ('Producto Nuevo');
-insert into TipoCompras (tipo_compra) values ('Aparato');
-insert into TipoCompras (tipo_compra) values ('Otro');
-insert into TipoCompras (tipo_compra) values ('Producto Existente');
+insert into TipoCompras (tipo_compra) values ('Productos');
+insert into TipoCompras (tipo_compra) values ('Aparatos');
+
+insert into CategoriasCompras (categoria) values ('Producto Nuevo');
+insert into CategoriasCompras (categoria) values ('Producto Existente');
 
 insert into TipoGastos (tipo_gasto) values ('Gasto Fijo');
 insert into TipoGastos (tipo_gasto) values ('Gasto Mantenimiento');

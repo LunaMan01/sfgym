@@ -6,7 +6,7 @@
     try{
         if($_POST['select-compras'] == 1){
             //TODAS LAS COMPRAS
-            $consulta = $conn->prepare("SELECT Id_Compra, descripcion_compra, monto_compra, fecha_compra, tipo_compra
+            $consulta = $conn->prepare("SELECT Id_Compra, descripcion_compra, monto_compra, fecha_compra, tipo_compra, TipoCompras.Id_TipoCompra
                 FROM Compras INNER JOIN Instructores INNER JOIN TipoCompras
                 ON Compras.Id_Instructor = Instructores.Id_Instructor
                 AND Compras.Id_TipoCompra = TipoCompras.Id_TipoCompra
@@ -17,7 +17,7 @@
 
             while($results = $consulta->fetch()){
                 echo '<tr>
-                    <th scope="row" id="'.$results['Id_Compra'].'">'.$results['Id_Compra'].'</th>'.
+                    <th scope="row" data-tipo="'.$results['Id_TipoCompra'].'" id="'.$results['Id_Compra'].'">'.$results['Id_Compra'].'</th>'.
                         '<td>'.$results['descripcion_compra'].'</td>'.
                         '<td>'.$results['monto_compra'].'</td>'.
                         '<td>'.$results['fecha_compra'].'</td>'.
@@ -39,7 +39,7 @@
             $firstDay = primerDia($mes,$año);
             $lastDay = ultimoDia($mes,$año);
 
-            $consulta = $conn->prepare("SELECT Id_Compra, descripcion_compra, monto_compra, fecha_compra, tipo_compra
+            $consulta = $conn->prepare("SELECT Id_Compra, descripcion_compra, monto_compra, fecha_compra, tipo_compra, TipoCompras.Id_TipoCompra
                 FROM Compras INNER JOIN Instructores INNER JOIN TipoCompras
                 ON Compras.Id_Instructor = Instructores.Id_Instructor
                 AND Compras.Id_TipoCompra = TipoCompras.Id_TipoCompra                
@@ -53,7 +53,7 @@
 
             while($results = $consulta->fetch()){
                 echo '<tr>
-                    <th scope="row" id="'.$results['Id_Compra'].'">'.$results['Id_Compra'].'</th>'.
+                    <th scope="row" data-tipo="'.$results['Id_TipoCompra'].'" id="'.$results['Id_Compra'].'">'.$results['Id_Compra'].'</th>'.
                         '<td>'.$results['descripcion_compra'].'</td>'.
                         '<td>'.$results['monto_compra'].'</td>'.
                         '<td>'.$results['fecha_compra'].'</td>'.
@@ -82,7 +82,7 @@
             $primerDia=date("d/m/Y",mktime(0,0,0,$mes,$day-$diaSemana+1,$año));
             $ultimoDia=date("d/m/Y",mktime(0,0,0,$mes,$day+(5-$diaSemana),$año));
 
-            $consulta = $conn->prepare("SELECT Id_Compra, descripcion_compra, monto_compra, fecha_compra, tipo_compra
+            $consulta = $conn->prepare("SELECT Id_Compra, descripcion_compra, monto_compra, fecha_compra, tipo_compra, TipoCompras.Id_TipoCompra
                 FROM Compras INNER JOIN Instructores INNER JOIN TipoCompras
                 ON Compras.Id_Instructor = Instructores.Id_Instructor
                 AND Compras.Id_TipoCompra = TipoCompras.Id_TipoCompra
@@ -95,7 +95,7 @@
 
             while($results = $consulta->fetch()){
                 echo '<tr>
-                    <th scope="row" id="'.$results['Id_Compra'].'">'.$results['Id_Compra'].'</th>'.
+                    <th scope="row" data-tipo="'.$results['Id_TipoCompra'].'" id="'.$results['Id_Compra'].'">'.$results['Id_Compra'].'</th>'.
                         '<td>'.$results['descripcion_compra'].'</td>'.
                         '<td>'.$results['monto_compra'].'</td>'.
                         '<td>'.$results['fecha_compra'].'</td>'.
@@ -113,7 +113,7 @@
             //COMPRAS DEL DIA
             $fecha = date('d/m/Y');
 
-            $consulta = $conn->prepare("SELECT Id_Compra, descripcion_compra, monto_compra, fecha_compra, tipo_compra
+            $consulta = $conn->prepare("SELECT Id_Compra, descripcion_compra, monto_compra, fecha_compra, tipo_compra, TipoCompras.Id_TipoCompra
                 FROM Compras INNER JOIN Instructores INNER JOIN TipoCompras
                 ON Compras.Id_Instructor = Instructores.Id_Instructor
                 AND Compras.Id_TipoCompra = TipoCompras.Id_TipoCompra
@@ -124,7 +124,7 @@
 
             while($results = $consulta->fetch()){
                 echo '<tr>
-                    <th scope="row" id="'.$results['Id_Compra'].'">'.$results['Id_Compra'].'</th>'.
+                    <th scope="row" data-tipo="'.$results['Id_TipoCompra'].'" id="'.$results['Id_Compra'].'">'.$results['Id_Compra'].'</th>'.
                         '<td>'.$results['descripcion_compra'].'</td>'.
                         '<td>'.$results['monto_compra'].'</td>'.
                         '<td>'.$results['fecha_compra'].'</td>'.

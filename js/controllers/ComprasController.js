@@ -58,7 +58,7 @@ var compraController = (function () {
         let fechaCaducidad = document.querySelector('#fecha-caducidad-productos-compras').value;
         let subtotal = document.querySelector('#subtotal-compra').value;
 
-        UICompra.agregarProductoACarrito(desc, cantidad, precioVenta, fechaCaducidad, subtotal, count);
+        UICompra.agregarProductoACarrito(desc, cantidad, precioVenta, fechaCaducidad, subtotal, tipo, count);
 
     }
 
@@ -93,6 +93,9 @@ var compraController = (function () {
 
     function guardarCompra () {
         let type = 0;
+        
+
+
 
         if(document.querySelector('#compra-productos').selected)
             type = 1;
@@ -115,6 +118,7 @@ var compraController = (function () {
             productoNuevo.existencia = element.getAttribute('data-cantidad');
             productoNuevo.precioVenta = element.getAttribute('data-precioventa');
             productoNuevo.subtotal = element.getAttribute('data-subtotal');
+            productoNuevo.categoria = element.getAttribute('data-tipo');
             productosNuevosEnCarrito.push(productoNuevo);
         });
 

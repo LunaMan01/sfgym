@@ -7,11 +7,11 @@
         $buy = $_POST['compra'];
         $arrayBuy = json_decode($buy, true);
 
-        $items1 = $_POST['productos-nuevos'];
+        $items1 = $_POST['productos'];
         $arrayItems1 = json_decode($items1, true);
 
-        $items2 = $_POST['productos-existentes'];
-        $arrayItems2 = json_decode($items2, true);
+        // $items2 = $_POST['productos-existentes'];
+        // $arrayItems2 = json_decode($items2, true);
 
         $items3 = $_POST['aparatos'];
         $arrayItems3 = json_decode($items3, true);
@@ -29,28 +29,53 @@
 
         //TIPO DE COMPRA
         //PRODUCTOS
-        if($_POST['select-tipo-compra'] == 1){
+        if($tipoCompra == 1){
             
             //CATEGORIA
             //PRODUCTOS NUEVOS
-            if($_POST['compras'] == 1){
-                foreach($arrayItems1 as $row){
+            // if($_POST['compras'] == 1){
+            //     foreach($arrayItems1 as $row){
+            //         comprasProductosNuevos($conn, $lastIdCompra, $row['descripcion'], $row['fecha-caducidad'], $row['existencia'], $row['precio'], $row['subtotal']);
+            //     }
+            //     echo 1;
+            // }
+
+            // //PRODUCTOS EXISTENTES
+            // if($_POST['compras'] == 2){
+            //     foreach($arrayItems2 as $row){
+            //         comprasProductosExistentes($conn, $lastIdCompra, $row['id'], $row['existencia'], $row['subtotal']);
+            //     }
+            //     echo 1;
+            // }
+
+            foreach($arrayItems1 as $row){
+                if($row['categoria'] == 1){
                     comprasProductosNuevos($conn, $lastIdCompra, $row['descripcion'], $row['fecha-caducidad'], $row['existencia'], $row['precio'], $row['subtotal']);
                 }
-                echo 1;
+
+                if($row['categoria'] == 2){
+                    //comprasProductosExistentes($conn, $lastIdCompra, $row['id'], $row['existencia'], $row['subtotal']);
+                    echo 0;
+                }
             }
 
-            //PRODUCTOS EXISTENTES
-            if($_POST['compras'] == 2){
-                foreach($arrayItems2 as $row){
-                    comprasProductosExistentes($conn, $lastIdCompra, $row['id'], $row['existencia'], $row['subtotal']);
-                }
-                echo 1;
-            }
+            // if($arrayItems1['categoria'] == 1){
+            //     foreach($arrayItems1 as $row){
+            //         comprasProductosNuevos($conn, $lastIdCompra, $row['descripcion'], $row['fecha-caducidad'], $row['existencia'], $row['precio'], $row['subtotal']);
+            //     }
+            //     echo 1;
+            // }
+
+            // if($arrayItems1['categoria'] == 2){
+            //     foreach($arrayItems1 as $row){
+            //         comprasProductosExistentes($conn, $lastIdCompra, $row['id'], $row['existencia'], $row['subtotal']);
+            //     }
+            //     echo 1;
+            // }
         }
 
         //APARATOS
-        if($_POST['select-tipo-compra'] == 2){
+        if($tipoCompra == 2){
             foreach($arrayItems3 as $row){
                 comprasAparatos($conn, $lastIdCompra, $row['descripcion'], $row['subtotal']);
             }

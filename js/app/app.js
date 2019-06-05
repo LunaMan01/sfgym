@@ -269,7 +269,7 @@ var UIController = (function () {
         },
 
         abrirCompras: function () {
-            document.querySelector('.modal-container').innerHTML = modalsCompras;
+            // document.querySelector('.modal-container').innerHTML = modalsCompras;
             limpiarDivAdicional();
             addScriptsCompras();
             document.querySelector(CSSClasses.active).classList.remove('active');

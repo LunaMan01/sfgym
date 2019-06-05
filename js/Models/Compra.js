@@ -3,17 +3,17 @@ class Compra {
 
     }
 
-    add(data, opcion) {
+    add(compra, productosNuevos) {
         var req = new XMLHttpRequest();
         req.open("POST", 'php/compras/añadirCompras.php', false);
-        data.append('compras', opcion)
-        req.send(data);
-        if (req.responseText != 1) {
-            console.log('Error');
+        req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        req.send('compra='+encodeURIComponent(JSON.stringify(compra))+"&productos-nuevos="+encodeURIComponent(JSON.stringify(productosNuevos)));
+        // if (req.responseText != 1) {
+        //     console.log('Error');
             console.log(req.responseText);
 
-            return false;
-        }
+        //     return true;
+        // }
         console.log(req.responseText);
         return true;
     }

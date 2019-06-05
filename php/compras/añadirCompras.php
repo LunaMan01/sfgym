@@ -10,11 +10,11 @@
         $items1 = $_POST['productos-nuevos'];
         $arrayItems1 = json_decode($items1, true);
 
-        $items2 = $_POST['productos-existentes'];
-        $arrayItems2 = json_decode($items2, true);
+        // $items2 = $_POST['productos-existentes'];
+        // $arrayItems2 = json_decode($items2, true);
 
-        $items3 = $_POST['aparatos'];
-        $arrayItems3 = json_decode($items3, true);
+        // $items3 = $_POST['aparatos'];
+        // $arrayItems3 = json_decode($items3, true);
 
         $idIntructor = $arrayBuy['idInstructor'];
         $tipoCompra = $arrayBuy['tipoCompra'];

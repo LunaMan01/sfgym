@@ -7,7 +7,7 @@
         $buy = $_POST['compra'];
         $arrayBuy = json_decode($buy, true);
 
-        $items1 = $_POST['productos'];
+        $items1 = $_POST['productos-nuevos'];
         $arrayItems1 = json_decode($items1, true);
 
         // $items2 = $_POST['productos-existentes'];
@@ -50,7 +50,7 @@
 
             foreach($arrayItems1 as $row){
                 if($row['categoria'] == 1){
-                    comprasProductosNuevos($conn, $lastIdCompra, $row['descripcion'], $row['fecha-caducidad'], $row['existencia'], $row['precio'], $row['subtotal']);
+                    comprasProductosNuevos($conn, $lastIdCompra, $row['descripcion'], $row['caducidad'], $row['existencia'], $row['precioVenta'], $row['subtotal']);
                 }
 
                 if($row['categoria'] == 2){
@@ -58,20 +58,6 @@
                     echo 0;
                 }
             }
-
-            // if($arrayItems1['categoria'] == 1){
-            //     foreach($arrayItems1 as $row){
-            //         comprasProductosNuevos($conn, $lastIdCompra, $row['descripcion'], $row['fecha-caducidad'], $row['existencia'], $row['precio'], $row['subtotal']);
-            //     }
-            //     echo 1;
-            // }
-
-            // if($arrayItems1['categoria'] == 2){
-            //     foreach($arrayItems1 as $row){
-            //         comprasProductosExistentes($conn, $lastIdCompra, $row['id'], $row['existencia'], $row['subtotal']);
-            //     }
-            //     echo 1;
-            // }
         }
 
         //APARATOS
@@ -104,10 +90,7 @@
         }
     }
 
-    function comprasProductosNuevos($conn, $lastIdCompra, $descripcion, 
-        $fechaCaducidad, $existenciaProducto, $precioProducto, $subtotal){
-        agregarCompra($conn);
-
+    function comprasProductosNuevos($conn, $lastIdCompra, $descripcion, $fechaCaducidad, $existenciaProducto, $precioProducto, $subtotal){
         $producto = $conn->prepare('INSERT INTO Productos (descripcion_producto, fecha_caducidad, existencia_producto, precio_producto)
             VALUES (:nombre, :fecha, :existencia, :precio)');
     
@@ -131,8 +114,6 @@
     }
 
     function comprasProductosExistentes($conn, $lastIdCompra, $idProducto, $existencia, $subtotal){
-        agregarCompra($conn);
-
         $compra = $conn->prepare('UPDATE Productos SET 
             existencia_producto = :existencia
             WHERE Id_Producto = '. $idProducto);
@@ -152,8 +133,6 @@
     }
 
     function comprasAparatos($conn, $lastIdCompra, $descripcion){
-        agregarCompra($conn);
-
         $aparato = $conn->prepare('INSERT INTO Aparatos (nombre_aparato) 
             VALUES (:aparato)');
 

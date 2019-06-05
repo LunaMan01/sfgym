@@ -153,9 +153,7 @@ create table Compras(
 	Id_Compra int not null auto_increment,
 	Id_Instructor int not null,
 	Id_TipoCompra int not null,
-	Id_Categoria int not null,
 
-	descripcion_compra varchar(50),
 	total_compra double,
 	fecha_compra varchar(10),
 	cancelada int,
@@ -163,7 +161,6 @@ create table Compras(
 	primary key(Id_Compra),
 	foreign key(Id_Instructor) references Instructores(Id_Instructor) on delete cascade on update cascade,
 	foreign key(Id_TipoCompra) references TipoCompras(Id_TipoCompra) on delete cascade on update cascade,
-	foreign key(Id_Categoria) references CategoriasCompras(Id_Categoria) on delete cascade on update cascade
 );
 
 create table ComprasProductos(

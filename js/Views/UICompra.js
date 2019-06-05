@@ -226,7 +226,7 @@ var UICompra = (function () {
             document.querySelector('#id-compra').innerHTML = compra.idCompra;
             document.querySelector('#nip-instructor').innerHTML = compra.idInstructor;
             document.querySelector('#fecha-compra').innerHTML = compra.fechaCompra;
-           
+           document.querySelector('#total-compra').value = compra.montoCompra;
 
 
         },

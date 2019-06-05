@@ -1,0 +1,177 @@
+<div class="d-none" id="add-compra-alert">
+
+</div>
+<div class="container panel-reportes">
+    <div class="container">
+        <form onsubmit="return false" id="add-compra-form" novalidate>
+            <div class="row">
+                <div class="container">
+
+                    <!-- Letrero  " N U E V A   C O M P R A"-->
+                    <div class="row">
+                        <div class="col-auto"><i class="material-icons iconMessege">attach_money</i></div>
+                        <div class="col-auto mt-2">
+                            <p><b>Nueva compra</b></p>
+                        </div>
+                    </div>
+
+                    <!--FORMULARIO-->
+                    <div class="row">
+                        <div class="container">
+                            <!-- 
+                            <div class="form-group row ">
+                                <label class="col-lg-2 col-form-label text-right">NIP Cliente: </label>
+                                <div class="col-lg-4">
+                                    <input type="text" class="form-control rounded-pill" id="nip-cliente"
+                                        name="nip-de-cliente" required>
+                                </div>
+                            </div> -->
+
+                            <div class="form-group row ">
+                                <label class="col-lg-2 col-form-label text-right">NIP Instructor: </label>
+                                <div class="col-lg-4">
+                                    <input type="text" class="form-control rounded-pill" id="nip-instructor"
+                                        name="nip-de-instructor" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-lg-2 col-form-label text-right">Tipo compra:</label>
+                                <div class="col-lg-4">
+                                    <select class="form-control rounded-pill" name="select-tipo-compra[]"
+                                        id="select-tipo-venta">
+                                        <option value="1" id="ventas-productos">Productos</option>
+                                        <option value="2" id="ventas-membresias">Aparatos</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-lg-2 col-form-label text-right">Categoría:</label>
+                                <div class="col-lg-4">
+                                    <select class="form-control rounded-pill" id="nuevo-existente-producto-select"
+                                        name="compras[]">
+                                        <option value="1" id="categoria-producto">Producto nuevo</option>
+                                        <option value="2" id="categoria-producto-existente">Producto existente</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group compras-productos-existentes row">
+                                <label class="col-lg-2 col-form-label text-right">Productos existentes:</label>
+                                <div class="col-lg-4">
+                                    <select class="form-control compras-productos-existentes rounded-pill"
+                                        id="select-productos-existentesx">
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group row type-producto">
+                                <label class="col-lg-2 col-form-label text-right">Cantidad: </label>
+                                <div class="col-lg-4">
+                                    <input type="text" class="form-control rounded-pill" id="cantidad-productos"
+                                        name="cantidad-productos">
+                                </div>
+                                <div class="col-lg-2 type-producto">
+                                    <button class="btn btn-outline-success rounded-pill" type="button"
+                                        id="agregar-producto-seleccionado">Agregar</button>
+                                </div>
+                            </div>
+
+                            <!-- INPUTS PARA MEMBRESIA -->
+
+                            <div class="form-group row type-membresia d-none">
+                                <label for="fecha-fin" class="col-lg-2 col-form-label text-right">Fecha fin:</label>
+                                <div class="col-lg-4">
+                                    <input class="form-control rounded-pill" id="fecha-fin" name="fin" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group row type-membresia d-none">
+                                <label for="subtotal-membresia" class="col-lg-2 col-form-label text-right">
+                                    Subtotal:</label>
+                                <div class="col-lg-4">
+                                    <input class="form-control rounded-pill" id="subtotal-membresia" name="sub"
+                                        required>
+                                </div>
+                            </div>
+                            <!-- INPUTS PARA VISITAS -->
+                            <!-- <div class="form-group row type-visita d-none">
+                                <label for="id-cliente" class="col-lg-2 col-form-label text-right">Id cliente:</label>
+                                <div class="col-lg-4">
+                                    <input class="form-control rounded-pill" id="id-cliente-visita" name="id-cliente" required>
+                                </div>
+                            </div> -->
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row type-producto">
+                <div class="container">
+                    <div class="col-12">
+                        <div class="container">
+                            <div class="tablaPrincipal">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-auto">
+                                            <i class="material-icons iconMessege">attach_money</i>
+                                        </div>
+                                        <div class="col-auto mt-3">
+                                            <p><b>Lista de productos comprados</b></p>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="table-responsive">
+                                            <table class="table table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">Producto</th>
+                                                        <th scope="col" class="text-right">Cantidad</th>
+                                                        <th scope="col" class="text-right">SubTotal</th>
+                                                        <th scope="col" class="text-right">Acciones</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="carrito">
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-3 mb-3">
+                <div class="col-lg-5 offset-lg-7">
+                    <div class="row">
+                        <div class="col-auto">
+                            <p>Total:</p>
+                        </div>
+                        <div class="col-auto">
+                            <input type="text" class="form-control rounded-pill text-right" id="total-venta"
+                                name="total-de-venta" disabled>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4 text-right offset-lg-8">
+                    <button type="submit" id="guardar-venta"
+                        class="btn btn-outline-success btn-sm my-2 my-sm-0 mr-3 rounded-pill">Guardar</button>
+                    <button id="cancelar-venta" class="btn btn-outline-success btn-sm my-2 my-sm-0 mr-3 rounded-pill"
+                        type="button">Cancelar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

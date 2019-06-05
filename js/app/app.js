@@ -276,8 +276,8 @@ var UIController = (function () {
             document.querySelector(Li.compras).className = 'active';
             load('html/compras-components/compras.html', content);
             addBotones('Añadir compra', 'Generar reporte', 'add-compra-btn', 'reporte-compra-btn', 'buscar-compra-input');
-            document.querySelector('#add-compra-btn').setAttribute('data-target', '#add-compra-modal');
-            document.querySelector('#add-compra-btn').setAttribute('data-toggle', 'modal');
+            // document.querySelector('#add-compra-btn').setAttribute('data-target', '#add-compra-modal');
+            // document.querySelector('#add-compra-btn').setAttribute('data-toggle', 'modal');
             if (typeof compraController !== 'undefined')
                 compraController.init();
         },

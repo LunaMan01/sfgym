@@ -65,6 +65,12 @@ var clienteController = (function () {
             numericOnly: true,
             blocks: [11]
         });
+
+        // document.querySelector('#nombre').addEventListener('keydown', teclear);
+        // document.querySelector('#ap-parno').addEventListener('keydown', teclear);
+        // document.querySelector('#ap-marno').addEventListener('keydown', teclear);
+        // document.querySelector('#calle').addEventListener('keydown', teclear);
+        // document.querySelector('#colonia').addEventListener('keydown', teclear);
     }
 
     function regresar() {
@@ -94,6 +100,12 @@ var clienteController = (function () {
             numericOnly: true,
             blocks: [10]
         });
+
+        // document.querySelector('#nombre').addEventListener('keydown', teclear);
+        // document.querySelector('#ap-parno').addEventListener('keydown', teclear);
+        // document.querySelector('#ap-marno').addEventListener('keydown', teclear);
+        // document.querySelector('#calle').addEventListener('keydown', teclear);
+        // document.querySelector('#colonia').addEventListener('keydown', teclear);
 
         document.querySelector('#form').addEventListener('submit', addNuevoCliente);
         document.querySelector('#cancelar-cliente').addEventListener('click', regresar);

@@ -29,28 +29,38 @@
 
         //TIPO DE COMPRA
         //PRODUCTOS
-        if($_POST['select-tipo-compra'] == 1){
+        if($tipoCompra == 1){
             
             //CATEGORIA
             //PRODUCTOS NUEVOS
-            if($_POST['compras'] == 1){
-                foreach($arrayItems1 as $row){
-                    comprasProductosNuevos($conn, $lastIdCompra, $row['descripcion'], $row['fecha-caducidad'], $row['existencia'], $row['precio'], $row['subtotal']);
-                }
-                echo 1;
-            }
+            // if($_POST['compras'] == 1){
+            //     foreach($arrayItems1 as $row){
+            //         comprasProductosNuevos($conn, $lastIdCompra, $row['descripcion'], $row['fecha-caducidad'], $row['existencia'], $row['precio'], $row['subtotal']);
+            //     }
+            //     echo 1;
+            // }
 
-            //PRODUCTOS EXISTENTES
-            if($_POST['compras'] == 2){
-                foreach($arrayItems2 as $row){
+            // //PRODUCTOS EXISTENTES
+            // if($_POST['compras'] == 2){
+            //     foreach($arrayItems2 as $row){
+            //         comprasProductosExistentes($conn, $lastIdCompra, $row['id'], $row['existencia'], $row['subtotal']);
+            //     }
+            //     echo 1;
+            // }
+
+            foreach($arrayItems1 as $row){
+                if($row['categoria'] == 1){
+                    comprasProductosNuevos($conn, $lastIdCompra, $row['descripcion'], $row['caducidad'], $row['existencia'], $row['precioVenta'], $row['subtotal']);
+                }
+
+                if($row['categoria'] == 2){
                     comprasProductosExistentes($conn, $lastIdCompra, $row['id'], $row['existencia'], $row['subtotal']);
                 }
-                echo 1;
             }
         }
 
         //APARATOS
-        if($_POST['select-tipo-compra'] == 2){
+        if($tipoCompra == 2){
             foreach($arrayItems3 as $row){
                 comprasAparatos($conn, $lastIdCompra, $row['descripcion'], $row['subtotal']);
             }
@@ -79,10 +89,7 @@
         }
     }
 
-    function comprasProductosNuevos($conn, $lastIdCompra, $descripcion, 
-        $fechaCaducidad, $existenciaProducto, $precioProducto, $subtotal){
-        agregarCompra($conn);
-
+    function comprasProductosNuevos($conn, $lastIdCompra, $descripcion, $fechaCaducidad, $existenciaProducto, $precioProducto, $subtotal){
         $producto = $conn->prepare('INSERT INTO Productos (descripcion_producto, fecha_caducidad, existencia_producto, precio_producto)
             VALUES (:nombre, :fecha, :existencia, :precio)');
     
@@ -106,8 +113,6 @@
     }
 
     function comprasProductosExistentes($conn, $lastIdCompra, $idProducto, $existencia, $subtotal){
-        agregarCompra($conn);
-
         $compra = $conn->prepare('UPDATE Productos SET 
             existencia_producto = :existencia
             WHERE Id_Producto = '. $idProducto);
@@ -127,8 +132,6 @@
     }
 
     function comprasAparatos($conn, $lastIdCompra, $descripcion){
-        agregarCompra($conn);
-
         $aparato = $conn->prepare('INSERT INTO Aparatos (nombre_aparato) 
             VALUES (:aparato)');
 

@@ -205,11 +205,11 @@ var visitaController = (function () {
             blocks: [10]
         });
 
-        new Cleave('.date-add', {
-            date: true,
-            delimiter: '/',
-            datePattern: ['d', 'm', 'Y']
-        });
+        // new Cleave('.date-add', {
+        //     date: true,
+        //     delimiter: '/',
+        //     datePattern: ['d', 'm', 'Y']
+        // });
 
         new Cleave('.date-update', {
             date: true,

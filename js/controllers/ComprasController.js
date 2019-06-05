@@ -12,6 +12,13 @@ var compraController = (function () {
             mostrarComprasDia();
     }
 
+
+    function setUpNuevaCompra () {
+        UICompra.abrirAddCompra();
+        UICompra.agregarProductosASelectorExistentes();
+        document.querySelector('#select-productos-existentes').innerHTML = 'ffdsf';
+    }
+
     function addNuevaCompra() {
         console.log('dsdsa');
         let data = UICompra.getDatosParaNuevaCompra();
@@ -32,7 +39,7 @@ var compraController = (function () {
             let id = selector.options[selector.selectedIndex].getAttribute('id');
             let existencia = selector.options[selector.selectedIndex].getAttribute('data-existencia');
             let nuevaCantidad = document.querySelector("#cantidad-producto-compra-existente").value;
-            let nuevaExistencia = parseInt(existencia,10) + parseInt(nuevaCantidad,10);
+            let nuevaExistencia = parseInt(existencia, 10) + parseInt(nuevaCantidad, 10);
             let desc = selector.options[selector.selectedIndex].innerHTML;
 
             if (compra.addExistente(data, opcionSelect, id, nuevaExistencia, desc)) {
@@ -242,6 +249,29 @@ var compraController = (function () {
             blocks: [11]
         });
 
+        new Cleave('#cantidad-producto-compra', {
+            numericOnly: true,
+            blocks: [11]
+        });
+
+        new Cleave('#precio-venta-producto-compras', {
+            numericOnly: true,
+            blocks: [11]
+        });
+
+        new Cleave('#fecha-caducidad-productos-compras', {
+            date: true,
+            delimiter: '/',
+            datePattern: ['d', 'm', 'Y']
+        });
+
+
+        new Cleave('#cantidad-producto-compra-existente', {
+            date: true,
+            delimiter: '/',
+            datePattern: ['d', 'm', 'Y']
+        });
+
         new Cleave('.numeric-m-add', {
             numericOnly: true,
             blocks: [11]
@@ -254,7 +284,7 @@ var compraController = (function () {
         // });
 
 
-
+        new Lightpick({ field: document.getElementById('fecha-caducidad-productos-compras') });
         new Cleave('.numeric-m-update', {
             numericOnly: true,
             blocks: [11]
@@ -337,16 +367,24 @@ var compraController = (function () {
             UICompra.mostrarInputsProductoExistentes();
             UICompra.ocultarInputsProducto();
         }
-        else {
+        else if (aparatoC.selected) {
+            UICompra.ocultarInputsProducto();
+            UICompra.ocultarInputsProductoExistentes();
+        }
+        else if(otroC.selected){
+            UICompra.ocultarInputsProductoExistentes();
             UICompra.ocultarInputsProducto();
         }
+
+
     }
 
 
 
     function setUpEvents() {
         mostrarTodas();
-        setUpInputs();
+        document.querySelector('#add-compra-btn').addEventListener('click', setUpNuevaCompra);
+        // setUpInputs();
         UICompra.agregarProductosASelectorExistentes();
         document.querySelector('#add-compra-form').addEventListener('submit', addNuevaCompra);
         setUpDeleteEvent();

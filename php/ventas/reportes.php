@@ -1,5 +1,9 @@
 <?php 
     include '../conexion.php';
+    if(!isset($_POST['select-tipo-venta'])) {
+        echo 5;
+        return;
+    }
 
     $cadenaFecha = $_POST['fecha-rango-reporte'];
     //separar la fecha
@@ -137,7 +141,7 @@
                     </div>
 
                     <div class="table-responsive">
-                        <table class="table table-hover" id="ventas-table">
+                        <table class="table table-hover" id="ventas-table-membresias">
                             <thead>   
                                 <tr>
                                     <th scope="col">Id</th>
@@ -204,7 +208,7 @@
                     </div>
 
                     <div class="table-responsive">
-                        <table class="table table-hover" id="ventas-table">
+                        <table class="table table-hover" id="ventas-table-visitas">
                             <thead>   
                                 <tr>
                                     <th scope="col">Id</th>

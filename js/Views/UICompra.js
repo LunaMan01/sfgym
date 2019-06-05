@@ -113,6 +113,33 @@ var UICompra = (function () {
         },
 
 
+
+        agregarAparatoACarrito : function (desc, subtotal, count) {
+            let productoTr = `
+                <tr>
+                    <th scope="row" class="p-nuevo" data-subtotal = "${subtotal}" data-desc="${desc}">${count}</th>
+                    <td>${desc}</td>
+                    <td class="subtotales text-right">${subtotal}</td>
+                    <td class="text-right">
+                <i class="material-icons actions edit-action mr-2" data-toggle="modal" href="#modificar-cantidad-producto-modal"> create</i>
+                <i class="material-icons actions delete-action mr-2" data-toggle="modal" href="#eliminar-membresia-modal"> delete</i> </td>
+                </tr>
+            `;
+
+            document.querySelector('#carritoAparatos').innerHTML += productoTr;
+
+            let subtotales = document.querySelectorAll('.subtotales');
+
+            let total = 0;
+            subtotales.forEach(element => {
+
+                total += parseInt(element.innerHTML, 10);
+            });
+
+            document.querySelector('#total-compra').value = total;
+        },
+
+
         ocultarTipoProducto : function () {
             document.querySelector('#tipo-productos').classList.add('d-none');
         },

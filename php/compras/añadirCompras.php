@@ -54,8 +54,7 @@
                 }
 
                 if($row['categoria'] == 2){
-                    //comprasProductosExistentes($conn, $lastIdCompra, $row['id'], $row['existencia'], $row['subtotal']);
-                    echo 0;
+                    comprasProductosExistentes($conn, $lastIdCompra, $row['id'], $row['existencia'], $row['subtotal']);
                 }
             }
         }

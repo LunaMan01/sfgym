@@ -291,15 +291,15 @@ var compraController = (function () {
     //----------------------------------------------------------------
 
 
-    // function setUpDeleteEvent() {
-    //     document.querySelector('#cuerpo-tabla-compras').addEventListener('click', function (e) {
+    function setUpDeleteEventCompra() {
+        document.querySelector('#cuerpo-tabla-compras').addEventListener('click', function (e) {
 
-    //         if (e.target.matches('.delete-action')) {
-    //             UICompra.getId(e);
-    //         }
-    //     }, false);
+            if (e.target.matches('.delete-action')) {
+                UICompra.getId(e);
+            }
+        }, false);
 
-    // }
+    }
 
     function eliminarCompra() {
 
@@ -668,7 +668,7 @@ var compraController = (function () {
         // setUpInputs();
         // UICompra.agregarProductosASelectorExistentes();
         // document.querySelector('#add-compra-form').addEventListener('submit', addNuevaCompra);
-        // setUpDeleteEvent();
+        setUpDeleteEventCompra();
         document.querySelector('#confirmar-eliminacion').addEventListener('click', eliminarCompra);
         // setUpEditEvent();
         // document.querySelector('#modificar-compra-form').addEventListener('submit', modificarCompra);

@@ -37,11 +37,87 @@ var UICompra = (function () {
 
             productos.forEach(element => {
                 let producto = `<option data-precio="${element.precioProducto}" id="${element.idProducto}" data-existencia="${element.existencia}">${element.descripcionProducto}</option>`
-                document.querySelector('#select-productos-existentesx').innerHTML += producto;
+                document.querySelector('#select-productos-existentes').innerHTML += producto;
     
     
             });
         },
+
+        mostrarInputsProductosNuevos : function () {
+            document.querySelector('#inputs-productos-nuevos').classList.remove('d-none');
+
+        },
+
+        esconderInputsProductosNuevos : function () {
+            document.querySelector('#inputs-productos-nuevos').classList.add('d-none');
+
+        },
+
+        mostrarInputsProductosExistentes : function () {
+            document.querySelector('#inputs-productos-existentes').classList.remove('d-none');
+           
+        },
+
+        ocultarInputsProductosExistentes : function () {
+            document.querySelector('#inputs-productos-existentes').classList.add('d-none');
+           
+        },
+
+        mostrarInputsAparatos : function () {
+            document.querySelector('#inputs-aparato').classList.remove('d-none');
+            document.querySelector('#productos-carrito-container').classList.add('d-none');
+
+            document.querySelector('#aparatos-carrito-container').classList.remove('d-none');
+            console.log('mostrarinputsaparatos');
+        },
+
+        ocultarInputsAparatos : function () {
+            document.querySelector('#inputs-aparato').classList.add('d-none');
+          
+        },
+
+        mostrarCarritoProductos : function (){
+            document.querySelector('#productos-carrito-container').classList.remove('d-none');
+
+            document.querySelector('#aparatos-carrito-container').classList.add('d-none');
+        },
+
+        mostrarTipoProducto : function () {
+            document.querySelector('#tipo-productos').classList.remove('d-none');
+        },
+
+        agregarProductoACarrito : function (producto, cantidad, precioVenta,caducidad, subtotal, count) {
+            let productoTr = `
+                <tr>
+                    <th scope="row" class="p-nuevo"  data-tipo="${tipo}" data-precioventa="${precioVenta}" data-cantidad="${cantidad}" data-fechacaducidad="${caducidad}" data-subtotal = "${subtotal}">${count}</th>
+                    <td>${producto}</td>
+                    <td class="text-right">${cantidad}</td>
+                    <td class="subtotales text-right">${subtotal}</td>
+                    <td class="text-right">
+                <i class="material-icons actions edit-action mr-2" data-toggle="modal" href="#modificar-cantidad-producto-modal"> create</i>
+                <i class="material-icons actions delete-action mr-2" data-toggle="modal" href="#eliminar-membresia-modal"> delete</i> </td>
+                </tr>
+            `;
+
+            document.querySelector('#carrito').innerHTML += productoTr;
+
+            let subtotales = document.querySelectorAll('.subtotales');
+
+            let total = 0;
+            subtotales.forEach(element => {
+
+                total += parseInt(element.innerHTML, 10);
+            });
+
+            document.querySelector('#total-compra').value = total;
+        },
+
+
+        ocultarTipoProducto : function () {
+            document.querySelector('#tipo-productos').classList.add('d-none');
+        },
+
+       
 
         getDatosParaNuevaCompra: function () {
             let form = document.querySelector('#add-compra-form');
@@ -70,31 +146,7 @@ var UICompra = (function () {
 
         },
 
-        ocultarInputsProducto: function() {
-            document.querySelectorAll('.compras-productos').forEach(element => {
-                element.classList.add('d-none');
-            })
-        },
-
-        mostrarInputsProducto: function() {
-            document.querySelectorAll('.compras-productos').forEach(element => {
-                element.classList.remove('d-none');
-            })
-        },
-
-        ocultarInputsProductoExistentes: function() {
-            document.querySelectorAll('.compras-productos-existentes').forEach(element => {
-                element.classList.add('d-none');
-            });
-            document.querySelector('.descripcion').classList.remove('d-none');
-        },
-
-        mostrarInputsProductoExistentes: function() {
-            document.querySelectorAll('.compras-productos-existentes').forEach(element => {
-                element.classList.remove('d-none');
-            });
-            document.querySelector('.descripcion').classList.add('d-none');
-        },
+       
       
       
 

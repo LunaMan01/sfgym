@@ -12,6 +12,13 @@ var compraController = (function () {
             mostrarComprasDia();
     }
 
+
+    function setUpNuevaCompra () {
+        UICompra.abrirAddCompra();
+        UICompra.agregarProductosASelectorExistentes();
+        document.querySelector('#select-productos-existentes').innerHTML = 'ffdsf';
+    }
+
     function addNuevaCompra() {
         console.log('dsdsa');
         let data = UICompra.getDatosParaNuevaCompra();
@@ -376,7 +383,8 @@ var compraController = (function () {
 
     function setUpEvents() {
         mostrarTodas();
-        setUpInputs();
+        document.querySelector('#add-compra-btn').addEventListener('click', setUpNuevaCompra);
+        // setUpInputs();
         UICompra.agregarProductosASelectorExistentes();
         document.querySelector('#add-compra-form').addEventListener('submit', addNuevaCompra);
         setUpDeleteEvent();

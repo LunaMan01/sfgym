@@ -11,6 +11,15 @@ var UICompra = (function () {
         },
 
 
+        abrirAddCompra : function () {
+            load('html/compras-components/agregar-compra.html', document.querySelector('.content'));
+            var req = new XMLHttpRequest();
+            req.open("POST", 'php/productos/getProductosVentas.php', false);
+            req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            req.send(null);
+
+        },
+
         agregarProductosASelectorExistentes : function () {
         
             var req = new XMLHttpRequest();
@@ -28,7 +37,7 @@ var UICompra = (function () {
 
             productos.forEach(element => {
                 let producto = `<option data-precio="${element.precioProducto}" id="${element.idProducto}" data-existencia="${element.existencia}">${element.descripcionProducto}</option>`
-                document.querySelector('#select-productos-existentes').innerHTML += producto;
+                document.querySelector('#select-productos-existentesx').innerHTML += producto;
     
     
             });

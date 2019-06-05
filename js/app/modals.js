@@ -9,7 +9,7 @@ let modalCliente = `
       </button>
     </div>
     <div class="modal-body">
-      Seguro que desea eliminar esta membresía
+      Este cliente pasará a un estado inactivo
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-secondary rounded-pill" data-dismiss="modal">Cancelar</button>

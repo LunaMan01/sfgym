@@ -86,7 +86,7 @@ var UICompra = (function () {
             document.querySelector('#tipo-productos').classList.remove('d-none');
         },
 
-        agregarProductoACarrito : function (producto, cantidad, precioVenta,caducidad, subtotal, tipo, count) {
+        agregarProductoACarrito : function (producto, cantidad, precioVenta,caducidad, subtotal, tipo, count, id) {
             let productoTr = `
                 <tr>
                     <th scope="row" class="p-nuevo"  data-tipo="${tipo}" data-precioventa="${precioVenta}" data-cantidad="${cantidad}" data-fechacaducidad="${caducidad}" data-subtotal = "${subtotal}" data-desc="${producto}">${count}</th>

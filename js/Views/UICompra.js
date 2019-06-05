@@ -89,7 +89,7 @@ var UICompra = (function () {
         agregarProductoACarrito : function (producto, cantidad, precioVenta,caducidad, subtotal, tipo, count) {
             let productoTr = `
                 <tr>
-                    <th scope="row" class="p-nuevo"  data-tipo="${tipo}" data-precioventa="${precioVenta}" data-cantidad="${cantidad}" data-fechacaducidad="${caducidad}" data-subtotal = "${subtotal}">${count}</th>
+                    <th scope="row" class="p-nuevo"  data-tipo="${tipo}" data-precioventa="${precioVenta}" data-cantidad="${cantidad}" data-fechacaducidad="${caducidad}" data-subtotal = "${subtotal}" data-desc="${producto}">${count}</th>
                     <td>${producto}</td>
                     <td class="text-right">${cantidad}</td>
                     <td class="subtotales text-right">${subtotal}</td>

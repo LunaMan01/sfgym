@@ -165,6 +165,7 @@ var UICompra = (function () {
             var id = th.getAttribute('id');
             console.log(id);
             localStorage.setItem('id', id);
+            return id;
         },
 
         getTipo: function (event) {
@@ -230,6 +231,61 @@ var UICompra = (function () {
 
 
         },
+
+        getTh: function () {
+            var i = event.target;
+            var td = i.parentNode;
+            tr = td.parentNode;
+            var elements = tr.childNodes;
+            var th = elements[1];
+            console.log(th);
+            return th;
+        },
+
+
+        getCantidadTdDetalle: function (event) {
+            var i = event.target;
+            var td = i.parentNode;
+            tr = td.parentNode;
+            var elements = tr.childNodes;
+            var th = elements[5];
+            console.log(th);
+            return th;
+        },
+
+        modificarProductoEnCarrito: function (cantidadTd, cantidad) {
+           
+
+            cantidadTd.innerHTML = cantidad;
+            // subtotalTd.innerHTML = subtotal;
+            console.log(cantidadTd);
+            // let subtotales = document.querySelectorAll('.subtotales');
+
+            // let total = 0;
+            // subtotales.forEach(element => {
+
+            //     total += parseInt(element.innerHTML, 10);
+            // });
+
+            // document.querySelector('#total-compra').value = total;
+        },
+
+
+        esconderModal: function (modal) {
+            $(modal).modal('hide');
+        },
+
+        
+        getSubtotalTdDetalle: function () {
+            var i = event.target;
+            var td = i.parentNode;
+            tr = td.parentNode;
+            var elements = tr.childNodes;
+            var th = elements[4];
+            console.log(th);
+            return th;
+        },
+
 
         mostrarComprasEnTabla: function (datos) {
             document.querySelector('#cuerpo-tabla-compras').innerHTML = datos;

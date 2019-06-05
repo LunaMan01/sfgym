@@ -87,6 +87,42 @@ var compraController = (function () {
     }
 
 
+
+
+    function setUpEditEvent() {
+        document.querySelector('#carrito').addEventListener('click', function (e) {
+
+            if (e.target.matches('.edit-action')) {
+                console.log('hara');
+                th = UICompra.getTh();
+                // console.log('th', th);
+                cantidadTd = UICompra.getCantidadTdDetalle(e);
+                console.log('canttd'+cantidadTd);
+                // subtotalTd = UIVenta.getSubtotalTdDetalle(e);
+                // precioProducto = cantidadTd.getAttribute('data-precio');
+
+
+                return;
+            }
+
+        }, false);
+    }
+
+    function modificarCantidad() {
+        let nuevaCantidad = document.querySelector('#nueva-cantidad').value;
+
+        UICompra.modificarProductoEnCarrito(cantidadTd, nuevaCantidad);
+
+        UICompra.esconderModal('#modificar-cantidad-producto-modal');
+
+        th.setAttribute('data-cantidad', nuevaCantidad);
+        
+    }
+
+
+
+
+
     function agregarACarrito() {
         let tipoProducto = 0;
         let productoNuevo = document.querySelector('#categoria-producto');
@@ -118,7 +154,8 @@ var compraController = (function () {
         document.querySelector('#agregar-producto-seleccionado').addEventListener('click', agregarACarrito);
 
         document.querySelector('#guardar-compra').addEventListener('click', guardarCompra);
-
+        document.querySelector('#modificar-cantidad-form').addEventListener('submit', modificarCantidad);
+        setUpEditEvent();
     }
 
     function guardarCompra() {
@@ -152,8 +189,11 @@ var compraController = (function () {
                 productosNuevosEnCarrito.push(productoNuevo);
             });
 
+            console.log(productosNuevos);
+
             if (new Compra().add(compra, productosNuevosEnCarrito)) {
                 console.log('correcto');
+                productosNuevosEnCarrito.length = 0;
             }
         }
         else {
@@ -212,17 +252,17 @@ var compraController = (function () {
 
     }
 
-    function setUpEditEvent() {
-        document.querySelector('#cuerpo-tabla-compras').addEventListener('click', function (e) {
+    // function setUpEditEvent() {
+    //     document.querySelector('#cuerpo-tabla-compras').addEventListener('click', function (e) {
 
-            if (e.target.matches('.edit-action')) {
-                UICompra.getId(e);
-                let compra = UICompra.getCompra();
-                UICompra.setDatosCompraEnInputs(compra);
+    //         if (e.target.matches('.edit-action')) {
+    //             UICompra.getId(e);
+    //             let compra = UICompra.getCompra();
+    //             UICompra.setDatosCompraEnInputs(compra);
 
-            }
-        }, false);
-    }
+    //         }
+    //     }, false);
+    // }
 
     function modificarCompra() {
         let data = UICompra.getDatosModificados();
@@ -246,12 +286,12 @@ var compraController = (function () {
         document.querySelector('#cuerpo-tabla-compras').addEventListener('click', function (e) {
 
             if (e.target.matches('.watch-action')) {
-                UICompra.getId(e);
+                let id = UICompra.getId(e);
                 if (UICompra.getTipo(e) == 1) {
                     UICompra.abrirVistaCompraProductos();
                     let compra = UICompra.getCompra();
                     UICompra.verCompra(compra);
-                    verComprasProductos();
+                    verComprasProductos(id);
 
 
 
@@ -259,7 +299,7 @@ var compraController = (function () {
                     UICompra.abrirVistaCompraAparatos();
                     let compra = UICompra.getCompra();
                     UICompra.verCompra(compra);
-                    verComprasAparatos();
+                    verComprasAparatos(id);
                 }
 
 
@@ -267,21 +307,21 @@ var compraController = (function () {
         }, false);
     }
 
-    function verComprasProductos () {
+    function verComprasProductos (id) {
         var req = new XMLHttpRequest();
         req.open("POST", 'php/compras/get-datos-productos.php', false);
         req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
         // req.send('dato=' + datoABuscar + "&select-compras=" + selectActual);
-        req.send(null);
+        req.send("id-compra="+id);
         document.querySelector('#carrito').innerHTML =  req.responseText;
     }
 
-    function verComprasAparatos () {
+    function verComprasAparatos (id) {
         var req = new XMLHttpRequest();
         req.open("POST", 'php/compras/get-datos-aparatos.php', false);
         req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
         // req.send('dato=' + datoABuscar + "&select-compras=" + selectActual);
-        req.send(null);
+        req.send("id-compra"+id);
         document.querySelector('#carritoAparatos').innerHTML =  req.responseText;
     }
 

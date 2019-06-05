@@ -156,6 +156,33 @@ create table Compras(
 	foreign key(Id_TipoCompra) references TipoCompras(Id_TipoCompra) on delete cascade on update cascade
 );
 
+create table ComprasProductos(
+	Id_Compra int not null,
+	Id_Producto int not null,
+	total double,
+
+	foreign key (Id_Compra) references Compras (Id_Compra) on update cascade on delete cascade,
+	foreign key (Id_Producto) references Productos (Id_Producto) on update cascade on delete cascade
+);
+
+create table ComprasAparatos(
+	Id_Compra int not null,
+	Id_Aparato int not null,
+	total double,
+
+	foreign key (Id_Compra) references Compras (Id_Compra) on update cascade on delete cascade,
+	foreign key (Id_Aparato) references Aparatos (Id_Aparato) on update cascade on delete cascade
+);
+
+-- create table ComprasOtros(
+-- 	Id_Compra int not null,
+-- 	Id_Aparato int not null,
+-- 	total double,
+
+-- 	foreign key (Id_Compra) references Compras (Id_Compra) on update cascade on delete cascade,
+-- 	foreign key (Id_Aparato) references Aparatos (Id_Aparato) on update cascade on delete cascade
+-- );
+
 create table TipoGastos(
 	Id_Tipo int not null auto_increment,
 	tipo_gasto varchar(25),

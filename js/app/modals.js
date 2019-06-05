@@ -771,9 +771,9 @@ aria-hidden="true">
                     <label>Categoría:</label>
                     <select class="form-control" id="categorias-compra" name="compras[]">
                         <option value="1" id="categoria-producto">Producto nuevo</option>
-                        <option value="1" id="categoria-producto-existente">Producto existente</option>
-                        <option value="2" id="categoria-aparato">Aparato</option>
-                        <option value="3" id="categoria-otro">Otro</option>
+                        <option value="2" id="categoria-producto-existente">Producto existente</option>
+                        <option value="3" id="categoria-aparato">Aparato</option>
+                        <option value="4" id="categoria-otro">Otro</option>
                     </select>
                 </div>
 

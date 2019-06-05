@@ -194,7 +194,8 @@ var clienteController = (function () {
 
         new Lightpick({
             field: document.querySelector('#rango-fecha'),
-            singleDate: false
+            singleDate: false,
+            maxDate: moment()
 
         });
 

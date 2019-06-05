@@ -384,7 +384,7 @@ var compraController = (function () {
         }
         if (document.querySelector('#compras-table-aparatos') != null) {
             yPos += 12;
-            doc.text('Lista de compras', 15, yPos);
+            doc.text('Lista de compras de aparatos', 15, yPos);
             doc.autoTable({
                 startY: number = yPos + 8,
                 html: '#compras-table',

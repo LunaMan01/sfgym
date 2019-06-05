@@ -116,8 +116,8 @@ var gastoController = (function () {
 
         new Lightpick({
             field: document.querySelector('#fecha-rango-reporte'),
-            singleDate: false
-
+            singleDate: false,
+            maxDate: moment()
         });
 
         document.querySelector('#reporte-gastos-form').addEventListener('submit', generarReporte);

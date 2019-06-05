@@ -118,6 +118,7 @@ var compraController = (function () {
         document.querySelector('#agregar-producto-seleccionado').addEventListener('click', agregarACarrito);
 
         document.querySelector('#guardar-compra').addEventListener('click', guardarCompra);
+        setUpInputs();
 
     }
 
@@ -402,12 +403,27 @@ var compraController = (function () {
 
         // new Lightpick({ field: document.getElementById('fecha-compra-update') });
 
-        new Cleave('.id-add', {
+        new Cleave('#nip-instructor', {
             numericOnly: true,
             blocks: [11]
         });
 
-        new Cleave('.id-update', {
+        new Cleave('#cantidad-productos', {
+            numericOnly: true,
+            blocks: [11]
+        });
+
+        new Cleave('#precio-venta-producto-compras',{
+            numericOnly: true,
+            blocks: [11]
+        });
+
+        new Cleave('#cantidad-nueva',{
+            numericOnly: true,
+            blocks: [11]
+        });
+
+        new Cleave('#subtotal-compra',{
             numericOnly: true,
             blocks: [11]
         });

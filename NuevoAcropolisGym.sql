@@ -142,13 +142,6 @@ create table TipoCompras(
 	primary key(Id_TipoCompra)
 );
 
-create table CategoriasCompras(
-	Id_Categoria int not null auto_increment,
-	categoria varchar(15),
-
-	primary key (Id_Categoria)
-);
-
 create table Compras(
 	Id_Compra int not null auto_increment,
 	Id_Instructor int not null,
@@ -210,9 +203,6 @@ insert into Instructores (nombre_instructor, password1) values ('Alberto', '123'
 
 insert into TipoCompras (tipo_compra) values ('Productos');
 insert into TipoCompras (tipo_compra) values ('Aparatos');
-
-insert into CategoriasCompras (categoria) values ('Producto Nuevo');
-insert into CategoriasCompras (categoria) values ('Producto Existente');
 
 insert into TipoGastos (tipo_gasto) values ('Gasto Fijo');
 insert into TipoGastos (tipo_gasto) values ('Gasto Mantenimiento');

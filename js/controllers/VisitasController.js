@@ -118,8 +118,8 @@ var visitaController = (function () {
 
         new Lightpick({
             field: document.querySelector('#fecha-rango-reporte'),
-            singleDate: false
-
+            singleDate: false,
+            maxDate: moment()
         });
 
         document.querySelector('#reporte-visitas-form').addEventListener('submit', generarReporte);

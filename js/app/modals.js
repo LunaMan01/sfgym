@@ -584,7 +584,7 @@ aria-hidden="true">
 <div class="modal-dialog" role="document">
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title">Modificar gasto</h5>
+            <h5 class="modal-title">Gasto</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -843,7 +843,7 @@ aria-hidden="true">
 `;
 
 let modalsVentas = `
-<div class="modal fade" id="eliminar-compra-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="eliminar-venta-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
 <div class="modal-dialog" role="document">
   <div class="modal-content">

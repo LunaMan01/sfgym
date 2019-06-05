@@ -522,8 +522,8 @@ var ventaController = (function () {
         UIVenta.abrirReportes();
         new Lightpick({
             field: document.querySelector('#fecha-rango-reporte'),
-            singleDate: false
-
+            singleDate: false,
+            maxDate: moment()
         });
 
         document.querySelector('#reporte-ventas-form').addEventListener('submit', generarReporte);

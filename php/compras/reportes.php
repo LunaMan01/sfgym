@@ -32,7 +32,8 @@
         FROM Compras INNER JOIN Instructores INNER JOIN TipoCompras
         ON Compras.Id_Instructor = Instructores.Id_Instructor
         AND Compras.Id_TipoCompra = TipoCompras.Id_TipoCompra
-        AND str_to_date(fecha_compra, '%d/%m/%Y') BETWEEN str_to_date('".$fecha1."','%d/%m/%Y') 
+        AND cancelada = 0
+        WHERE str_to_date(fecha_compra, '%d/%m/%Y') BETWEEN str_to_date('".$fecha1."','%d/%m/%Y') 
         AND str_to_date('".$fecha2."','%d/%m/%Y')");
         
         $rowConTabla = '
@@ -92,12 +93,12 @@
         $fecha1 = $array[0];
         $fecha2 = $array[1];
 
-        $activo = 1;
         $datos = $conn->prepare("SELECT Compras.Id_Compra, descripcion_producto, fecha_compra, total
         FROM Compras INNER JOIN ComprasProductos INNER JOIN Productos
         ON Compras.Id_Compra = ComprasProductos.Id_Compra
         AND Productos.Id_Producto = ComprasProductos.Id_Producto
-        AND str_to_date(fecha_compra, '%d/%m/%Y') BETWEEN str_to_date('".$fecha1."','%d/%m/%Y') 
+        AND cancelada = 0
+        WHERE str_to_date(fecha_compra, '%d/%m/%Y') BETWEEN str_to_date('".$fecha1."','%d/%m/%Y') 
         AND str_to_date('".$fecha2."','%d/%m/%Y')");
         
         $rowConTabla = '
@@ -155,12 +156,12 @@
         $fecha1 = $array[0];
         $fecha2 = $array[1];
 
-        $activo = 1;
         $datos = $conn->prepare("SELECT Compras.Id_Compra, nombre_aparato, fecha_compra, total
         FROM ComprasAparatos INNER JOIN Aparatos INNER JOIN Compras
         ON Aparatos.Id_Aparato = ComprasAparatos.Id_Aparato
         AND ComprasAparatos.Id_Compra = Compras.Id_Compra
-        AND str_to_date(fecha_compra, '%d/%m/%Y') BETWEEN str_to_date('".$fecha1."','%d/%m/%Y') 
+        AND cancelada = 0
+        WHERE str_to_date(fecha_compra, '%d/%m/%Y') BETWEEN str_to_date('".$fecha1."','%d/%m/%Y') 
         AND str_to_date('".$fecha2."','%d/%m/%Y')");
         
         $rowConTabla = '

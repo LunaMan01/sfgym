@@ -212,6 +212,8 @@ var compraController = (function () {
         setUpEditEvent();
         setUpDeleteEvent();
         setUpDeleteEventAparato();
+        setUpInputs();
+
     }
 
     function guardarCompra() {
@@ -485,7 +487,7 @@ var compraController = (function () {
         }
         if (document.querySelector('#compras-table-aparatos') != null) {
             yPos += 12;
-            doc.text('Lista de compras', 15, yPos);
+            doc.text('Lista de compras de aparatos', 15, yPos);
             doc.autoTable({
                 startY: number = yPos + 8,
                 html: '#compras-table',
@@ -503,12 +505,27 @@ var compraController = (function () {
 
         // new Lightpick({ field: document.getElementById('fecha-compra-update') });
 
-        new Cleave('.id-add', {
+        new Cleave('#nip-instructor', {
             numericOnly: true,
             blocks: [11]
         });
 
-        new Cleave('.id-update', {
+        new Cleave('#cantidad-productos', {
+            numericOnly: true,
+            blocks: [11]
+        });
+
+        new Cleave('#precio-venta-producto-compras',{
+            numericOnly: true,
+            blocks: [11]
+        });
+
+        new Cleave('#cantidad-nueva',{
+            numericOnly: true,
+            blocks: [11]
+        });
+
+        new Cleave('#subtotal-compra',{
             numericOnly: true,
             blocks: [11]
         });

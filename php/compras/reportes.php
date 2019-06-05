@@ -133,7 +133,7 @@
                         <th scope="row" id="'.$r['Id_Compra'].'">'.$r['Id_Compra'].'</th>'.
                         '<td>'.$r['descripcion_producto'].'</td>'.
                         '<td>'.$r['fecha_compra'].'</td>'.
-                        '<td class="text-right">'.$r['total_compra'].'</td>
+                        '<td class="text-right">'.$r['total'].'</td>
                     </tr>';
             }
 

@@ -30,24 +30,6 @@
         //TIPO DE COMPRA
         //PRODUCTOS
         if($tipoCompra == 1){
-            
-            //CATEGORIA
-            //PRODUCTOS NUEVOS
-            // if($_POST['compras'] == 1){
-            //     foreach($arrayItems1 as $row){
-            //         comprasProductosNuevos($conn, $lastIdCompra, $row['descripcion'], $row['fecha-caducidad'], $row['existencia'], $row['precio'], $row['subtotal']);
-            //     }
-            //     echo 1;
-            // }
-
-            // //PRODUCTOS EXISTENTES
-            // if($_POST['compras'] == 2){
-            //     foreach($arrayItems2 as $row){
-            //         comprasProductosExistentes($conn, $lastIdCompra, $row['id'], $row['existencia'], $row['subtotal']);
-            //     }
-            //     echo 1;
-            // }
-
             foreach($arrayItems1 as $row){
                 if($row['categoria'] == 1){
                     comprasProductosNuevos($conn, $lastIdCompra, $row['descripcion'], $row['caducidad'], $row['existencia'], $row['precioVenta'], $row['subtotal']);
@@ -117,7 +99,16 @@
             existencia_producto = :existencia
             WHERE Id_Producto = '. $idProducto);
 
-        $compra->bindParam(':existencia', $existencia);
+        $cantidadP = 0;
+        $cantidadProductos = "SELECT existencia_producto FROM Productos
+            WHERE Id_Producto = ". $idProducto;
+
+        foreach($conn->query($cantidadProductos) as $row){
+            $cantidadP = $row['existencia_producto'];
+        }
+        $suma = $cantidadP + $existencia;
+
+        $compra->bindParam(':existencia', $suma);
 
         $compra->execute();
 

@@ -15,7 +15,7 @@
         </div>
     ';
 
-    $html .= getCompras($conn);
+    // $html .= getCompras($conn);
 
     $html .= getProductos($conn);
 
@@ -133,7 +133,7 @@
                         <th scope="row" id="'.$r['Id_Compra'].'">'.$r['Id_Compra'].'</th>'.
                         '<td>'.$r['descripcion_producto'].'</td>'.
                         '<td>'.$r['fecha_compra'].'</td>'.
-                        '<td class="text-right">'.$r['total_compra'].'</td>
+                        '<td class="text-right">'.$r['total'].'</td>
                     </tr>';
             }
 
@@ -177,7 +177,7 @@
                     </div>
 
                     <div class="table-responsive">
-                        <table class="table table-hover" id="compras-table">
+                        <table class="table table-hover" id="compras-table-aparatos">
                             <thead>   
                                 <tr>
                                     <th scope="col">Id Compra</th>

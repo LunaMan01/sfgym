@@ -1,0 +1,122 @@
+<div class="d-none" id="add-compra-alert">
+
+</div>
+<div class="container panel-reportes">
+    <div class="container">
+        <form onsubmit="return false" id="add-compra-form" novalidate>
+            <div class="row">
+                <div class="container">
+
+                    <!-- Letrero  " N U E V A   C O M P R A"-->
+                    <div class="row">
+                        <div class="col-auto"><i class="material-icons iconMessege">attach_money</i></div>
+                        <div class="col-auto mt-2">
+                            <p><b>Nueva compra</b></p>
+                        </div>
+                    </div>
+
+                    <!--FORMULARIO-->
+                    <div class="row">
+                        <div class="container">
+                            <!-- 
+                                    <div class="form-group row ">
+                                        <label class="col-lg-2 col-form-label text-right">NIP Cliente: </label>
+                                        <div class="col-lg-4">
+                                            <input type="text" class="form-control rounded-pill" id="nip-cliente"
+                                                name="nip-de-cliente" required>
+                                        </div>
+                                
+                                    </div> -->
+
+
+                            <div class="form-group row ">
+                                <label class="col-lg-2 col-form-label text-right">Id compra: </label>
+                                <div class="col-lg-4">
+                                    <p type="text" id="id-compra"></p>
+                                </div>
+                            </div>
+
+                            <div class="form-group row ">
+                                <label class="col-lg-2 col-form-label text-right">Instructor: </label>
+                                <div class="col-lg-4">
+                                    <p type="text" id="nip-instructor"></p>
+                                </div>
+                            </div>
+
+                            <div class="form-group row ">
+                                <label class="col-lg-2 col-form-label text-right">Fecha de compra: </label>
+                                <div class="col-lg-4">
+                                    <p type="text" id="fecha-compra"></p>
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="row type-aparato" id="aparatos-carrito-container">
+                                    <div class="container">
+                                        <div class="col-12">
+                                            <div class="container">
+                                                <div class="tablaPrincipal">
+                                                    <div class="container">
+                                                        <div class="row">
+                                                            <div class="col-auto">
+                                                                <i class="material-icons iconMessege">attach_money</i>
+                                                            </div>
+                                                            <div class="col-auto mt-3">
+                                                                <p><b>Lista de aparatos comprados</b></p>
+                                                            </div>
+                                                        </div>
+                    
+                                                        <div class="row">
+                                                            <div class="table-responsive">
+                                                                <table class="table table-hover">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th scope="col">#</th>
+                                                                            <th scope="col">Producto</th>
+                                                                            <th scope="col" class="text-right">SubTotal</th>
+                                                                            
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody id="carritoAparatos">
+                    
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                    
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                            <div class="row mt-3 mb-3">
+                                <div class="col-lg-5 offset-lg-7">
+                                    <div class="row">
+                                        <div class="col-auto">
+                                            <p>Total:</p>
+                                        </div>
+                                        <div class="col-auto">
+                                            <input type="text" class="form-control rounded-pill text-right"
+                                                id="total-compra" name="total-de-venta" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-4 text-right offset-lg-8">
+                                    <button id="cancelar-compra"
+                                        class="btn btn-outline-success btn-sm my-2 my-sm-0 mr-3 rounded-pill"
+                                        type="button">Ok</button>
+                                </div>
+                            </div>
+        </form>
+    </div>
+</div>

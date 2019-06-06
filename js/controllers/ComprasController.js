@@ -50,25 +50,35 @@ var compraController = (function () {
 
     let count = 0;
 
+    function calcularSubtotal () {
+        let precioCompra = document.querySelector('#precio-compra').value;
+        let cantidad = document.querySelector('#cantidad-productos').value;
+        document.querySelector('#subtotal-compra').value = parseInt(precioCompra,10) * parseInt(cantidad,10);
+
+    }
+
     function addProductoNuevoACarrito(tipo) {
         count++;
         let desc = document.querySelector('#descripcion-compra').value;
         let cantidad = document.querySelector('#cantidad-productos').value;
         let precioVenta = document.querySelector('#precio-venta-producto-compras').value;
         let fechaCaducidad = document.querySelector('#fecha-caducidad-productos-compras').value;
-        let subtotal = document.querySelector('#subtotal-compra').value;
+        // let subtotal = document.querySelector('#subtotal-compra').value;
+        let precioCompra = document.querySelector('#precio-compra').value;
         let id = '0';
 
         if(isEmpty(desc)) {
             UICompra.mostrarAlert('Agrega la descripción del producto comprado', 'alert-danger');
             return;
         }
-        if(isEmpty(subtotal)) {
-            UICompra.mostrarAlert('Agrega el subtotal de la compra realizada', 'alert-danger');
+        if(isEmpty(precioCompra)) {
+            UICompra.mostrarAlert('Agrega el precio unitario de la compra realizada', 'alert-danger');
             return;
         }
 
-        UICompra.agregarProductoACarrito(desc, cantidad, precioVenta, fechaCaducidad, subtotal, tipo, count, id);
+        let subtotal = parseInt(precioCompra,10) * parseInt(cantidad,10);
+
+        UICompra.agregarProductoACarrito(desc, cantidad, precioVenta, fechaCaducidad, subtotal, tipo, count, id, precioCompra);
 
     }
 
@@ -123,6 +133,7 @@ var compraController = (function () {
                 th = UICompra.getTh();
                 // console.log('th', th);
                 cantidadTd = UICompra.getCantidadTdDetalle(e);
+                // subtotalTd = UICompra.getSubtotalTdDetalle(e);
                 console.log('canttd'+cantidadTd);
                 // subtotalTd = UIVenta.getSubtotalTdDetalle(e);
                 // precioProducto = cantidadTd.getAttribute('data-precio');
@@ -136,8 +147,11 @@ var compraController = (function () {
 
     function modificarCantidad() {
         let nuevaCantidad = document.querySelector('#nueva-cantidad').value;
+        let precioCompra = th.getAttribute('data-preciocompra');
 
-        UICompra.modificarProductoEnCarrito(cantidadTd, nuevaCantidad);
+        let sub = cantidadTd.nextSibling;
+        sub = sub.nextSibling;
+        UICompra.modificarProductoEnCarrito(cantidadTd, nuevaCantidad, sub, precioCompra);
 
         UICompra.esconderModal('#modificar-cantidad-producto-modal');
 
@@ -214,6 +228,8 @@ var compraController = (function () {
         setUpDeleteEventAparato();
         setUpInputs();
         document.querySelector('#cancelar-compra').addEventListener('click', UICompra.regresar);
+        document.querySelector('#cantidad-productos').addEventListener('keyup', calcularSubtotal);
+        document.querySelector('#precio-compra').addEventListener('keyup', calcularSubtotal);
 
     }
 

@@ -86,10 +86,10 @@ var UICompra = (function () {
             document.querySelector('#tipo-productos').classList.remove('d-none');
         },
 
-        agregarProductoACarrito : function (producto, cantidad, precioVenta,caducidad, subtotal, tipo, count, id) {
+        agregarProductoACarrito : function (producto, cantidad, precioVenta,caducidad, subtotal, tipo, count, id, unitarioCompra) {
             let productoTr = `
                 <tr>
-                    <th scope="row" class="p-nuevo" id="${id}" data-tipo="${tipo}" data-precioventa="${precioVenta}" data-cantidad="${cantidad}" data-fechacaducidad="${caducidad}" data-subtotal = "${subtotal}" data-desc="${producto}">${count}</th>
+                    <th scope="row" class="p-nuevo" id="${id}" data-preciocompra = "${unitarioCompra}" data-tipo="${tipo}" data-precioventa="${precioVenta}" data-cantidad="${cantidad}" data-fechacaducidad="${caducidad}" data-subtotal = "${subtotal}" data-desc="${producto}">${count}</th>
                     <td>${producto}</td>
                     <td class="text-right">${cantidad}</td>
                     <td class="subtotales text-right">${subtotal}</td>
@@ -281,11 +281,23 @@ var UICompra = (function () {
             return th;
         },
 
-        modificarProductoEnCarrito: function (cantidadTd, cantidad) {
-           
+        getSubtotalTdDetalle: function () {
+            var i = event.target;
+            var td = i.parentNode;
+            tr = td.parentNode;
+            var elements = tr.childNodes;
+            var th = elements[7];
+            console.log(th);
+            return th;
+        },
 
+        modificarProductoEnCarrito: function (cantidadTd, cantidad, subtotalTd, precio) {
+           
+            let subtotal = precio * cantidad;
+            console.log('subtotaltd'+subtotalTd);
             cantidadTd.innerHTML = cantidad;
-            // subtotalTd.innerHTML = subtotal;
+            subtotalTd.innerHTML = subtotal;
+            console.log(subtotalTd);
             console.log(cantidadTd);
             // let subtotales = document.querySelectorAll('.subtotales');
 

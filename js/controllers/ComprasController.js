@@ -257,7 +257,8 @@ var compraController = (function () {
 
             if (new Compra().add(compra, productosNuevosEnCarrito)) {
                 console.log('correcto');
-                productosNuevosEnCarrito.length = 0;
+                
+                UICompra.mostrarAlert('Compra añadida correctamente', 'alert-success');
             }
         }
         else {
@@ -278,7 +279,8 @@ var compraController = (function () {
                 aparatosNuevosEnCarrito.push(aparato);
 
                 if (new Compra().add(compra, aparatosNuevosEnCarrito)) {
-                    console.log('correcto');
+                    UICompra.mostrarAlert('Compra añadida correctamente', 'alert-success');
+                    productosNuevosEnCarrito.length = 0;
                 }
 
             });
@@ -549,7 +551,7 @@ var compraController = (function () {
         // });
 
 
-        new Lightpick({ field: document.getElementById('fecha-caducidad-productos-compras'), maxDate: moment() });
+        new Lightpick({ field: document.getElementById('fecha-caducidad-productos-compras') });
 
         // new Cleave('.date-update', {
         //     date: true,

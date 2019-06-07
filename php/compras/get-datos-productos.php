@@ -13,7 +13,7 @@
             echo '<tr>
                 <th scope="row" id="'.$row['Id_Producto'].'">'.$row['Id_Producto'].'</th>'.
                 '<td>'.$row['descripcion_producto'].'</td>'.
-                '<td>'.$row['total'].'</td>'.
+                '<td class="text-right">'.$row['total'].'</td>'.
             '</tr>';
         }
     }catch(PDOException $e){

@@ -270,6 +270,23 @@ var UICompra = (function () {
             return th;
         },
 
+        resetForm : function () {
+            document.querySelector('#descripcion-compra').value = '';
+            document.querySelector('#precio-compra').value = '';
+            document.querySelector('#cantidad-productos').value = '';
+            document.querySelector('#precio-venta-producto-compras').value = '';
+            document.querySelector('#fecha-caducidad-productos-compras').value = '';
+            document.querySelector('#subtotal-compra').value = '';
+            document.querySelector('#total-compra').value = '';
+            document.querySelector('#precio-compra-existente').value = '';
+            document.querySelector('#cantidad-nueva').value = '';
+            document.querySelector('#descripcion-aparato').value = '';
+
+        },
+
+        limpiarCarrito : function () {
+            document.querySelector('#carrito').innerHTML = '';
+        },
 
         getCantidadTdDetalle: function (event) {
             var i = event.target;
@@ -299,15 +316,15 @@ var UICompra = (function () {
             subtotalTd.innerHTML = subtotal;
             console.log(subtotalTd);
             console.log(cantidadTd);
-            // let subtotales = document.querySelectorAll('.subtotales');
+            let subtotales = document.querySelectorAll('.subtotales');
 
-            // let total = 0;
-            // subtotales.forEach(element => {
+            let total = 0;
+            subtotales.forEach(element => {
 
-            //     total += parseInt(element.innerHTML, 10);
-            // });
+                total += parseInt(element.innerHTML, 10);
+            });
 
-            // document.querySelector('#total-compra').value = total;
+            document.querySelector('#total-compra').value = total;
         },
 
 

@@ -684,6 +684,7 @@ var compraController = (function () {
     function setUpEvents() {
         mostrarTodas();
         document.querySelector('#add-compra-btn').addEventListener('click', setUpNuevaCompra);
+        document.querySelector('#add-compra-i').addEventListener('click', setUpNuevaCompra);
         // setUpInputs();
         // UICompra.agregarProductosASelectorExistentes();
         // document.querySelector('#add-compra-form').addEventListener('submit', addNuevaCompra);

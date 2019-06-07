@@ -303,7 +303,7 @@ var compraController = (function () {
                 aparato.subtotal = element.getAttribute('data-subtotal');
                 aparatosNuevosEnCarrito.push(aparato);
 
-                if (new Compra().add(compra, aparatosNuevosEnCarrito)) {
+                if (new Compra().addAparato(compra, aparatosNuevosEnCarrito)) {
                     UICompra.mostrarAlert('Compra añadida correctamente', 'alert-success');
                     aparatosNuevosEnCarrito.length = 0;
                    UICompra.resetForm();

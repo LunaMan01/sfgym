@@ -86,10 +86,10 @@ var UICompra = (function () {
             document.querySelector('#tipo-productos').classList.remove('d-none');
         },
 
-        agregarProductoACarrito : function (producto, cantidad, precioVenta,caducidad, subtotal, tipo, count, id) {
+        agregarProductoACarrito : function (producto, cantidad, precioVenta,caducidad, subtotal, tipo, count, id, unitarioCompra) {
             let productoTr = `
                 <tr>
-                    <th scope="row" class="p-nuevo" id="${id}" data-tipo="${tipo}" data-precioventa="${precioVenta}" data-cantidad="${cantidad}" data-fechacaducidad="${caducidad}" data-subtotal = "${subtotal}" data-desc="${producto}">${count}</th>
+                    <th scope="row" class="p-nuevo" id="${id}" data-preciocompra = "${unitarioCompra}" data-tipo="${tipo}" data-precioventa="${precioVenta}" data-cantidad="${cantidad}" data-fechacaducidad="${caducidad}" data-subtotal = "${subtotal}" data-desc="${producto}">${count}</th>
                     <td>${producto}</td>
                     <td class="text-right">${cantidad}</td>
                     <td class="subtotales text-right">${subtotal}</td>
@@ -270,6 +270,23 @@ var UICompra = (function () {
             return th;
         },
 
+        resetForm : function () {
+            document.querySelector('#descripcion-compra').value = '';
+            document.querySelector('#precio-compra').value = '';
+            document.querySelector('#cantidad-productos').value = '';
+            document.querySelector('#precio-venta-producto-compras').value = '';
+            document.querySelector('#fecha-caducidad-productos-compras').value = '';
+            document.querySelector('#subtotal-compra').value = '';
+            document.querySelector('#total-compra').value = '';
+            document.querySelector('#precio-compra-existente').value = '';
+            document.querySelector('#cantidad-nueva').value = '';
+            document.querySelector('#descripcion-aparato').value = '';
+
+        },
+
+        limpiarCarrito : function () {
+            document.querySelector('#carrito').innerHTML = '';
+        },
 
         getCantidadTdDetalle: function (event) {
             var i = event.target;
@@ -281,21 +298,33 @@ var UICompra = (function () {
             return th;
         },
 
-        modificarProductoEnCarrito: function (cantidadTd, cantidad) {
+        getSubtotalTdDetalle: function () {
+            var i = event.target;
+            var td = i.parentNode;
+            tr = td.parentNode;
+            var elements = tr.childNodes;
+            var th = elements[7];
+            console.log(th);
+            return th;
+        },
+
+        modificarProductoEnCarrito: function (cantidadTd, cantidad, subtotalTd, precio) {
            
-
+            let subtotal = precio * cantidad;
+            console.log('subtotaltd'+subtotalTd);
             cantidadTd.innerHTML = cantidad;
-            // subtotalTd.innerHTML = subtotal;
+            subtotalTd.innerHTML = subtotal;
+            console.log(subtotalTd);
             console.log(cantidadTd);
-            // let subtotales = document.querySelectorAll('.subtotales');
+            let subtotales = document.querySelectorAll('.subtotales');
 
-            // let total = 0;
-            // subtotales.forEach(element => {
+            let total = 0;
+            subtotales.forEach(element => {
 
-            //     total += parseInt(element.innerHTML, 10);
-            // });
+                total += parseInt(element.innerHTML, 10);
+            });
 
-            // document.querySelector('#total-compra').value = total;
+            document.querySelector('#total-compra').value = total;
         },
 
 

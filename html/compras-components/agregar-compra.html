@@ -69,14 +69,23 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group compras-productos-existentes d-none row">
+                                <!-- <div class="form-group compras-productos-existentes d-none row">
                                     <label class="col-lg-2 col-form-label text-right">Productos existentes:</label>
                                     <div class="col-lg-4">
                                         <select class="form-control compras-productos-existentes rounded-pill"
                                             id="select-productos-existentesx">
                                         </select>
                                     </div>
+                                </div> -->
+
+                                <div class="form-group row producto-nuevo type-producto">
+                                    <label class="col-lg-2 col-form-label text-right">Precio unitario compra: </label>
+                                    <div class="col-lg-4">
+                                        <input type="text" class="form-control rounded-pill" id="precio-compra"
+                                            name="cantidad-productos">
+                                    </div>
                                 </div>
+
 
                                 <div class="form-group row producto-nuevo type-producto">
                                     <label class="col-lg-2 col-form-label text-right">Stock: </label>
@@ -114,6 +123,15 @@
                                     </div>
                                 </div>
 
+                                
+                                <div class="form-group compras-productos-existentes row">
+                                    <label class="col-lg-2 col-form-label text-right">Precio unitario compra:</label>
+                                    <div class="col-lg-4">
+                                        <input type="text" class="form-control rounded-pill" id="precio-compra-existente"
+                                            name="precio-producto" required>
+                                    </div>
+                                </div>
+
                                 <div class="form-group compras-productos-existentes row">
                                     <label class="col-lg-2 col-form-label text-right">Cantidad:</label>
                                     <div class="col-lg-4">
@@ -121,6 +139,7 @@
                                             name="precio-producto" required>
                                     </div>
                                 </div>
+
                             </div>
 
                             <div id="inputs-aparato" class="d-none">
@@ -142,7 +161,7 @@
                                 <label class="col-lg-2 col-form-label text-right">Subtotal compra: </label>
                                 <div class="col-lg-4">
                                     <input type="text" class="form-control rounded-pill" id="subtotal-compra"
-                                        name="subtotal-compra">
+                                        name="subtotal-compra" readonly>
                                 </div>
                                 <div class="col-lg-2 type-producto">
                                     <button class="btn btn-outline-success rounded-pill" type="button"

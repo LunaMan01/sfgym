@@ -18,6 +18,21 @@ class Compra {
         return true;
     }
 
+    addAparato(compra, aparatos) {
+        var req = new XMLHttpRequest();
+        req.open("POST", 'php/compras/añadirCompras.php', false);
+        req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        req.send('compra='+encodeURIComponent(JSON.stringify(compra))+"&aparatos="+encodeURIComponent(JSON.stringify(aparatos)));
+        // if (req.responseText != 1) {
+        //     console.log('Error');
+            console.log(req.responseText);
+
+        //     return true;
+        // }
+        console.log(req.responseText);
+        return true;
+    }
+
     // add(compra, aparatos) {
     //     var req = new XMLHttpRequest();
     //     req.open("POST", 'php/compras/añadirCompras.php', false);

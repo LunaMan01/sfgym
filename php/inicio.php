@@ -3,7 +3,7 @@
 
     try{
         //CLIENTES ACTIVOS
-        $preparar = 'SELECT COUNT(*) AS Activos FROM clientes WHERE activo = 1';
+        $preparar = 'SELECT COUNT(*) AS Activos FROM lientes WHERE activo = 1';
         $resultActivos = $conn->query($preparar); 
         $totalActivos = $resultActivos->fetchColumn();
         

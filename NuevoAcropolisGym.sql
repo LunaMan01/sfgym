@@ -1,6 +1,6 @@
-create database AcropolisGym;
+--create database AcropolisGym;
 
-use AcropolisGym;
+--use AcropolisGym;
 
 create table Generos(
 	Id_Genero int not null auto_increment,
